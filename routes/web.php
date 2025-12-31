@@ -1,0 +1,75 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use Laravel\Fortify\Features;
+
+Route::get('/', function () {
+    return Inertia::render('welcome', [
+        'canRegister' => Features::enabled(Features::registration()),
+    ]);
+})->name('home');
+
+Route::get('/login', function () {
+    return Inertia::render('LoginPage'); // This matches the filename MyLogin.tsx
+});
+Route::get('/forgot-pass', function () {
+    return Inertia::render('ForgotPass'); // This matches the filename MyLogin.tsx
+});
+Route::get('/login-super-admin', function () {
+    return Inertia::render('LoginSuperAdmin'); // This matches the filename MyLogin.tsx
+});
+
+Route::get('dashboard', function () {
+    return Inertia::render('dashboard'); // Matches Dashboard.tsx
+})->name('dashboard');
+
+Route::get('reports', function () {
+    return Inertia::render('Reports');
+})->name('reports');
+
+Route::get('usermanagement', function () {
+    return Inertia::render('UserManagement');
+})->name('usermanagement');
+
+Route::get('busines-management', function () {
+    return Inertia::render('BusinessManagement');
+})->name('busines-management');
+
+Route::get('subscription-and-billing', function () {
+    return Inertia::render('SubscriptionsAndBilling');
+})->name('subscription-and-billing');
+
+Route::get('system-config', function () {
+    return Inertia::render('SystemConfig');
+})->name('system-config');
+
+Route::get('maintinance-and-support', function () {
+    return Inertia::render('MaintinanceAndSupport');
+})->name('maintinance-and-support');
+
+Route::get('communication-management', function () {
+    return Inertia::render('CommunicationManagement');
+})->name('communication-management');
+
+Route::get('marketplace-and-intigrations', function () {
+    return Inertia::render('MarketplaceAndIntigrations');
+})->name('marketplace-and-intigrations');
+
+Route::get('manage-approvals', function () {
+    return Inertia::render('ManageApprovals');
+})->name('manage-approvals');
+
+Route::get('my-tickets', function () {
+    return Inertia::render('MyTickets');
+})->name('my-tickets');
+
+Route::get('settings', function () {
+    return Inertia::render('SettingsPage');
+})->name('settings');
+
+Route::get('reportspage', function () {
+    return Inertia::render('ReportsPage');
+})->name('reportspage');
+
+require __DIR__.'/settings.php';

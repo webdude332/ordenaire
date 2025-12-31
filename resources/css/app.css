@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-montserrat);
+}
+
+/* Set Montserrat as default for the entire app */
+@layer base {
+  * {
+    font-family: var(--font-montserrat);
+  }
+}
+
+/* Custom scrollbar styles */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom scrollbar for main content areas */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #79B800;
+} */
