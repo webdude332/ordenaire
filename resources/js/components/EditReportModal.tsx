@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import Button from '../components/Button';
+import editIcon from '../images/icons/editIcon.png';
 import Modal from './Modal';
+import patternBg from '../images/icons/patternBg.png'; // Added missing semicolon
+
+// import checkIcon from '../images/icons/check-icon.png'; 
 
 interface EditReportModalProps {
     isOpen: boolean;
@@ -7,256 +12,343 @@ interface EditReportModalProps {
     onSave: () => void;
 }
 
-export default function EditReportModal({ isOpen, onClose, onSave }: EditReportModalProps) {
+export default function EditReportModal({
+    isOpen,
+    onClose,
+    onSave,
+}: EditReportModalProps) {
     const [exportFormat, setExportFormat] = useState('excel');
-    const [frequency, setFrequency] = useState('weekly-monthly');
-    const [notifications, setNotifications] = useState({ email: true, whatsapp: false, sms: false });
+    const [frequency, setFrequency] = useState('weekly');
+    const [notifications, setNotifications] = useState({
+        email: true,
+        whatsapp: false,
+        sms: false,
+    });
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
-            <div className="p-6 sm:p-8">
-                {/* Header with Icon */}
-                <div className="flex items-start gap-4 mb-6">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl border-2 border-gray-200 flex items-center justify-center bg-white">
-                        <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                    </div>
-                    <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-gray-900">Edit Scheduled Report</h3>
-                    </div>
-                </div>
+        <Modal isOpen={isOpen} onClose={onClose} maxWidth="4xl">
+            {/* Added overflow-hidden to clip the pattern if it scales too big */}
+            <div className="relative overflow-hidden rounded-xl bg-white">
+                
+                {/* REMOVED: Old hardcoded Decorative Background Circles were here */}
 
-                {/* Form */}
-                <div className="space-y-5">
-                    {/* Row 1: Tenant and Recipients */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
-                                Assign to Tenant / Organization
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="Search for tenant..."
-                                    className="w-full px-4 py-2.5 pl-10 rounded-lg border border-gray-300 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                                <svg className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
-                                Recipients
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    defaultValue="abc@gmail.com, Admins, billing"
-                                    className="w-full px-4 py-2.5 pr-10 rounded-lg border border-gray-300 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                                <svg className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                {/* Close Button (Top Right) */}
+                <button
+                    onClick={onClose}
+                    className="absolute top-5 right-5 z-20 text-gray-400 transition-colors hover:text-gray-600"
+                >
+                    <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
 
-                    {/* Row 2: Report Title and Template */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
-                                Report Title
-                            </label>
-                            <input
-                                type="text"
-                                placeholder='e.g., "Monthly Performance Report"'
-                                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                {/* Modal Content */}
+                <div className="relative z-0 p-8 pb-4">
+                    {/* Header */}
+                    <div className="mb-8 flex flex-col items-start gap-4">
+                        
+                        {/* --- ICON WRAPPER WITH PATTERN --- */}
+                        <div className="relative z-10 flex h-12 w-12 items-center justify-center">
+                            
+                            {/* 1. The Pattern Background (Centered behind icon) */}
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <img 
+                                    src={patternBg} 
+                                    alt="" 
+                                    className="max-w-none" 
+                                    style={{ 
+                                        transform: 'scale(1.2)', // Adjust scale to match the previous modal's look
+                                        opacity: 1 
+                                    }} 
+                                />
+                            </div>
+
+                            {/* 2. The Edit Icon (Sitting on top) */}
+                            <div className='relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center'>
+                            <img
+                                src={editIcon}
+                                alt="Edit"
+                                className="relative z-10 h-12 w-12"
                             />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
-                                Report Template
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    defaultValue="templates—Sales, Usage, Financial"
-                                    className="w-full px-4 py-2.5 pr-10 rounded-lg border border-gray-300 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                                <svg className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                </svg>
                             </div>
                         </div>
+
+                        <div>
+                            <h3 className="text-xl font-bold text-gray-900">
+                                Edit Scheduled Report
+                            </h3>
+                        </div>
                     </div>
 
-                    {/* Row 3: Date Range */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-900 mb-2">
-                                Select Data Range
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    defaultValue="Jan 10, 2025 - Jul 10, 2025"
-                                    className="w-full px-4 py-2.5 pl-10 rounded-lg border border-gray-300 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                                />
-                                <svg className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
+                    {/* Form Fields */}
+                    <div className="space-y-6">
+                        {/* Row 1: Tenant and Recipients */}
+                        <div className="grid grid-cols-2 gap-5">
+                            <div>
+                                <label className="mb-2 block text-[13px] text-gray-500">
+                                    Assign to Tenant / Organization
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Search for tenant..."
+                                        className="h-11 w-full rounded-lg border border-gray-200 px-4 pl-10 text-sm text-gray-700 placeholder-gray-400 transition-all focus:border-transparent focus:ring-2 focus:ring-lime-500 focus:outline-none"
+                                    />
+                                    <svg
+                                        className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="mb-2 block text-[13px] text-gray-500">
+                                    Recipients
+                                </label>
+                                <div className="relative">
+                                    <div className="flex h-11 w-full items-center rounded-lg border border-gray-200 bg-white px-4 text-sm font-medium text-gray-900">
+                                        abc@gmail.com, Admins, billing
+                                    </div>
+                                    <svg
+                                        className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Export Format */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-900 mb-3">
-                            Export format
-                        </label>
-                        <div className="flex gap-6">
-                            <label className="flex items-center gap-2 cursor-pointer">
+                        {/* Row 2: Report Title and Template */}
+                        <div className="grid grid-cols-2 gap-5">
+                            <div>
+                                <label className="mb-2 block text-[13px] text-gray-500">
+                                    Report Title
+                                </label>
                                 <input
-                                    type="radio"
-                                    name="exportFormat"
-                                    value="csv"
-                                    checked={exportFormat === 'csv'}
-                                    onChange={(e) => setExportFormat(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
+                                    type="text"
+                                    placeholder='e.g., "Monthly Performance Report"'
+                                    className="h-11 w-full rounded-lg border border-gray-200 px-4 text-sm text-gray-700 placeholder-gray-400 transition-all focus:border-transparent focus:ring-2 focus:ring-lime-500 focus:outline-none"
                                 />
-                                <span className="text-sm text-gray-700">CSV</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="exportFormat"
-                                    value="pdf"
-                                    checked={exportFormat === 'pdf'}
-                                    onChange={(e) => setExportFormat(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700">PDF</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="exportFormat"
-                                    value="excel"
-                                    checked={exportFormat === 'excel'}
-                                    onChange={(e) => setExportFormat(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700 font-medium">Excel</span>
-                            </label>
+                            </div>
+                            <div>
+                                <label className="mb-2 block text-[13px] text-gray-500">
+                                    Report Template
+                                </label>
+                                <div className="relative">
+                                    <div className="flex h-11 w-full items-center rounded-lg border border-gray-200 bg-white px-4 text-sm text-gray-500">
+                                        templates—Sales, Usage, Financial
+                                    </div>
+                                    <svg
+                                        className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Frequency */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-900 mb-3">
-                            Frequency
-                        </label>
-                        <div className="flex gap-6">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="frequency"
-                                    value="once"
-                                    checked={frequency === 'once'}
-                                    onChange={(e) => setFrequency(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700">Once</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="frequency"
-                                    value="daily"
-                                    checked={frequency === 'daily'}
-                                    onChange={(e) => setFrequency(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700">Daily</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="frequency"
-                                    value="weekly"
-                                    checked={frequency === 'weekly'}
-                                    onChange={(e) => setFrequency(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700 font-medium">Weekly</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="frequency"
-                                    value="monthly"
-                                    checked={frequency === 'monthly'}
-                                    onChange={(e) => setFrequency(e.target.value)}
-                                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700 font-medium">Monthly</span>
-                            </label>
+                        {/* Row 3: Date Range */}
+                        <div className="grid grid-cols-2 gap-5">
+                            <div>
+                                <label className="mb-2 block text-[13px] text-gray-500">
+                                    Select Data Range
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        defaultValue="Jan 10, 2025 - Jul 10, 2025"
+                                        className="h-11 w-full rounded-lg border border-gray-200 px-4 pl-10 text-sm font-medium text-gray-900 transition-all focus:border-transparent focus:ring-2 focus:ring-lime-500 focus:outline-none"
+                                    />
+                                    <svg
+                                        className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Notification Channel */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-900 mb-3">
-                            Notification channel
-                        </label>
-                        <div className="flex gap-6">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={notifications.email}
-                                    onChange={(e) => setNotifications({ ...notifications, email: e.target.checked })}
-                                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700 font-medium">Emails</span>
+                        {/* Export Format */}
+                        <div>
+                            <label className="mb-3 block text-sm font-bold text-gray-900">
+                                Export format
                             </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={notifications.whatsapp}
-                                    onChange={(e) => setNotifications({ ...notifications, whatsapp: e.target.checked })}
-                                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700">Whatsapp</span>
+                            <div className="flex gap-8">
+                                {['csv', 'pdf', 'excel'].map((fmt) => (
+                                    <label
+                                        key={fmt}
+                                        className="group flex cursor-pointer items-center gap-2"
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="exportFormat"
+                                            value={fmt}
+                                            checked={exportFormat === fmt}
+                                            onChange={(e) =>
+                                                setExportFormat(e.target.value)
+                                            }
+                                            className="h-4 w-4 cursor-pointer border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
+                                        />
+                                        <span
+                                            className={`text-sm ${exportFormat === fmt ? 'font-medium text-gray-900' : 'text-gray-500'} uppercase`}
+                                        >
+                                            {fmt}
+                                        </span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Frequency */}
+                        <div>
+                            <label className="mb-3 block text-sm font-bold text-gray-900">
+                                Frequency
                             </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={notifications.sms}
-                                    onChange={(e) => setNotifications({ ...notifications, sms: e.target.checked })}
-                                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-                                />
-                                <span className="text-sm text-gray-700">SMS</span>
+                            <div className="flex gap-8">
+                                {['once', 'daily', 'weekly', 'monthly'].map(
+                                    (freq) => (
+                                        <label
+                                            key={freq}
+                                            className="group flex cursor-pointer items-center gap-2"
+                                        >
+                                            <input
+                                                type="radio"
+                                                name="frequency"
+                                                value={freq}
+                                                checked={frequency === freq}
+                                                onChange={(e) =>
+                                                    setFrequency(e.target.value)
+                                                }
+                                                className="h-4 w-4 cursor-pointer border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
+                                            />
+                                            <span
+                                                className={`text-sm ${frequency === freq ? 'font-medium text-gray-900' : 'text-gray-500'} capitalize`}
+                                            >
+                                                {freq}
+                                            </span>
+                                        </label>
+                                    ),
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Notification Channel */}
+                        <div>
+                            <label className="mb-3 block text-sm font-bold text-gray-900">
+                                Notification channel
                             </label>
+                            <div className="flex gap-8">
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={notifications.email}
+                                        onChange={(e) =>
+                                            setNotifications({
+                                                ...notifications,
+                                                email: e.target.checked,
+                                            })
+                                        }
+                                        className="h-4 w-4 cursor-pointer rounded border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
+                                    />
+                                    <span className="text-sm font-medium text-gray-900">
+                                        Emails
+                                    </span>
+                                </label>
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={notifications.whatsapp}
+                                        onChange={(e) =>
+                                            setNotifications({
+                                                ...notifications,
+                                                whatsapp: e.target.checked,
+                                            })
+                                        }
+                                        className="h-4 w-4 cursor-pointer rounded border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
+                                    />
+                                    <span className="text-sm text-gray-500">
+                                        Whatsapp
+                                    </span>
+                                </label>
+                                <label className="flex cursor-pointer items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={notifications.sms}
+                                        onChange={(e) =>
+                                            setNotifications({
+                                                ...notifications,
+                                                sms: e.target.checked,
+                                            })
+                                        }
+                                        className="h-4 w-4 cursor-pointer rounded border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
+                                    />
+                                    <span className="text-sm text-gray-500">
+                                        SMS
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-3 mt-8">
+                {/* Footer / Action Buttons */}
+                <div className="mt-2 flex gap-4 border-t border-gray-100 bg-white px-8 py-5">
                     <button
                         onClick={onClose}
-                        className="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+                        className="flex-1 rounded-lg border border-gray-300 py-1.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
                     >
                         Cancel
                     </button>
-                    <button
-                        onClick={onSave}
-                        className="flex-1 px-4 py-3 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors"
-                    >
-                        Save changes
-                    </button>
+                    <div className="flex-1">
+                        <Button
+                            onClick={onSave}
+                            className='w-full'
+                        >
+                            Save changes
+                        </Button>
+                    </div>
                 </div>
             </div>
         </Modal>

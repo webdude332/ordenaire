@@ -18,7 +18,7 @@ export default function TopBar() {
                             <span className="mx-2">
                                 <img src={rightArrow} alt="" />
                             </span>
-                            <span className="font-semibold">Dashboard</span>
+                            <span className="font-semibold bg-[#F9F7FA] px-2 py-1 rounded-md">Dashboard</span>
                         </div>
 
                         {/* Main Title */}
@@ -36,7 +36,7 @@ export default function TopBar() {
                 <div className="flex space-x-8 border-b border-gray-200">
                     <a
                         href="#"
-                        className="border-b-2 border-lime-500 pb-3 text-sm font-medium text-gray-900"
+                        className="border-b-2 border-lime-500 pb-3 text-sm font-semibold text-[#578500]"
                     >
                         Dashboard
                     </a>
