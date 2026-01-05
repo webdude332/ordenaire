@@ -72,4 +72,16 @@ Route::get('reportspage', function () {
     return Inertia::render('ReportsPage');
 })->name('reportspage');
 
+Route::get('/users/create', function () {
+    return Inertia::render('AddUser');
+})->name('/users/create');
+
+Route::get('/users/edit', function () {
+    return Inertia::render('EditUser');
+})->name('/users/edit');
+
+Route::get('/users/profile', function () {
+    return Inertia::render('ProfilePage');
+})->name('/users/profile');
+
 require __DIR__.'/settings.php';
