@@ -3,6 +3,9 @@
 @theme {
   --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-montserrat);
+  /*Colors*/
+  --color-primary: #79B800;
+  --color-secondary: yellow;
 }
 
 /* Set Montserrat as default for the entire app */
