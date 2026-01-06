@@ -1,4 +1,4 @@
-import NewTopBar from '@/components/NewTopBar';
+// import NewTopBar from '@/components/NewTopBar';
 import SidePannel from '@/components/SidePannel';
 import downloadIcon from '@/images/icons/downloadIcon.png';
 import { Link } from '@inertiajs/react';
@@ -21,11 +21,11 @@ const ProfilePage = () => {
             {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
                 {/* Top Navigation */}
-                <NewTopBar
+                {/* <NewTopBar
                     activeTab={activeTab}
                     onTabChange={setActiveTab}
                     isViewUserPage={true} // Triggers the correct breadcrumb
-                />
+                /> */}
 
                 {/* Page Content */}
                 <div className="flex-1 overflow-y-auto px-8 py-6">

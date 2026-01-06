@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SidePannel from '@/components/SidePannel';
-import NewTopBar from '@/components/NewTopBar';
+// import NewTopBar from '@/components/NewTopBar';
 import { Link } from '@inertiajs/react';
 import backArrow from '@/images/icons/backArrow.png'
 import mailIcon from '@/images/icons/mailIcon.png'
@@ -22,11 +22,11 @@ const AddUser = () => {
             <main className="flex-1 flex flex-col">
                 
                 {/* Top Navigation with Dynamic Add User State */}
-                <NewTopBar 
+                {/* <NewTopBar 
                     activeTab={activeTab} 
                     onTabChange={setActiveTab} 
                     isAddUserPage={true} 
-                />
+                /> */}
 
                 {/* Page Content Container */}
                 <div className="flex-1 px-8 py-6 overflow-y-auto">
