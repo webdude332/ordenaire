@@ -111,9 +111,19 @@ export default function UserManagement() {
                                         </div>
                                     </div>
 
-                                    {/* Action Buttons */}
-                                    <div className="flex items-end gap-3">
-                                        <button className="flex items-center gap-2 rounded-lg border border-[#CFCBD2] bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+                                </div>
+                            </div>
+
+                            {/* TABLE */}
+                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
+                                <div className="flex flex-col items-center justify-between gap-4 border-b border-gray-200 px-6 py-4 sm:flex-row">
+                                    <div className="flex items-center gap-2">
+                                        <h2 className="text-lg font-semibold text-gray-900">All users</h2>
+                                        <span className="rounded-lg border border-[#CFCBD2] px-2.5 py-1 text-xs font-medium text-gray-600">48 users</span>
+                                    </div>
+                                                                        {/* Action Buttons */}
+                                    <div className="flex items-end gap-3 items-center">
+                                        <button className="flex items-center gap-2 rounded-lg border border-[#CFCBD2] bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
                                             <img src={exportIcon} alt="Export" className="h-4 w-4" />
                                             Export
                                         </button>
@@ -121,16 +131,6 @@ export default function UserManagement() {
                                             <img src={addUser} alt="" />
                                             Add User
                                         </Button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* TABLE */}
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                                <div className="flex flex-col items-center justify-between gap-4 border-b border-gray-200 px-6 py-4 sm:flex-row">
-                                    <div className="flex items-center gap-2">
-                                        <h2 className="text-lg font-semibold text-gray-900">All users</h2>
-                                        <span className="rounded-lg border border-[#CFCBD2] px-2.5 py-1 text-xs font-medium text-gray-600">48 users</span>
                                     </div>
                                 </div>
 

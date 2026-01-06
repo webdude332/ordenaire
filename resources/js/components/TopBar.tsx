@@ -44,11 +44,11 @@ export default function TopBar({ title, icon, breadcrumbs, tabs, children }: Top
                                     </span>
                                     {/* Using YOUR exact classes for active vs inactive */}
                                     {item.isActive ? (
-                                        <span className="font-semibold bg-[#F9F7FA] px-2 py-1 rounded-md text-gray-700">
+                                        <span className="font-semibold bg-[#F9F7FA] px-2 py-1 rounded-md text-[#696170]">
                                             {item.label}
                                         </span>
                                     ) : (
-                                        <span className="font-semibold text-[#9C94A3]">
+                                        <span className="font-medium text-[#9C94A3]">
                                             {item.label}
                                         </span>
                                     )}

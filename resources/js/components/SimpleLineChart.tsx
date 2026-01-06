@@ -164,7 +164,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
 
 export default function SystemHealthChart() {
   return (
-    <div className="w-full bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+    <div className="w-full bg-white p-6 rounded-2xl border border-gray-200 shadow-xs  ">
       
       {/* Header Section with Title and Badges */}
       <div className="flex justify-between items-center mb-6">

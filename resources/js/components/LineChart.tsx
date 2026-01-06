@@ -46,7 +46,7 @@ const CustomTooltip = ({
 
 export default function RevenueChart() {
   return (
-    <div className="w-full h-full bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
+    <div className="w-full h-full bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col">
       
       {/* Header Section */}
       <div className="mb-6">

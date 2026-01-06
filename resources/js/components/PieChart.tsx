@@ -48,7 +48,7 @@ const renderCustomizedLabel = ({
 
 export default function PlanDistributionChart() {
   return (
-    <div className="w-full h-full bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
+    <div className="w-full h-full bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col">
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-gray-900 text-lg font-semibold mb-1">Plan Distribution</h3>

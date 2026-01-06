@@ -37,7 +37,7 @@ export default function Dashboard() {
 
                 <main className="custom-scrollbar no-scrollbar flex-1 overflow-y-auto p-8 pb-20">
                     {/**Buttons */}
-                    <div className='flex justify-end gap-4 mb-6'>
+                    <div className='flex justify-end gap-4 pb-8'>
                                             <button className="flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
                                                 <img src={calender} alt="" />
                         Date-range
@@ -79,9 +79,6 @@ export default function Dashboard() {
                     </div>
 
                     {/* ROW 5 */}
-                    <div className="mb-6"><LineChart /></div>
-
-                    {/* ROW 6 */}
                     <div className="flex gap-6">
                         <div className='w-1/2'><SimpleLineChart /></div>
                         <div className='w-1/2 h-auto'><SimpleBarChart /></div>
