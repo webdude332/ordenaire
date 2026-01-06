@@ -12,6 +12,7 @@ import dashboardIcon from '../images/icons/dashboard-icon.png'; // Dashboard use
 import btnLink from '../images/icons/btnLink.png';
 import trendGreen from '../images/icons/trendGreen.png';
 import trendRed from '../images/icons/trendRed.png';
+import calender from '../images/icons/calender-icon.png'
 
 export default function Dashboard() {
     return (
@@ -32,10 +33,13 @@ export default function Dashboard() {
                     ]}
                 >
                     {/* YOUR SPECIFIC DASHBOARD BUTTONS */}
-                    <button className="flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
-                        <svg className="mr-2 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                </TopBar>
+
+                <main className="custom-scrollbar no-scrollbar flex-1 overflow-y-auto p-8 pb-20">
+                    {/**Buttons */}
+                    <div className='flex justify-end gap-4 mb-6'>
+                                            <button className="flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
+                                                <img src={calender} alt="" />
                         Date-range
                     </button>
 
@@ -43,9 +47,7 @@ export default function Dashboard() {
                         <img src={btnLink} alt="" className="w-5 h-5 mr-2" />
                         Reports page
                     </Button>
-                </TopBar>
-
-                <main className="custom-scrollbar no-scrollbar flex-1 overflow-y-auto p-8 pb-20">
+                    </div>
                     {/* ROW 1 */}
                     <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4">
                         <StatCard title="Total Active Restaurants" value="1600" trend="841" trendType="positive" trendIcon={trendGreen} />
