@@ -42,7 +42,8 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         @viteReactRefresh
-        @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+        {{-- @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"]) --}}
+        @vite(['resources/js/app.tsx'])
         @inertiaHead
     </head>
     <body class="font-montserrat antialiased">
