@@ -35,14 +35,13 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name', 'ordenaire') }}</title>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        {{-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> --}}
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         @viteReactRefresh
-        {{-- @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"]) --}}
         @vite(['resources/js/app.tsx'])
         @inertiaHead
     </head>

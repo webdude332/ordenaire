@@ -418,7 +418,7 @@ const ProfilePage = () => {
                     {/* Back Button */}
                     <div className="mb-6">
                         <Link
-                            href="/user-profiles"
+                            href="/usermanagement"
                             className="inline-flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
                         >
                             <img src={backArrow} alt="" />
