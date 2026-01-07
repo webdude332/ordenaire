@@ -410,10 +410,7 @@ const ProfilePage = () => {
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 >
-                    {/* You can add right-side buttons here if needed (e.g. Export) */}
                 </TopBar>
-
-                {/* Page Content - NO STYLING CHANGED */}
                 <div className="flex-1 overflow-y-auto px-8 py-6">
                     {/* Back Button */}
                     <div className="mb-6">

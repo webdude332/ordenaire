@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import Button from '../components/Button';
 // --- ICONS ---
 import addUser from '../images/icons/addUserIcon.svg';
@@ -109,10 +110,12 @@ export default function RolesAndPermissionsTable() {
                     <h2 className="text-lg font-semibold text-gray-900">
                         Role & Permissions
                     </h2>
-                    <Button className="flex items-center justify-center gap-2 rounded-lg bg-[#8CDD05] px-3 py-2 text-white hover:bg-[#7bc204]">
+                    <Link href="/users/addrole">
+                                        <Button className="flex items-center justify-center gap-2 rounded-lg bg-[#8CDD05] px-3 py-2 text-white hover:bg-[#7bc204]">
                         <img src={addUser} alt="" className="h-4 w-4" />
                         Add Role
                     </Button>
+                    </Link>
                 </div>
 
                 {/* Table Content */}
@@ -199,13 +202,15 @@ export default function RolesAndPermissionsTable() {
                                         className="px-4 py-4 text-center whitespace-nowrap"
                                     >
                                         <div className="flex justify-center">
-                                            <button className="rounded-[6px] border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
+                                            <Link href="/users/editrole">
+                                                                                        <button className="rounded-[6px] border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
                                                 <img
                                                     src={pencilIcon}
                                                     alt="Edit"
                                                     className="h-4 w-4 opacity-50"
                                                 />
                                             </button>
+                                            </Link>
                                         </div>
                                     </td>
                                 ))}

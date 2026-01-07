@@ -86,4 +86,12 @@ Route::get('/users/profile', function () {
     return Inertia::render('ProfilePage');
 })->name('users.profile');
 
+Route::get('/users/addrole', function () {
+    return Inertia::render('AddRole');
+})->name('users.addrole');
+
+Route::get('/users/editrole', function () {
+    return Inertia::render('EditRole');
+})->name('users.editrole');
+
 require __DIR__.'/settings.php';
