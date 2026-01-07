@@ -35,7 +35,7 @@ export default function SidePannel() {
     const { url } = usePage();
 
     return (
-        <aside className="w-72 h-screen bg-white border-r border-gray-200 flex flex-col sticky top-0 font-sans z-20 flex-shrink-0 hidden lg:flex">
+        <aside className="w-[332px] h-screen bg-white border-r border-gray-200 flex flex-col sticky top-0 font-sans z-20 flex-shrink-0 hidden lg:flex">
             
             {/* --- 1. HEADER LOGO --- */}
             <div className="px-6 py-8">

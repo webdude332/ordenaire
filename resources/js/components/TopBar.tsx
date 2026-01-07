@@ -57,7 +57,7 @@ export default function TopBar({ title, icon, breadcrumbs, tabs, children }: Top
                         </div>
 
                         {/* Main Title - Your exact class */}
-                        <h1 className="text-2xl font-bold text-gray-900">
+                        <h1 className="text-2xl font-semibold text-gray-900">
                             {title}
                         </h1>
                     </div>

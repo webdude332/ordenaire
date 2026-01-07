@@ -111,7 +111,7 @@ const AddRole = () => {
                                         <textarea
                                             rows={4}
                                             placeholder="Enter a description..."
-                                            className="w-full rounded-lg border border-[#E8E6EA] px-3 py-2 text-[#19161A] placeholder-gray-500 focus:border-[#7AB621] focus:ring-[#7AB621] outline-none shadow-xs resize-none"
+                                            className="w-full rounded-lg border border-[#CFCBD2] px-3 py-2 text-[#19161A] placeholder-gray-500 focus:border-[#7AB621] focus:ring-[#7AB621] outline-none shadow-xs resize-none"
                                         ></textarea>
                                     </div>
                                 </div>
@@ -133,14 +133,13 @@ const AddRole = () => {
                                     ))}
                                 </div>
 
-                                {/* Legend Box */}
-                                                                                            <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
-                                    <div className="flex items-center gap-2 mb-2">
+                                {/* Legend Box */}                                                  <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
+                                    <div className="flex items-center gap-2 mb-2  ">
                                         {/* Simple info icon SVG */}
                                         <img src={info} alt="" />
-                                        <span className="text-sm font-semibold text-gray-900">Permission Types Legend</span>
+                                        <p className="border-b border-[#E8E6EA] text-sm font-semibold text-gray-900 w-full">Permission Types Legend</p>
                                     </div>
-                                    <div className="space-y-1 pl-6">
+                                    <div className="space-y-3 pl-6">
                                         <p className="text-xs text-gray-500">
                                             <span className="font-medium text-gray-700">"✓"</span> = Full access (view, add, edit, delete)
                                         </p>
@@ -175,11 +174,11 @@ const AddRole = () => {
 // This handles the layout of "Label .......... Radio | Radio | Radio"
 const PermissionRow = ({ label, name }: PermissionRowProps) => {
     return (
-        <div className="flex flex-col gap-3 justify-between py-1.5">
+        <div className="flex flex-col gap-3 justify-between py-1.5 border-b border-[#E8E6EA]">
             <span className="text-sm font-medium text-gray-900 w-1/3 mb-2 sm:mb-0">
                 {label}
             </span>
-            <div className="flex items-center gap-6 w-2/3">
+            <div className="flex items-center gap-6 w-2/3 pb-4">
                 {/* Option 1: Full Access */}
                 <label className="flex items-center cursor-pointer group">
                     <div className="relative flex items-center justify-center">
