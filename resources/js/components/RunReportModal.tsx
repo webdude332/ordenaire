@@ -43,7 +43,7 @@ export default function RunReportModal({
                     </div>
                 </div>
 
-                <div className='border border-gray-200 rounded-lg p-4 mb-4'>
+                <div className='relative border border-gray-200 rounded-lg p-4 mb-4 bg-white z-10'>
                                     <div className="mb-6 flex items-center gap-3 rounded-lg border border-blue-100 p-2 relative z-10">
                     <img src={infoIcon} alt="" />
                     <p className="text-sm">

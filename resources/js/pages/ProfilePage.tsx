@@ -1,14 +1,14 @@
 import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar'; // ✅ Imported
+import TopBar from '@/components/TopBar'; 
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Images
-import downloadIcon from '@/images/icons/downloadIcon.png';
-import delIcon from '../images/icons/del-icon.png';
-import plusIcon from '../images/icons/plusIcon.png';
+import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
+import DelIcon from '../images/icons/delIcon.svg?react';
+import PlusIcon from '../images/icons/plus.svg?react';
 import backArrow from '../images/icons/backArrow.png';
-import usersIcon from '../images/icons/dashboard-icon.png'; 
+import UsersIcon from '../images/icons/dashBaordSvg.svg?react'; 
 import IconButton from '@/components/IconButton';
 
 
@@ -47,7 +47,7 @@ const ProfilePage = () => {
                 {/* ✅ Dynamic TopBar Integrated */}
                 <TopBar
                     title="User Management"
-                    icon={usersIcon}
+                    icon={UsersIcon}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 >
@@ -219,21 +219,21 @@ const ProfilePage = () => {
                             <h3 className="text-md font-semibold text-gray-900">
                                 Documents
                             </h3>
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-400 px-3 font-medium py-1.5 text-sm text-gray-700 hover:bg-gray-50">
-                                <img src={plusIcon} alt="" />
+                            <button className="flex items-center gap-2 rounded-lg border border-gray-400 px-3 font-medium py-1.5 text-sm text-[#4F4955] hover:bg-gray-50">
+                                <PlusIcon className='w-4 h-4 text-[#B5B0BA]'/>
                                 Add Docs
                             </button>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
                             <thead className="bg-[#F9F9FB]">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
                                         Document Name
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
                                         Document Type
                                     </th>
-                                    <th className="flex items-center gap-1 px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">
+                                    <th className="flex items-center gap-1 px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
                                         Expiry Date
                                         <svg
                                             className="h-3 w-3 text-gray-400"
@@ -249,7 +249,7 @@ const ProfilePage = () => {
                                             />
                                         </svg>
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
                                         Actions
                                     </th>
                                 </tr>
@@ -257,41 +257,41 @@ const ProfilePage = () => {
                             <tbody className="divide-y divide-gray-100 bg-white">
                                 {/* Row 1 */}
                                 <tr>
-                                    <td className="px-6 py-4 text-xs font-medium whitespace-nowrap text-gray-900">
+                                    <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
                                         Passport.pdf
                                     </td>
-                                    <td className="px-6 py-4 text-xs whitespace-nowrap text-gray-900">
+                                    <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-900">
                                         Passport
                                     </td>
-                                    <td className="px-6 py-4 text-xs whitespace-nowrap text-gray-500">
+                                    <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-500">
                                         -
                                     </td>
                                     <td className="flex gap-2 px-6 py-4 whitespace-nowrap">
                                         <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
-                                            <img src={downloadIcon} alt="" />
+                                            <DownloadIcon className="w-4 h-4 text-[#B5B0BA]"/>
                                         </button>
                                         <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
-                                            <img src={delIcon} alt="" />
+                                            <DelIcon className="w-4 h-4 text-[#B5B0BA]"/>
                                         </button>
                                     </td>
                                 </tr>
                                 {/* Row 2 */}
                                 <tr>
-                                    <td className="px-6 py-4 text-xs font-medium whitespace-nowrap text-gray-900">
+                                    <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
                                         Visa.jpg
                                     </td>
-                                    <td className="px-6 py-4 text-xs whitespace-nowrap text-gray-900">
+                                    <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-900">
                                         Visa
                                     </td>
-                                    <td className="px-6 py-4 text-xs whitespace-nowrap text-gray-900">
+                                    <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-900">
                                         20 Nov 2028
                                     </td>
                                     <td className="flex gap-2 px-6 py-4 whitespace-nowrap">
                                         <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
-                                            <img src={downloadIcon} alt="" />
+                                            <DownloadIcon className="w-4 h-4 text-[#B5B0BA]"/>
                                         </button>
                                         <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
-                                            <img src={delIcon} alt="" />
+                                            <DelIcon className="w-4 h-4 text-[#B5B0BA]"/>
                                         </button>
                                     </td>
                                 </tr>

@@ -8,7 +8,7 @@ import PieChart from '../components/PieChart';
 import SimpleBarChart from '../components/SimpleBarChart';
 import SimpleLineChart from '../components/SimpleLineChart';
 import Button from '../components/Button';
-import dashboardIcon from '../images/icons/dashboard-icon.png'; // Dashboard uses PNG
+import dashboardIcon from '../images/icons/dashBaordSvg.svg?react'; // Dashboard uses PNG
 import btnLink from '../images/icons/btnLink.png';
 import trendGreen from '../images/icons/trendGreen.png';
 import trendRed from '../images/icons/trendRed.png';
@@ -24,7 +24,8 @@ export default function Dashboard() {
                 
                 <TopBar 
                     title="Ordenaire Dashboard"
-                    icon={dashboardIcon} // Passing the PNG icon
+                    icon={dashboardIcon}
+                    iconClassName="text-red-900"
                     breadcrumbs={[
                         { label: 'Dashboard', isActive: true }
                     ]}

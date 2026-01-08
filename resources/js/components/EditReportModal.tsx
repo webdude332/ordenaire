@@ -55,7 +55,7 @@ export default function EditReportModal({
                 {/* Modal Content */}
                 <div className="relative z-0 p-8 pb-4">
                     {/* Header */}
-                    <div className="mb-8 flex flex-col items-start gap-4">
+                    <div className="mb-8 flex flex-col items-start gap-4    ">
                         
                         {/* --- ICON WRAPPER WITH PATTERN --- */}
                         <div className="relative z-10 flex h-12 w-12 items-center justify-center">
@@ -83,7 +83,7 @@ export default function EditReportModal({
                             </div>
                         </div>
 
-                        <div>
+                        <div className='relative z-10'>
                             <h3 className="text-xl font-bold text-gray-900">
                                 Edit Scheduled Report
                             </h3>
@@ -91,7 +91,8 @@ export default function EditReportModal({
                     </div>
 
                     {/* Form Fields */}
-                    <div className="space-y-6">
+                    <div className='relative z-10 bg-white border border-[#E8E6EA] p-4 rounded-lg shadow-xs'>
+                                            <div className=" relative z-10 space-y-6">
                         {/* Row 1: Tenant and Recipients */}
                         <div className="grid grid-cols-2 gap-5">
                             <div>
@@ -330,6 +331,7 @@ export default function EditReportModal({
                                 </label>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
 
