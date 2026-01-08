@@ -246,7 +246,7 @@ export default function UserManagement() {
                                                 ].map((header) => (
                                                     <th
                                                         key={header}
-                                                        className={`px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase ${header === 'Actions' ? 'text-right' : 'text-left'}`}
+                                                        className={`px-6 py-3 text-sm font-medium tracking-wider text-[#9C94A3] ${header === 'Actions' ? 'text-right' : 'text-left'}`}
                                                     >
                                                         {header}
                                                     </th>

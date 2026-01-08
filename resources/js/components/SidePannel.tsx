@@ -7,7 +7,7 @@ import usersIcon from '../images/icons/users-edit.png';
 import businessIcon from '../images/icons/businessManagement.svg';
 import blackLogo from '../images/icons/applogo.svg';
 import chartIcon from '../images/icons/dashBaordSvg.svg';
-import userEditIcon from '../images/icons/usermanagement.svg';
+import userEditIcon from '../images/icons/usermgmt.svg';
 import repeatIcon from '../images/icons/subscriptionAndBilling.svg';
 import monitorIcon from '../images/icons/systemConfig.svg';
 import supportIcon from '../images/icons/maintinanceAndSupport.svg';
@@ -17,6 +17,7 @@ import approvalIcon from '../images/icons/manageApprovals.svg';
 import ticketsIcon from '../images/icons/at-sign.svg';
 import profileImg from '../images/icons/profile.png';
 import settingIcon from '../images/icons/setting.svg'
+import tickets from '../images/icons/tickets.svg'
 
 // --- DATA CONFIGURATION ---
 const MENU_ITEMS = [
@@ -29,7 +30,7 @@ const MENU_ITEMS = [
     { label: "Communication Mgmt", icon: chatIcon, badge: 10, hasSubmenu: true, route: '/communication-management' },
     { label: "Marketplace & Integrations", icon: linkIcon, hasSubmenu: true, route: '/marketplace-and-intigrations' },
     { label: "Manage Approvals", icon: approvalIcon, badge: 10, hasSubmenu: true, route: '/manage-approvals' },
-    { label: "My Tickets", icon: ticketsIcon, badge: 10, hasSubmenu: true, route: '/my-tickets' },
+    { label: "My Tickets", icon: tickets, badge: 10, hasSubmenu: true, route: '/my-tickets' },
 ];
 
 export default function SidePannel() {

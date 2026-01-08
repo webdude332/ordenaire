@@ -13,6 +13,9 @@ import btnLink from '../images/icons/btnLink.png';
 import trendGreen from '../images/icons/trendGreen.png';
 import trendRed from '../images/icons/trendRed.png';
 import calender from '../images/icons/calender-icon.png'
+import BtnLink from '../images/icons/colorLink.svg?react'
+import Calender from '../images/icons/date.svg?react'
+
 
 export default function Dashboard() {
     return (
@@ -39,18 +42,18 @@ export default function Dashboard() {
                 <main className="custom-scrollbar no-scrollbar flex-1 overflow-y-auto p-8 pb-20">
                     {/**Buttons */}
                     <div className='flex justify-end gap-4 pb-8'>
-                                            <button className="flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
-                                                <img src={calender} alt="" />
+                                            <button className="flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-sm font-semibold text-[#4F4955] shadow-sm transition-colors hover:bg-gray-50">
+                                                <Calender className="w-4 h-4 text-[#B5B0BA]"/>
                         Date-range
                     </button>
 
-                    <Button href="/reports">
-                        <img src={btnLink} alt="" className="w-5 h-5 mr-2" />
-                        Reports page
+                    <Button href="/reports" className='font-medium'>
+                         <BtnLink className="w-4 h-4" />  
+                        Reports Page
                     </Button>
                     </div>
                     {/* ROW 1 */}
-                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4 shadow-xs">
                         <StatCard title="Total Active Restaurants" value="1600" trend="841" trendType="positive" trendIcon={trendGreen} />
                         <StatCard title="Net Revenue (MTD)" value="$1,096.30" trend="841" trendType="positive" trendIcon={trendGreen} />
                         <StatCard title="Active Terminals" value="1415" trend="841" trendType="positive" trendIcon={trendGreen} />
@@ -58,7 +61,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* ROW 2 */}
-                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4 shadow-xs">
                         <StatCard title="New Signups" value="32" trend="3" trendType="positive" trendIcon={trendGreen} />
                         <StatCard title="Suspended Businesses" value="4" trend="234" trendType="negative" trendIcon={trendRed} />
                         <StatCard title="Downgrades" value="3" trend="1" trendType="positive" trendIcon={trendGreen} />
@@ -66,7 +69,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* ROW 3 */}
-                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-4 shadow-xs">
                         <StatCard title="Open Support Tickets" value="31" />
                         <StatCard title="System Health Status" value={<span className="flex w-fit items-center gap-2 rounded-full border border-green-200 bg-green-50 px-2.5 py-1 text-sm text-green-700"><span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>Good</span>} />
                         <StatCard title="Avg. Response Time" value="2h 11m" />

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import SidePannel from '@/components/SidePannel';
 // import NewTopBar from '@/components/NewTopBar';
 import { Link } from '@inertiajs/react';
-import backArrow from '@/images/icons/backArrow.png'
-import mailIcon from '@/images/icons/mailIcon.png'
-import plusIcon from '@/images/icons/plusIcon.png'
-import selectorIcon from '@/images/icons/selector-icon.png'
-import delIcon from '@/images/icons/del-icon.png'
+import BackArrow from '@/images/icons/backArrow.svg?react'
+import MailIcon from '@/images/icons/mailIcon.svg?react'
+import PlusIcon from '@/images/icons/plus.svg?react'
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react'
+import DelIcon from '@/images/icons/delIcon.svg?react'
 import Button from '@/components/Button'
 
 const AddUser = () => {
@@ -32,7 +32,7 @@ const AddUser = () => {
     href="/usermanagement"  
     className="flex items-center gap-3 px-4 py-2 bg-white border border-[#CFCBD2] rounded-lg text-sm font-medium text-gray-700 w-[210px]"
 >
-    <img src={backArrow} alt="" />
+    <BackArrow className='w-4 h-4 text-[#B5B0BA]'/>
     Back to User Profiles
 </Link>
                     </div>
@@ -90,7 +90,7 @@ const AddUser = () => {
                                         </label>
                                         <div className="relative">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <img src={mailIcon} alt="" />
+                                                <MailIcon className='w-5 h-5 text-[#B5B0BA]'/>
                                             </div>
                                             <input 
                                                 type="email" 
@@ -178,7 +178,7 @@ const AddUser = () => {
                                 <div className="flex justify-between items-center mb-6">
                                     <h4 className="text-md font-semibold text-gray-900">Documents</h4>
                                     <button type="button" className="flex items-center px-3 py-1.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors">
-                                        <span className="text-lg leading-none mr-1 font-light text-gray-400"><img src={plusIcon} alt="" /></span> Add document
+                                        <span className="text-lg leading-none mr-1 font-light text-gray-400"><PlusIcon className='w-5 h-5 text-[#B5B0BA]'/></span> Add document
                                     </button>
                                 </div>
 
@@ -191,7 +191,7 @@ const AddUser = () => {
                                                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Document Type</th>
                                                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center cursor-pointer">
                                                     Expiry 
-                                                    <img src={selectorIcon} alt="" />
+                                                    <SelectorIcon className='w-4 h-4 text-[#B5B0BA]'/>
                                                 </th>
                                                 <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Action</th>
                                             </tr>
@@ -203,7 +203,7 @@ const AddUser = () => {
                                                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">-</td>
                                                 <td className="px-4 py-4 whitespace-nowrap text-right">
                                                     <button type="button" className="text-gray-400 hover:text-red-500">
-                                                        <img src={delIcon} alt="" />
+                                                        <DelIcon className='w-5 h-5 text-[#B5B0BA]'/>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -213,7 +213,7 @@ const AddUser = () => {
                                                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">20 Nov 2028</td>
                                                 <td className="px-4 py-4 whitespace-nowrap text-right">
                                                     <button type="button" className="text-gray-400 hover:text-red-500">
-                                                        <img src={delIcon} alt="" />
+                                                        <DelIcon className='w-5 h-5 text-[#B5B0BA]'/>
                                                     </button>
                                                 </td>
                                             </tr>

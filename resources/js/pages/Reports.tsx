@@ -23,7 +23,7 @@ import SearchIcon from '../images/icons/searchIcon.svg?react';
 import calenderPng from '../images/icons/calender-icon.png';
 import checkIcon from '../images/icons/checkIcon.svg';
 import DelBtn from '../images/icons/delIcon.svg?react';
-import downloadBtn from '../images/icons/download-icon.png';
+import DownloadBtn from '../images/icons/downloadIcon.svg?react';
 import PencilBtn from '../images/icons/pencilIcon.svg?react';
 import RunBtn from '../images/icons/runNow.svg?react';
 import SelectorIcon from '../images/icons/selectorIcon.svg?react'
@@ -631,7 +631,7 @@ export default function ReportsPage() {
                                                     </div>
                                                 ) : (
                                                     <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
-                                                        <RenderIcon icon={downloadBtn} />
+                                                        <RenderIcon icon={DownloadBtn} className='w-4 h-4 text-[#B5B0BA]' />
                                                         Download
                                                     </button>
                                                 )}
