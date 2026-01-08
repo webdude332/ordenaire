@@ -16,7 +16,7 @@ import linkIcon from '../images/icons/marketPlace.svg';
 import approvalIcon from '../images/icons/manageApprovals.svg';
 import ticketsIcon from '../images/icons/at-sign.svg';
 import profileImg from '../images/icons/profile.png';
-import settingIcon from '../images/icons/setting.svg'
+import settingIcon from '../images/icons/settings.svg'
 import tickets from '../images/icons/tickets.svg'
 
 // --- DATA CONFIGURATION ---
