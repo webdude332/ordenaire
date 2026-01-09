@@ -7,7 +7,7 @@ import Info from '../images/icons/gray-info.svg?react';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import BackArrow from '../images/icons/backArrow.svg?react';
-import DashBoardIcon from '../images/icons/dashBaordSvg.svg';
+import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
 
 // --- Types ---
 interface PermissionRowProps {
@@ -18,9 +18,9 @@ interface PermissionRowProps {
 const EditRole = () => {
     // 1. Setup Breadcrumbs
     const breadcrumbs = [
-        { label: 'Internal User Management', isActive: false },
-        { label: 'Roles & Permissions', isActive: false },
-        { label: 'Edit Role', isActive: true },
+        { label: 'Internal User Management', isActive: false, href: '/usermanagement' },
+        { label: 'Roles & Permissions', isActive: false, href: '/rolesandpermissions' },
+        { label: 'Edit Role', isActive: true, href: '/editrole' },
     ];
 
     // 2. Setup Tabs

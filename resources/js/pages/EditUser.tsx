@@ -1,182 +1,446 @@
 import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar';
-import { Link } from '@inertiajs/react';
-import Info from '../images/icons/gray-info.svg?react';
-
-// Icons
+import { useState } from 'react';
+// import NewTopBar from '@/components/NewTopBar';
 import Button from '@/components/Button';
-import IconButton from '@/components/IconButton';
-import BackArrow from '../images/icons/backArrow.svg?react';
-import DashBoardIcon from '../images/icons/dashBaordSvg.svg';
+import BackArrow from '@/images/icons/backArrow.svg?react';
+import DelIcon from '@/images/icons/delIcon.svg?react';
+import MailIcon from '@/images/icons/mailIcon.svg?react';
+import PlusIcon from '@/images/icons/plus.svg?react';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
+import { Link } from '@inertiajs/react';
+import TopBar from '@/components/TopBar';
+import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react'
+import Download from '../images/icons/downloadIcon.svg?react'
 
-// --- Types ---
-interface PermissionRowProps {
-    label: string;
-    name: string;
-}
-
-const EditRole = () => {
-    // 1. Setup Breadcrumbs
-    const breadcrumbs = [
-        { label: 'Internal User Management', isActive: false },
-        { label: 'Roles & Permissions', isActive: false },
-        { label: 'Edit Role', isActive: true },
-    ];
-
-    // 2. Setup Tabs
-    // In the screenshot, the tab bar IS visible with "Roles & Permissions" active.
-    const tabs = [
+const AddUser = () => {
+    // State to manage the active tab in the TopBar
+    const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
+        'profiles',
+    );
+        const tabs = [
         {
             label: 'User Profiles',
-            isActive: false,
+            isActive: true,
             href: '/user-profiles',
         },
         {
             label: 'Roles & Permissions',
-            isActive: true, // This tab is active in the design
+            isActive: false, // This tab is active in the design
             href: '/roles-permissions',
         },
     ];
-
-    // 3. Permission Data List
-    const permissionsList = [
-        'Dashboard',
-        'Internal User Management',
-        'Business Management',
-        'Subscription & Billing',
-        'System Config',
-        'Maintenance & Support',
-        'Communication Mgmt',
-        'Marketplace & Integrations',
-        'Manage Approvals',
-        'My Tickets',
+        const breadcrumbs = [
+        { label: 'Internal User Management', isActive: false, href: '/usermanagement' },
+        { label: 'User Profiles', isActive: false, href: '/userprofiles' },
+        { label: 'Edit User', isActive: true, href: '/edit' },
     ];
 
     return (
         <div className="flex min-h-screen">
-            {/* Sidebar */}
+            {/* 1. Sidebar */}
             <SidePannel />
 
-            {/* Main Content */}
+            {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
-                <TopBar
-                    title="Edit Role"
+                {/* Top Navigation with Dynamic Add User State */}
+<TopBar
+                    title="Add New User"
                     icon={DashBoardIcon}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 />
-
+                {/* Page Content Container */}
                 <div className="flex-1 overflow-y-auto px-8 py-6">
-                    {/* Back Button */}
+                    {/* "Back" Button */}
                     <div className="mb-8">
-                        <Link href="/roles-permissions">
-                            <IconButton className="">
-                                <BackArrow className='w-5 h-5 text-[#B5B0BA]'/>
-                                Back to Roles & Permissions
-                            </IconButton>
+                        <Link
+                            href="/usermanagement"
+                            className="flex w-[210px] items-center gap-3 rounded-lg border border-[#CFCBD2] bg-white px-4 py-2 text-sm font-medium text-gray-700"
+                        >
+                            <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
+                            Back to User Profiles
                         </Link>
                     </div>
 
-                    {/* --- MAIN FORM CONTENT --- */}
-                    <form className="space-y-8 pb-20">
-                        {/* 1. ROLE DETAILS SECTION */}
-                        <div className="grid grid-cols-1 gap-8 border-t border-[#E8E6EA] pt-8 lg:grid-cols-3">
-                            {/* Left: Section Label */}
+                    {/* --- FORM SECTION --- */}
+                    <form className="space-y-8 pb-12">
+                        {/* SECTION 1: Basic Information */}
+                        <div className="grid grid-cols-1 gap-8 border-t border-[#E8E6EA] py-6 lg:grid-cols-3">
+                            {/* Left Column: Title & Description */}
                             <div className="lg:col-span-1">
-                                <h3 className="text-base font-semibold text-[#19161A]">
-                                    Role Details
+                                <h3 className="text-base font-bold text-gray-900">
+                                    Basic information
                                 </h3>
+                                <p className="mt-1 text-sm text-gray-500">
+                                    Add User photo and personal details.
+                                </p>
                             </div>
 
-                            {/* Right: Inputs Card */}
-                            <div className="rounded-xl border border-[#E8E6EA] bg-white p-4 shadow-xs lg:col-span-2">
-                                <div className="space-y-8">
-                                    {/* Role Name */}
+                            {/* Right Column: Form Card */}
+                            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm lg:col-span-2">
+                                {/* Photo Upload */}
+                                <div className="mb-6">
+                                    <label className="text-md mb-2 block font-semibold text-[#696170]">
+                                        User photo
+                                    </label>
+                                    <p className="mb-3 text-sm text-gray-500">
+                                        This will be displayed on the profile.
+                                    </p>
+                                    <div className="flex items-center gap-4">
+                                        <div className="h-12 w-12 overflow-hidden rounded-full border border-gray-200 bg-gray-100">
+                                            {/* Placeholder Image */}
+                                            <img
+                                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                alt="User"
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                        <button
+                                            type="button"
+                                            className="rounded-lg border border-[#CFCBD2] bg-white px-4 py-2 text-sm font-medium text-gray-600 shadow-sm hover:bg-gray-50"
+                                        >
+                                            Upload photo
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Inputs Grid */}
+                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                    {/* Full Name */}
                                     <div>
-                                        <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                                            Role Name
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">
+                                            Full name
+                                            <span className="ml-0.5 text-[#7AB621]">
+                                                *
+                                            </span>
                                         </label>
                                         <input
                                             type="text"
-                                            placeholder="e.g. Finance Manager"
-                                            className="w-full rounded-lg border border-[#E8E6EA] px-3 py-2 text-[#19161A] placeholder-gray-500 shadow-xs outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
+                                            defaultValue="Noah Pierre"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-700 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
                                         />
                                     </div>
 
-                                    {/* Role Description */}
+                                    {/* Email */}
                                     <div>
-                                        <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                                            Role Description
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">
+                                            Email address
+                                            <span className="ml-0.5 text-[#7AB621]">
+                                                *
+                                            </span>
                                         </label>
-                                        <textarea
-                                            rows={4}
-                                            placeholder="Enter a description..."
-                                            className="w-full resize-none rounded-lg border border-[#CFCBD2] px-3 py-2 text-[#19161A] placeholder-gray-500 shadow-xs outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
-                                        ></textarea>
+                                        <div className="relative">
+                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                                <MailIcon className="h-5 w-5 text-[#B5B0BA]" />
+                                            </div>
+                                            <input
+                                                type="email"
+                                                defaultValue="Noah@ordemark.com"
+                                                className="w-full rounded-lg border border-gray-300 py-2 pr-3 pl-10 text-gray-700 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Phone Number */}
+                                    <div>
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">
+                                            Phone number
+                                            <span className="ml-0.5 text-[#7AB621]">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div className="flex rounded-lg shadow-sm">
+                                            <div className="relative">
+                                                <select className="h-full appearance-none rounded-l-lg border-y border-l border-gray-300 bg-transparent py-2 pr-7 pl-3 text-sm text-gray-500 outline-none focus:border-[#7AB621] focus:ring-[#7AB621]">
+                                                    <option>+91</option>
+                                                    <option>+1</option>
+                                                </select>
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                                                    <svg
+                                                        className="h-3 w-3"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M19 9l-7 7-7-7"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                defaultValue="1825462385"
+                                                className="block w-full rounded-r-lg border border-gray-300 px-3 py-2 text-gray-700 outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Primary Role */}
+                                    <div>
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">
+                                            Primary Role
+                                            <span className="ml-0.5 text-[#7AB621]">
+                                                *
+                                            </span>
+                                        </label>
+                                        <div className="relative">
+                                            <select className="w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]">
+                                                <option>
+                                                    Customer relationship
+                                                    manager
+                                                </option>
+                                                <option>Admin</option>
+                                                <option>Viewer</option>
+                                            </select>
+                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                                <svg
+                                                    className="h-4 w-4"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M19 9l-7 7-7-7"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Status */}
+                                <div className="mt-6">
+                                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                                        Status
+                                    </label>
+                                    <div className="flex items-center gap-6">
+                                        <label className="flex cursor-pointer items-center">
+                                            <div className="relative flex items-center justify-center">
+                                                <input
+                                                    type="radio"
+                                                    name="status"
+                                                    defaultChecked
+                                                    className="peer sr-only"
+                                                />
+                                                <div className="h-4 w-4 rounded-full border border-gray-300 transition-all peer-checked:border-4 peer-checked:border-[#7AB621]"></div>
+                                            </div>
+                                            <span className="ml-2 text-sm text-gray-900">
+                                                Active
+                                            </span>
+                                        </label>
+
+                                        <label className="flex cursor-pointer items-center">
+                                            <div className="relative flex items-center justify-center">
+                                                <input
+                                                    type="radio"
+                                                    name="status"
+                                                    className="peer sr-only"
+                                                />
+                                                <div className="h-4 w-4 rounded-full border border-gray-300 transition-all peer-checked:border-4 peer-checked:border-[#7AB621]"></div>
+                                            </div>
+                                            <span className="ml-2 text-sm text-gray-900">
+                                                Inactive
+                                            </span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* 2. ASSIGN PERMISSIONS SECTION */}
-                        <div className="grid grid-cols-1 gap-8 border-t border-[#E8E6EA] pt-8 lg:grid-cols-3">
-                            {/* Left: Section Label */}
+                        <hr className="border-gray-200" />
+
+                        {/* SECTION 2: Add Document */}
+                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                             <div className="lg:col-span-1">
-                                <h3 className="text-base font-semibold text-[#19161A]">
-                                    Assign Permissions
+                                <h3 className="text-base font-bold text-gray-900">
+                                    Add Document
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-500">
+                                    Upload contracts, IDs, or certifications
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm lg:col-span-2">
+                                <div className="mb-6 flex items-center justify-between">
+                                    <h4 className="text-md font-semibold text-gray-900">
+                                        Documents
+                                    </h4>
+                                    <button
+                                        type="button"
+                                        className="flex items-center rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+                                    >
+                                        <span className="mr-1 text-lg leading-none font-light text-gray-400">
+                                            <PlusIcon className="h-5 w-5 text-[#B5B0BA]" />
+                                        </span>{' '}
+                                        Add document
+                                    </button>
+                                </div>
+
+                                {/* Documents Table */}
+                                <div className="overflow-hidden rounded-lg border border-[#E8E6EA]">
+                                    <table className="min-w-full divide-y divide-gray-100">
+                                        <thead className="bg-gray-50">
+                                            <tr>
+                                                <th className="px-4 py-3 text-left text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                                    File Name
+                                                </th>
+                                                <th className="px-4 py-3 text-left text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                                    Document Type
+                                                </th>
+                                                <th className="flex cursor-pointer items-center px-4 py-3 text-left text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                                    Expiry
+                                                    <SelectorIcon className="h-4 w-4 text-[#B5B0BA]" />
+                                                </th>
+                                                <th className="px-4 py-3 text-right text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-gray-100 bg-white">
+                                            <tr>
+                                                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                                    Contract_2025.pdf
+                                                </td>
+                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
+                                                    Employment
+                                                </td>
+                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
+                                                    -
+                                                </td>
+                                                <td className="px-4 py-4 text-right whitespace-nowrap">
+                                                    <div className='flex justify-end items-center gap-2'>
+                                                                                                            <button
+                                                        type="button"
+                                                        className="text-gray-400 hover:text-red-500 bg-gray-50 rounded-md p-1 border border-gray-200"
+                                                    >
+                                                        <Download className="h-5 w-5" />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="text-gray-400 hover:text-red-500 bg-gray-50 rounded-md p-1 border border-gray-200"
+                                                    >
+                                                        <DelIcon className="h-5 w-5" />
+                                                    </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                                    Passport_Copy.jpg
+                                                </td>
+                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
+                                                    Proof of Identity
+                                                </td>
+                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
+                                                    20 Nov 2028
+                                                </td>
+                                                <td className="px-4 py-4 text-right whitespace-nowrap">
+                                                    <div className='flex justify-end items-center gap-2'>
+                                                                                                            <button
+                                                        type="button"
+                                                        className="text-gray-400 hover:text-red-500 bg-gray-50 rounded-md p-1 border border-gray-200"
+                                                    >
+                                                        <Download className="h-5 w-5 " />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="text-gray-400 hover:text-red-500 bg-gray-50 rounded-md p-1 border border-gray-200"
+                                                    >
+                                                        <DelIcon className="h-5 w-5 " />
+                                                    </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr className="border-gray-200" />
+
+                        {/* SECTION 3: Account Access */}
+                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                            <div className="lg:col-span-1">
+                                <h3 className="text-base font-bold text-gray-900">
+                                    Account Access
                                 </h3>
                             </div>
 
-                            {/* Right: Permissions List */}
-                            <div className="lg:col-span-2">
-                                <div className="space-y-6 rounded-xl border border-gray-200 bg-white p-6 shadow-xs">
-                                    {permissionsList.map((perm, index) => (
-                                        <PermissionRow
-                                            key={index}
-                                            label={perm}
-                                            name={`perm_${index}`}
-                                        />
-                                    ))}
-                                </div>
-                                {/* Legend Box */}{' '}
-                                <div className="mt-4 rounded-xl border border-[#CFCBD2] bg-white p-4 shadow-xs">
-                                    <div className="mb-2 flex items-center gap-2">
-                                        {/* Simple info icon SVG */}
-                                        <Info className="h-10 w-10" />
-                                        <div className="w-full border-b border-[#E8E6EA] pb-2">
-                                            <p className="w-full text-sm font-semibold text-gray-900">
-                                                Permission Types Legend
-                                            </p>
+                            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm lg:col-span-2">
+                                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                                    {/* Account Expiry */}
+                                    <div className="">
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">
+                                            Account Expiry
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                placeholder="DD MMM YYYY"
+                                                defaultValue="22 Aug 2025"
+                                                className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-3 text-gray-400 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
+                                            />
+                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                                <svg
+                                                    className="h-5 w-5"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                                    />
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="space-y-3 pl-10">
-                                        <p className="text-sm text-gray-500">
-                                            <span className="font-medium text-gray-700">
-                                                "✓"
-                                            </span>{' '}
-                                            = Full access (view, add, edit,
-                                            delete)
-                                        </p>
-                                        <p className="text-sm text-gray-500">
-                                            <span className="font-medium text-gray-700">
-                                                "View"
-                                            </span>{' '}
-                                            = Read only
-                                        </p>
-                                        <p className="text-sm text-gray-500">
-                                            <span className="font-medium text-gray-700">
-                                                "-"
-                                            </span>{' '}
-                                            = No access
-                                        </p>
+
+                                    {/* MFA Toggle */}
+                                    <div>
+                                        <label className="mb-3 block text-sm font-medium text-gray-600">
+                                            Multi-Factor Authentication
+                                        </label>
+                                        <div className="flex items-center">
+                                            <label className="relative inline-flex cursor-pointer items-center">
+                                                <input
+                                                    type="checkbox"
+                                                    defaultChecked
+                                                    className="peer sr-only"
+                                                />
+                                                <div className="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-[#7AB621] peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
+                                                <span className="ml-3 text-sm font-medium text-gray-600">
+                                                    Active
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {/* 3. FOOTER BUTTONS */}
-                        <div className="flex justify-end gap-3 border-t border-gray-200 pt-4">
-                            <IconButton>Cancel</IconButton>
-                            <Button>Add Role</Button>
+
+                        {/* Footer Buttons */}
+                        <div className="flex items-center justify-end gap-4 pt-4">
+                            <button
+                                type="button"
+                                className="rounded-lg border border-gray-300 bg-white px-6 py-1.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+                            >
+                                Cancel
+                            </button>
+                            {/* <button type="submit" className="px-6 py-2.5 rounded-lg text-sm font-semibold text-white bg-[#7AB621] hover:bg-[#659F18] shadow-md transition-colors">
+                                Send invite & Add User
+                            </button> */}
+                            <Button>Send invite & Add User</Button>
                         </div>
                     </form>
                 </div>
@@ -185,64 +449,4 @@ const EditRole = () => {
     );
 };
 
-// --- Helper Component for Permission Rows ---
-// This handles the layout of "Label .......... Radio | Radio | Radio"
-const PermissionRow = ({ label, name }: PermissionRowProps) => {
-    return (
-        <div className="flex flex-col justify-between gap-3 border-b border-[#E8E6EA] py-1.5">
-            <span className="mb-2 w-1/3 text-sm font-medium text-gray-900 sm:mb-0">
-                {label}
-            </span>
-            <div className="flex w-2/3 items-center gap-6 pb-4">
-                {/* Option 1: Full Access */}
-                <label className="group flex cursor-pointer items-center">
-                    <div className="relative flex items-center justify-center">
-                        <input
-                            type="radio"
-                            name={name}
-                            className="peer sr-only"
-                        />
-                        {/* Custom Green Ring Radio Style */}
-                        <div className="h-5 w-5 rounded-full border border-gray-300 bg-white transition-all peer-checked:border-[6px] peer-checked:border-[#7AB621]"></div>
-                    </div>
-                    <span className="ml-2 text-sm text-gray-600 group-hover:text-gray-900">
-                        Full access
-                    </span>
-                </label>
-
-                {/* Option 2: View */}
-                <label className="group flex cursor-pointer items-center">
-                    <div className="relative flex items-center justify-center">
-                        <input
-                            type="radio"
-                            name={name}
-                            className="peer sr-only"
-                        />
-                        <div className="h-5 w-5 rounded-full border border-gray-300 bg-white transition-all peer-checked:border-[6px] peer-checked:border-[#7AB621]"></div>
-                    </div>
-                    <span className="ml-2 text-sm text-gray-600 group-hover:text-gray-900">
-                        View
-                    </span>
-                </label>
-
-                {/* Option 3: No Access (Default Checked) */}
-                <label className="group flex cursor-pointer items-center">
-                    <div className="relative flex items-center justify-center">
-                        <input
-                            type="radio"
-                            name={name}
-                            defaultChecked
-                            className="peer sr-only"
-                        />
-                        <div className="h-5 w-5 rounded-full border border-gray-300 bg-white transition-all peer-checked:border-[6px] peer-checked:border-[#7AB621]"></div>
-                    </div>
-                    <span className="ml-2 text-sm text-gray-600 group-hover:text-gray-900">
-                        No access
-                    </span>
-                </label>
-            </div>
-        </div>
-    );
-};
-
-export default EditRole;
+export default AddUser;

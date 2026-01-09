@@ -17,11 +17,22 @@ const ProfilePage = () => {
     const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>('profiles');
 
     // 1. Define Breadcrumbs Structure
-    const breadcrumbs = [
-        { label: 'User Management', isActive: false },
-        { label: 'User Profiles', isActive: false },
-        { label: 'View', isActive: true },
-    ];
+const breadcrumbs = [
+    { 
+        label: 'User Management', 
+        isActive: false,
+        href: '/usermanagement'  
+    },
+    { 
+        label: 'User Profiles', 
+        isActive: false,
+        href: '/usermanagement'  
+    },
+    { 
+        label: 'View', 
+        isActive: true 
+    },
+];
 
     // 2. Define Tabs Structure
     const tabs = [

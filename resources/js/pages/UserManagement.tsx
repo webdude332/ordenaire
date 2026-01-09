@@ -112,7 +112,7 @@ export default function UserManagement() {
                     title={pageTitle}
                     icon={DashBoardSvg} // Passing SVG icon here
                     breadcrumbs={[
-                        { label: 'Internal User Management', isActive: false },
+                        { label: 'Internal User Management', isActive: false, href: '/usermanagement' },
                         {
                             label:
                                 activeTab === 'profiles'
