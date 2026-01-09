@@ -3,7 +3,6 @@ import { Link, usePage } from '@inertiajs/react';
 
 // --- IMPORTS ---
 import searchIcon from '../images/icons/inputSearch.svg';
-import usersIcon from '../images/icons/users-edit.png'; 
 import businessIcon from '../images/icons/businessManagement.svg';
 import blackLogo from '../images/icons/applogo.svg';
 import chartIcon from '../images/icons/dashBaordSvg.svg';
@@ -14,7 +13,6 @@ import supportIcon from '../images/icons/maintinanceAndSupport.svg';
 import chatIcon from '../images/icons/communicationManagement.svg';
 import linkIcon from '../images/icons/marketPlace.svg';
 import approvalIcon from '../images/icons/manageApprovals.svg';
-import ticketsIcon from '../images/icons/at-sign.svg';
 import profileImg from '../images/icons/profile.png';
 import settingIcon from '../images/icons/settings.svg'
 import tickets from '../images/icons/tickets.svg'
@@ -72,12 +70,7 @@ export default function SidePannel() {
 
     {/* Right Shortcut Badge */}
     <span className="absolute inset-y-0 right-0 flex items-center pr-4">
-        <kbd className="inline-flex items-center justify-center h-7 min-w-[34px] px-1.5 text-[#9C94A3] bg-white border border-[#E8E6EA] rounded-md shadow-[0px_1px_1px_rgba(0,0,0,0.05)] select-none">
-            {/* Command Symbol - slightly adjusted down for alignment */}
-            <span className="text-[13px] leading-none font-medium translate-y-[1px]">⌘</span>
-            {/* Letter K - increased size to match visual weight */}
-            <span className="text-[13px] font-medium leading-none ml-0.5">K</span>
-        </kbd>
+
     </span>
 </div>
             </div>

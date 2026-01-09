@@ -2,8 +2,8 @@ import { Link } from '@inertiajs/react';
 import Button from '../components/Button';
 // --- ICONS ---
 import addUser from '../images/icons/addUserIcon.svg';
-import infoIcon from '../images/icons/newInfo.png';
-import pencilIcon from '../images/icons/pencil-icon.png';
+import InfoIcon from '../images/icons/gray-info.svg?react';
+import PencilIcon from '../images/icons/pencilIcon.svg?react';
 import tickIcon from '../images/icons/tickIcon.png';
 
 // --- MOCK DATA ---
@@ -203,12 +203,8 @@ export default function RolesAndPermissionsTable() {
                                     >
                                         <div className="flex justify-center">
                                             <Link href="/users/editrole">
-                                                                                        <button className="rounded-[6px] border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
-                                                <img
-                                                    src={pencilIcon}
-                                                    alt="Edit"
-                                                    className="h-4 w-4 opacity-50"
-                                                />
+                                                                                        <button className="rounded-lg border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
+                                            <PencilIcon className='w-4 h-4'/>
                                             </button>
                                             </Link>
                                         </div>
@@ -223,7 +219,7 @@ export default function RolesAndPermissionsTable() {
             {/* Legend Card */}
             <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="flex items-center gap-2 border-b border-[#E8E6EA] pb-4">
-                    <img src={infoIcon} alt="" />
+                    <InfoIcon className='w-10 h-10'/>
                     <h3 className="text-sm font-semibold text-gray-700">
                         Permission Types Legend
                     </h3>

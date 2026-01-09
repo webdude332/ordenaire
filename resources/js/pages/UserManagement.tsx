@@ -158,9 +158,6 @@ export default function UserManagement() {
                                             className="w-full rounded-lg border border-gray-300 bg-white py-2 pr-10 pl-10 text-sm placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-lime-500 focus:outline-none"
                                         />
                                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                            <kbd className="rounded border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] text-gray-400">
-                                                ⌘K
-                                            </kbd>
                                         </span>
                                     </div>
                                 </div>
