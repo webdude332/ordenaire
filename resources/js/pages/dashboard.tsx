@@ -38,7 +38,7 @@ export default function Dashboard() {
                             <Calender className="h-4 w-4 text-[#B5B0BA]" />
                             Date-range
                         </button> */}
-
+                        <DateRangeButton></DateRangeButton>
                         <Button href="/reports" className="font-medium">
                             <BtnLink className="h-4 w-4" />
                             Reports Page
