@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../components/Button';
 import editIcon from '../images/icons/editIcon.png';
 import Modal from './Modal';
-import patternBg from '../images/icons/patternBg.png'; // Added missing semicolon
+import patternBg from '../images/icons/patternBg.png'; 
 
 // import checkIcon from '../images/icons/check-icon.png'; 
 
@@ -29,10 +29,6 @@ export default function EditReportModal({
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="4xl">
             {/* Added overflow-hidden to clip the pattern if it scales too big */}
             <div className="relative overflow-hidden rounded-xl bg-white">
-                
-                {/* REMOVED: Old hardcoded Decorative Background Circles were here */}
-
-                {/* Close Button (Top Right) */}
                 <button
                     onClick={onClose}
                     className="absolute top-5 right-5 z-20 text-gray-400 transition-colors hover:text-gray-600"
@@ -84,7 +80,7 @@ export default function EditReportModal({
                         </div>
 
                         <div className='relative z-10'>
-                            <h3 className="text-xl font-bold text-gray-900">
+                            <h3 className="text-xl font-semibold text-gray-900">
                                 Edit Scheduled Report
                             </h3>
                         </div>
@@ -120,16 +116,18 @@ export default function EditReportModal({
                                     </svg>
                                 </div>
                             </div>
-                            <div>
+                                                        <div>
                                 <label className="mb-2 block text-[13px] text-gray-500">
-                                    Recipients
+                                    Select Data Range
                                 </label>
                                 <div className="relative">
-                                    <div className="flex h-11 w-full items-center rounded-lg border border-gray-200 bg-white px-4 text-sm font-medium text-gray-900">
-                                        abc@gmail.com, Admins, billing
-                                    </div>
+                                    <input
+                                        type="text"
+                                        defaultValue="Jan 10, 2025 - Jul 10, 2025"
+                                        className="h-11 w-full rounded-lg border border-gray-200 px-4 pl-10 text-sm font-medium text-gray-900 transition-all focus:border-transparent focus:ring-2 focus:ring-lime-500 focus:outline-none"
+                                    />
                                     <svg
-                                        className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+                                        className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -138,7 +136,7 @@ export default function EditReportModal({
                                         <path
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
-                                            d="M19 9l-7 7-7-7"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                         />
                                     </svg>
                                 </div>
@@ -184,31 +182,6 @@ export default function EditReportModal({
 
                         {/* Row 3: Date Range */}
                         <div className="grid grid-cols-2 gap-5">
-                            <div>
-                                <label className="mb-2 block text-[13px] text-gray-500">
-                                    Select Data Range
-                                </label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        defaultValue="Jan 10, 2025 - Jul 10, 2025"
-                                        className="h-11 w-full rounded-lg border border-gray-200 px-4 pl-10 text-sm font-medium text-gray-900 transition-all focus:border-transparent focus:ring-2 focus:ring-lime-500 focus:outline-none"
-                                    />
-                                    <svg
-                                        className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth={2}
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Export Format */}
@@ -272,63 +245,6 @@ export default function EditReportModal({
                                         </label>
                                     ),
                                 )}
-                            </div>
-                        </div>
-
-                        {/* Notification Channel */}
-                        <div>
-                            <label className="mb-3 block text-sm font-bold text-gray-900">
-                                Notification channel
-                            </label>
-                            <div className="flex gap-8">
-                                <label className="flex cursor-pointer items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        checked={notifications.email}
-                                        onChange={(e) =>
-                                            setNotifications({
-                                                ...notifications,
-                                                email: e.target.checked,
-                                            })
-                                        }
-                                        className="h-4 w-4 cursor-pointer rounded border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
-                                    />
-                                    <span className="text-sm font-medium text-gray-900">
-                                        Emails
-                                    </span>
-                                </label>
-                                <label className="flex cursor-pointer items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        checked={notifications.whatsapp}
-                                        onChange={(e) =>
-                                            setNotifications({
-                                                ...notifications,
-                                                whatsapp: e.target.checked,
-                                            })
-                                        }
-                                        className="h-4 w-4 cursor-pointer rounded border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
-                                    />
-                                    <span className="text-sm text-gray-500">
-                                        Whatsapp
-                                    </span>
-                                </label>
-                                <label className="flex cursor-pointer items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        checked={notifications.sms}
-                                        onChange={(e) =>
-                                            setNotifications({
-                                                ...notifications,
-                                                sms: e.target.checked,
-                                            })
-                                        }
-                                        className="h-4 w-4 cursor-pointer rounded border-gray-300 text-lime-600 accent-lime-600 focus:ring-lime-500"
-                                    />
-                                    <span className="text-sm text-gray-500">
-                                        SMS
-                                    </span>
-                                </label>
                             </div>
                         </div>
                     </div>

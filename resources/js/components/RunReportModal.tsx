@@ -55,7 +55,7 @@ export default function RunReportModal({
                     <p className="mb-4 text-sm font-semibold text-gray-900">
                         You are about to generate and send the following report:
                     </p>
-                    <div className="space-y-3 rounded-lg border border-green-200 bg-[#F8FFEB] p-4">
+                    <div className="space-y-3 rounded-lg border border-[#E8E6EA] shadow-xs bg-[#F8FFEB] p-4">
                         <div className="flex">
                             <div className="flex w-2/5 flex-col gap-y-4">
                                 <p className="font-gray-500 text-sm font-medium">Report Name</p>
@@ -74,10 +74,6 @@ export default function RunReportModal({
                         </div>
                     </div>
                 </div>
-
-                <p className="mb-4 text-medium text-gray-800 relative z-10">
-                    Are you sure you want to proceed?
-                </p>
                 </div>
 
                 <div className="flex gap-3 relative z-10">
