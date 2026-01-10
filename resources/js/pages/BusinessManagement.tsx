@@ -1,8 +1,6 @@
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { useState } from 'react';
-
-// Icons
 import Button from '../components/Button';
 import Suchi from '../images/icons/Suchi.svg?react';
 import BranchIcon from '../images/icons/branchIcon.svg?react';
@@ -20,8 +18,6 @@ import PlusIcon from '../images/icons/plus.svg?react';
 import Salad from '../images/icons/salad.svg?react';
 import Snack from '../images/icons/snack.svg?react';
 import Tea from '../images/icons/teaIcon.svg?react';
-
-// import BranchesIcon from '../images/icons/branches.svg?react';
 
 const BusinessManagement = () => {
     const [activeTab, setActiveTab] = useState<
@@ -221,7 +217,7 @@ const BusinessManagement = () => {
                             </div>
 
                             {/* Filters Button */}
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50">
                                 <FilterIcon className="h-5 w-5" />
                                 Filters
                             </button>
@@ -258,12 +254,6 @@ const BusinessManagement = () => {
                                 </button>
                             </div>
                         </div>
-
-                        {/* Right Side: Register Button */}
-                        {/* <button className="flex items-center gap-2 rounded-lg bg-[#7AB621] px-4 py-2 text-sm font-semibold text-white hover:bg-[#6BA518]">
-                          <PlusIcon className='h-5 w-5 text-[#C4FF52]'/>
-                            Register New Businesses
-                        </button> */}
                         <Button className="py-2.5">
                             <PlusIcon className="h-5 w-5 text-[#C4FF52]" />
                             Register New Businesses
@@ -275,53 +265,49 @@ const BusinessManagement = () => {
                         {businesses.map((business) => (
                             <div
                                 key={business.id}
-                                className="overflow-hidden rounded-xl border border-[#E8E6EA] bg-white shadow-xs transition-shadow"
+                                className="overflow-hidden rounded-xl border border-gray-200 bg-white"
                             >
-                                {/* Card Header with Icon and Status */}
+                                {/* Card Header - Icon/Name on LEFT, Badges on RIGHT */}
                                 <div className="flex items-start justify-between p-6 pb-4">
+                                    {/* LEFT: Icon + Name */}
                                     <div className="flex items-center gap-3">
-                                        {/* Business Icon */}
-                                        <div
-                                            className="flex h-12 w-12 items-center justify-center rounded-lg border border-[#E8E6EA] text-2xl"
-                                            style={{
-                                                backgroundColor:
-                                                    business.bgColor,
-                                            }}
-                                        >
-                                            {/* UPDATED: Rendering the component with size to match text-2xl */}
-                                            <business.icon className="h-14 w-14" />
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm">
+                                            <business.icon className="h-9 w-9" />
                                         </div>
-                                        {/* Business Name */}
                                         <div>
                                             <h3 className="text-base font-semibold text-gray-900">
                                                 {business.name}
                                             </h3>
-                                            {/* Type Badge */}
-                                            <span
-                                                className={`mt-1 inline-block rounded px-2 py-0.5 text-xs font-medium ${
-                                                    business.type === 'Parent'
-                                                        ? 'bg-[#F3F4F6] text-gray-600'
-                                                        : 'bg-[#DBEAFE] text-[#1E40AF]'
-                                                }`}
-                                            >
-                                                {business.type}
-                                            </span>
                                         </div>
                                     </div>
 
-                                    {/* Status Badge */}
-                                    <span
-                                        className={`inline-flex items-center rounded-lg border px-2 py-1 text-xs font-medium ${getStatusColor(
-                                            business.status,
-                                        )}`}
-                                    >
+                                    {/* RIGHT: Status and Type Badges stacked */}
+                                    <div className="flex flex-col items-end gap-2">
+                                        {/* Status Badge */}
                                         <span
-                                            className={`mr-1.5 h-1.5 w-1.5 rounded-full ${getStatusDot(
+                                            className={`inline-flex items-center border border-[#ABEFC6] rounded-lg px-2 py-0.5 text-sm font-medium ${getStatusColor(
                                                 business.status,
                                             )}`}
-                                        ></span>
-                                        {business.status}
-                                    </span>
+                                        >
+                                            <span
+                                                className={`mr-1.5 h-2 w-2 rounded-lg ${getStatusDot(
+                                                    business.status,
+                                                )}`}
+                                            ></span>
+                                            {business.status}
+                                        </span>
+
+                                        {/* Type Badge */}
+                                        <span
+                                            className={`inline-block rounded-lg px-2 py-0.5 text-xs font-medium ${
+                                                business.type === 'Parent'
+                                                    ? 'border border-[#D5D9EB] bg-[#F8F9FC] text-[#363F72]'
+                                                    : 'border border-[#B2DDFF] bg-[#EFF8FF] text-[#175CD3]'
+                                            }`}
+                                        >
+                                            {business.type}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 {/* Card Body - Business Info */}
@@ -342,7 +328,7 @@ const BusinessManagement = () => {
                                             {business.lastActive}
                                         </span>
                                     </div>
-                                    <div className="flex justify-between border-b border-[#EFEDF0] pb-2 text-sm">
+                                    <div className="flex justify-between border-b border-gray-100 pb-2 text-sm">
                                         <span className="text-gray-500">
                                             ID:
                                         </span>
@@ -361,23 +347,26 @@ const BusinessManagement = () => {
                                         </div>
                                     ) : (
                                         <div className="flex items-center gap-1.5 pt-2 text-sm text-gray-600">
-                                            <BranchIcon className="w- h-15" />
+                                            <BranchIcon className="h-4 w-4" />
                                             <span>
-                                                Parent: {business.parent}
+                                                Parent:{' '}
+                                                <span className="font-medium text-yellow-600">
+                                                    {business.parent}
+                                                </span>
                                             </span>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Card Footer - Action Buttons */}
-                                <div className="flex items-center justify-end gap-4 border-t border-gray-100 px-6 py-3">
-                                    <button className="text-sm font-medium text-gray-700 hover:text-gray-900">
+                                <div className="flex items-center justify-end gap-3 border-t border-gray-100 px-6 py-3">
+                                    <button className="text-sm font-medium text-gray-600 hover:text-gray-900">
                                         View
                                     </button>
-                                    <button className="text-sm font-medium text-gray-700 hover:text-gray-900">
+                                    <button className="text-sm font-medium text-gray-600 hover:text-gray-900">
                                         Edit
                                     </button>
-                                    <button className="text-sm font-medium text-gray-700 hover:text-gray-900">
+                                    <button className="text-sm font-medium text-gray-600 hover:text-gray-900">
                                         Login
                                     </button>
                                 </div>
