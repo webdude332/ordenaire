@@ -13,7 +13,7 @@ import GridIcon from '../images/icons/gridIcon.svg?react';
 import Search from '../images/icons/inputSearch.svg?react';
 import ListIcon from '../images/icons/listsIcon.svg?react';
 import Pasta from '../images/icons/pasta.svg?react';
-import Pizza from '../images/icons/pizza.svg?react';
+import Pizza from '../images/icons/pizza_one.svg?react';
 import PlusIcon from '../images/icons/plus.svg?react';
 import Salad from '../images/icons/salad.svg?react';
 import Snack from '../images/icons/snack.svg?react';
