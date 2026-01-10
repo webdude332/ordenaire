@@ -388,7 +388,7 @@ export default function ReportsPage() {
                                 </div>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <Label>Notification channel</Label>
                                 <div className="mt-2 mt-4 flex items-center gap-6">
                                     <Checkbox
@@ -398,7 +398,7 @@ export default function ReportsPage() {
                                     <Checkbox label="Whatsapp" />
                                     <Checkbox label="SMS" />
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="flex justify-end gap-3 border-t border-gray-100 px-6 py-4">

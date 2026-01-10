@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Button from '../components/Button';
-import editIcon from '../images/icons/editIcon.png';
+// import editIcon from '../images/icons/editIcon.png';
+import EditIcon from '../images/icons/boldPencilModal.svg?react'
 import Modal from './Modal';
-import patternBg from '../images/icons/patternBg.png'; 
+import patternBg from '../images/icons/patternBg.svg'; 
 
 // import checkIcon from '../images/icons/check-icon.png'; 
 
@@ -57,13 +58,13 @@ export default function EditReportModal({
                         <div className="relative z-10 flex h-12 w-12 items-center justify-center">
                             
                             {/* 1. The Pattern Background (Centered behind icon) */}
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="absolute inset-0 top-22 left-22 flex items-center justify-center pointer-events-none">
                                 <img 
                                     src={patternBg} 
                                     alt="" 
                                     className="max-w-none" 
                                     style={{ 
-                                        transform: 'scale(1.2)', // Adjust scale to match the previous modal's look
+                                        transform: 'scale(1.1)', // Adjust scale to match the previous modal's look
                                         opacity: 1 
                                     }} 
                                 />
@@ -71,11 +72,12 @@ export default function EditReportModal({
 
                             {/* 2. The Edit Icon (Sitting on top) */}
                             <div className='relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center'>
-                            <img
+                            {/* <img
                                 src={editIcon}
                                 alt="Edit"
                                 className="relative z-10 h-12 w-12"
-                            />
+                            /> */}
+                            <EditIcon className='w-12 h-12 bg-white p-3 border-2 border-gray-200 rounded-lg  '/>
                             </div>
                         </div>
 

@@ -1,7 +1,7 @@
 import infoIcon from '../images/icons/infoIcon.png';
-import runIcon from '../images/icons/playIcon.png';
+import RunIcon from '../images/icons/playBold.svg?react';
 import Modal from './Modal';
-import patternBg from '../images/icons/patternBg.png'; 
+import patternBg from '../images/icons/patternBg.svg'; 
 
 interface RunReportModalProps {
     isOpen: boolean;
@@ -19,7 +19,7 @@ export default function RunReportModal({
             <div className="p-6 sm:p-8 relative overflow-hidden">
                 <div className="mb-6 flex items-start gap-4 relative">
                     
-                    <div className="absolute left-0 top-0 h-12 w-12 flex items-center justify-center pointer-events-none">
+                    <div className="absolute inset-0 top-22 left-[-20px] flex items-center pointer-events-none">
                         <img 
                             src={patternBg} 
                             alt="" 
@@ -32,7 +32,7 @@ export default function RunReportModal({
                     </div>
                     <div>
                     <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                        <img src={runIcon} alt="" />
+                        <RunIcon className="w-12 h-12 bg-white p-3 border-2 border-gray-200 rounded-lg"/>
                     </div>
                     
                     <div className="pt-4 relative z-10">
