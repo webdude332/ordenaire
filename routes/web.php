@@ -94,4 +94,12 @@ Route::get('/users/editrole', function () {
     return Inertia::render('EditRole');
 })->name('users.editrole');
 
+Route::get('/business/addbusiness', function () {
+    return Inertia::render('RegisterBusiness');
+})->name('business.addbusiness');
+
+Route::get('/business/operationalconfig', function () {
+    return Inertia::render('OperationalConfig');
+})->name('business.operationalconfig');
+
 require __DIR__.'/settings.php';

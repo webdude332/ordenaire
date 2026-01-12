@@ -44,7 +44,7 @@ const AddUser = () => {
             <main className="flex flex-1 flex-col">
                 {/* Top Navigation with Dynamic Add User State */}
 <TopBar
-                    title="Add New User"
+                    title="Edit User"
                     icon={DashBoardIcon}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
