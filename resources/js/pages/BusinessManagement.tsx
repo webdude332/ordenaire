@@ -394,7 +394,7 @@ const BusinessManagement = () => {
                                                     Parent:{' '}
                                                     <a
                                                         href="#"
-                                                        className="font-medium text-yellow-600 hover:underline"
+                                                        className="font-medium text-green-700 underline hover:underline"
                                                     >
                                                         {business.parent}
                                                     </a>
