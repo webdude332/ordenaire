@@ -102,4 +102,16 @@ Route::get('/business/operationalconfig', function () {
     return Inertia::render('OperationalConfig');
 })->name('business.operationalconfig');
 
+Route::get('/business/subscriptioncompliance', function () {
+    return Inertia::render('SubscriptionCompliance');
+})->name('business.subscriptioncompliance');
+
+Route::get('/business/teamaccess', function () {
+    return Inertia::render('TeamAccess');
+})->name('business.teamaccess');
+
+Route::get('/business/reviewconfirm', function () {
+    return Inertia::render('ReviewConfirm');
+})->name('business.reviewconfirm');
+
 require __DIR__.'/settings.php';
