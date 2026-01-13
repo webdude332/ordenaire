@@ -114,4 +114,8 @@ Route::get('/business/reviewconfirm', function () {
     return Inertia::render('ReviewConfirm');
 })->name('business.reviewconfirm');
 
+Route::get('/business/registerwizard', function () {
+    return Inertia::render('RegisterWizard');
+})->name('business.registerwizard');
+
 require __DIR__.'/settings.php';
