@@ -25,6 +25,7 @@ export default function IconButton({ className = '', children, href, ...props }:
         text-sm font-medium text-[#4F4955] 
         transition-colors hover:bg-gray-50 
         border border-[#CFCBD2]
+        cursor-pointer
         ${className}
     `;
 

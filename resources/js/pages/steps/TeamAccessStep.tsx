@@ -5,6 +5,8 @@ import { Edit2, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import LeftArrow from '@/images/icons/backArrow.svg?react';
+import Pencil from '@/images/icons/pencilIcon.svg?react'
+import DelIcon from '@/images/icons/delIcon.svg?react'
 
 interface StepProps {
     data: any;
@@ -16,9 +18,9 @@ interface StepProps {
 const TeamAccessStep = ({ data, update, onNext, onBack }: StepProps) => {
     const [localInput, setLocalInput] = useState({ fullName: '', email: '', role: 'Select Role' });
     const [inviteList, setInviteList] = useState([
-        { id: 1, name: 'Omar Ali', email: 'omar@teatime.com', role: 'Primary Owner', roleColor: 'bg-[#F9F5FF] text-[#6941C6] border-[#E9D7FE]' },
+        { id: 1, name: 'Omar Ali', email: 'omar@teatime.com', role: 'Primary Owner', roleColor: 'bg-[#F4F3FF] text-[#5925DC] border-[#D9D6FE]' },
         { id: 2, name: 'Sarah Lee', email: 'sarah@teatime.com', role: 'Super Admin', roleColor: 'bg-[#EFF8FF] text-[#175CD3] border-[#B2DDFF]' },
-        { id: 3, name: 'Noah Pierre', email: 'noah@ordemark.com', role: 'Admin', roleColor: 'bg-[#F2F4F7] text-[#344054] border-[#D0D5DD]' },
+        { id: 3, name: 'Noah Pierre', email: 'noah@ordemark.com', role: 'Admin', roleColor: 'bg-[#F9F7FA] text-[#696170] border-[#E8E6EA]' },
     ]);
     const roleOptions = [ { label: 'Super Admin', value: 'Super Admin' }, { label: 'Admin', value: 'Admin' }, { label: 'Manager', value: 'Manager' }, { label: 'Viewer', value: 'Viewer' } ];
     const updateLocalInput = (field: string, value: string) => { setLocalInput((prev) => ({ ...prev, [field]: value })); };
@@ -43,7 +45,7 @@ const TeamAccessStep = ({ data, update, onNext, onBack }: StepProps) => {
                             <div className="space-y-1.5"><label className="text-sm font-medium text-gray-700">Email address<span className="text-[#8CDD05]">*</span></label><input type="email" placeholder="Enter Email address" value={localInput.email} onChange={(e) => updateLocalInput('email', e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]" /></div>
                         </div>
                         <div className="mt-6 grid grid-cols-2 gap-6"><div className="space-y-1.5"><CustomDropdown label="User Role" required placeholder="Select Role" value={localInput.role} onChange={(val) => updateLocalInput('role', val)} options={roleOptions} /></div></div>
-                        <div className="mt-6 flex justify-end"><button className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">Add to List</button></div>
+                        <div className="mt-6 flex justify-end"><button className="rounded-lg border border-borderColor bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-xs hover:bg-gray-50">Add to List</button></div>
                     </div>
                 </div>
 
@@ -57,8 +59,8 @@ const TeamAccessStep = ({ data, update, onNext, onBack }: StepProps) => {
                                 {inviteList.map((user) => (
                                     <tr key={user.id}>
                                         <td className="px-6 py-4"><div className="flex flex-col"><span className="font-medium text-gray-900">{user.name}</span><span className="text-gray-500">{user.email}</span></div></td>
-                                        <td className="px-6 py-4"><span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${user.roleColor} ${user.roleColor.includes('border') ? '' : 'border-transparent'}`}><div className={`mr-1.5 h-1.5 w-1.5 rounded-full ${user.roleColor.includes('purple') ? 'bg-[#9B51E0]' : user.roleColor.includes('blue') ? 'bg-[#175CD3]' : 'bg-[#667085]'}`}></div>{user.role}</span></td>
-                                        <td className="px-6 py-4 text-right">{user.role !== 'Primary Owner' && (<div className="flex items-center justify-end gap-2"><button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"><Edit2 className="h-4 w-4" /></button><button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-red-600"><Trash2 className="h-4 w-4" /></button></div>)}</td>
+                                        <td className="px-6 py-4"><span className={`inline-flex items-center rounded-sm border px-2.5 py-0.5 text-xs font-medium ${user.roleColor} ${user.roleColor.includes('border') ? '' : 'border-transparent'}`}><div className={`mr-1.5 h-1.5 w-1.5 rounded-full ${user.roleColor.includes('purple') ? 'bg-[#9B51E0]' : user.roleColor.includes('blue') ? 'bg-[#175CD3]' : 'bg-[#667085]'}`}></div>{user.role}</span></td>
+                                        <td className="px-6 py-4 text-right">{user.role !== 'Primary Owner' && (<div className="flex items-center justify-end gap-2"><button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"><Pencil className="h-4 w-4 text-iconColor" /></button><button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-red-600"><DelIcon className="h-4 w-4 text-iconColor" /></button></div>)}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -69,7 +71,7 @@ const TeamAccessStep = ({ data, update, onNext, onBack }: StepProps) => {
                 {/* Footer Buttons */}
                 <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
                     <IconButton onClick={onBack} className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">Back</IconButton>
-                    <Button onClick={onNext}>Next: Review & Confirm<ColorRight /></Button>
+                    <Button onClick={onNext} className='cursor-pointer'>Next: Review & Confirm<ColorRight /></Button>
                 </div>
             </div>
         </div>

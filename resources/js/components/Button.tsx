@@ -27,6 +27,7 @@ export default function Button({ className = '', children, href, ...props }: But
         text-sm font-medium text-white 
         transition-colors hover:bg-[#65a30d] 
         border-none
+        cursor-pointer
         ${className}
     `;
 

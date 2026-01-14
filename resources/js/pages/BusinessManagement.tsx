@@ -292,7 +292,7 @@ const BusinessManagement = () => {
                                 </button>
                             </div>
                         </div>
-<Link href="/business/addbusiness">
+<Link href="/business/registerwizard">
     <Button className="py-2.5 cursor-pointer">
         <PlusIcon className="h-5 w-5 text-[#C4FF52]" />
         Register New Businesses

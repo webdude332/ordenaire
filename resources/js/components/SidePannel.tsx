@@ -13,9 +13,10 @@ import supportIcon from '../images/icons/maintinanceAndSupport.svg';
 import chatIcon from '../images/icons/communicationManagement.svg';
 import linkIcon from '../images/icons/marketPlace.svg';
 import approvalIcon from '../images/icons/manageApprovals.svg';
-import profileImg from '../images/icons/profile.png';
+import profileImg from '../images/icons/profile.svg';
 import settingIcon from '../images/icons/settings.svg'
 import tickets from '../images/icons/tickets.svg'
+
 
 // --- DATA CONFIGURATION ---
 const MENU_ITEMS = [
@@ -40,7 +41,9 @@ export default function SidePannel() {
             {/* --- 1. HEADER LOGO --- */}
             <div className="px-6 pt-8 pb-4">
                 <div className="flex items-center mb-4">
+                    <Link href="/dashboard">
                     <img src={blackLogo} alt="Orderaire" className="h-6 w-auto object-contain" />
+                    </Link>
                 </div>
 
                 {/* --- 2. SEARCH BAR --- */}
@@ -133,20 +136,35 @@ export default function SidePannel() {
             </div>
 
             {/* --- 4. FOOTER --- */}
-            <div className="p-4 border-t border-gray-200 bg-white">
+            <div className="p-4 border-gray-200 bg-white">
                 <a href="#" className="flex gap-2 items-center px-3 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition-colors mb-1">
                     <img src={settingIcon} alt="" />
                     Settings
                 </a>
-                <div className="flex items-center justify-between p-2 mt-2 border border-gray-100 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors group shadow-sm">
-                    <div className="flex items-center">
-                        <img src={profileImg} alt="User" className="w-9 h-9 rounded-full object-cover border border-gray-200" />
-                        <div className="ml-3">
-                            <p className="text-sm font-semibold text-gray-700 leading-tight">Olivia Rhye</p>
-                            <p className="text-xs text-gray-500">olivia@untitled.com</p>
-                        </div>
-                    </div>
-                </div>
+<div className="mt-2 flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-2 shadow-sm transition-colors hover:bg-gray-50 group">
+    <div className="flex items-center">
+        {/* 1. Image Container with Relative Positioning */}
+        <div className="relative">
+            <img
+                src={profileImg}
+                alt="User"
+                className="h-10 w-10 rounded-full object-cover"
+            />
+            {/* 2. Green Status Dot */}
+            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white" />
+        </div>
+
+        {/* 3. Text Details */}
+        <div className="ml-3">
+            <p className="text-sm font-semibold text-gray-700">
+                Olivia Rhye
+            </p>
+            <p className="text-xs text-gray-500">
+                olivia@untitledui.com
+            </p>
+        </div>
+    </div>
+</div>
             </div>
         </aside>
     );

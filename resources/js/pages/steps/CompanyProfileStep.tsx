@@ -41,7 +41,7 @@ const CompanyProfileStep = ({ data, update, onNext, onBack }: StepProps) => {
                     <div className="col-span-3">
                         <h3 className="text-md font-semibold text-gray-700">Basic Business Info</h3>
                     </div>
-                    <div className="col-span-9 space-y-6 rounded-xl border border-[#E8E6EA] px-6 py-8 shadow-xs">
+                    <div className="col-span-9 space-y-6 rounded-xl border border-borderColor px-6 py-8 shadow-xs">
                         {/* Name & ID */}
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-1.5">
@@ -90,7 +90,7 @@ const CompanyProfileStep = ({ data, update, onNext, onBack }: StepProps) => {
                     <div className="col-span-3">
                         <h3 className="text-md font-semibold text-gray-700">Location Details</h3>
                     </div>
-                    <div className="col-span-9 space-y-6 rounded-xl border border-[#E8E6EA] px-6 py-8 shadow-xs">
+                    <div className="col-span-9 space-y-6 rounded-xl border border-borderColor px-6 py-8 shadow-xs">
                         <div className="space-y-1.5">
                             <label className="text-sm font-medium text-gray-700">Full Address<span className="text-[#8CDD05]">*</span></label>
                             <input type="text" placeholder="Enter full address" value={data.address} onChange={(e) => update('address', e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]" />
@@ -119,7 +119,7 @@ const CompanyProfileStep = ({ data, update, onNext, onBack }: StepProps) => {
                     <div className="col-span-3">
                         <h3 className="text-md font-semibold text-gray-700">Primary Contact</h3>
                     </div>
-                    <div className="col-span-9 space-y-6 rounded-xl border border-[#E8E6EA] px-6 py-10 shadow-xs">
+                    <div className="col-span-9 space-y-6 rounded-xl border border-borderColor px-6 py-10 shadow-xs">
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-1.5">
                                 <label className="text-sm font-medium text-gray-700">Branch Admin Name<span className="text-[#8CDD05]">*</span></label>
@@ -166,7 +166,7 @@ const CompanyProfileStep = ({ data, update, onNext, onBack }: StepProps) => {
                 {/* Footer Buttons */}
                 <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
                     <IconButton onClick={onBack}>Cancel</IconButton>
-                    <Button onClick={onNext}>
+                    <Button onClick={onNext} className='cursor-pointer'>
                         Next: Operations
                         <ColorRight />
                     </Button>
