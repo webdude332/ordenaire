@@ -138,7 +138,7 @@ const EditBusiness = () => {
                         {activeTab === 2 && <OperationalConfigStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
                         {activeTab === 3 && <SubscriptionStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
                         {activeTab === 4 && <TeamAccessStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
-                        {activeTab === 5 && <div className="p-10 text-center text-gray-500 border rounded-xl"><ActivityLogStep/></div>}
+                        {activeTab === 5 && <ActivityLogStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
                     </div>
                 </div>
 

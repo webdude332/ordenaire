@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Modal from './Modal';
 import ProfileIcon from '@/images/icons/profielicon.svg?react'
 // Import your new sub-components
-import { UploadDropzone } from './upload/UploadDropZone';
+import { UploadDropzone } from './upload/UploadDropzone';
 import { UploadError } from './upload/UploadError';
 import { UploadSuccess } from './upload/UploadSuccess';
 import GalleryIcon from '@/images/icons/galleryIcon.svg?react'
