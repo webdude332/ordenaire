@@ -18,10 +18,6 @@ Route::get('/forgot-pass', function () {
     return Inertia::render('ForgotPass');
 })->name('forgot.pass');
 
-Route::get('/login-super-admin', function () {
-    return Inertia::render('LoginSuperAdmin');
-})->name('login.super.admin');
-
 Route::get('dashboard', function () {
     return Inertia::render('dashboard');
 })->name('dashboard');
@@ -121,5 +117,9 @@ Route::get('/business/registerwizard', function () {
 Route::get('business/editbusiness', function () {
     return Inertia::render('EditBusiness');
 })->name('business.editbusiness');
+
+Route::get('business/businessoverview', function () {
+    return Inertia::render('BusinessOverview');
+})->name('business.businessoverview');
 
 require __DIR__.'/settings.php';
