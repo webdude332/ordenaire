@@ -19,14 +19,14 @@ const StatCard = ({
   const isPositive = trendType === 'positive';
   
   return (
-    <div className="bg-white p-6 transition-shadow">
+    <div className="bg-white px-6 py-3 transition-shadow">
       {/* Title */}
-      <p className="text-sm text-gray-600 font-medium mb-3">
+      <p className="text-sm text-gray-600 font-semibold mb-3">
         {title}
       </p>
       
       {/* Value */}
-      <div className="text-3xl font-bold text-gray-900 mb-3">
+      <div className="text-3xl font-semibold text-gray-900 mb-3">
         {value}
       </div>
       

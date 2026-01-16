@@ -201,7 +201,7 @@ export default function TopBar({
                                         />
                                     </span>
                                     {item.isActive ? (
-                                        <span className="rounded-md bg-[#F9F7FA] px-2 py-1 font-semibold text-[#696170]">
+                                        <span className="rounded-md bg-[#F9F7FA] px-2 py-1 font-semibold text-[#363239]">
                                             {item.label}
                                         </span>
                                     ) : item.href ? (

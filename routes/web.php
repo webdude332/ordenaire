@@ -34,7 +34,7 @@ Route::get('usermanagement', function () {
     return Inertia::render('UserManagement');
 })->name('usermanagement');
 
-Route::get('busines-management', function () {
+Route::get('business-management', function () {
     return Inertia::render('BusinessManagement');
 })->name('busines.management');
 
@@ -117,5 +117,9 @@ Route::get('/business/reviewconfirm', function () {
 Route::get('/business/registerwizard', function () {
     return Inertia::render('RegisterWizard');
 })->name('business.registerwizard');
+
+Route::get('business/editbusiness', function () {
+    return Inertia::render('EditBusiness');
+})->name('business.editbusiness');
 
 require __DIR__.'/settings.php';

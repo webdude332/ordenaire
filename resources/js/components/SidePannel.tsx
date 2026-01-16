@@ -22,7 +22,7 @@ import tickets from '../images/icons/tickets.svg'
 const MENU_ITEMS = [
     { label: "Dashboard", icon: chartIcon, route: '/dashboard' }, 
     { label: "Internal User Management", icon: userEditIcon, hasSubmenu: true, route: '/usermanagement' },
-    { label: "Business Management", icon: businessIcon, hasSubmenu: true, route: '/busines-management' },
+    { label: "Business Management", icon: businessIcon, hasSubmenu: true, route: '/business-management' },
     { label: "Subscription & Billing", icon: repeatIcon, hasSubmenu: true, route: '/subscription-and-billing' },
     { label: "System config", icon: monitorIcon, hasSubmenu: true, route: '/system-config' },
     { label: "Maintenance & Support", icon: supportIcon, hasSubmenu: true, route: '/maintinance-and-support' },

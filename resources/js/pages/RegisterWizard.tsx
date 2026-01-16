@@ -2,7 +2,7 @@ import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { router } from '@inertiajs/react';
 import { Check } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dashboard from '../images/icons/dashBaordSvg.svg';
 
 // Import Steps
@@ -59,6 +59,11 @@ const RegisterWizard = () => {
         role: 'Select Role',
     });
 
+    // --- Scroll to Top Logic ---
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentStep]);
+
     const updateFormData = (field: string, value: any) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
@@ -102,7 +107,7 @@ const RegisterWizard = () => {
                     title="Business Management"
                     icon={Dashboard}
                     breadcrumbs={breadcrumbs}
-                                        tabs={[
+                    tabs={[
                         { label: 'Business Profiles', isActive: true, onClick: () => {} },
                         { label: 'Multi-Tenancy & Franchise', isActive: false, onClick: () => {} },
                         { label: 'Feature Access & Beta', isActive: false, onClick: () => {} },
@@ -110,7 +115,7 @@ const RegisterWizard = () => {
                 />
 
                 <div className="flex-1 px-12 py-6">
-                    <div className="mb-6">
+                    {/* <div className="mb-6">
                         <button 
                             onClick={prevStep} 
                             className="text-md flex cursor-pointer items-center gap-2 rounded-lg border border-[#B5B0BA] bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
@@ -118,13 +123,13 @@ const RegisterWizard = () => {
                             <LeftArrow className="h-5 w-5 text-[#B5B0BA]" />
                             Go Back
                         </button>
-                    </div>
-                    <h2 className="mb-8 text-xl font-semibold text-gray-900">
+                    </div> */}
+                    {/* <h2 className="mb-8 text-xl font-semibold text-gray-900">
                         Register New Businesses
-                    </h2>
+                    </h2> */}
 
                     {/* === DYNAMIC TIMELINE === */}
-                    <div className="mb-12 border-t border-[#E8E6EA] pt-12">
+                    <div className="mb-12 pt-12">
                         
                         <div className="relative flex items-center justify-between px-10">
                             {/* Dotted Background Line */}
@@ -140,7 +145,8 @@ const RegisterWizard = () => {
                                 return (
                                     <div
                                         key={step.id}
-                                        className="relative z-10 flex flex-col items-center px-4"
+                                        onClick={() => setCurrentStep(step.id)}
+                                        className="relative z-10 flex flex-col items-center px-4 cursor-pointer"
                                     >
                                         {/* Circle Indicator */}
                                         <div

@@ -26,7 +26,7 @@ export default function Dashboard() {
                     icon={dashboardIcon}
                     iconClassName="text-red-900"
                     breadcrumbs={[{ label: 'Dashboard', isActive: true }]}
-                    tabs={[{ label: 'Dashboard', isActive: true, href: '#' }]}
+                    tabs={[{ label: 'Dashboard', isActive: true, href: '/dashboard' }]}
                 >
                     {/* YOUR SPECIFIC DASHBOARD BUTTONS */}
                 </TopBar>
@@ -109,7 +109,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* ROW 3 */}
-                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-4 pb-4 shadow-xs md:grid-cols-2 lg:grid-cols-4">
                         <StatCard title="Open Support Tickets" value="31" />
                         <StatCard
                             title="System Health Status"

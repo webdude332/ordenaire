@@ -2,6 +2,7 @@ import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar'; 
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
+import Profile from '@/images/icons/profile.svg?react'
 
 // Images
 import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
@@ -93,12 +94,8 @@ const breadcrumbs = [
                                 <div className="flex gap-6">
                                     {/* Avatar */}
                                     <div className="relative -mt-12">
-                                        <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-gray-100 shadow-md">
-                                            <img
-                                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="Noah Pierre"
-                                                className="h-full w-full object-cover"
-                                            />
+                                        <div className="flex justify-center items-center h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-gray-100 shadow-md">
+                                            <Profile className='w-28 h-28'/>
                                         </div>
                                     </div>
 
