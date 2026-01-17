@@ -23,6 +23,7 @@ import HealthAlert from '../components/HealthAlert'
 import StatCard from '@/components/StatCard'
 import trendGreen from '@/images/icons/trendGreen.png'
 import trendRed from '@/images/icons/trendRed.png'
+import UploadIcon from '@/images/icons/upload.svg?react'
 
 
 const AddonsTable = () => {
@@ -57,14 +58,14 @@ const AddonsTable = () => {
         },
     ];
 
-    const getStatusStyle = (status) => {
+    const getStatusStyle = (status:any) => {
         switch (status) {
             case 'Enabled':
-                return 'bg-green-50 text-green-700 ring-green-600/20';
+                return 'bg-[#ECFDF3] text-[#067647] ring-[#ABEFC6] rounded-xl';
             case 'Trial':
-                return 'bg-blue-50 text-blue-700 ring-blue-600/20';
+                return 'bg-blue-50 text-blue-700 ring-blue-600/20 rounded-xl';
             case 'Disabled':
-                return 'bg-red-50 text-red-700 ring-red-600/20';
+                return 'bg-[#FEF3F2] text-[#B42318] ring-[#FECDCA] rounded-xl';
             default:
                 return 'bg-gray-50 text-gray-700 ring-gray-600/20';
         }
@@ -73,12 +74,12 @@ const AddonsTable = () => {
     return (
         <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
             <div className="border-b border-gray-200 px-6 py-4">
-                <h3 className="text-md font-semibold text-gray-900">
+                <h3 className="text-xl font-semibold text-gray-900">
                     Add-ons & Marketplace Apps
                 </h3>
             </div>
             <table className="min-w-full divide-y divide-gray-100">
-                <thead className="bg-[#F9F9FB]">
+                <thead className="bg-[#F9F9FB] border-b border-[#E8E6EA]">
                     <tr>
                         {[
                             'Add-on Name',
@@ -139,7 +140,7 @@ const BillingTable = () => {
     return (
         <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
             <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                <h3 className="text-md font-semibold text-gray-900">
+                <h3 className="text-xl font-semibold text-gray-900">
                     Billing History
                 </h3>
                 <button className="rounded-lg bg-[#7AB621] px-4 py-2 text-xs font-semibold text-white hover:bg-[#689c1b]">
@@ -307,25 +308,25 @@ const BusinessOverviewPage = () => {
                             trendIcon={trendGreen}
                         />
                             <StatCard
-                            title="Net Revenue (MTD)"
-                            value="$1,096.30"
-                            trend="841"
+                            title="Total Staff"
+                            value="9"
+                            trend="1"
                             trendType="positive"
                             trendIcon={trendGreen}
                         />
                             <StatCard
-                            title="Net Revenue (MTD)"
-                            value="$1,096.30"
-                            trend="841"
-                            trendType="positive"
-                            trendIcon={trendGreen}
+                            title="POS Terminal Status"
+                            value="2/3"
+                            // trend="841"
+                            // trendType="positive"
+                            // trendIcon={trendGreen}
                         />
                             <StatCard
-                            title="Net Revenue (MTD)"
-                            value="$1,096.30"
-                            trend="841"
-                            trendType="positive"
-                            trendIcon={trendGreen}
+                            title="Credit Balance"
+                            value="105.000 AED"
+                            // trend="841"
+                            // trendType="positive"
+                            // trendIcon={trendGreen}
                         />
                     </div>
                     </div>
@@ -339,7 +340,7 @@ const BusinessOverviewPage = () => {
                     {/* --- MULTI-TENANCY TABLE --- */}
                     <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
                         <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                            <h3 className="text-md font-semibold text-gray-900">
+                            <h3 className="text-xl font-semibold text-gray-900">
                                 Multi-Tenancy & Franchise
                             </h3>
                             <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
@@ -348,7 +349,7 @@ const BusinessOverviewPage = () => {
                             </button>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
-                            <thead className="bg-[#F9F9FB]">
+                            <thead className="bg-[#F9F9FB] border-b border-borderColor">
                                 <tr>
                                     {[
                                         'Outlet Info',
@@ -399,8 +400,44 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="rounded border p-2 hover:bg-gray-50">
-                                            ⚙️
+                                        <button className="border border-[#CFCBD2] p-2 hover:bg-gray-50 rounded-lg">
+                                            <Eye className="h-4 w-4 text-iconColor" />
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="px-6 py-4">
+                                        <p className="text-sm font-medium text-gray-900">
+                                            SushiWorld - Jumeirah Beach
+                                        </p>
+                                        <p className="text-xs text-gray-500">
+                                            BIZ-2048
+                                        </p>
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-500">
+                                        Standard
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-500">
+                                        Mall of the Emirates,
+                                        <br />
+                                        Al Barsha
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <p className="text-sm font-medium text-gray-900">
+                                            Imran Ali
+                                        </p>
+                                        <p className="text-xs text-gray-500">
+                                            +971 55 9821654
+                                        </p>
+                                    </td>
+                                    <td className="px-6 py-4 text-sm">
+                                        <span className="rounded bg-green-50 px-2 py-1 text-xs font-medium text-green-600">
+                                            ● Active
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <button className="border border-[#CFCBD2] p-2 hover:bg-gray-50 rounded-lg">
+                                            <Eye className="h-4 w-4 text-iconColor" />
                                         </button>
                                     </td>
                                 </tr>
@@ -411,11 +448,11 @@ const BusinessOverviewPage = () => {
                     {/* --- DOCUMENTS SECTION (Reused from your code) --- */}
                     <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
                         <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                            <h3 className="text-md font-semibold text-gray-900">
+                            <h3 className="text-xl font-semibold text-gray-900">
                                 Documents
                             </h3>
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                <PlusIcon className="h-4 w-4 text-gray-400" />{' '}
+                            <button className="flex items-center gap-2 rounded-lg border border-[#CFCBD2] px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                <PlusIcon className="h-5 w-5 text-iconColor" />{' '}
                                 Add other document
                             </button>
                         </div>
@@ -450,8 +487,27 @@ const BusinessOverviewPage = () => {
                                         -
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <button className="flex items-center gap-1 rounded border px-2 py-1 text-xs hover:bg-gray-50">
-                                            <DownloadIcon className="h-3 w-3" />{' '}
+                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                            <UploadIcon className="h-4 w-4 text-iconColor" />
+                                            Upload
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                                        Trade License
+                                    </td>
+                                    <td className="px-6 py-4 text-sm">
+                                        <span className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-500">
+                                            ● Not Uploaded
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-sm text-gray-500">
+                                        -
+                                    </td>
+                                    <td className="px-6 py-4 text-sm">
+                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                            <UploadIcon className="h-4 w-4 text-iconColor" />
                                             Upload
                                         </button>
                                     </td>
@@ -469,12 +525,12 @@ const BusinessOverviewPage = () => {
                                         30 Nov 2028
                                     </td>
                                     <td className="flex gap-2 px-6 py-4">
-                                        <button className="flex items-center gap-1 rounded border px-2 py-1 text-xs hover:bg-gray-50">
-                                            <DownloadIcon className="h-3 w-3" />{' '}
+                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                            <DownloadIcon className="h-4 w-4 text-iconColor" />{' '}
                                             Download
                                         </button>
-                                        <button className="flex items-center gap-1 rounded border px-2 py-1 text-xs hover:bg-gray-50">
-                                            <DelIcon className="h-3 w-3" />{' '}
+                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                            <DelIcon className="h-4 w-4 text-iconColor " />{' '}
                                             Delete
                                         </button>
                                     </td>
@@ -485,7 +541,7 @@ const BusinessOverviewPage = () => {
 
                     {/* --- NOTES SECTION (Reused from your code) --- */}
                     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                        <h3 className="mb-4 text-sm font-semibold text-gray-900">
+                        <h3 className="text-xl mb-4 text-sm font-semibold text-gray-900">
                             Notes
                         </h3>
                         <div className="mb-4">
