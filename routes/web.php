@@ -122,4 +122,12 @@ Route::get('business/businessoverview', function () {
     return Inertia::render('BusinessOverview');
 })->name('business.businessoverview');
 
+Route::get('business/businessoverviewchild', function () {
+    return Inertia::render('BusinessOverviewChild');
+})->name('business.businessoverviewchild');
+
+Route::get('business/businessoverviewchildparent', function () {
+    return Inertia::render('BusinessOverviewChildParent');
+})->name('business.businessoverviewchildparent');
+
 require __DIR__.'/settings.php';
