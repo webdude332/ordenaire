@@ -224,9 +224,9 @@
 
 
 
-import Button from '@/components/Button';
-import CustomDropdown from '@/components/CustomDropdown';
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import CustomDropdown from '@/components/ui/CustomDropdown';
+import IconButton from '@/components/ui/IconButton';
 import { useState } from 'react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import Pencil from '@/images/icons/pencilIcon.svg?react';

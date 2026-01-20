@@ -95,8 +95,8 @@
 
 // export default ReviewConfirmStep;
 
-import Button from '@/components/Button';
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import IconButton from '@/components/ui/IconButton';
 import Cafe from '@/images/icons/cafeIcon.svg?react';
 import { router } from '@inertiajs/react';
 import { useState } from 'react';

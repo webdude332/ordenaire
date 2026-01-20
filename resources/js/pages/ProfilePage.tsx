@@ -10,7 +10,7 @@ import DelIcon from '../images/icons/delIcon.svg?react';
 import PlusIcon from '../images/icons/plus.svg?react';
 import backArrow from '../images/icons/backArrow.png';
 import UsersIcon from '../images/icons/dashBaordSvg.svg?react'; 
-import IconButton from '@/components/IconButton';
+import IconButton from '@/components/ui/IconButton';
 
 
 const ProfilePage = () => {

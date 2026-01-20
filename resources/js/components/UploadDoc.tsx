@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 import CloudIcon from '@/images/icons/cloudIcon.svg?react';
 import UploadPlus from '@/images/icons/filePlus.svg?react';
 import patternBg from '@/images/icons/patternBg.svg';

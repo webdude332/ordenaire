@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import patternBg from '../images/icons/patternBg.png';
-import Button from './Button';
-import IconButton from './IconButton';
+import Button from './ui/Button';
+import IconButton from './ui/IconButton';
 import Modal from './Modal';
 import Shop from '@/images/icons/shop.svg?react'
 

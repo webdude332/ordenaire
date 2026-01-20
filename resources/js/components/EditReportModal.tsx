@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../components/Button';
+import Button from './ui/Button';
 // import editIcon from '../images/icons/editIcon.png';
 import EditIcon from '../images/icons/boldPencilModal.svg?react';
 import patternBg from '../images/icons/patternBg.svg';

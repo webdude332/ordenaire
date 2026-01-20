@@ -2,7 +2,7 @@ import SidePannel from '@/components/SidePannel';
 import { Link } from '@inertiajs/react';
 import TopBar from '@/components/TopBar';
 import { useState } from 'react';
-import Button from '../components/Button';
+import Button from '../components/ui/Button';
 import Suchi from '../images/icons/Suchi.svg?react';
 import BranchIcon from '../images/icons/branchIcon.svg?react';
 import Burger from '../images/icons/burger.svg?react';

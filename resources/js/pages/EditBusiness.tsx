@@ -10,8 +10,8 @@ import OperationalConfigStep from './steps/OperationalConfigStep';
 import SubscriptionStep from './steps/SubscriptionComplianceStep';
 import TeamAccessStep from './steps/TeamAccessStep';
 import ActivityLogStep from './steps/ActivityLogStep';
-import IconButton from '@/components/IconButton';
-import Button from '@/components/Button';
+import IconButton from '@/components/ui/IconButton';
+import Button from '@/components/ui/Button';
 
 const EditBusiness = () => {
     const [activeTab, setActiveTab] = useState(1);

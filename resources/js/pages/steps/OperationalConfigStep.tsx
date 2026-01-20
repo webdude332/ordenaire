@@ -298,8 +298,8 @@
 
 // export default OperationalConfigStep;
 
-import Button from '@/components/Button';
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import IconButton from '@/components/ui/IconButton';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import Delivery from '@/images/icons/delivery.svg?react';
 import DineIn from '@/images/icons/dineIn.svg?react';

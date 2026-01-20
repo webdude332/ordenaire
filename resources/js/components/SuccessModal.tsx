@@ -3,7 +3,7 @@ import Modal from './Modal';
 import patternBg from '../images/icons/patternBg.png';
 import reportOk from '../images/icons/reportOkIcon.png'
 import successIcon from '../images/icons/successIcon.png'
-import IconButton from './IconButton';
+import IconButton from './ui/IconButton';
 
 interface SuccessModalProps {
     isOpen: boolean;

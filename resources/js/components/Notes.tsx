@@ -1,5 +1,5 @@
 import React from 'react'
-import IconButton from './IconButton'
+import IconButton from './ui/IconButton'
 
 const Notes = () => {
   return (

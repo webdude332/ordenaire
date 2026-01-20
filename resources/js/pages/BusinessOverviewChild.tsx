@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import BusinessPlan from '@/components/BusinessPlan';
 import BusinessProfileHeader from '@/components/BusinessProfileHeader';
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 import {
     AddonsTable,
     BillingHistoryTable,
     DocumentsTable,
-} from '@/components/DataTable';
+} from '@/components/ui/DataTable';
 import HealthAlert from '@/components/HealthAlert';
 import Notes from '@/components/Notes';
 import SidePannel from '@/components/SidePannel';
 import StatCard from '@/components/StatCard';
 import TopBar from '@/components/TopBar';
 import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
-import IconButton from '@/components/IconButton';
+import IconButton from '@/components/ui/IconButton';
 
 
 const BusinessOverviewChild = () => {

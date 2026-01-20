@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react';
+import ArrowDown from '@/images/icons/chevron-down.svg?react'
 import { useState } from 'react';
 
 interface Option {
@@ -59,7 +59,7 @@ const CustomDropdown = ({
                         {selectedOption ? selectedOption.label : placeholder}
                     </span>
                 </div>
-                <ChevronDown
+                <ArrowDown
                     className={`h-4 w-4 transition-transform duration-200 ${
                         isOpen ? 'rotate-180 text-[#8CDD05]' : 'text-gray-400'
                     }`}

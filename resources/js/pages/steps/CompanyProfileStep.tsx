@@ -404,9 +404,9 @@
 
 // export default CompanyProfileStep;
 
-import Button from '@/components/Button';
-import CustomDropdown from '@/components/CustomDropdown';
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import CustomDropdown from '@/components/ui/CustomDropdown';
+import IconButton from '@/components/ui/IconButton';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
 import BusinessProfileIcon from '@/images/icons/businessProfileIcon.svg?react';
 import ColorRight from '@/images/icons/colorRight.svg?react';

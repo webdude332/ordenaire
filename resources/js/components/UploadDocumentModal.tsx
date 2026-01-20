@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 import UploadPlus from '@/images/icons/filePlus.svg?react';
 import patternBg from '@/images/icons/patternBg.svg';
 import { useState } from 'react';

@@ -4,8 +4,8 @@ import { Link } from '@inertiajs/react';
 import Info from '../images/icons/gray-info.svg?react';
 
 // Icons
-import Button from '@/components/Button';
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import IconButton from '@/components/ui/IconButton';
 import BackArrow from '../images/icons/backArrow.svg?react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
 

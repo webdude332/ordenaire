@@ -2,10 +2,10 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Layout Components
-import IconButton from '@/components/IconButton';
+import IconButton from '@/components/ui/IconButton';
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
-import BusinessHeader from '@/components/BusinessHeader';
+import BusinessHeader from '@/components/ui/BusinessHeader';
 
 
 // Icons (Using your existing imports where possible, added placeholders for new ones)

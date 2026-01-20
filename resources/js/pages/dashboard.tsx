@@ -1,6 +1,6 @@
 import TopBar from '@/components/TopBar';
 import { Head } from '@inertiajs/react';
-import Button from '../components/Button';
+import Button from '../components/ui/Button';
 import LineChart from '../components/LineChart';
 import PieChart from '../components/PieChart';
 import SidePannel from '../components/SidePannel';

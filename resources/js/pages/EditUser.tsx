@@ -1,7 +1,7 @@
 import SidePannel from '@/components/SidePannel';
 import { useState } from 'react';
 // import NewTopBar from '@/components/NewTopBar';
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 import BackArrow from '@/images/icons/backArrow.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';

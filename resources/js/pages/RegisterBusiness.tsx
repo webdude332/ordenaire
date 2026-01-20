@@ -1,6 +1,6 @@
-import Button from '@/components/Button';
-import CustomDropdown from '@/components/CustomDropdown'; // Your component
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import CustomDropdown from '@/components/ui/CustomDropdown'; // Your component
+import IconButton from '@/components/ui/IconButton';
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { Link } from '@inertiajs/react';

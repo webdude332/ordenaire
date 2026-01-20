@@ -2,7 +2,7 @@ import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar'; // Uses the unified component
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
-import Button from '../components/Button';
+import Button from '../components/ui/Button';
 import AddUser from '../images/icons/plus.svg?react';
 import BakerFinch from '../images/icons/BakerFinch.png';
 import DownArrow from '../images/icons/chevron-down.svg?react';

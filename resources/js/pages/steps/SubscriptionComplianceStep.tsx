@@ -385,9 +385,9 @@
 // export default SubscriptionStep;
 
 import AddDocModal from '@/components/AddDocModal';
-import Button from '@/components/Button';
-import CustomDropdown from '@/components/CustomDropdown';
-import IconButton from '@/components/IconButton';
+import Button from '@/components/ui/Button';
+import CustomDropdown from '@/components/ui/CustomDropdown';
+import IconButton from '@/components/ui/IconButton';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
