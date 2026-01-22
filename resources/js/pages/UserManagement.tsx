@@ -1,21 +1,19 @@
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar'; // Uses the unified component
+import ActionButton from '@/components/ui/ActionButton';
+import CustomDropdown from '@/components/ui/CustomDropdown';
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
 import Button from '../components/ui/Button';
-import AddUser from '../images/icons/plus.svg?react';
 import BakerFinch from '../images/icons/BakerFinch.png';
-import DownArrow from '../images/icons/chevron-down.svg?react';
 import DashBoardSvg from '../images/icons/dashBaordSvg.svg?react'; // User Management uses SVG
 import DelIcon from '../images/icons/delIcon.svg?react';
-import ExportIcon from '../images/icons/exportIcon.svg?react';
 import EyeIcon from '../images/icons/eyeIcon.svg?react';
 import leonprice from '../images/icons/leonprice.png';
 import PencilIcon from '../images/icons/pencilIcon.svg?react';
+import AddUser from '../images/icons/plus.svg?react';
 import SearchIcon from '../images/icons/searchIcon.svg?react';
 import RolesAndPermissionsTable from './RolesAndPermissions';
-import { Search } from 'lucide-react';
-
 // --- MOCK DATA ---
 const USERS = [
     {
@@ -93,6 +91,8 @@ const USERS = [
 ];
 
 export default function UserManagement() {
+    const [selectedRole, setSelectedRole] = useState('all');
+    const [selectedStatus, setSelectedStatus] = useState('all');
     const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
         'profiles',
     );
@@ -112,7 +112,11 @@ export default function UserManagement() {
                     title={pageTitle}
                     icon={DashBoardSvg} // Passing SVG icon here
                     breadcrumbs={[
-                        { label: 'Internal User Management', isActive: false, href: '/usermanagement' },
+                        {
+                            label: 'Internal User Management',
+                            isActive: false,
+                            href: '/usermanagement',
+                        },
                         {
                             label:
                                 activeTab === 'profiles'
@@ -145,53 +149,70 @@ export default function UserManagement() {
                             <div className="flex flex-col items-end justify-between gap-4 sm:flex-row sm:items-center">
                                 {/* Search */}
                                 <div className="w-full sm:w-auto">
-                                    <label className="mb-1 block text-xs font-medium text-gray-500">
-                                        Search
-                                    </label>
                                     <div className="relative w-[300px]">
                                         <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                            <SearchIcon className='w-4 h-4 text-[#B5B0BA]'/>
+                                            <SearchIcon className="h-4 w-4 text-[#B5B0BA]" />
                                         </span>
                                         <input
                                             type="text"
                                             placeholder="Search"
-                                            className="w-full rounded-lg border border-gray-300 bg-white py-2 pr-10 pl-10 text-sm placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-lime-500 focus:outline-none"
+                                            className="w-full rounded-lg border border-gray-300 bg-white py-2 pr-10 pl-10 text-sm placeholder-gray-400 focus:ring-1 focus:ring-[#8CDD05] focus:outline-none"
                                         />
-                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                        </span>
+                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"></span>
                                     </div>
                                 </div>
 
                                 {/* Filters */}
                                 <div className="flex w-full gap-4 sm:w-auto">
                                     <div>
-                                        <label className="mb-1 block text-xs font-medium text-gray-500">
-                                            Filter by role
-                                        </label>
-                                        <div className="relative">
-                                            <select className="w-full cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white py-2.5 pr-10 pl-3 text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-colors focus:border-[#8CDD05] focus:bg-[#F8FFEB] focus:ring-1 focus:ring-[#8CDD05] focus:outline-none sm:w-40">
-                                                <option>All</option>
-                                                <option>Admin</option>
-                                                <option>Accounts</option>
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5">
-                                                <DownArrow className='w-4 h-4 text-[#B5B0BA]'/>
-                                            </div>
+                                        <div className="relative w-48">
+                                            <CustomDropdown
+                                                label=""
+                                                options={[
+                                                    {
+                                                        label: 'Role: All',
+                                                        value: 'all',
+                                                    },
+                                                    {
+                                                        label: 'Admin',
+                                                        value: 'admin',
+                                                    },
+                                                    {
+                                                        label: 'Accounts',
+                                                        value: 'accounts',
+                                                    },
+                                                ]}
+                                                value={selectedStatus}
+                                                onChange={setSelectedStatus}
+                                                placeholder="Select role"
+                                            />
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="mb-1 block text-xs font-medium text-gray-500">
+                                        {/* <label className="mb-1 block text-xs font-medium text-gray-500">
                                             Filter by Status
-                                        </label>
-                                        <div className="relative">
-                                            <select className="w-full cursor-pointer appearance-none rounded-lg border border-gray-200 bg-white py-2.5 pr-10 pl-3 text-sm text-gray-700 placeholder-gray-400 shadow-sm transition-colors focus:border-[#8CDD05] focus:bg-[#F8FFEB] focus:ring-1 focus:ring-[#8CDD05] focus:outline-none sm:w-40">
-                                                <option>All</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5">
-                                                <DownArrow className='w-4 h-4 text-[#B5B0BA]' />
-                                            </div>
+                                        </label> */}
+                                        <div className="relative w-48">
+                                            <CustomDropdown
+                                                label=""
+                                                options={[
+                                                    {
+                                                        label: 'Status: All',
+                                                        value: 'all',
+                                                    },
+                                                    {
+                                                        label: 'Active',
+                                                        value: 'active',
+                                                    },
+                                                    {
+                                                        label: 'Inactive',
+                                                        value: 'inactive',
+                                                    },
+                                                ]}
+                                                value={selectedRole}
+                                                onChange={setSelectedRole}
+                                                placeholder="Select role"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -210,20 +231,11 @@ export default function UserManagement() {
                                     </div>
                                     {/* Action Buttons */}
                                     <div className="flex items-center items-end gap-3">
-                                        <button className="flex items-center gap-2 rounded-lg border border-[#CFCBD2] bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                                            {/* <img
-                                                src={exportIcon}
-                                                alt="Export"
-                                                className="h-4 w-4"
-                                            /> */}
-                                            <ExportIcon className='w-5 h-5 text-[#B5B0BA]'/>
-                                            Export
-                                        </button>
                                         <Button
                                             href="/users/create"
                                             className="flex items-center justify-center gap-3 px-2 py-2"
                                         >
-                                            <AddUser className='text-[#C4FF52] w-5 h-5'/>
+                                            <AddUser className="h-5 w-5 text-[#C4FF52]" />
                                             Add User
                                         </Button>
                                     </div>
@@ -297,21 +309,28 @@ export default function UserManagement() {
                                                         <div className="flex items-center justify-end gap-2">
                                                             <Link
                                                                 href="/users/profile"
-                                                                className="rounded-lg border border-[#CFCBD2] p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
+                                                                className=""
                                                             >
-                                                                <EyeIcon
+                                                                {/* <EyeIcon
                                                                 className='w-4 h-4 text-[#B5B0BA]'
-                                                                />
+                                                                /> */}
+                                                                <ActionButton>
+                                                                    <EyeIcon className="h-4 w-4 text-iconColor" />
+                                                                </ActionButton>
                                                             </Link>
                                                             <Link
                                                                 href="/users/edit"
-                                                                className="rounded-lg border border-[#CFCBD2] p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
+                                                                className=""
                                                             >
-                                                                <PencilIcon className='w-4 h-4 text-[#B5B0BA]'/>
+                                                                <ActionButton>
+                                                                    <PencilIcon className="h-4 w-4 text-iconColor" />
+                                                                </ActionButton>
                                                             </Link>
-                                                            <button className="rounded-lg border border-[#CFCBD2] p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600">
-                                                                <DelIcon className='w-4 h-4 text-[#B5B0BA]'/>
-                                                            </button>
+                                                            <Link>
+                                                                <ActionButton>
+                                                                    <DelIcon className="h-4 w-4 text-iconColor" />
+                                                                </ActionButton>
+                                                            </Link>
                                                         </div>
                                                     </td>
                                                 </tr>
