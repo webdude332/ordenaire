@@ -1,14 +1,13 @@
+import SearchIcon from '@/images/icons/searchIcon.svg?react';
 import { useState } from 'react';
-import Button from './ui/Button';
 import EditIcon from '../images/icons/boldPencilModal.svg?react';
 import patternBg from '../images/icons/patternBg.svg';
 import Modal from './Modal';
-import { Input } from './ui/FormElements';
-import RadioGroup from './ui/RadioGroup';
-import IconButton from './ui/IconButton';
-import SearchIcon from '@/images/icons/searchIcon.svg?react';
-import CustomDateRangePicker from './CustomDateRangePicker';
+import Button from './ui/Button';
 import CustomDropdown from './ui/CustomDropdown';
+import { Input } from './ui/FormElements';
+import IconButton from './ui/IconButton';
+import RadioGroup from './ui/RadioGroup';
 
 interface EditReportModalProps {
     isOpen: boolean;
@@ -29,7 +28,7 @@ export default function EditReportModal({
         whatsapp: false,
         sms: false,
     });
-        const templateOptions = [
+    const templateOptions = [
         { label: 'Sales', value: 'sales' },
         { label: 'Usage', value: 'usage' },
         { label: 'Financial', value: 'financial' },
@@ -100,7 +99,10 @@ export default function EditReportModal({
                                         Assign to Tenant / Organization
                                     </label>
                                     <div className="relative">
-                                        <Input placeholder="Search for tenant..." icon={SearchIcon} />
+                                        <Input
+                                            placeholder="Search for tenant..."
+                                            icon={SearchIcon}
+                                        />
                                     </div>
                                 </div>
                                 <div>
@@ -141,13 +143,13 @@ export default function EditReportModal({
                                 <div>
                                     <div className="relative">
                                         {/* CHANGED: Removed labelClassName to use the default style */}
-                                        <CustomDropdown 
-                                            label="Report Template" 
-                                            options={templateOptions} 
-                                            value={reportTemplate} 
-                                            onChange={setReportTemplate} 
-                                            placeholder="templates—Sales, Usage, Financial" 
-                                        /> 
+                                        <CustomDropdown
+                                            label="Report Template"
+                                            options={templateOptions}
+                                            value={reportTemplate}
+                                            onChange={setReportTemplate}
+                                            placeholder="templates—Sales, Usage, Financial"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -156,20 +158,36 @@ export default function EditReportModal({
                             <div className="grid grid-cols-2 gap-5"></div>
 
                             <div className="mt-6 mb-8 space-y-6 border-t border-gray-100 pt-6">
-                                <div><RadioGroup label="Export format" name="format" options={['CSV', 'PDF', 'Excel']} defaultValue="Excel" /></div>
-                                <div><RadioGroup label="Frequency" name="frequency" options={['Once', 'Daily', 'Weekly', 'Monthly']} defaultValue="Weekly" /></div>
+                                <div>
+                                    <RadioGroup
+                                        label="Export format"
+                                        name="format"
+                                        options={['CSV', 'PDF', 'Excel']}
+                                        defaultValue="Excel"
+                                    />
+                                </div>
+                                <div>
+                                    <RadioGroup
+                                        label="Frequency"
+                                        name="frequency"
+                                        options={[
+                                            'Once',
+                                            'Daily',
+                                            'Weekly',
+                                            'Monthly',
+                                        ]}
+                                        defaultValue="Weekly"
+                                    />
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
 
                 {/* Footer / Action Buttons */}
                 <div className="mt-2 flex gap-4 border-t border-gray-100 bg-white px-8 py-5">
-                    <div className='flex-1'>
-                        <IconButton className='w-full'>
-                            Cancel
-                        </IconButton>
+                    <div className="flex-1">
+                        <IconButton className="w-full">Cancel</IconButton>
                     </div>
                     <div className="flex-1">
                         <Button onClick={onSave} className="w-full">

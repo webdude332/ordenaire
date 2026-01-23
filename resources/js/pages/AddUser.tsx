@@ -2,20 +2,43 @@ import SidePannel from '@/components/SidePannel';
 import { useState } from 'react';
 // import NewTopBar from '@/components/NewTopBar';
 import TopBar from '@/components/TopBar';
+import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import { Input, Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
+import RadioGroup from '@/components/ui/RadioGroup';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/Table';
 import BackArrow from '@/images/icons/backArrow.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
 import Profile from '@/images/icons/profile.svg?react';
-import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Link } from '@inertiajs/react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
-import RadioGroup from '@/components/ui/RadioGroup';
+
 const AddUser = () => {
+    const documents = [
+        {
+            fileName: 'Contract_2025.pdf',
+            documentType: 'Employment',
+            expiry: '-',
+        },
+        {
+            fileName: 'Passport_Copy.jpg',
+            documentType: 'Proof of Identity',
+            expiry: '20 Nov 2028',
+        },
+    ];
+
     const [reportTemplate, setReportTemplate] = useState('');
     const templateOptions = [
         { label: 'Sales', value: 'sales' },
@@ -96,7 +119,9 @@ const AddUser = () => {
                                     {/* <label className="text-md mb-2 block font-semibold text-[#696170]">
                                         User photo
                                     </label> */}
-                                    <Label className=''>User Photo</Label>
+                                    <Label className="text-md font-semibold">
+                                        User Photo
+                                    </Label>
                                     <p className="mb-3 text-sm text-gray-500">
                                         This will be displayed on the profile.
                                     </p>
@@ -113,7 +138,7 @@ const AddUser = () => {
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     {/* Full Name */}
                                     <div>
-                                        <Label className="mb-2 font-semibold text-sm text-gray-500">
+                                        <Label className="mb-2 text-sm font-semibold text-gray-500">
                                             Phone Number{' '}
                                             <span className="text-primary">
                                                 *
@@ -124,7 +149,7 @@ const AddUser = () => {
 
                                     {/* Email */}
                                     <div>
-                                        <Label className="mb-2 font-semibold text-sm text-gray-500">
+                                        <Label className="mb-2 text-sm font-semibold text-gray-500">
                                             Email Address{' '}
                                             <span className="text-primary">
                                                 *
@@ -138,8 +163,11 @@ const AddUser = () => {
 
                                     {/* Phone Number */}
                                     <div>
-                                        <Label className="mb-2 font-semibold text-sm text-gray-500">
-                                            Phone Number <span className="text-primary">*</span>
+                                        <Label className="mb-2 text-sm font-semibold text-gray-500">
+                                            Phone Number{' '}
+                                            <span className="text-primary">
+                                                *
+                                            </span>
                                         </Label>
                                         <div className="flex rounded-lg border border-gray-300 shadow-xs focus-within:border-[#84cc16] focus-within:ring-1 focus-within:ring-[#84cc16]">
                                             <div className="relative">
@@ -186,7 +214,12 @@ const AddUser = () => {
 
                                 {/* Status */}
                                 <div className="mt-6">
-                                    <RadioGroup label="Status" name="status" options={['Active', 'Inactive']} defaultValue="Active" />
+                                    <RadioGroup
+                                        label="Status"
+                                        name="status"
+                                        options={['Active', 'Inactive']}
+                                        defaultValue="Active"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -209,78 +242,48 @@ const AddUser = () => {
                                     <h4 className="text-md font-semibold text-gray-900">
                                         Documents
                                     </h4>
-                                    <button
-                                        type="button"
-                                        className="flex items-center rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
-                                    >
-                                        <span className="mr-1 text-lg leading-none font-light text-gray-400">
-                                            <PlusIcon className="h-5 w-5 text-[#B5B0BA]" />
-                                        </span>{' '}
-                                        Add document
-                                    </button>
+                                    <IconButton>
+                                        <PlusIcon className="h-4 w-4 text-[#B5B0BA]" />
+                                        Add Document
+                                    </IconButton>
                                 </div>
 
                                 {/* Documents Table */}
-                                <div className="overflow-hidden rounded-lg border border-[#E8E6EA]">
-                                    <table className="min-w-full divide-y divide-gray-100">
-                                        <thead className="bg-gray-50">
-                                            <tr>
-                                                <th className="px-4 py-3 text-left text-xs font-semibold tracking-wider text-gray-500 uppercase">
-                                                    File Name
-                                                </th>
-                                                <th className="px-4 py-3 text-left text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                <div className="">
+                                    <TableContainer>
+                                        <Table>
+                                            <TableHeader>
+                                                <TableHead>File Name</TableHead>
+                                                <TableHead>
                                                     Document Type
-                                                </th>
-                                                <th className="flex cursor-pointer items-center px-4 py-3 text-left text-xs font-semibold tracking-wider text-gray-500 uppercase">
-                                                    Expiry
-                                                    <SelectorIcon className="h-4 w-4 text-[#B5B0BA]" />
-                                                </th>
-                                                <th className="px-4 py-3 text-right text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                                </TableHead>
+                                                <TableHead>Expiry</TableHead>
+                                                <TableHead className="text-right">
                                                     Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-100 bg-white">
-                                            <tr>
-                                                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
-                                                    Contract_2025.pdf
-                                                </td>
-                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
-                                                    Employment
-                                                </td>
-                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
-                                                    -
-                                                </td>
-                                                <td className="px-4 py-4 text-right whitespace-nowrap">
-                                                    <button
-                                                        type="button"
-                                                        className="text-gray-400 hover:text-red-500"
-                                                    >
-                                                        <DelIcon className="h-5 w-5 text-[#B5B0BA]" />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-4 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
-                                                    Passport_Copy.jpg
-                                                </td>
-                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
-                                                    Proof of Identity
-                                                </td>
-                                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-900">
-                                                    20 Nov 2028
-                                                </td>
-                                                <td className="px-4 py-4 text-right whitespace-nowrap">
-                                                    <button
-                                                        type="button"
-                                                        className="text-gray-400 hover:text-red-500"
-                                                    >
-                                                        <DelIcon className="h-5 w-5 text-[#B5B0BA]" />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                </TableHead>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {documents.map((doc, index) => (
+                                                    <TableRow key={index}>
+                                                        <TableCell className="font-medium text-gray-900">
+                                                            {doc.fileName}
+                                                        </TableCell>
+                                                        <TableCell className="text-gray-600">
+                                                            {doc.documentType}
+                                                        </TableCell>
+                                                        <TableCell className="text-gray-600">
+                                                            {doc.expiry}
+                                                        </TableCell>
+                                                        <TableCell className="flex items-center justify-center">
+                                                            <ActionButton className="ml-auto">
+                                                                <DelIcon className="h-4 w-4 text-[#B5B0BA]" />
+                                                            </ActionButton>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
                                 </div>
                             </div>
                         </div>
@@ -299,9 +302,12 @@ const AddUser = () => {
                                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                                     {/* Account Expiry */}
                                     <div className="">
-                                        <label className="mb-1 block text-sm font-medium text-gray-700">
+                                        {/* <label className="mb-1 block text-sm font-medium text-gray-700">
                                             Account Expiry
-                                        </label>
+                                        </label> */}
+                                        <Label className="mb-1 block text-sm font-medium text-gray-700">
+                                            Account Expiry
+                                        </Label>
                                         <div className="relative">
                                             <input
                                                 type="text"
