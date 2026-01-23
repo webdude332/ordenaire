@@ -4,6 +4,7 @@ import StatusBadge from '@/components/ui/StatusBadge';
 import RunBtn from '@/images/icons/runNow.svg?react';
 import PencilBtn from '@/images/icons/pencilIcon.svg?react';
 import DelBtn from '@/images/icons/delIcon.svg?react';
+import Pagination from './ui/Pagination';
 
 
 interface Report {
@@ -62,10 +63,12 @@ export default function UpcomingTable({ data, onRun, onEdit, onDelete }: Props) 
                                     </div>
                                 </td>
                             </tr>
+                            
                         ))}
                     </tbody>
                 </table>
             </div>
+            <Pagination />
         </div>
     );
 }

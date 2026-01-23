@@ -4,7 +4,7 @@ import { Link, usePage } from '@inertiajs/react';
 // --- IMPORTS ---
 import searchIcon from '../images/icons/inputSearch.svg';
 import businessIcon from '../images/icons/businessManagement.svg';
-import blackLogo from '../images/icons/applogo.svg';
+import BlackLogo from '../images/icons/applogo.svg?react';
 import chartIcon from '../images/icons/dashBaordSvg.svg';
 import userEditIcon from '../images/icons/usermgmt.svg';
 import repeatIcon from '../images/icons/subscriptionAndBilling.svg';
@@ -42,7 +42,8 @@ export default function SidePannel() {
             <div className="px-6 pt-8 pb-4">
                 <div className="flex items-center mb-4">
                     <Link href="/dashboard">
-                    <img src={blackLogo} alt="Orderaire" className="h-6 w-auto object-contain" />
+                    {/* <img  src={blackLogo} alt="Orderaire" className="h-6 w-auto object-contain" /> */}
+                    <BlackLogo className="h-10 w-48 object-contain" />
                     </Link>
                 </div>
 

@@ -16,7 +16,7 @@ const Pagination = () => {
                         key={page}
                         className={`inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium ${
                             page === 1
-                                ? 'bg-gray-100 text-[#578500]'
+                                ? 'bg-gray-100 text-[#696170]'
                                 : 'bg-white text-gray-700 hover:bg-gray-50'
                         }`}
                     >

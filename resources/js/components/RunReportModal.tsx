@@ -1,7 +1,10 @@
-import infoIcon from '../images/icons/infoIcon.png';
+// import infoIcon from '../images/icons/infoIcon.png';
+import Button from '@/components/ui/Button';
+import InfoIcon from '@/images/icons/infoRing.svg?react';
+import patternBg from '../images/icons/patternBg.svg';
 import RunIcon from '../images/icons/playBold.svg?react';
 import Modal from './Modal';
-import patternBg from '../images/icons/patternBg.svg'; 
+import IconButton from './ui/IconButton';
 
 interface RunReportModalProps {
     isOpen: boolean;
@@ -16,100 +19,99 @@ export default function RunReportModal({
 }: RunReportModalProps) {
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
-            <div className="p-6 sm:p-8 relative overflow-hidden">
-                <div className="mb-6 flex items-start gap-4 relative">
-                    
-                    <div className="absolute inset-0 top-22 left-[-20px] flex items-center pointer-events-none">
-                        <img 
-                            src={patternBg} 
-                            alt="" 
-                            className="max-w-none" 
-                            style={{ 
-                                transform: 'scale(1.1)',
-                                opacity: 2 
-                            }} 
-                        />
-                    </div>
-                    <div>
-                    <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                        <RunIcon className="w-12 h-12 bg-white p-3 border-2 border-gray-200 rounded-lg"/>
-                    </div>
-                    
-                    <div className="pt-4 relative z-10">
-                        <h3 className="text-xl font-semibold text-gray-900">
-                            Run Report Immediately
-                        </h3>
-                    </div>
-                    </div>
-                </div>
-
-                <div className='relative border border-gray-200 rounded-lg p-4 mb-4 bg-white z-10'>
-                                    <div className="mb-6 flex items-center gap-3 rounded-lg border border-blue-100 p-2 relative z-10">
-                    <img src={infoIcon} alt="" />
-                    <p className="text-sm">
-                        Note: This is an extra, one-time execution and the
-                        recurring schedule will NOT be affected.
-                    </p>
-                </div>
-                <div className="mb-6 relative z-10">
-                    <p className="mb-4 text-sm font-semibold text-gray-900">
-                        You are about to generate and send the following report:
-                    </p>
-                    <div className="space-y-3 rounded-lg border border-[#E8E6EA] shadow-xs bg-[#F8FFEB] p-4">
-                        <div className="flex">
-                            <div className="flex w-2/5 flex-col gap-y-4">
-                                <p className="font-gray-500 text-sm font-medium">Report Name</p>
-                                <p className="font-gray-500 text-sm font-medium">Tanent</p>
-                                <p className="font-gray-500 text-sm font-medium">Template</p>
-                                <p className="font-gray-500 text-sm font-medium">Date Range</p>
-                                <p className="font-gray-500 text-sm font-medium">Recipients</p>
+            <div>
+                <div className="relative overflow-hidden px-6 sm:p-8">
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 2,
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <RunIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                             </div>
-                            <div className="flex w-3/5 flex-col gap-y-4">
-                                <p className="font-gray-500 text-sm font-medium">Monthly Summary</p>
-                                <p className="font-gray-500 text-sm font-medium">Acme Corp</p>
-                                <p className="font-gray-500 text-sm font-medium">Sales</p>
-                                <p className="font-gray-500 text-sm font-medium">Last 30 Days (Nov 18 - Dec 18)</p>
-                                <p className="font-gray-500 text-sm font-medium">abc@gmail.com, Admins</p>
+
+                            <div className="relative z-10 pt-4">
+                                <h3 className="text-xl font-semibold text-gray-900">
+                                    Run Report Immediately
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative z-10 rounded-lg border border-gray-200 bg-white px-4 py-8">
+                        <div className="relative z-10 mb-6 flex items-center gap-3 rounded-lg border border-blue-100 p-2">
+                            <InfoIcon className="h-10 w-10" />
+                            <p className="text-sm">
+                                Note: This is an extra, one-time execution and
+                                the recurring schedule will NOT be affected.
+                            </p>
+                        </div>
+                        <div className="relative z-10">
+                            <p className="mb-4 text-sm font-semibold text-gray-900">
+                                You are about to generate and send the following
+                                report:
+                            </p>
+                            <div className="space-y-3 rounded-lg border border-[#E8E6EA] bg-[#F8FFEB] p-4 shadow-xs">
+                                <div className="flex">
+                                    <div className="flex w-2/5 flex-col gap-y-4">
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Report Name
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Tanent
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Template
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Date Range
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Recipients
+                                        </p>
+                                    </div>
+                                    <div className="flex w-3/5 flex-col gap-y-4">
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Monthly Summary
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Acme Corp
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Sales
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            Last 30 Days (Nov 18 - Dec 18)
+                                        </p>
+                                        <p className="font-gray-500 text-sm font-medium">
+                                            abc@gmail.com, Admins
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
+                <div className="relative z-10 flex gap-3 border-t border-gray-100 bg-white px-8 py-4">
+                    <div className="w-1/2">
+                        <IconButton className="w-full py-1" onClick={onClose}>
+                            Cancel
+                        </IconButton>
+                    </div>
 
-                <div className="flex gap-3 relative z-10">
-                    <button
-                        onClick={onClose}
-                        className="flex-1 rounded-lg border-2 border-[#CFCBD2] px-4 py-1.5 font-semibold text-gray-700 transition-colors hover:bg-gray-50"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        onClick={onConfirm}
-                        style={{
-                            display: 'flex',
-                            width: '434px',
-                            height: '44px',
-                            padding: '10px 16px',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            gap: '6px',
-                            borderRadius: '8px',
-                            border: 'none',
-                            backgroundColor: '#79B800',
-                            boxShadow: `
-                            inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-                            inset 0 0 0 2px rgba(255, 255, 255, 0),
-                            inset 0px -2px 0px rgba(10, 13, 18, 0.05),
-                            0px 1px 2px rgba(10, 13, 18, 0.05)
-                            `,
-                            backgroundImage:
-                                'linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0))',
-                            backgroundClip: 'padding-box',
-                        }}
-                        className="text-sm font-medium text-white transition-colors hover:bg-[#65a30d]"
-                    >
-                        Confirm & run report
-                    </button>
+                    <div className="w-1/2">
+                        <Button onClick={onConfirm} className="w-full py-2">
+                            Confirm & run report
+                        </Button>
+                    </div>
                 </div>
             </div>
         </Modal>

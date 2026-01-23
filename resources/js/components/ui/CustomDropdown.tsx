@@ -4,7 +4,7 @@ import { useState } from 'react';
 interface Option {
     label: string;
     value: string;
-    icon?: React.ReactNode; // Optional: for flags or icons
+    icon?: React.ReactNode; 
 }
 
 interface CustomDropdownProps {
@@ -15,7 +15,8 @@ interface CustomDropdownProps {
     placeholder?: string;
     required?: boolean;
     disabled?: boolean;
-    renderOption?: (option: Option) => React.ReactNode; // Optional: Custom render for flags
+    labelClassName?: string;
+    renderOption?: (option: Option) => React.ReactNode;
 }
 
 const CustomDropdown = ({
@@ -27,25 +28,23 @@ const CustomDropdown = ({
     required = false,
     disabled = false,
     renderOption,
+    // Default to 'text-sm' so it matches your other labels automatically
+    labelClassName = 'text-sm', 
 }: CustomDropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    // Find the label for the currently selected value
     const selectedOption = options.find((opt) => opt.value === value);
 
     return (
-        <div className="relative space-y-1.5">
-            <label className="text-sm font-medium text-gray-700">
+        <div className="relative space-y-2">
+            <label className={`block font-medium text-gray-700 ${labelClassName}`}>
                 {label}
                 {required && <span className="text-[#8CDD05]">*</span>}
             </label>
-
-            {/* Trigger Button */}
             <button
-                type="button" // Important: preventing form submit
+                type="button" 
                 disabled={disabled}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition-all outline-none ${
+                className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition-all outline-none shadow-xs ${
                     disabled
                         ? 'cursor-not-allowed border-gray-300 bg-gray-50 text-gray-400'
                         : isOpen
@@ -65,8 +64,6 @@ const CustomDropdown = ({
                     }`}
                 />
             </button>
-
-            {/* Dropdown Menu */}
             {isOpen && !disabled && (
                 <>
                     <div
@@ -88,7 +85,6 @@ const CustomDropdown = ({
                                             : 'text-gray-700 hover:bg-[#F9F7FA] hover:text-gray-900'
                                     }`}
                                 >
-                                    {/* Custom Render (Flags, etc.) or Standard Label */}
                                     {renderOption ? (
                                         renderOption(option)
                                     ) : (
@@ -98,7 +94,6 @@ const CustomDropdown = ({
                                         </>
                                     )}
 
-                                    {/* Checkmark */}
                                     {value === option.value && (
                                         <svg
                                             className="ml-auto h-4 w-4 text-[#578500]"

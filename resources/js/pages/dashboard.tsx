@@ -34,10 +34,6 @@ export default function Dashboard() {
                 <main className="custom-scrollbar no-scrollbar flex-1 overflow-y-auto p-8 pb-20">
                     {/**Buttons */}
                     <div className="flex justify-end gap-4 pb-8">
-                        {/* <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-sm font-semibold text-[#4F4955] shadow-sm transition-colors hover:bg-gray-50">
-                            <Calender className="h-4 w-4 text-[#B5B0BA]" />
-                            Date-range
-                        </button> */}
                         <DateRangeButton></DateRangeButton>
                         <Button href="/reports" className="font-medium">
                             <BtnLink className="h-4 w-4" />

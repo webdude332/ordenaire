@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // Icons
 import Minimize from '@/images/icons/minimize.svg?react';
 import SelecterIcon from '@/images/icons/selectorIcon.svg?react';
@@ -21,6 +22,11 @@ import {
 } from '../ui/Table';
 
 const MultiTenancyTab = () => {
+//     const [expandedRowId, setExpandedRowId] = useState(null);
+
+// const toggleRow = (id) => {
+//     setExpandedRowId(prev => prev === id ? null : id);
+// };
     const tenancyData = [
         {
             id: 'BIZ-2050',
@@ -108,7 +114,7 @@ const MultiTenancyTab = () => {
                         <input
                             type="text"
                             placeholder="Search by business name, ID..."
-                            className="w-96 rounded-lg border border-gray-300 py-2 pr-4 pl-10 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#8CDD05] focus:outline-none"
+                            className="w-68 rounded-lg border border-gray-300 py-2 pr-4 pl-10 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#8CDD05] focus:outline-none"
                         />
                     </div>
                 </div>
