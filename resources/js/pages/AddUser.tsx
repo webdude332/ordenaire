@@ -1,22 +1,32 @@
 import SidePannel from '@/components/SidePannel';
 import { useState } from 'react';
 // import NewTopBar from '@/components/NewTopBar';
+import TopBar from '@/components/TopBar';
 import Button from '@/components/ui/Button';
+import CustomDropdown from '@/components/ui/CustomDropdown';
+import { Input, Label } from '@/components/ui/FormElements';
+import IconButton from '@/components/ui/IconButton';
 import BackArrow from '@/images/icons/backArrow.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
+import Profile from '@/images/icons/profile.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Link } from '@inertiajs/react';
-import TopBar from '@/components/TopBar';
-import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react'
-
+import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
+import RadioGroup from '@/components/ui/RadioGroup';
 const AddUser = () => {
+    const [reportTemplate, setReportTemplate] = useState('');
+    const templateOptions = [
+        { label: 'Sales', value: 'sales' },
+        { label: 'Usage', value: 'usage' },
+        { label: 'Financial', value: 'financial' },
+    ];
     // State to manage the active tab in the TopBar
     const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
         'profiles',
     );
-        const tabs = [
+    const tabs = [
         {
             label: 'User Profiles',
             isActive: true,
@@ -28,8 +38,12 @@ const AddUser = () => {
             href: '/roles-permissions',
         },
     ];
-        const breadcrumbs = [
-        { label: 'Internal User Management', isActive: false, href: '/usermanagement' },
+    const breadcrumbs = [
+        {
+            label: 'Internal User Management',
+            isActive: false,
+            href: '/usermanagement',
+        },
         { label: 'User Profiles', isActive: false, href: '/userprofiles' },
         { label: 'Add new User', isActive: true, href: '/adduser' },
     ];
@@ -42,7 +56,7 @@ const AddUser = () => {
             {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
                 {/* Top Navigation with Dynamic Add User State */}
-<TopBar
+                <TopBar
                     title="Add New User"
                     icon={DashBoardIcon}
                     breadcrumbs={breadcrumbs}
@@ -79,27 +93,19 @@ const AddUser = () => {
                             <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm lg:col-span-2">
                                 {/* Photo Upload */}
                                 <div className="mb-6">
-                                    <label className="text-md mb-2 block font-semibold text-[#696170]">
+                                    {/* <label className="text-md mb-2 block font-semibold text-[#696170]">
                                         User photo
-                                    </label>
+                                    </label> */}
+                                    <Label className=''>User Photo</Label>
                                     <p className="mb-3 text-sm text-gray-500">
                                         This will be displayed on the profile.
                                     </p>
                                     <div className="flex items-center gap-4">
-                                        <div className="h-12 w-12 overflow-hidden rounded-full border border-gray-200 bg-gray-100">
+                                        <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100">
                                             {/* Placeholder Image */}
-                                            <img
-                                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="User"
-                                                className="h-full w-full object-cover"
-                                            />
+                                            <Profile className="h-16 w-16" />
                                         </div>
-                                        <button
-                                            type="button"
-                                            className="rounded-lg border border-[#CFCBD2] bg-white px-4 py-2 text-sm font-medium text-gray-600 shadow-sm hover:bg-gray-50"
-                                        >
-                                            Upload photo
-                                        </button>
+                                        <IconButton>Upload Photo</IconButton>
                                     </div>
                                 </div>
 
@@ -107,54 +113,41 @@ const AddUser = () => {
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     {/* Full Name */}
                                     <div>
-                                        <label className="mb-1 block text-sm font-medium text-gray-700">
-                                            Full name
-                                            <span className="ml-0.5 text-[#7AB621]">
+                                        <Label className="mb-2 font-semibold text-sm text-gray-500">
+                                            Phone Number{' '}
+                                            <span className="text-primary">
                                                 *
                                             </span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            defaultValue="Noah Pierre"
-                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-700 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
-                                        />
+                                        </Label>
+                                        <Input placeholder="eg., Noah Pierre" />
                                     </div>
 
                                     {/* Email */}
                                     <div>
-                                        <label className="mb-1 block text-sm font-medium text-gray-700">
-                                            Email address
-                                            <span className="ml-0.5 text-[#7AB621]">
+                                        <Label className="mb-2 font-semibold text-sm text-gray-500">
+                                            Email Address{' '}
+                                            <span className="text-primary">
                                                 *
-                                            </span>
-                                        </label>
-                                        <div className="relative">
-                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <MailIcon className="h-5 w-5 text-[#B5B0BA]" />
-                                            </div>
-                                            <input
-                                                type="email"
-                                                defaultValue="Noah@ordemark.com"
-                                                className="w-full rounded-lg border border-gray-300 py-2 pr-3 pl-10 text-gray-700 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
-                                            />
-                                        </div>
+                                            </span>{' '}
+                                        </Label>
+                                        <Input
+                                            placeholder="eg., Noah@ordermark.com"
+                                            icon={MailIcon}
+                                        />
                                     </div>
 
                                     {/* Phone Number */}
                                     <div>
-                                        <label className="mb-1 block text-sm font-medium text-gray-700">
-                                            Phone number
-                                            <span className="ml-0.5 text-[#7AB621]">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div className="flex rounded-lg shadow-sm">
+                                        <Label className="mb-2 font-semibold text-sm text-gray-500">
+                                            Phone Number <span className="text-primary">*</span>
+                                        </Label>
+                                        <div className="flex rounded-lg border border-gray-300 shadow-xs focus-within:border-[#84cc16] focus-within:ring-1 focus-within:ring-[#84cc16]">
                                             <div className="relative">
-                                                <select className="h-full appearance-none rounded-l-lg border-y border-l border-gray-300 bg-transparent py-2 pr-7 pl-3 text-sm text-gray-500 outline-none focus:border-[#7AB621] focus:ring-[#7AB621]">
+                                                <select className="h-full appearance-none rounded-l-lg border-0 bg-white py-2.5 pr-7 pl-3 text-sm text-gray-900 outline-none focus:ring-0">
                                                     <option>+91</option>
                                                     <option>+1</option>
                                                 </select>
-                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                                                     <svg
                                                         className="h-3 w-3"
                                                         fill="none"
@@ -170,85 +163,30 @@ const AddUser = () => {
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <input
-                                                type="text"
-                                                defaultValue="1825462385"
-                                                className="block w-full rounded-r-lg border border-gray-300 px-3 py-2 text-gray-700 outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
+                                            <div className="h-6 w-px self-center bg-gray-300"></div>
+                                            <Input
+                                                placeholder="1825462385"
+                                                className="!rounded-l-none !rounded-r-lg !border-0 !shadow-none focus:!ring-0"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Primary Role */}
                                     <div>
-                                        <label className="mb-1 block text-sm font-medium text-gray-700">
-                                            Primary Role
-                                            <span className="ml-0.5 text-[#7AB621]">
-                                                *
-                                            </span>
-                                        </label>
-                                        <div className="relative">
-                                            <select className="w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]">
-                                                <option>
-                                                    Customer relationship
-                                                    manager
-                                                </option>
-                                                <option>Admin</option>
-                                                <option>Viewer</option>
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                                                <svg
-                                                    className="h-4 w-4"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M19 9l-7 7-7-7"
-                                                    />
-                                                </svg>
-                                            </div>
-                                        </div>
+                                        {' '}
+                                        <CustomDropdown
+                                            label="Primary Role"
+                                            options={templateOptions}
+                                            value={reportTemplate}
+                                            onChange={setReportTemplate}
+                                            placeholder="Customer relationship Manager"
+                                        />
                                     </div>
                                 </div>
 
                                 {/* Status */}
                                 <div className="mt-6">
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                                        Status
-                                    </label>
-                                    <div className="flex items-center gap-6">
-                                        <label className="flex cursor-pointer items-center">
-                                            <div className="relative flex items-center justify-center">
-                                                <input
-                                                    type="radio"
-                                                    name="status"
-                                                    defaultChecked
-                                                    className="peer sr-only"
-                                                />
-                                                <div className="h-4 w-4 rounded-full border border-gray-300 transition-all peer-checked:border-4 peer-checked:border-[#7AB621]"></div>
-                                            </div>
-                                            <span className="ml-2 text-sm text-gray-900">
-                                                Active
-                                            </span>
-                                        </label>
-
-                                        <label className="flex cursor-pointer items-center">
-                                            <div className="relative flex items-center justify-center">
-                                                <input
-                                                    type="radio"
-                                                    name="status"
-                                                    className="peer sr-only"
-                                                />
-                                                <div className="h-4 w-4 rounded-full border border-gray-300 transition-all peer-checked:border-4 peer-checked:border-[#7AB621]"></div>
-                                            </div>
-                                            <span className="ml-2 text-sm text-gray-900">
-                                                Inactive
-                                            </span>
-                                        </label>
-                                    </div>
+                                    <RadioGroup label="Status" name="status" options={['Active', 'Inactive']} defaultValue="Active" />
                                 </div>
                             </div>
                         </div>
@@ -414,15 +352,7 @@ const AddUser = () => {
 
                         {/* Footer Buttons */}
                         <div className="flex items-center justify-end gap-4 pt-4">
-                            <button
-                                type="button"
-                                className="rounded-lg border border-gray-300 bg-white px-6 py-1.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
-                            >
-                                Cancel
-                            </button>
-                            {/* <button type="submit" className="px-6 py-2.5 rounded-lg text-sm font-semibold text-white bg-[#7AB621] hover:bg-[#659F18] shadow-md transition-colors">
-                                Send invite & Add User
-                            </button> */}
+                            <IconButton>Cancel</IconButton>
                             <Button>Send invite & Add User</Button>
                         </div>
                     </form>

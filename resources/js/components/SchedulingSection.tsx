@@ -69,6 +69,7 @@ export default function SchedulingSection() {
                             value={reportTemplate} 
                             onChange={setReportTemplate} 
                             placeholder="templates—Sales, Usage, Financial" 
+                            labelClassName='text-sm font-semibold'
                         />
                     </div>
                 </div>

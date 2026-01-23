@@ -4,6 +4,8 @@ import Button from './ui/Button';
 import IconButton from './ui/IconButton';
 import Modal from './Modal';
 import Shop from '@/images/icons/shop.svg?react'
+import Alert from '../images/icons/alertBlack.svg?react'
+import Copy from '../images/icons/copy.svg?react'
 
 interface ErrorDetailsModalProps {
     isOpen: boolean;
@@ -27,47 +29,33 @@ export default function ErrorDetailsModal({
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
-            {/* Added relative overflow-hidden to clip the pattern */}
             <div className="relative overflow-hidden p-6 sm:p-8">
-                {/* Header with Icon */}
-                <div className="relative mb-6 flex items-start gap-4">
-                    {/* Icon Container: Made relative to anchor the pattern */}
-                    <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
-                        {/* --- PATTERN BACKGROUND --- */}
-                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                            <img
-                                src={patternBg}
-                                alt=""
-                                className="max-w-none"
-                                style={{ transform: 'scale(1.5)', opacity: 1 }}
-                            />
+                    <div className="mb-8 flex flex-col items-start gap-4">
+                        {/* --- ICON WRAPPER WITH PATTERN --- */}
+                        <div className="relative z-10 flex h-12 w-12 items-center justify-center">
+                            {/* 1. The Pattern Background (Centered behind icon) */}
+                            <div className="pointer-events-none absolute inset-0 top-0 left-0 flex items-center justify-center">
+                                <img
+                                    src={patternBg}
+                                    alt=""
+                                    className="max-w-none"
+                                    style={{
+                                        transform: 'scale(1.1)',
+                                        opacity: 1,
+                                    }}
+                                />
+                            </div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <Alert className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
+                            </div>
                         </div>
-
-                        {/* Actual Icon: z-10 to sit on top */}
-                        <svg
-                            className="relative z-10 h-6 w-6 text-gray-700"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                            />
-                        </svg>
                     </div>
-                </div>
                 <div className="relative z-10 flex-1">
                     <h3 className="mb-4 text-xl font-semibold text-gray-900">
                         Error Details: Annual Report
                     </h3>
                 </div>
-                {/* Content Z-Index wrapper to ensure text sits above pattern if it overlaps */}
                 <div className="relative z-10 rounded-xl border border-gray-200 px-4 pt-4 bg-white">
-                    {/* Generation Failed Badge */}
-
                     <div className="mb-6">
                         <span className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-2 py-0.5">
                             <span className="h-2 w-2 rounded-full bg-red-500"></span>
@@ -76,10 +64,8 @@ export default function ErrorDetailsModal({
                             </span>
                         </span>
                     </div>
-
-                    {/* Tenant Info Card */}
                     <div className="mb-6 rounded-xl border border-gray-200 p-4">
-                        <div className="grid grid-cols-2 gap-4 divide-x divide-[#E8E6EA]">
+                        <div className="grid grid-cols-2 gap-4 divide-x divide-[#E8E6EA] py-4">
                             <div>
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-gray-100">
@@ -105,21 +91,17 @@ export default function ErrorDetailsModal({
                             </div>
                         </div>
                     </div>
-
-                    {/* Error Summary */}
                     <div className="mb-6">
                         <h4 className="mb-3 text-sm font-semibold text-gray-900">
                             Error Summary
                         </h4>
-                        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                        <div className="rounded-lg border border-gray-200 p-4">
                             <p className="text-sm text-gray-700">
                                 "The system could not send the email because the
                                 recipient mail server rejected the address."
                             </p>
                         </div>
                     </div>
-
-                    {/* Technical System Log */}
                     <div className="mb-6">
                         <h4 className="mb-3 text-sm font-semibold text-gray-900">
                             Technical System Log
@@ -133,26 +115,12 @@ export default function ErrorDetailsModal({
                         </div>
                         <button
                             onClick={copyToClipboard}
-                            className="mt-3 inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-800"
+                            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-800"
                         >
-                            <svg
-                                className="h-4 w-4"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                                />
-                            </svg>
+                            <Copy className='w-4 h-4'/>
                             {copied ? 'Copied!' : 'Copy Log to Clipboard'}
                         </button>
                     </div>
-
-                    {/* Action Buttons */}
                 </div>
             </div>
             <div className="flex gap-3 pt-4 px-4 pb-4 border-t border-gray-200">

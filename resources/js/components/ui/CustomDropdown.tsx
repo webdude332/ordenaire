@@ -28,7 +28,6 @@ const CustomDropdown = ({
     required = false,
     disabled = false,
     renderOption,
-    // Default to 'text-sm' so it matches your other labels automatically
     labelClassName = 'text-sm', 
 }: CustomDropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);

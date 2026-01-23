@@ -17,7 +17,8 @@ import UpcomingTable from '../components/UpcomingTable';
 import EditReportModal from '../components/EditReportModal';
 import ErrorDetailsModal from '../components/ErrorDetailsModal';
 import RunReportModal from '../components/RunReportModal';
-import SimpleErrorModal from '../components/SimpleErrorModal';
+// import SimpleErrorModal from '../components/SimpleErrorModal';
+import DeleteModal from '../components/DeleteModal';
 import SuccessModal from '../components/SuccessModal';
 
 // Mock Data (Ideally passed from Laravel Controller via Inertia props)
@@ -206,7 +207,7 @@ export default function ReportsPage() {
                 onClose={() => setIsEditModalOpen(false)}
                 onSave={handleEditSave}
             />
-            <SimpleErrorModal
+            <DeleteModal
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}
                 onRetry={handleDelete}
