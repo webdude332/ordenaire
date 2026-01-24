@@ -24,6 +24,7 @@ import PlusIcon from '@/images/icons/plus.svg?react';
 import Profile from '@/images/icons/profile.svg?react';
 import { Link } from '@inertiajs/react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
+import ToggleSwitch from '@/components/ui/ToggleSwitch';
 
 const AddUser = () => {
     const documents = [
@@ -70,7 +71,10 @@ const AddUser = () => {
         { label: 'User Profiles', isActive: false, href: '/userprofiles' },
         { label: 'Add new User', isActive: true, href: '/adduser' },
     ];
-
+const [isActive, setIsActive] = useState(false);
+const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsActive(e.target.checked);
+  };
     return (
         <div className="flex min-h-screen">
             {/* 1. Sidebar */}
@@ -335,22 +339,14 @@ const AddUser = () => {
 
                                     {/* MFA Toggle */}
                                     <div>
-                                        <label className="mb-3 block text-sm font-medium text-gray-600">
+                                        <Label className='mb-3 block text-sm font-medium text-gray-700'>
                                             Multi-Factor Authentication
-                                        </label>
-                                        <div className="flex items-center">
-                                            <label className="relative inline-flex cursor-pointer items-center">
-                                                <input
-                                                    type="checkbox"
-                                                    defaultChecked
-                                                    className="peer sr-only"
-                                                />
-                                                <div className="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-[#7AB621] peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
-                                                <span className="ml-3 text-sm font-medium text-gray-600">
-                                                    Active
-                                                </span>
-                                            </label>
-                                        </div>
+                                        </Label>
+                                        <ToggleSwitch
+        checked={isActive}
+        onChange={handleToggleChange}
+        statusLabel={isActive ? 'Active' : 'Inactive'}
+      />
                                     </div>
                                 </div>
                             </div>

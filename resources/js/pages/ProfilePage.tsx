@@ -11,6 +11,7 @@ import PlusIcon from '../images/icons/plus.svg?react';
 import backArrow from '../images/icons/backArrow.png';
 import UsersIcon from '../images/icons/dashBaordSvg.svg?react'; 
 import IconButton from '@/components/ui/IconButton';
+import ActionButton from '@/components/ui/ActionButton';
 
 
 const ProfilePage = () => {
@@ -227,10 +228,10 @@ const breadcrumbs = [
                             <h3 className="text-md font-semibold text-gray-900">
                                 Documents
                             </h3>
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-400 px-3 font-medium py-1.5 text-sm text-[#4F4955] hover:bg-gray-50">
+                            <IconButton>
                                 <PlusIcon className='w-4 h-4 text-[#B5B0BA]'/>
                                 Add Docs
-                            </button>
+                            </IconButton>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
                             <thead className="bg-[#F9F9FB]">
@@ -275,12 +276,12 @@ const breadcrumbs = [
                                         -
                                     </td>
                                     <td className="flex gap-2 px-6 py-4 whitespace-nowrap">
-                                        <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
+                                        <ActionButton>
                                             <DownloadIcon className="w-4 h-4 text-[#B5B0BA]"/>
-                                        </button>
-                                        <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
+                                        </ActionButton>
+                                        <ActionButton>
                                             <DelIcon className="w-4 h-4 text-[#B5B0BA]"/>
-                                        </button>
+                                        </ActionButton>
                                     </td>
                                 </tr>
                                 {/* Row 2 */}
@@ -295,12 +296,12 @@ const breadcrumbs = [
                                         20 Nov 2028
                                     </td>
                                     <td className="flex gap-2 px-6 py-4 whitespace-nowrap">
-                                        <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
+                                        <ActionButton>
                                             <DownloadIcon className="w-4 h-4 text-[#B5B0BA]"/>
-                                        </button>
-                                        <button className="rounded border border-gray-200 p-1.5 hover:bg-gray-50">
+                                        </ActionButton>
+                                        <ActionButton>
                                             <DelIcon className="w-4 h-4 text-[#B5B0BA]"/>
-                                        </button>
+                                        </ActionButton>
                                     </td>
                                 </tr>
                             </tbody>

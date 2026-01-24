@@ -1,6 +1,8 @@
 import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
+import { Input, Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
+import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
 import BusinessProfileIcon from '@/images/icons/businessProfileIcon.svg?react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
@@ -8,13 +10,12 @@ import MailIcon from '@/images/icons/mailIcon.svg?react';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
-// Added isEditMode to interface
 interface StepProps {
     data: any;
     update: (field: string, value: any) => void;
     onNext: () => void;
     onBack: () => void;
-    isEditMode?: boolean; // New optional prop
+    isEditMode?: boolean;
 }
 
 const CompanyProfileStep = ({
@@ -26,6 +27,11 @@ const CompanyProfileStep = ({
 }: StepProps) => {
     const [isPhoneOpen, setIsPhoneOpen] = useState(false);
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+
+    const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsActive(e.target.checked);
+    };
 
     const typeOptions = [
         { label: 'Restaurant', value: 'Restaurant' },
@@ -34,18 +40,22 @@ const CompanyProfileStep = ({
         { label: 'Bakery', value: 'Bakery' },
         { label: 'Retail', value: 'Retail' },
     ];
+
     const parentOptions = [
         { label: 'Tea Time HQ (BIZ-1001)', value: 'Tea Time HQ' },
         { label: 'Burger King Main (BIZ-1002)', value: 'Burger King Main' },
     ];
+
     const countryOptions = [
         { label: 'Kuwait', value: 'Kuwait' },
         { label: 'UAE', value: 'UAE' },
     ];
+
     const langOptions = [
         { label: 'English', value: 'English', flag: '🇺🇸' },
         { label: 'Arabic', value: 'Arabic', flag: '🇦🇪' },
     ];
+
     const phoneCodeOptions = [
         { label: '+965', value: '+965' },
         { label: '+971', value: '+971' },
@@ -54,134 +64,114 @@ const CompanyProfileStep = ({
 
     return (
         <div>
-            <div className="space-y-10 border-t border-gray-200 pt-10">
+            <div className="space-y-8 border-t border-gray-200 pt-8">
                 {/* Basic Business Info */}
-                <div className="grid grid-cols-12 gap-10">
+                <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-3">
-                        <h3 className="text-md font-semibold text-gray-700">
+                        <h3 className="text-sm font-semibold text-gray-900">
                             Basic Business Info
                         </h3>
                     </div>
-                    <div className="col-span-9 space-y-6 rounded-xl border border-borderColor px-6 py-8 shadow-xs">
+                    <div className="col-span-9 space-y-6 rounded-xl border border-gray-200 bg-white px-6 py-6 shadow-sm">
                         <div className="grid grid-cols-2 gap-6">
-                            <div className="space-y-1.5">
-                                <label className="text-md font-medium text-gray-700">
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
                                     Legal Business Name
-                                    <span className="text-[#8CDD05]">*</span>
-                                </label>
-                                <input
-                                    type="text"
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <Input
                                     placeholder="e.g., Tea Time Jumeirah"
                                     value={data.legalName}
                                     onChange={(e) =>
                                         update('legalName', e.target.value)
                                     }
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]"
                                 />
                             </div>
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
                                     Business ID (Auto-generated)
-                                </label>
-                                <input
-                                    type="text"
+                                </Label>
+                                <Input
+                                    placeholder="Business ID (Auto-generated)"
                                     value={data.businessId}
                                     disabled
-                                    className="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-500"
                                 />
                             </div>
                         </div>
-                        <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-gray-700">
-                                Business logo
-                            </label>
+                        <div className="space-y-2">
+                            <Label className="text-sm font-medium text-gray-700">Business logo</Label>
                             <p className="text-xs text-gray-500">
                                 Upload the Business logo.
                             </p>
                             <div className="flex items-center gap-4 pt-2">
                                 <BusinessProfileIcon className="h-20 w-20" />
-                                <button
-                                    onClick={() => setIsUploadModalOpen(true)}
-                                    className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                                >
-                                    Click to Upload
-                                </button>
+                                <IconButton onClick={() => setIsUploadModalOpen(true)}>
+                                    Click To Upload
+                                </IconButton>
                             </div>
                         </div>
-                        <div className="space-y-6">
-                            <div className="grid grid-cols-2 gap-6">
-                                <CustomDropdown
-                                    label="Business Type"
-                                    required
-                                    value={data.businessType}
-                                    onChange={(val) =>
-                                        update('businessType', val)
-                                    }
-                                    options={typeOptions}
-                                />
-                            </div>
-                            <div className="grid grid-cols-2 items-start gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700">
-                                        Is this a Branch
-                                    </label>
-                                    <div className="flex items-center gap-3">
-                                        <button
-                                            onClick={() =>
-                                                update(
-                                                    'isBranch',
-                                                    !data.isBranch,
-                                                )
-                                            }
-                                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${data.isBranch ? 'bg-[#79B800]' : 'bg-gray-200'}`}
-                                        >
-                                            <span
-                                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${data.isBranch ? 'translate-x-6' : 'translate-x-1'}`}
-                                            />
-                                        </button>
-                                        <span className="text-sm font-medium text-gray-700">
-                                            {data.isBranch ? 'YES' : 'NO'}
-                                        </span>
-                                    </div>
+                        <div className="grid grid-cols-2 gap-6">
+                            <CustomDropdown
+                                label="Business Type"
+                                required
+                                value={data.businessType}
+                                onChange={(val) =>
+                                    update('businessType', val)
+                                }
+                                options={typeOptions}
+                            />
+                        </div>
+                        <div className="grid grid-cols-2 items-start gap-6">
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
+                                    Is this a Branch?
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <div className="flex items-center gap-3">
+                                    <ToggleSwitch
+                                        checked={isActive}
+                                        onChange={handleToggleChange}
+                                        statusLabel={
+                                            isActive ? 'Active' : 'Inactive'
+                                        }
+                                    />
                                 </div>
-                                <CustomDropdown
-                                    label="Parent Business"
-                                    disabled={!data.isBranch}
-                                    placeholder="Search by Business Name or ID..."
-                                    value={data.parentBusiness}
-                                    onChange={(val) =>
-                                        update('parentBusiness', val)
-                                    }
-                                    options={parentOptions}
-                                />
                             </div>
+                            <CustomDropdown
+                                label="Parent Business"
+                                disabled={!data.isBranch}
+                                placeholder="Search by Business Name or ID..."
+                                value={data.parentBusiness}
+                                onChange={(val) =>
+                                    update('parentBusiness', val)
+                                }
+                                options={parentOptions}
+                            />
                         </div>
                     </div>
                 </div>
 
                 <div className="h-px w-full bg-gray-200"></div>
 
-                {/* Location */}
-                <div className="grid grid-cols-12 gap-10">
+                {/* Location Details */}
+                <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-3">
-                        <h3 className="text-md font-semibold text-gray-700">
+                        <h3 className="text-sm font-semibold text-gray-900">
                             Location Details
                         </h3>
                     </div>
-                    <div className="col-span-9 space-y-6 rounded-xl border border-borderColor px-6 py-8 shadow-xs">
-                        <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-gray-700">
+                    <div className="col-span-9 space-y-6 rounded-xl border border-gray-200 bg-white px-6 py-6 shadow-sm">
+                        <div className="space-y-2">
+                            <Label className="text-sm font-medium text-gray-700">
                                 Full Address
-                                <span className="text-[#8CDD05]">*</span>
-                            </label>
-                            <input
-                                type="text"
+                                <span className="text-primary">*</span>
+                            </Label>
+                            <Input
                                 placeholder="Enter full address"
                                 value={data.address}
                                 onChange={(e) =>
                                     update('address', e.target.value)
                                 }
-                                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]"
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-6">
@@ -206,32 +196,26 @@ const CompanyProfileStep = ({
                                     </div>
                                 )}
                             />
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
                                     City
-                                    <span className="text-[#8CDD05]">*</span>
-                                </label>
-                                <input
-                                    type="text"
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <Input
                                     placeholder="e.g., Dubai"
                                     value={data.city}
                                     onChange={(e) =>
                                         update('city', e.target.value)
                                     }
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]"
                                 />
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
-                                    Currency (Auto-filled)
-                                </label>
-                                <input
-                                    type="text"
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">Currency (Auto-filled)</Label>
+                                <Input
                                     placeholder="Based on Country, e.g., AED"
                                     disabled
-                                    className="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-500"
                                 />
                             </div>
                             <CustomDropdown
@@ -255,41 +239,39 @@ const CompanyProfileStep = ({
                 <div className="h-px w-full bg-gray-200"></div>
 
                 {/* Primary Contact */}
-                <div className="grid grid-cols-12 gap-10">
+                <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-3">
-                        <h3 className="text-md font-semibold text-gray-700">
+                        <h3 className="text-sm font-semibold text-gray-900">
                             Primary Contact
                         </h3>
                     </div>
-                    <div className="col-span-9 space-y-6 rounded-xl border border-borderColor px-6 py-10 shadow-xs">
+                    <div className="col-span-9 space-y-6 rounded-xl border border-gray-200 bg-white px-6 py-6 shadow-sm">
                         <div className="grid grid-cols-2 gap-6">
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
                                     Branch Admin Name
-                                    <span className="text-[#8CDD05]">*</span>
-                                </label>
-                                <input
-                                    type="text"
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <Input
                                     placeholder="e.g., Omar Ali"
                                     value={data.branchAdmin}
                                     onChange={(e) =>
                                         update('branchAdmin', e.target.value)
                                     }
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]"
                                 />
                             </div>
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
-                                    Phone number
-                                    <span className="text-[#8CDD05]">*</span>
-                                </label>
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
+                                    Phone Number
+                                    <span className="text-primary">*</span>
+                                </Label>
                                 <div className="relative flex items-center rounded-lg border border-gray-300 bg-white transition-all focus-within:border-[#8CDD05] focus-within:ring-1 focus-within:ring-[#8CDD05]">
                                     <button
                                         type="button"
                                         onClick={() =>
                                             setIsPhoneOpen(!isPhoneOpen)
                                         }
-                                        className="flex items-center gap-1 pr-2 pl-3 text-sm text-gray-900 outline-none"
+                                        className="flex items-center gap-1 pl-3 pr-2 text-sm text-gray-900 outline-none"
                                     >
                                         <span>{data.phoneCode}</span>
                                         <ChevronDown
@@ -303,7 +285,7 @@ const CompanyProfileStep = ({
                                         onChange={(e) =>
                                             update('phone', e.target.value)
                                         }
-                                        className="w-full border-none bg-transparent py-2.5 pr-3 pl-2 text-sm text-gray-900 placeholder-gray-400 outline-none focus:ring-0"
+                                        className="w-full border-none bg-transparent py-2.5 pl-2 pr-3 text-sm text-gray-900 placeholder-gray-400 outline-none focus:ring-0"
                                     />
                                     {isPhoneOpen && (
                                         <>
@@ -313,7 +295,7 @@ const CompanyProfileStep = ({
                                                     setIsPhoneOpen(false)
                                                 }
                                             />
-                                            <ul className="absolute top-full left-0 z-20 mt-1 max-h-48 w-24 overflow-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+                                            <ul className="absolute left-0 top-full z-20 mt-1 max-h-48 w-24 overflow-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
                                                 {phoneCodeOptions.map(
                                                     (option) => (
                                                         <li key={option.value}>
@@ -342,25 +324,19 @@ const CompanyProfileStep = ({
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
-                            <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
-                                    Email address
-                                    <span className="text-[#8CDD05]">*</span>
-                                </label>
-                                <div className="relative flex items-center justify-center">
-                                    <div className="pointer-events-none absolute top-2.5 left-3 text-gray-400">
-                                        <MailIcon className="h-5 w-5" />
-                                    </div>
-                                    <input
-                                        type="email"
-                                        placeholder="e.g., omar@teatime.com"
-                                        value={data.email}
-                                        onChange={(e) =>
-                                            update('email', e.target.value)
-                                        }
-                                        className="w-full rounded-lg border border-gray-300 px-3 py-2.5 pl-10 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]"
-                                    />
-                                </div>
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
+                                    Email Address
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <Input
+                                    icon={MailIcon}
+                                    placeholder="e.g., omar@teatime.com"
+                                    value={data.email}
+                                    onChange={(e) =>
+                                        update('email', e.target.value)
+                                    }
+                                />
                                 <p className="text-xs text-gray-500">
                                     This email will receive the initial invite
                                     in Step 4.
@@ -372,21 +348,21 @@ const CompanyProfileStep = ({
 
                 {/* Footer Buttons - HIDDEN IF IN EDIT MODE */}
                 {!isEditMode && (
-                    <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
+                    <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
                         <IconButton onClick={onBack}>Cancel</IconButton>
                         <Button onClick={onNext}>
                             Next: Operations <ColorRight />
                         </Button>
                     </div>
                 )}
-
-                {/* Modal */}
-                <UploadDocumentModal
-                    isOpen={isUploadModalOpen}
-                    onClose={() => setIsUploadModalOpen(false)}
-                    onUpload={() => setIsUploadModalOpen(false)}
-                />
             </div>
+
+            {/* Modal */}
+            <UploadDocumentModal
+                isOpen={isUploadModalOpen}
+                onClose={() => setIsUploadModalOpen(false)}
+                onUpload={() => setIsUploadModalOpen(false)}
+            />
         </div>
     );
 };

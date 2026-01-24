@@ -47,6 +47,9 @@ export const Label = ({ children, className = '' }: LabelProps) => (
 
 export const Input = ({ 
     placeholder, 
+    value,
+    onChange,
+    disabled,
     icon, 
     iconClassName = 'text-gray-400',
     className = ''
@@ -55,6 +58,9 @@ export const Input = ({
     icon?: any; 
     iconClassName?: string;
     className?: string;
+    value?: string;
+    disabled?: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => (
     <div className="relative">
         {icon && (
@@ -63,10 +69,15 @@ export const Input = ({
             </span>
         )}
         <input
-            type="text"
-            placeholder={placeholder}
-            className={`w-full rounded-lg border border-gray-300 bg-white py-2.5 pr-3 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16] focus:outline-none ${icon ? 'pl-10' : 'pl-3'} ${className}`}
-        />
+      type="text"
+      placeholder={placeholder}
+      value={value}
+      disabled={disabled}
+      onChange={onChange}
+      className={`w-full rounded-lg border border-gray-300 bg-white py-2.5 pr-3 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16] focus:outline-none ${
+        icon ? 'pl-10' : 'pl-3'
+      } ${className}`}
+    />
     </div>
 );
 
