@@ -35,7 +35,7 @@ const CustomDropdown = ({
 
     return (
         <div className="relative space-y-2">
-            <label className={`block font-medium text-gray-700 ${labelClassName}`}>
+            <label className={`block  ${labelClassName}`}>
                 {label}
                 {required && <span className="text-[#8CDD05]">*</span>}
             </label>

@@ -8,7 +8,7 @@ import Profile from '@/images/icons/profile.svg?react'
 import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
 import DelIcon from '../images/icons/delIcon.svg?react';
 import PlusIcon from '../images/icons/plus.svg?react';
-import backArrow from '../images/icons/backArrow.png';
+import BackArrow from '../images/icons/backArrow.svg?react'
 import UsersIcon from '../images/icons/dashBaordSvg.svg?react'; 
 import IconButton from '@/components/ui/IconButton';
 import ActionButton from '@/components/ui/ActionButton';
@@ -58,13 +58,15 @@ const breadcrumbs = [
             {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
                 {/* ✅ Dynamic TopBar Integrated */}
-                <TopBar
+                <div className='sticky top-0 z-10 bg-white'>
+                                    <TopBar
                     title="User Management"
                     icon={UsersIcon}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 >
                 </TopBar>
+                </div>
                 <div className="flex-1 overflow-y-auto px-8 py-6">
                     {/* Back Button */}
                     <div className="mb-6">
@@ -72,9 +74,13 @@ const breadcrumbs = [
                             href="/usermanagement"
                             className="inline-flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
                         >
-                            <img src={backArrow} alt="" />
+                            <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
                             Back to User Profiles
                         </Link>
+                        {/* <IconButton className='flex gap-3'>
+                            <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
+                            Back to User Profiles
+                        </IconButton> */}
                     </div>
 
                     {/* --- PROFILE CARD SECTION --- */}

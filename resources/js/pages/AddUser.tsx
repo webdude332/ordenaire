@@ -17,6 +17,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/Table';
+import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import BackArrow from '@/images/icons/backArrow.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
@@ -24,7 +25,6 @@ import PlusIcon from '@/images/icons/plus.svg?react';
 import Profile from '@/images/icons/profile.svg?react';
 import { Link } from '@inertiajs/react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
-import ToggleSwitch from '@/components/ui/ToggleSwitch';
 
 const AddUser = () => {
     const documents = [
@@ -71,10 +71,10 @@ const AddUser = () => {
         { label: 'User Profiles', isActive: false, href: '/userprofiles' },
         { label: 'Add new User', isActive: true, href: '/adduser' },
     ];
-const [isActive, setIsActive] = useState(false);
-const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsActive(e.target.checked);
-  };
+    const [isActive, setIsActive] = useState(false);
+    const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsActive(e.target.checked);
+    };
     return (
         <div className="flex min-h-screen">
             {/* 1. Sidebar */}
@@ -83,12 +83,15 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
                 {/* Top Navigation with Dynamic Add User State */}
+
+                <div className='sticky top-0 z-10 bg-white'>
                 <TopBar
                     title="Add New User"
                     icon={DashBoardIcon}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 />
+                </div>
                 {/* Page Content Container */}
                 <div className="flex-1 overflow-y-auto px-8 py-6">
                     {/* "Back" Button */}
@@ -142,8 +145,8 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     {/* Full Name */}
                                     <div>
-                                        <Label className="mb-2 text-sm font-semibold text-gray-500">
-                                            Phone Number{' '}
+                                        <Label className="mb-2 text-sm font-medium">
+                                            Full Name
                                             <span className="text-primary">
                                                 *
                                             </span>
@@ -153,7 +156,7 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
                                     {/* Email */}
                                     <div>
-                                        <Label className="mb-2 text-sm font-semibold text-gray-500">
+                                        <Label className="mb-2 text-sm font-medium">
                                             Email Address{' '}
                                             <span className="text-primary">
                                                 *
@@ -167,7 +170,7 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
                                     {/* Phone Number */}
                                     <div>
-                                        <Label className="mb-2 text-sm font-semibold text-gray-500">
+                                        <Label className="mb-2 text-sm font-medium">
                                             Phone Number{' '}
                                             <span className="text-primary">
                                                 *
@@ -212,6 +215,7 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                             value={reportTemplate}
                                             onChange={setReportTemplate}
                                             placeholder="Customer relationship Manager"
+                                            labelClassName="mb-2 text-sm font-medium"
                                         />
                                     </div>
                                 </div>
@@ -309,7 +313,7 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                         {/* <label className="mb-1 block text-sm font-medium text-gray-700">
                                             Account Expiry
                                         </label> */}
-                                        <Label className="mb-1 block text-sm font-medium text-gray-700">
+                                        <Label className="mb-1 block text-sm font-medium">
                                             Account Expiry
                                         </Label>
                                         <div className="relative">
@@ -339,21 +343,23 @@ const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
                                     {/* MFA Toggle */}
                                     <div>
-                                        <Label className='mb-3 block text-sm font-medium text-gray-700'>
+                                        <Label className="mb-3 block text-sm font-medium">
                                             Multi-Factor Authentication
                                         </Label>
                                         <ToggleSwitch
-        checked={isActive}
-        onChange={handleToggleChange}
-        statusLabel={isActive ? 'Active' : 'Inactive'}
-      />
+                                            checked={isActive}
+                                            onChange={handleToggleChange}
+                                            statusLabel={
+                                                isActive ? 'Active' : 'Inactive'
+                                            }
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Footer Buttons */}
-                        <div className="flex items-center justify-end gap-4 pt-4">
+                        <div className="flex items-center justify-end gap-4 pt-4 border-t border-borderColor">
                             <IconButton>Cancel</IconButton>
                             <Button>Send invite & Add User</Button>
                         </div>

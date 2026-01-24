@@ -2,6 +2,8 @@ import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { Link } from '@inertiajs/react';
 import Info from '../images/icons/gray-info.svg?react';
+import { Label, Input } from '@/components/ui/FormElements';
+import RadioGroup from '@/components/ui/RadioGroup';
 
 // Icons
 import Button from '@/components/ui/Button';
@@ -20,7 +22,7 @@ const EditRole = () => {
     const breadcrumbs = [
         { label: 'Internal User Management', isActive: false, href: '/usermanagement' },
         { label: 'Roles & Permissions', isActive: false, href: '/rolesandpermissions' },
-        { label: 'Edit Role', isActive: true, href: '/editrole' },
+        { label: 'Add new Role', isActive: true, href: '/addrole' },
     ];
 
     // 2. Setup Tabs
@@ -59,12 +61,14 @@ const EditRole = () => {
 
             {/* Main Content */}
             <main className="flex flex-1 flex-col">
-                <TopBar
+<div className='sticky top-0 z-10 bg-white'>
+                    <TopBar
                     title="Edit Role"
                     icon={DashBoardIcon}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 />
+</div>
 
                 <div className="flex-1 overflow-y-auto px-8 py-6">
                     {/* Back Button */}
@@ -93,26 +97,32 @@ const EditRole = () => {
                                 <div className="space-y-8">
                                     {/* Role Name */}
                                     <div>
-                                        <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                                        <Label className='text-sm mb-2 font-medium'>
                                             Role Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            placeholder="e.g. Finance Manager"
-                                            className="w-full rounded-lg border border-[#E8E6EA] px-3 py-2 text-[#19161A] placeholder-gray-500 shadow-xs outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
+                                        </Label>
+                                        <Input
+                                        
+                                            placeholder="eg., Admin"
+                                            className=""
                                         />
                                     </div>
 
                                     {/* Role Description */}
                                     <div>
-                                        <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                                        <Label className='text-sm mb-2 font-medium'>
                                             Role Description
-                                        </label>
-                                        <textarea
+                                        </Label>
+                                        {/* <textarea
                                             rows={4}
                                             placeholder="Enter a description..."
                                             className="w-full resize-none rounded-lg border border-[#CFCBD2] px-3 py-2 text-[#19161A] placeholder-gray-500 shadow-xs outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
-                                        ></textarea>
+                                        ></textarea> */}
+                                        <Input
+                                            as="textarea"
+                                            rows={5}
+                                            placeholder="Enter a description..."
+                                            className=""
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +185,6 @@ const EditRole = () => {
                         </div>
                         {/* 3. FOOTER BUTTONS */}
                         <div className="flex justify-end gap-3 border-t border-gray-200 pt-4">
-                            <IconButton>Delete Role </IconButton>
                             <IconButton>Cancel</IconButton>
                             <Button>Add Role</Button>
                         </div>

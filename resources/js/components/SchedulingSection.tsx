@@ -42,17 +42,17 @@ export default function SchedulingSection() {
             <div className="grid grid-cols-1 gap-6 px-6 pt-6 md:grid-cols-2">
                 <div className="space-y-4">
                     <div>
-                        <Label>Assign to Tenant / Organization</Label>
+                        <Label className='mb-2 text-sm font-medium'>Assign to Tenant / Organization</Label>
                         <Input placeholder="Search for tenant..." icon={SearchIcon} />
                     </div>
                     <div>
-                        <Label>Report Title</Label>
+                        <Label className='mb-2 text-sm font-medium'>Report Title</Label>
                         <Input placeholder='e.g., "Monthly Performance Report"' />
                     </div>
                 </div>
                 <div className="space-y-4">
                     <div className="relative" ref={pickerRef}>
-                        <Label>Select Data Range</Label>
+                        <Label className='mb-2 text-sm font-medium'>Select Data Range</Label>
                         <div onClick={() => setShowPicker(true)}>
                             <Input placeholder="Jan 10, 2025 - Jul 10, 2025" icon={CalenderIconSVG} iconClassName="text-[#B5B0BA]" />
                         </div>
@@ -69,7 +69,7 @@ export default function SchedulingSection() {
                             value={reportTemplate} 
                             onChange={setReportTemplate} 
                             placeholder="templates—Sales, Usage, Financial" 
-                            labelClassName='text-sm font-semibold'
+                            labelClassName='mb-2 text-sm font-medium'
                         />
                     </div>
                 </div>
