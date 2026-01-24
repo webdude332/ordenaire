@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // Icons
-import Minimize from '@/images/icons/minimize.svg?react';
+import Button from '@/components/ui/Button';
+import PlusIcon from '@/images/icons/plus.svg?react';
 import SelecterIcon from '@/images/icons/selectorIcon.svg?react';
 import ArrowDown from '../../images/icons/chevron-down.svg?react';
 import EyeIcon from '../../images/icons/eyeIcon.svg?react';
@@ -22,11 +23,15 @@ import {
 } from '../ui/Table';
 
 const MultiTenancyTab = () => {
-//     const [expandedRowId, setExpandedRowId] = useState(null);
+    // Defaulting to first ID for preview purposes
+    const [expandedRowId, setExpandedRowId] = useState<string | null>(
+        'BIZ-2050',
+    );
 
-// const toggleRow = (id) => {
-//     setExpandedRowId(prev => prev === id ? null : id);
-// };
+    const toggleRow = (id: string) => {
+        setExpandedRowId((prev) => (prev === id ? null : id));
+    };
+
     const tenancyData = [
         {
             id: 'BIZ-2050',
@@ -35,6 +40,40 @@ const MultiTenancyTab = () => {
             admin: 'Noah Pierre',
             outlets: 6,
             location: 'Dubai Marina, Dubai',
+            outletDetails: [
+                {
+                    name: 'StarBites - Marina',
+                    id: 'BIZ-2050',
+                    status: 'Active',
+                    admin: 'Lucas Williams',
+                    package: 'Standard',
+                    address: 'The Dubai Mall, Downtown...',
+                },
+                {
+                    name: 'SushiWorld - Jumeirah...',
+                    id: 'BIZ-2051',
+                    status: 'Active',
+                    admin: 'Emma Johnson',
+                    package: 'Pro',
+                    address: 'Mall of the Emirates, Al Ba...',
+                },
+                {
+                    name: 'PastaPalace - Downto...',
+                    id: 'BIZ-2057',
+                    status: 'Active',
+                    admin: 'Ava Martinez',
+                    package: 'Pro',
+                    address: 'City Walk, Jumeirah',
+                },
+                {
+                    name: 'VeganVibes - Dubai M...',
+                    id: 'BIZ-2058',
+                    status: 'Active',
+                    admin: 'Ethan Brown',
+                    package: 'Pro',
+                    address: 'Ibn Battuta Mall, Jebel Ali',
+                },
+            ],
         },
         {
             id: 'BIZ-2051',
@@ -43,6 +82,7 @@ const MultiTenancyTab = () => {
             admin: 'Emma Johnson',
             outlets: 7,
             location: 'Jumeirah Beach, Dubai',
+            outletDetails: [],
         },
         {
             id: 'BIZ-2052',
@@ -51,202 +91,259 @@ const MultiTenancyTab = () => {
             admin: 'Liam Smith',
             outlets: 8,
             location: 'Downtown Dubai, Dubai',
-        },
-        {
-            id: 'BIZ-2050',
-            name: 'Tea Time',
-            status: 'Active',
-            admin: 'Ava Brown',
-            outlets: 6,
-            location: 'Al Fahidi, Dubai',
-        },
-        {
-            id: 'BIZ-2053',
-            name: 'Team Huddle',
-            status: 'Active',
-            admin: 'Elijah Garcia',
-            outlets: 9,
-            location: 'Palm Jumeirah, Dubai',
-        },
-        {
-            id: 'BIZ-2054',
-            name: 'Project Review',
-            status: 'Active',
-            admin: 'Sophia Martinez',
-            outlets: 10,
-            location: 'Bur Dubai, Dubai',
-        },
-        {
-            id: 'BIZ-2055',
-            name: 'Strategy Session',
-            status: 'Active',
-            admin: 'Mason White',
-            outlets: 11,
-            location: 'Dubai Creek, Dubai',
-        },
-        {
-            id: 'BIZ-2056',
-            name: 'Client Check-In',
-            status: 'Expired',
-            admin: 'Isabella Lee',
-            outlets: 12,
-            location: 'Design District, Dubai',
-        },
-        {
-            id: 'BIZ-2057',
-            name: 'Brainstorming Hour',
-            status: 'Archived',
-            admin: 'Lucas Williams',
-            outlets: 13,
-            location: 'Al Quoz, Dubai',
+            outletDetails: [],
         },
     ];
 
     return (
-        <>
+        <div className="w-full">
             {/* Filters & Search Row */}
             <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="relative">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <Search />
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <Search className="h-4 w-4" />
                         </div>
                         <input
                             type="text"
                             placeholder="Search by business name, ID..."
-                            className="w-68 rounded-lg border border-gray-300 py-2 pr-4 pl-10 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#8CDD05] focus:outline-none"
+                            className="w-80 rounded-lg border border-gray-300 py-2.5 pr-4 pl-10 text-sm text-gray-700 shadow-sm placeholder:text-gray-400 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
                         />
                     </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* Location Filter */}
-                    <details className="group relative">
-                        <summary className="flex cursor-pointer list-none items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:ring-2 focus:ring-[#8CDD05] focus:outline-none">
+                    <div className="relative">
+                        <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50">
                             <span>Location: All</span>
-                            <ArrowDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                        </summary>
-                        <div className="absolute right-0 z-20 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                            <ul className="py-1">
-                                {['All', 'Dubai', 'Abu Dhabi'].map((item) => (
-                                    <li key={item}>
-                                        <button className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-[#F9F7FA]">
-                                            {item}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div
-                            className="fixed inset-0 z-10 hidden h-full w-full bg-transparent group-open:block"
-                            onClick={(e) => {
-                                e.currentTarget.parentElement?.removeAttribute(
-                                    'open',
-                                );
-                            }}
-                        />
-                    </details>
+                            <ArrowDown className="h-4 w-4 text-gray-400" />
+                        </button>
+                    </div>
 
-                    {/* Status Filter */}
-                    <details className="group relative">
-                        <summary className="flex cursor-pointer list-none items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:ring-2 focus:ring-[#8CDD05] focus:outline-none">
+                    <div className="relative">
+                        <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50">
                             <span>Status: All</span>
-                            <ArrowDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                        </summary>
-                        <div className="absolute right-0 z-20 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                            <ul className="py-1">
-                                {['All', 'Active', 'Expired', 'Archived'].map(
-                                    (item) => (
-                                        <li key={item}>
-                                            <button className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-[#F9F7FA]">
-                                                {item}
-                                            </button>
-                                        </li>
-                                    ),
-                                )}
-                            </ul>
-                        </div>
-                        <div
-                            className="fixed inset-0 z-10 hidden h-full w-full bg-transparent group-open:block"
-                            onClick={(e) => {
-                                e.currentTarget.parentElement?.removeAttribute(
-                                    'open',
-                                );
-                            }}
-                        />
-                    </details>
+                            <ArrowDown className="h-4 w-4 text-gray-400" />
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            {/* Reusable Table Implementation */}
-            <TableContainer>
+            {/* Expandable Table Implementation */}
+            <TableContainer className="overflow-hidden rounded-xl bg-white shadow-sm">
                 <Table>
+                    {/* Header Border */}
                     <TableHeader>
-                        <TableHead>Business Name</TableHead>
-                        <TableHead>
-                            <div className="flex items-center">
+                        <TableHead className="py-4 pl-6 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                            Business Name
+                        </TableHead>
+                        <TableHead className="py-4">
+                            <div className="flex items-center gap-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">
                                 Status
-                                <span className="ml-1 flex items-center">
-                                    <SelecterIcon />
-                                </span>
+                                <SelecterIcon className="h-4 w-4 text-gray-400" />
                             </div>
                         </TableHead>
-                        <TableHead>Branch Admin</TableHead>
-                        <TableHead>Outlets</TableHead>
-                        <TableHead>Primary Location</TableHead>
-                        <TableHead>Actions</TableHead>
+                        <TableHead className="py-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                            Admin
+                        </TableHead>
+                        <TableHead className="py-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                            Outlets
+                        </TableHead>
+                        <TableHead className="py-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                            Primary Location
+                        </TableHead>
+                        <TableHead className="py-4 pr-6 text-right text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                            Actions
+                        </TableHead>
                     </TableHeader>
                     <TableBody>
-                        {tenancyData.map((item, idx) => (
-                            <TableRow key={idx}>
-                                <TableCell>
-                                    <div className="font-medium text-gray-900">
-                                        {item.name}
-                                    </div>
-                                    <div className="text-xs text-gray-400">
-                                        {item.id}
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <BusinessStatusBadge status={item.status} />
-                                </TableCell>
-                                <TableCell>
-                                    <div className="font-medium text-gray-900">
-                                        {item.admin}
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <div className="font-medium text-gray-900">
-                                        {item.outlets}
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <div className="text-gray-500">
-                                        {item.location}
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <div className="flex items-center gap-2">
-                                        <ActionButton>
-                                            <EyeIcon className="h-4 w-4 text-[#B5B0BA]" />
-                                        </ActionButton>
-                                        <ActionButton>
-                                            <PencilIcon className="h-4 w-4 text-[#B5B0BA]" />
-                                        </ActionButton>
-                                        <ActionButton>
-                                            <Minimize className="h-4 w-4 text-[#B5B0BA]" />
-                                        </ActionButton>
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                        {tenancyData.map((item, idx) => {
+                            const isExpanded = expandedRowId === item.id;
+
+                            return (
+                                <div key={idx} style={{ display: 'contents' }}>
+                                    {/* Main Row - Added border-b border-gray-200 */}
+                                    <TableRow
+                                        className={`group border-b border-gray-200 transition-colors hover:bg-gray-50 ${isExpanded ? 'bg-gray-50' : 'bg-white'}`}
+                                    >
+                                        <TableCell className="py-4 pl-6">
+                                            <div className="font-semibold text-gray-900">
+                                                {item.name}
+                                            </div>
+                                            <div className="mt-0.5 text-xs text-gray-500">
+                                                {item.id}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="py-4">
+                                            <BusinessStatusBadge
+                                                status={item.status}
+                                            />
+                                        </TableCell>
+                                        <TableCell className="py-4">
+                                            <div className="font-medium text-gray-700">
+                                                {item.admin}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="py-4">
+                                            <div className="font-medium text-gray-700">
+                                                {item.outlets}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="py-4">
+                                            <div className="text-gray-500">
+                                                {item.location}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="py-4 pr-6 text-right">
+                                            <div className="flex items-center justify-end gap-2">
+                                                <ActionButton>
+                                                    <EyeIcon className="h-4 w-4 text-gray-400" />
+                                                </ActionButton>
+                                                <ActionButton>
+                                                    <PencilIcon className="h-4 w-4 text-gray-400" />
+                                                </ActionButton>
+                                                <ActionButton
+                                                    onClick={() =>
+                                                        toggleRow(item.id)
+                                                    }
+                                                >
+                                                    <ArrowDown
+                                                        className={`h-4 w-4 text-gray-400 transition-transform duration-200 ${
+                                                            isExpanded
+                                                                ? 'rotate-180'
+                                                                : ''
+                                                        }`}
+                                                    />
+                                                </ActionButton>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+
+                                    {/* Expanded Row - Added border-b border-gray-200 to separate from next item */}
+                                    {isExpanded && (
+                                        <tr className="border-b border-gray-200 bg-[#F8FFEB]">
+                                            <td
+                                                colSpan={6}
+                                                className="border-none p-0"
+                                            >
+                                                {/* Nested Table Container */}
+                                                <div className="w-full">
+                                                    {/* Nested Header */}
+                                                    <div className="grid grid-cols-12 gap-4 border-b border-[#E0F2C3] bg-[#F9F7FA] px-6 py-3 text-xs font-semibold text-gray-500">
+                                                        <div className="col-span-3">
+                                                            Outlet Info
+                                                        </div>
+                                                        <div className="col-span-2">
+                                                            Status
+                                                        </div>
+                                                        <div className="col-span-2">
+                                                            Branch Admin
+                                                        </div>
+                                                        <div className="col-span-1">
+                                                            Package
+                                                        </div>
+                                                        <div className="col-span-3">
+                                                            Address
+                                                        </div>
+                                                        <div className="col-span-1 text-right">
+                                                            Actions
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Nested Rows */}
+                                                    <div className="max-h-[400px] overflow-y-auto bg-[#F8FFEB]">
+                                                        {item.outletDetails.map(
+                                                            (
+                                                                outlet,
+                                                                outletIdx,
+                                                            ) => (
+                                                                <div
+                                                                    key={
+                                                                        outletIdx
+                                                                    }
+                                                                    className="grid grid-cols-12 gap-4 border-b border-[#E0F2C3] px-6 py-4 text-sm transition-colors last:border-b-0 hover:bg-[#EBF7D5]"
+                                                                >
+                                                                    {/* Outlet Info */}
+                                                                    <div className="col-span-3">
+                                                                        <div className="font-semibold text-gray-900">
+                                                                            {
+                                                                                outlet.name
+                                                                            }
+                                                                        </div>
+                                                                        <div className="mt-0.5 text-xs text-gray-500">
+                                                                            {
+                                                                                outlet.id
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {/* Status */}
+                                                                    <div className="col-span-2 flex items-center">
+                                                                        <BusinessStatusBadge
+                                                                            status={
+                                                                                outlet.status
+                                                                            }
+                                                                        />
+                                                                    </div>
+
+                                                                    {/* Admin */}
+                                                                    <div className="col-span-2 flex items-center font-medium text-gray-700">
+                                                                        {
+                                                                            outlet.admin
+                                                                        }
+                                                                    </div>
+
+                                                                    {/* Package */}
+                                                                    <div className="col-span-1 flex items-center text-gray-700">
+                                                                        {
+                                                                            outlet.package
+                                                                        }
+                                                                    </div>
+
+                                                                    {/* Address */}
+                                                                    <div className="col-span-3 flex items-center truncate text-gray-500">
+                                                                        {
+                                                                            outlet.address
+                                                                        }
+                                                                    </div>
+
+                                                                    {/* Actions */}
+                                                                    <div className="col-span-1 flex items-center justify-end gap-2">
+                                                                        <ActionButton>
+                                                                            <EyeIcon className="h-4 w-4 text-gray-400" />
+                                                                        </ActionButton>
+                                                                        <ActionButton>
+                                                                            <PencilIcon className="h-4 w-4 text-gray-400" />
+                                                                        </ActionButton>
+                                                                    </div>
+                                                                </div>
+                                                            ),
+                                                        )}
+                                                    </div>
+
+                                                    {/* Footer Action */}
+                                                    <div className="border-t border-[#E0F2C3] bg-[#F8FFEB] px-6 py-4">
+                                                        <Button>
+                                                            <PlusIcon className="h-4 w-4" />
+                                                            Add new outlet
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </TableBody>
                 </Table>
 
-                {/* Reusable Pagination */}
-                <Pagination />
+                {/* Pagination */}
+                <div className="">
+                    <Pagination />
+                </div>
             </TableContainer>
-        </>
+        </div>
     );
 };
 
