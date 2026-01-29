@@ -2,7 +2,6 @@ import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { useState } from 'react';
 import Dashboard from '../images/icons/dashBaordSvg.svg';
-// Import new tabs
 import BusinessProfilesTab from '@/components/businesstabs/BusinessProfilesTab';
 import MultiTenancyTab from '@/components/businesstabs/MultiTenancyTab';
 import FutureAcess from '@/components/businesstabs/FutureAccess'

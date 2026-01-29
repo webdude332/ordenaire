@@ -1,54 +1,90 @@
 import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar'; 
+import TopBar from '@/components/TopBar';
+import Profile from '@/images/icons/profile.svg?react';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
-import Profile from '@/images/icons/profile.svg?react'
 
 // Images
+import DeleteModal from '@/components/DeleteModal';
+import AddDocumentModal from '@/components/Modals/AddDocumentModal';
+import PasswordConfirmModal from '@/components/Modals/PasswordConfirmModal';
+import ActionButton from '@/components/ui/ActionButton';
+import IconButton from '@/components/ui/IconButton';
 import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
+import BackArrow from '../images/icons/backArrow.svg?react';
+import UsersIcon from '../images/icons/dashBaordSvg.svg?react';
 import DelIcon from '../images/icons/delIcon.svg?react';
 import PlusIcon from '../images/icons/plus.svg?react';
-import BackArrow from '../images/icons/backArrow.svg?react'
-import UsersIcon from '../images/icons/dashBaordSvg.svg?react'; 
-import IconButton from '@/components/ui/IconButton';
-import ActionButton from '@/components/ui/ActionButton';
-
 
 const ProfilePage = () => {
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const handleSuccess = () => {
+        setIsSuccessModalOpen(true);
+    };
+
+    const handleDelete = () => {
+        setDeleteModal(true);
+    };
+    const [documents, setDocuments] = useState([
+        {
+            fileName: 'Contract_2025.pdf',
+            documentType: 'Employment',
+            expiry: '-',
+        },
+        {
+            fileName: 'Passport_Copy.jpg',
+            documentType: 'Proof of Identity',
+            expiry: '20 Nov 2028',
+        },
+    ]);
+    const handleAddNewDocument = (data: any) => {
+        const newDoc = {
+            fileName: data.name,
+            documentType: data.type,
+            expiry: data.expiry ? data.expiry.toLocaleDateString() : '-',
+        };
+        setDocuments((prev) => [...prev, newDoc]);
+        setIsUploadModalOpen(false);
+    };
+
     // State for TopBar tabs
-    const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>('profiles');
+    // const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
+    //     'profiles',
+    // );
 
     // 1. Define Breadcrumbs Structure
-const breadcrumbs = [
-    { 
-        label: 'User Management', 
-        isActive: false,
-        href: '/usermanagement'  
-    },
-    { 
-        label: 'User Profiles', 
-        isActive: false,
-        href: '/usermanagement'  
-    },
-    { 
-        label: 'View', 
-        isActive: true 
-    },
-];
-
-    // 2. Define Tabs Structure
-    const tabs = [
+    const breadcrumbs = [
+        {
+            label: 'User Management',
+            isActive: false,
+            href: '/usermanagement',
+        },
         {
             label: 'User Profiles',
-            isActive: activeTab === 'profiles',
-            onClick: () => setActiveTab('profiles'),
+            isActive: false,
+            href: '/usermanagement',
         },
         {
-            label: 'Roles & Permissions',
-            isActive: activeTab === 'roles',
-            onClick: () => setActiveTab('roles'),
+            label: 'View',
+            isActive: true,
         },
     ];
+
+    // 2. Define Tabs Structure
+    // const tabs = [
+    //     {
+    //         label: 'User Profiles',
+    //         isActive: activeTab === 'profiles',
+    //         onClick: () => setActiveTab('profiles'),
+    //     },
+    //     {
+    //         label: 'Roles & Permissions',
+    //         isActive: activeTab === 'roles',
+    //         onClick: () => setActiveTab('roles'),
+    //     },
+    // ];
 
     return (
         <div className="flex min-h-screen">
@@ -58,21 +94,20 @@ const breadcrumbs = [
             {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
                 {/* ✅ Dynamic TopBar Integrated */}
-                <div className='sticky top-0 z-10 bg-white'>
-                                    <TopBar
-                    title="User Management"
-                    icon={UsersIcon}
-                    breadcrumbs={breadcrumbs}
-                    tabs={tabs}
-                >
-                </TopBar>
+                <div className="sticky top-0 z-10 bg-white">
+                    <TopBar
+                        title="User Management"
+                        icon={UsersIcon}
+                        breadcrumbs={breadcrumbs}
+                        // tabs={tabs}
+                    ></TopBar>
                 </div>
                 <div className="flex-1 overflow-y-auto px-8 py-6">
                     {/* Back Button */}
                     <div className="mb-6">
                         <Link
                             href="/usermanagement"
-                            className="inline-flex gap-2 items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
+                            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
                         >
                             <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
                             Back to User Profiles
@@ -101,8 +136,8 @@ const breadcrumbs = [
                                 <div className="flex gap-6">
                                     {/* Avatar */}
                                     <div className="relative -mt-12">
-                                        <div className="flex justify-center items-center h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-gray-100 shadow-md">
-                                            <Profile className='w-28 h-28'/>
+                                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-gray-100 shadow-md">
+                                            <Profile className="h-28 w-28" />
                                         </div>
                                     </div>
 
@@ -119,7 +154,12 @@ const breadcrumbs = [
                                         <div className="mb-3 text-sm text-gray-500">
                                             Noah@ordemark.com
                                         </div>
-                                        <button className="rounded-lg border border-[#CFCBD2] px-4 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
+                                        <button
+                                            onClick={() => {
+                                                setIsSuccessModalOpen(true);
+                                            }}
+                                            className="cursor-pointer rounded-lg border border-[#CFCBD2] px-4 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+                                        >
                                             Send Password Reset Link
                                         </button>
                                     </div>
@@ -139,94 +179,93 @@ const breadcrumbs = [
 
                             {/* 3. Info Grid (Footer of Card) */}
                         </div>
-                                                    <div className="mt-8  rounded-xl border border-[#E8E6EA] bg-[#F8FFEB] px-6 pb-6 pt-6">
-                                <div className="grid grid-cols-4 gap-8 border-b border-[#8CDD05] py-6">
-                                    {/* Column 1 */}
-                                    <div>
-                                        <div className="mb-2 text-xs font-medium text-gray-500">
-                                            Phone Number
-                                        </div>
-                                        <div className="text-sm font-medium text-gray-900">
-                                            +91 89211 6114
-                                        </div>
+                        <div className="mt-3 rounded-xl border border-[#E8E6EA] bg-[#F8FFEB] px-6 pt-6 pb-6">
+                            <div className="grid grid-cols-4 gap-8 border-b border-[#8CDD05] py-2">
+                                {/* Column 1 */}
+                                <div>
+                                    <div className="mb-2 text-xs font-medium text-gray-500">
+                                        Phone Number
                                     </div>
-
-                                    {/* Column 2 */}
-                                    <div>
-                                        <div className="mb-2 text-xs font-medium text-gray-500">
-                                            Joining Date
-                                        </div>
-                                        <div className="text-sm font-medium text-gray-900">
-                                            22 Aug 2025
-                                        </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                        +91 89211 6114
                                     </div>
+                                </div>
 
-                                    {/* Column 3 */}
-                                    <div>
-                                        <div className="mb-2 text-xs font-medium text-gray-500">
-                                            Account Expiry
-                                        </div>
-                                        <div className="text-sm font-medium text-gray-900">
-                                            22 Aug 2026
-                                        </div>
+                                {/* Column 2 */}
+                                <div>
+                                    <div className="mb-2 text-xs font-medium text-gray-500">
+                                        Joining Date
                                     </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                        22 Aug 2025
+                                    </div>
+                                </div>
 
-                                    {/* Column 4 */}
-                                    <div>
-                                        <div className="mb-1 text-xs font-medium text-gray-500">
-                                            Multi-Factor Authentication
-                                        </div>
-                                        <div className="text-sm font-medium text-gray-900">
-                                            Active
-                                        </div>
+                                {/* Column 3 */}
+                                <div>
+                                    <div className="mb-2 text-xs font-medium text-gray-500">
+                                        Account Expiry
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                        22 Aug 2026
+                                    </div>
+                                </div>
+
+                                {/* Column 4 */}
+                                <div>
+                                    <div className="mb-1 text-xs font-medium text-gray-500">
+                                        Multi-Factor Authentication
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-900">
+                                        Active
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
 
                     {/* --- QUICK STATS SECTION --- */}
-<div className="mb-8">
-    <h3 className="mb-4 text-lg font-semibold text-gray-900">
-        Quick Stats
-    </h3>
-    {/* 1. Kept 'py-6' here to create the floating effect */}
-    {/* 2. Removed 'items-start' so all dividers stretch to the same height */}
-    <div className="flex w-full divide-x divide-[#E8E6EA] rounded-xl border border-[#E8E6EA] bg-white shadow-xs py-6">
-        
-        {/* Column 1: Removed 'py-6', kept 'px-8' */}
-        <div className="flex-1 px-8">
-            <p className="mb-2 text-sm text-[#696969]">
-                Tickets Solved (This month)
-            </p>
-            <p className="text-base font-medium text-[#1A1A1A]">
-                19 solved
-            </p>
-        </div>
+                    <div className="mb-8">
+                        <h3 className="mb-4 text-lg font-semibold text-gray-900">
+                            Quick Stats
+                        </h3>
+                        {/* 1. Kept 'py-6' here to create the floating effect */}
+                        {/* 2. Removed 'items-start' so all dividers stretch to the same height */}
+                        <div className="flex w-full divide-x divide-[#E8E6EA] rounded-xl border border-[#E8E6EA] bg-white py-6 shadow-xs">
+                            {/* Column 1: Removed 'py-6', kept 'px-8' */}
+                            <div className="flex-1 px-8">
+                                <p className="mb-2 text-sm text-[#696969]">
+                                    Tickets Solved (This month)
+                                </p>
+                                <p className="text-base font-medium text-[#1A1A1A]">
+                                    19 solved
+                                </p>
+                            </div>
 
-        {/* Column 2: Removed 'py-6', kept 'px-8' */}
-        <div className="flex-1 px-8">
-            <p className="mb-2 text-sm text-[#696969]">
-                Pending Action Items
-            </p>
-            <p className="text-base font-medium text-[#1A1A1A]">
-                9 available
-            </p>
-        </div>
+                            {/* Column 2: Removed 'py-6', kept 'px-8' */}
+                            <div className="flex-1 px-8">
+                                <p className="mb-2 text-sm text-[#696969]">
+                                    Pending Action Items
+                                </p>
+                                <p className="text-base font-medium text-[#1A1A1A]">
+                                    9 available
+                                </p>
+                            </div>
 
-        {/* Column 3: Removed 'py-6', kept 'px-8' */}
-        <div className="flex-1 px-8">
-            <p className="mb-2 text-sm text-[#696969]">
-                Last Active
-            </p>
-            <div className="text-base font-medium text-[#1A1A1A]">
-                04 Sept 2025
-                <span className="mt-1 block text-sm font-normal text-[#9CA3AF]">
-                    01:15 PM
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
+                            {/* Column 3: Removed 'py-6', kept 'px-8' */}
+                            <div className="flex-1 px-8">
+                                <p className="mb-2 text-sm text-[#696969]">
+                                    Last Active
+                                </p>
+                                <div className="text-base font-medium text-[#1A1A1A]">
+                                    01:15 PM • 04 Sept 2025
+                                    {/* <span className="mt-1 block text-sm font-normal text-[#9CA3AF]">
+                                        01:15 PM
+                                    </span> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     {/* --- DOCUMENTS SECTION --- */}
                     <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
@@ -234,21 +273,23 @@ const breadcrumbs = [
                             <h3 className="text-md font-semibold text-gray-900">
                                 Documents
                             </h3>
-                            <IconButton>
-                                <PlusIcon className='w-4 h-4 text-[#B5B0BA]'/>
+                            <IconButton
+                                onClick={() => setIsUploadModalOpen(true)}
+                            >
+                                <PlusIcon className="h-4 w-4 text-[#B5B0BA]" />
                                 Add Docs
                             </IconButton>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
                             <thead className="bg-[#F9F9FB]">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                         Document Name
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                         Document Type
                                     </th>
-                                    <th className="flex items-center gap-1 px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
+                                    <th className="flex items-center gap-1 px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                         Expiry Date
                                         <svg
                                             className="h-3 w-3 text-gray-400"
@@ -264,7 +305,7 @@ const breadcrumbs = [
                                             />
                                         </svg>
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
+                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                         Actions
                                     </th>
                                 </tr>
@@ -283,10 +324,14 @@ const breadcrumbs = [
                                     </td>
                                     <td className="flex gap-2 px-6 py-4 whitespace-nowrap">
                                         <ActionButton>
-                                            <DownloadIcon className="w-4 h-4 text-[#B5B0BA]"/>
+                                            <DownloadIcon className="h-4 w-4 text-[#B5B0BA]" />
                                         </ActionButton>
-                                        <ActionButton>
-                                            <DelIcon className="w-4 h-4 text-[#B5B0BA]"/>
+                                        <ActionButton
+                                            onClick={() => {
+                                                setDeleteModal(true);
+                                            }}
+                                        >
+                                            <DelIcon className="h-4 w-4 text-[#B5B0BA]" />
                                         </ActionButton>
                                     </td>
                                 </tr>
@@ -302,11 +347,19 @@ const breadcrumbs = [
                                         20 Nov 2028
                                     </td>
                                     <td className="flex gap-2 px-6 py-4 whitespace-nowrap">
-                                        <ActionButton>
-                                            <DownloadIcon className="w-4 h-4 text-[#B5B0BA]"/>
+                                        <ActionButton
+                                            onClick={() => {
+                                                setDeleteModal(true);
+                                            }}
+                                        >
+                                            <DownloadIcon className="h-4 w-4 text-[#B5B0BA]" />
                                         </ActionButton>
-                                        <ActionButton>
-                                            <DelIcon className="w-4 h-4 text-[#B5B0BA]"/>
+                                        <ActionButton
+                                            onClick={() => {
+                                                setDeleteModal(true);
+                                            }}
+                                        >
+                                            <DelIcon className="h-4 w-4 text-[#B5B0BA]" />
                                         </ActionButton>
                                     </td>
                                 </tr>
@@ -341,7 +394,7 @@ const breadcrumbs = [
 
                         {/* Input Area */}
                         <div className="mb-4">
-                            <label className="mb-1 block text-sm text-gray-600 font-medium">
+                            <label className="mb-1 block text-sm font-medium text-gray-600">
                                 Text area
                             </label>
                             <textarea
@@ -352,12 +405,25 @@ const breadcrumbs = [
                         </div>
 
                         {/* Add Button */}
-                        <IconButton>
-                            Add to Note
-                        </IconButton>
+                        <IconButton>Add to Note</IconButton>
                     </div>
                 </div>
             </main>
+            <DeleteModal
+                isOpen={deleteModal}
+                onClose={() => setDeleteModal(false)}
+                onRetry={handleDelete}
+            />
+            <AddDocumentModal
+                isOpen={isUploadModalOpen}
+                onClose={() => setIsUploadModalOpen(false)}
+                onAdd={handleAddNewDocument}
+            />
+            <PasswordConfirmModal
+                isOpen={isSuccessModalOpen}
+                onClose={() => setIsSuccessModalOpen(false)}
+                // onAdd={handleAddNewDocument}
+            />
         </div>
     );
 };
