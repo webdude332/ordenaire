@@ -1,6 +1,8 @@
 import React from 'react';
 import DownArrow from '@/images/icons/chevron-down.svg?react';
 import checkIcon from '@/images/icons/checkIcon.svg';
+ import ErrorIcon from '@/images/icons/errorIcon.svg?react'; 
+// import RenderIcon from './RenderIcon';
 
 // --- 1. RenderIcon Helper ---
 export const RenderIcon = ({ icon, className = '', ...props }: { icon: any; className?: string; [key: string]: any }) => {
@@ -11,11 +13,6 @@ export const RenderIcon = ({ icon, className = '', ...props }: { icon: any; clas
     }
     return <img src={icon} alt="" className={className} {...props} />;
 };
-
-// --- 2. Label Component ---
-// export const Label = ({ children }: { children: React.ReactNode }) => (
-//     <label className="mb-1.5 block text-sm font-semibold">{children}</label>
-// );
 
 interface LabelProps {
     children: React.ReactNode;
@@ -28,23 +25,6 @@ export const Label = ({ children, className = '' }: LabelProps) => (
     </label>
 );
 
-// --- 3. Input Component ---
-// export const Input = ({ placeholder, icon, iconClassName = 'text-gray-400' }: { placeholder: string; icon?: any; iconClassName?: string }) => (
-//     <div className="relative">
-//         {icon && (
-//             <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-//                 <RenderIcon icon={icon} className={`h-5 w-5 ${iconClassName}`} />
-//             </span>
-//         )}
-//         <input
-//             type="text"
-//             placeholder={placeholder}
-//             className={`w-full rounded-lg border border-gray-300 bg-white py-2.5 pr-3 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16] focus:outline-none ${icon ? 'pl-10' : 'pl-3'}`}
-//         />
-//     </div>
-// );
-
-
 // export const Input = ({ 
 //     placeholder, 
 //     value,
@@ -55,6 +35,8 @@ export const Label = ({ children, className = '' }: LabelProps) => (
 //     className = '',
 //     as = 'input',
 //     rows = 4,
+//     error, // New prop
+//     required // New prop
 // }: { 
 //     placeholder: string; 
 //     icon?: any; 
@@ -64,26 +46,70 @@ export const Label = ({ children, className = '' }: LabelProps) => (
 //     disabled?: boolean;
 //     as?: 'input' | 'textarea';
 //     rows?: number;
-//     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-// }) => (
-//     <div className="relative">
-//         {icon && (
-//             <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-//                 <RenderIcon icon={icon} className={`h-5 w-5 ${iconClassName}`} />
-//             </span>
-//         )}
-//         <input
-//       type="text"
-//       placeholder={placeholder}
-//       value={value}
-//       disabled={disabled}
-//       onChange={onChange}
-//       className={`w-full rounded-lg border border-gray-300 bg-white py-2.5 pr-3 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16] focus:outline-none ${
+//     error?: string; // Type for error message
+//     required?: boolean;
+//     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+// }) => {
+//     // Dynamic border and ring colors based on error state
+//     const stateStyles = error 
+//         ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+//         : 'border-gray-300 focus:border-[#84cc16] focus:ring-[#84cc16]';
+
+//     const sharedClassName = `w-full rounded-lg border bg-white py-2.5 pr-10 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:ring-1 focus:outline-none transition-colors ${
 //         icon ? 'pl-10' : 'pl-3'
-//       } ${className}`}
-//     />
-//     </div>
-// );
+//     } ${stateStyles} ${className}`;
+
+//     return (
+//         <div className="w-full">
+//             <div className="relative">
+//                 {/* Left Icon */}
+//                 {icon && (
+//                     <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+//                         <RenderIcon icon={icon} className={`h-5 w-5 ${iconClassName}`} />
+//                     </span>
+//                 )}
+
+//                 {as === 'textarea' ? (
+//                     <textarea
+//                         placeholder={placeholder}
+//                         value={value}
+//                         disabled={disabled}
+//                         onChange={onChange}
+//                         rows={rows}
+//                         className={sharedClassName}
+//                         required={required}
+//                     />
+//                 ) : (
+//                     <input
+//                         type="text"
+//                         placeholder={placeholder}
+//                         value={value}
+//                         disabled={disabled}
+//                         onChange={onChange}
+//                         className={sharedClassName}
+//                         required={required}
+//                     />
+//                 )}
+
+//                 {/* Right Error Icon - Shown only when error exists */}
+//                 {error && (
+//                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+//                         <RenderIcon icon={ErrorIcon} className="h-5 w-5 text-red-500" />
+//                     </span>
+//                 )}
+//             </div>
+            
+//             {/* Error Message Text */}
+//             {error && (
+//                 <p className="mt-1.5 text-xs text-red-600 font-medium">
+//                     {error}
+//                 </p>
+//             )}
+//         </div>
+//     );
+// };
+
+// --- 4. Select Component ---
 
 
 export const Input = ({ 
@@ -96,6 +122,7 @@ export const Input = ({
     className = '',
     as = 'input',
     rows = 4,
+    error,
 }: { 
     placeholder: string; 
     icon?: any; 
@@ -105,43 +132,66 @@ export const Input = ({
     disabled?: boolean;
     as?: 'input' | 'textarea';
     rows?: number;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    error?: string;
+    onChange?: (e: React.ChangeEvent<any>) => void; 
 }) => {
-    const sharedClassName = `w-full rounded-lg border border-gray-300 bg-white py-2.5 pr-3 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16] focus:outline-none ${
+    // Red border when error exists, standard green/gray otherwise
+    const stateStyles = error 
+        ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+        : 'border-gray-300 focus:border-[#84cc16] focus:ring-[#84cc16]';
+
+    // Pr-10 ensures text doesn't overlap the right-side error icon
+    const sharedClassName = `w-full rounded-lg border bg-white py-2.5 pr-10 text-sm text-gray-900 placeholder-gray-400 shadow-xs focus:ring-1 focus:outline-none transition-colors ${
         icon ? 'pl-10' : 'pl-3'
-    } ${className}`;
+    } ${stateStyles} ${className}`;
 
     return (
-        <div className="relative">
-            {icon && (
-                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <RenderIcon icon={icon} className={`h-5 w-5 ${iconClassName}`} />
-                </span>
-            )}
-            {as === 'textarea' ? (
-                <textarea
-                    placeholder={placeholder}
-                    value={value}
-                    disabled={disabled}
-                    onChange={onChange}
-                    rows={rows}
-                    className={sharedClassName}
-                />
-            ) : (
-                <input
-                    type="text"
-                    placeholder={placeholder}
-                    value={value}
-                    disabled={disabled}
-                    onChange={onChange}
-                    className={sharedClassName}
-                />
+        <div className="w-full">
+            <div className="relative">
+                {/* Left Icon (e.g., Mail) */}
+                {icon && (
+                    <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <RenderIcon icon={icon} className={`h-5 w-5 ${iconClassName}`} />
+                    </span>
+                )}
+
+                {as === 'textarea' ? (
+                    <textarea 
+                        placeholder={placeholder} 
+                        value={value} 
+                        disabled={disabled} 
+                        onChange={onChange} 
+                        rows={rows} 
+                        className={sharedClassName} 
+                    />
+                ) : (
+                    <input 
+                        type="text" 
+                        placeholder={placeholder} 
+                        value={value} 
+                        disabled={disabled} 
+                        onChange={onChange} 
+                        className={sharedClassName} 
+                    />
+                )}
+
+                {/* Right Error Icon - Only shows if error exists */}
+                {error && (
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                        <RenderIcon icon={ErrorIcon} className="h-5 w-5 text-red-500" />
+                    </span>
+                )}
+            </div>
+            
+            {/* Error Message Text */}
+            {error && (
+                <p className="mt-1.5 text-xs text-red-600 font-medium">
+                    {error}
+                </p>
             )}
         </div>
     );
 };
-
-// --- 4. Select Component ---
 export const Select = ({ placeholder, options, icon = DownArrow }: { placeholder: string; options?: string[]; icon?: any }) => (
     <div className="relative">
         <select className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-2.5 pr-10 pl-3 text-sm text-gray-900 shadow-sm focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16] focus:outline-none">

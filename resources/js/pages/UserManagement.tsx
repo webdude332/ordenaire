@@ -14,6 +14,8 @@ import PencilIcon from '../images/icons/pencilIcon.svg?react';
 import AddUser from '../images/icons/plus.svg?react';
 import SearchIcon from '../images/icons/searchIcon.svg?react';
 import RolesAndPermissionsTable from './RolesAndPermissions';
+import Pagination from '@/components/ui/Pagination';
+import DeleteModal from '@/components/DeleteModal';
 // --- MOCK DATA ---
 const USERS = [
     {
@@ -91,7 +93,9 @@ const USERS = [
 ];
 
 export default function UserManagement() {
+    const handleDelete = () => setIsDeleteModalOpen(false);
     const [selectedRole, setSelectedRole] = useState('all');
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState('all');
     const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
         'profiles',
@@ -326,8 +330,8 @@ export default function UserManagement() {
                                                                     <PencilIcon className="h-4 w-4 text-iconColor" />
                                                                 </ActionButton>
                                                             </Link>
-                                                            <Link>
-                                                                <ActionButton>
+                                                            <Link onClick={(e) => e.preventDefault()}>
+                                                                <ActionButton onClick={() => setIsDeleteModalOpen(true)}>
                                                                     <DelIcon className="h-4 w-4 text-iconColor" />
                                                                 </ActionButton>
                                                             </Link>
@@ -338,7 +342,9 @@ export default function UserManagement() {
                                         </tbody>
                                     </table>
                                 </div>
+                                <Pagination/>
                             </div>
+
                         </div>
                     )}
 
@@ -346,6 +352,11 @@ export default function UserManagement() {
                     {activeTab === 'roles' && <RolesAndPermissionsTable />}
                 </main>
             </div>
+                        <DeleteModal
+                            isOpen={isDeleteModalOpen}
+                            onClose={() => setIsDeleteModalOpen(false)}
+                            onRetry={handleDelete}
+                        />
         </div>
     );
 }

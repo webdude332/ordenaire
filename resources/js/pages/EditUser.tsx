@@ -8,6 +8,7 @@ import CustomDropdown from '@/components/ui/CustomDropdown';
 import { Input, Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
 import RadioGroup from '@/components/ui/RadioGroup';
+import DeleteModal from '@/components/DeleteModal';
 import {
     Table,
     TableBody,
@@ -41,6 +42,7 @@ const EditUser = () => {
     ];
 
     const [reportTemplate, setReportTemplate] = useState('');
+    
     const templateOptions = [
         { label: 'Sales', value: 'sales' },
         { label: 'Usage', value: 'usage' },
@@ -71,7 +73,7 @@ const EditUser = () => {
         { label: 'User Profiles', isActive: false, href: '/userprofiles' },
         { label: 'Add new User', isActive: true, href: '/adduser' },
     ];
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(true);
     const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsActive(e.target.checked);
     };
@@ -88,7 +90,7 @@ const EditUser = () => {
                     title="Edit User"
                     icon={DashBoardIcon}
                     breadcrumbs={breadcrumbs}
-                    tabs={tabs}
+                    // tabs={tabs}
                 />
                 </div>
                 {/* Page Content Container */}

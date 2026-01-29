@@ -3,25 +3,23 @@ import { useState } from 'react';
 
 // Layout & UI
 import SidePannel from '@/components/SidePannel';
-import RenderIcon from '@/components/ui/RenderIcon'; // Helper
+import RenderIcon from '@/components/ui/RenderIcon'; 
 import ArrowBack from '@/images/icons/backArrow.svg?react';
 import ArrowRight from '@/images/icons/chevron-right.svg?react';
 import AnalyticsIcon from '@/images/icons/dashBaordSvg.svg?react';
 
 // Feature Components
-import HistoryTable from '../components/HistoryTable'; // You would create this similar to UpcomingTable
+import HistoryTable from '../components/HistoryTable';
 import SchedulingSection from '../components/SchedulingSection';
 import UpcomingTable from '../components/UpcomingTable';
 
 // Modals
 import EditReportModal from '../components/EditReportModal';
 import ErrorDetailsModal from '../components/ErrorDetailsModal';
-import RunReportModal from '../components/RunReportModal';
-// import SimpleErrorModal from '../components/SimpleErrorModal';
+import RunReportModal from '../components/RunReportModal'
 import DeleteModal from '../components/DeleteModal';
 import SuccessModal from '../components/SuccessModal';
 
-// Mock Data (Ideally passed from Laravel Controller via Inertia props)
 const upcomingReports = [
     {
         title: 'Monthly Summary',
@@ -30,13 +28,13 @@ const upcomingReports = [
         nextRun: '03 Sept 2025 7:30 AM',
         status: 'Scheduled',
     },
-    {
-        title: 'Weekly Update',
-        tenant: 'Acme Corp',
-        frequency: 'Weekly',
-        nextRun: '04 Sept 2025 01:15 PM',
-        status: 'Completed',
-    },
+    // {
+    //     title: 'Weekly Update',
+    //     tenant: 'Acme Corp',
+    //     frequency: 'Weekly',
+    //     nextRun: '04 Sept 2025 01:15 PM',
+    //     status: 'Completed',
+    // },
     {
         title: 'Weekly Review',
         tenant: 'Stark Ind.',
@@ -138,18 +136,21 @@ export default function ReportsPage() {
                                 className="h-4 w-4 text-[#B5B0BA]"
                             />
                         </span>
+                        <Link href='/dashboard'>
                         <span className="font-semibold text-[#82798B]">
                             Dashboard
-                        </span>
+                        </span></Link>
                         <span className="mx-2 text-gray-300">
                             <RenderIcon
                                 icon={ArrowRight}
                                 className="h-4 w-4 text-[#B5B0BA]"
                             />
                         </span>
-                        <span className="rounded-sm bg-[#F9F7FA] px-3 py-1.5 font-semibold text-[#4F4955]">
+                        <Link href='/reports'>
+                                                <span className="rounded-sm bg-[#F9F7FA] px-3 py-1.5 font-semibold text-[#4F4955]">
                             Reports page
                         </span>
+                        </Link>
                     </nav>
                     <h1 className="mb-6 text-2xl font-bold tracking-tight text-gray-900">
                         Reports page

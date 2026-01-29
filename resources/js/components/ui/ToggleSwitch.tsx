@@ -9,16 +9,12 @@ interface ToggleSwitchProps {
 }
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ 
-  // label = "Multi-Factor Authentication", 
   statusLabel = "Active",
   checked, 
   onChange 
 }) => {
   return (
     <div>
-      {/* <label className="mb-3 block text-sm font-medium text-gray-600">
-        {label}
-      </label> */}
       <div className="flex items-center">
         <label className="relative inline-flex cursor-pointer items-center">
           <input

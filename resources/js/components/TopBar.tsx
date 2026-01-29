@@ -1,3 +1,4 @@
+
 // import React, { ReactNode, ComponentType, SVGProps } from 'react';
 // import RightArrow from '../images/icons/chevron-right.svg?react';
 
@@ -9,13 +10,20 @@
 //     href?: string;
 // }
 
+// interface BreadcrumbItem {
+//     label: string;
+//     isActive?: boolean;
+//     href?: string; // Added href for clickable breadcrumbs
+//     onClick?: () => void; // Added onClick for custom click handlers
+// }
+
 // interface TopBarProps {
 //     title: string;
 //     icon: string | ComponentType<SVGProps<SVGSVGElement>>;
-//     breadcrumbs: { label: string; isActive?: boolean }[];
+//     breadcrumbs: BreadcrumbItem[]; // Updated type
 //     tabs?: TabItem[];
 //     children?: ReactNode;
-//     iconClassName?: string; // 1. Added optional prop for custom styling
+//     iconClassName?: string;
 // }
 
 // export default function TopBar({
@@ -24,13 +32,11 @@
 //     breadcrumbs,
 //     tabs,
 //     children,
-//     iconClassName = '', // 2. Default to empty string
+//     iconClassName = '',
 // }: TopBarProps) {
 //     const isIconComponent = typeof icon !== 'string';
 //     const IconComponent = isIconComponent ? (icon as ComponentType<SVGProps<SVGSVGElement>>) : null;
 
-//     // 3. Combine default classes with your custom classes
-//     // Use tailwind classes like '!opacity-100' or '!h-8' in usage if you need to force override
 //     const finalIconClass = `h-5 w-5 object-contain opacity-60 ${iconClassName}`;
 
 //     return (
@@ -65,9 +71,24 @@
 //                                         />
 //                                     </span>
 //                                     {item.isActive ? (
-//                                         <span className="rounded-md bg-[#F9F7FA] px-2 py-1 font-semibold text-[#696170]">
+//                                         <span className="rounded-md bg-[#F9F7FA] px-2 py-1 font-semibold text-[#363239]">
 //                                             {item.label}
 //                                         </span>
+//                                     ) : item.href ? (
+//                                         <a
+//                                             href={item.href}
+//                                             onClick={item.onClick}
+//                                             className="font-medium text-[#9C94A3] hover:text-gray-700 transition-colors"
+//                                         >
+//                                             {item.label}
+//                                         </a>
+//                                     ) : item.onClick ? (
+//                                         <button
+//                                             onClick={item.onClick}
+//                                             className="font-medium text-[#9C94A3] hover:text-gray-700 transition-colors"
+//                                         >
+//                                             {item.label}
+//                                         </button>
 //                                     ) : (
 //                                         <span className="font-medium text-[#9C94A3]">
 //                                             {item.label}
@@ -123,12 +144,6 @@
 //     );
 // }
 
-
-
-
-//claude 
-
-
 import React, { ReactNode, ComponentType, SVGProps } from 'react';
 import RightArrow from '../images/icons/chevron-right.svg?react';
 
@@ -143,14 +158,14 @@ interface TabItem {
 interface BreadcrumbItem {
     label: string;
     isActive?: boolean;
-    href?: string; // Added href for clickable breadcrumbs
-    onClick?: () => void; // Added onClick for custom click handlers
+    href?: string;
+    onClick?: () => void;
 }
 
 interface TopBarProps {
     title: string;
     icon: string | ComponentType<SVGProps<SVGSVGElement>>;
-    breadcrumbs: BreadcrumbItem[]; // Updated type
+    breadcrumbs: BreadcrumbItem[];
     tabs?: TabItem[];
     children?: ReactNode;
     iconClassName?: string;
@@ -240,36 +255,36 @@ export default function TopBar({
                 </div>
             </div>
 
-            {/* BOTTOM ROW: Tabs */}
-            {tabs && tabs.length > 0 && (
-                <div className="mt-2 px-8">
-                    <div className="flex space-x-8 border-b border-gray-200">
-                        {tabs.map((tab, index) => {
-                            const activeClass = 'border-lime-500 text-[#578500]';
-                            const inactiveClass = 'border-transparent text-[#9C94A3] hover:text-gray-700';
-                            const commonClasses = 'pb-3 text-sm font-semibold border-b-2 transition-colors';
+            {/* BOTTOM ROW: Tabs OR Empty Border */}
+            {/* CHANGE: Removed the conditional check around the wrapper div */}
+            <div className="mt-2 px-8">
+                <div className="flex space-x-8 border-b border-gray-200">
+                    {/* CHANGE: Added check here to only map if tabs exist */}
+                    {tabs && tabs.length > 0 && tabs.map((tab, index) => {
+                        const activeClass = 'border-lime-500 text-[#578500]';
+                        const inactiveClass = 'border-transparent text-[#9C94A3] hover:text-gray-700';
+                        const commonClasses = 'pb-3 text-sm font-semibold border-b-2 transition-colors';
 
-                            return tab.href ? (
-                                <a
-                                    key={index}
-                                    href={tab.href}
-                                    className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
-                                >
-                                    {tab.label}
-                                </a>
-                            ) : (
-                                <button
-                                    key={index}
-                                    onClick={tab.onClick}
-                                    className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
-                                >
-                                    {tab.label}
-                                </button>
-                            );
-                        })}
-                    </div>
+                        return tab.href ? (
+                            <a
+                                key={index}
+                                href={tab.href}
+                                className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
+                            >
+                                {tab.label}
+                            </a>
+                        ) : (
+                            <button
+                                key={index}
+                                onClick={tab.onClick}
+                                className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
+                            >
+                                {tab.label}
+                            </button>
+                        );
+                    })}
                 </div>
-            )}
+            </div>
         </header>
     );
 }

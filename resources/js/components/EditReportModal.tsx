@@ -1,11 +1,13 @@
+import CalenderIconSVG from '@/images/icons/calendar.svg?react';
 import SearchIcon from '@/images/icons/searchIcon.svg?react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import EditIcon from '../images/icons/boldPencilModal.svg?react';
 import patternBg from '../images/icons/patternBg.svg';
+import CustomDateRangePicker from './CustomDateRangePicker';
 import Modal from './Modal';
 import Button from './ui/Button';
 import CustomDropdown from './ui/CustomDropdown';
-import { Input } from './ui/FormElements';
+import { Input, Label } from './ui/FormElements';
 import IconButton from './ui/IconButton';
 import RadioGroup from './ui/RadioGroup';
 
@@ -21,7 +23,9 @@ export default function EditReportModal({
     onSave,
 }: EditReportModalProps) {
     const [exportFormat, setExportFormat] = useState('excel');
+    const pickerRef = useRef<HTMLDivElement>(null);
     const [reportTemplate, setReportTemplate] = useState('');
+    const [showPicker, setShowPicker] = useState(false);
     const [frequency, setFrequency] = useState('weekly');
     const [notifications, setNotifications] = useState({
         email: true,
@@ -40,7 +44,7 @@ export default function EditReportModal({
             <div className="relative overflow-hidden rounded-xl bg-white">
                 <button
                     onClick={onClose}
-                    className="absolute top-5 right-5 z-20 text-gray-400 transition-colors hover:text-gray-600"
+                    className="absolute top-5 right-5 z-20 cursor-pointer text-gray-400 transition-colors hover:text-gray-600"
                 >
                     <svg
                         className="h-5 w-5"
@@ -106,28 +110,24 @@ export default function EditReportModal({
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                                        Select Data Range
-                                    </label>
-                                    <div className="relative">
-                                        <input
-                                            type="text"
-                                            defaultValue="Jan 10, 2025 - Jul 10, 2025"
-                                            className="h-11 w-full rounded-lg border border-gray-200 px-4 pl-10 text-sm font-medium text-gray-900 transition-all focus:border-transparent focus:ring-2 focus:ring-lime-500 focus:outline-none"
-                                        />
-                                        <svg
-                                            className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
+                                    <div className="relative" ref={pickerRef}>
+                                        <Label className="mb-2 text-sm font-medium">
+                                            Select Data Range
+                                        </Label>
+                                        <div
+                                            onClick={() => setShowPicker(true)}
                                         >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                            <Input
+                                                placeholder="Jan 10, 2025 - Jul 10, 2025"
+                                                icon={CalenderIconSVG}
+                                                iconClassName="text-[#B5B0BA]"
                                             />
-                                        </svg>
+                                        </div>
+                                        {showPicker && (
+                                            <div className="absolute z-50 mt-2 rounded-lg bg-white shadow-lg">
+                                                <CustomDateRangePicker />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

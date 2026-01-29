@@ -34,9 +34,9 @@ export default function SchedulingSection() {
         <div className="mb-8 w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
             <div className="flex items-center justify-between border-b border-gray-200 bg-[#F9F7FA] px-6 py-4">
                 <h2 className="text-lg font-semibold text-gray-900">Report Scheduling & Export</h2>
-                <button className="text-gray-400 hover:text-gray-600">
+                {/* <button className="text-gray-400 hover:text-gray-600">
                     <RenderIcon icon={DownArrow} className="h-5 w-5 text-[#B5B0BA]" />
-                </button>
+                </button> */}
             </div>
 
             <div className="grid grid-cols-1 gap-6 px-6 pt-6 md:grid-cols-2">

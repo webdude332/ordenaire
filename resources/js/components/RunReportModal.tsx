@@ -39,7 +39,7 @@ export default function RunReportModal({
                             </div>
 
                             <div className="relative z-10 pt-4">
-                                <h3 className="text-xl font-semibold text-gray-900">
+                                <h3 className="text-md font-semibold text-gray-900">
                                     Run Report Immediately
                                 </h3>
                             </div>

@@ -10,8 +10,8 @@ import StatCard from '../components/StatCard';
 import BtnLink from '../images/icons/colorLink.svg?react';
 import dashboardIcon from '../images/icons/dashBaordSvg.svg?react'; // Dashboard uses PNG
 import Calender from '../images/icons/date.svg?react';
-import trendGreen from '../images/icons/trendGreen.png';
-import trendRed from '../images/icons/trendRed.png';
+import TrendGreen from '../images/icons/trendGreen.svg?react';
+import TrendRed from '../images/icons/trendRed.svg?react';
 import DateRangeButton from '../components/DateRangeButton'
 
 export default function Dashboard() {
@@ -25,7 +25,7 @@ export default function Dashboard() {
                     title="Ordenaire Dashboard"
                     icon={dashboardIcon}
                     iconClassName="text-red-900"
-                    breadcrumbs={[{ label: 'Dashboard', isActive: true }]}
+                    breadcrumbs={[{ label: 'Dashboard', isActive: true, href: '/dashboard'}]}
                     tabs={[{ label: 'Dashboard', isActive: true, href: '/dashboard' }]}
                 >
                     {/* YOUR SPECIFIC DASHBOARD BUTTONS */}
@@ -47,28 +47,28 @@ export default function Dashboard() {
                             value="1600"
                             trend="841"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                         <StatCard
                             title="Net Revenue (MTD)"
                             value="$1,096.30"
                             trend="841"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                         <StatCard
                             title="Active Terminals"
                             value="1415"
                             trend="841"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                         <StatCard
                             title="Active WhatsApp Users"
                             value="778"
                             trend="841"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                     </div>
 
@@ -79,28 +79,28 @@ export default function Dashboard() {
                             value="32"
                             trend="3"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                         <StatCard
                             title="Suspended Businesses"
                             value="4"
                             trend="234"
                             trendType="negative"
-                            trendIcon={trendRed}
+                            trendIcon={TrendRed}
                         />
                         <StatCard
                             title="Downgrades"
                             value="3"
                             trend="1"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                         <StatCard
                             title="Avg. Uptime"
                             value="99.96%"
                             trend="841"
                             trendType="positive"
-                            trendIcon={trendGreen}
+                            trendIcon={TrendGreen}
                         />
                     </div>
 

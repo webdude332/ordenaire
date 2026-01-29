@@ -113,9 +113,9 @@ export default function ErrorDetailsModal({
                                 (node_modules/nodemailer/lib...)
                             </pre>
                         </div>
-                        <button
+                        <button 
                             onClick={copyToClipboard}
-                            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-800"
+                            className="cursor-pointer mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-800"
                         >
                             <Copy className='w-4 h-4'/>
                             {copied ? 'Copied!' : 'Copy Log to Clipboard'}

@@ -30,7 +30,7 @@ export default function DateRangeButton() {
         onClick={() => setIsOpen(!isOpen)}
         type="button"
         className={`
-          flex items-center gap-2 rounded-lg border bg-white px-4 py-2 text-sm font-medium shadow-sm transition-all cursor-pointer
+          flex items-center gap-2 rounded-lg border bg-white px-4 py-2.5 text-sm font-medium shadow-sm transition-all cursor-pointer
           ${isOpen ? 'border-[#79B800] ring-1 ring-[#79B800]' : 'border-gray-300 hover:bg-gray-50'}
           text-gray-700
         `}

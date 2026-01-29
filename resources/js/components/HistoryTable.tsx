@@ -6,6 +6,13 @@ import RenderIcon from '@/components/ui/RenderIcon'
 // Icons
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import DownloadBtn from '@/images/icons/downloadIcon.svg?react';
+import Button from './ui/Button';
+import CustomDateRangePicker from './CustomDateRangePicker';
+import DateRangeButton from './DateRangeButton';
+import { Input } from './ui/FormElements';
+import { Search } from 'lucide-react';
+import Pagination from './ui/Pagination';
+
 
 interface HistoryReport {
     title: string;
@@ -23,8 +30,19 @@ interface Props {
 export default function HistoryTable({ data, onErrorDetails }: Props) {
     return (
         <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-            <div className="border-b border-gray-200 p-6">
+            <div className="border-b border-gray-200 p-6 flex justify-between items-center">
                 <h2 className="text-lg font-bold text-gray-900">History</h2>
+                <div className='flex gap-4'>
+                    <Input
+                    icon={Search}
+                    placeholder='Search by Tenant Name'
+                    className=''
+                    />
+                    {/**error */}
+                    <DateRangeButton> 
+                        <CustomDateRangePicker />
+                    </DateRangeButton>
+                </div>
             </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
@@ -69,6 +87,7 @@ export default function HistoryTable({ data, onErrorDetails }: Props) {
                     </tbody>
                 </table>
             </div>
+            <Pagination />
         </div>
     );
 }

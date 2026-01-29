@@ -43,7 +43,7 @@ const CustomDropdown = ({
                 type="button" 
                 disabled={disabled}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition-all outline-none shadow-xs ${
+                className={`cursor-pointer flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-sm transition-all outline-none shadow-xs ${
                     disabled
                         ? 'cursor-not-allowed border-gray-300 bg-gray-50 text-gray-400'
                         : isOpen
@@ -78,7 +78,7 @@ const CustomDropdown = ({
                                         onChange(option.value);
                                         setIsOpen(false);
                                     }}
-                                    className={`flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm transition-colors ${
+                                    className={`cursor-pointer flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm transition-colors ${
                                         value === option.value
                                             ? 'bg-[#F8FFEB] font-medium text-[#578500]'
                                             : 'text-gray-700 hover:bg-[#F9F7FA] hover:text-gray-900'

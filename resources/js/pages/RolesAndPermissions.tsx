@@ -111,7 +111,7 @@ export default function RolesAndPermissionsTable() {
                         Role & Permissions
                     </h2>
                     <Link href="/users/addrole">
-                                        <Button className="flex items-center justify-center gap-2 rounded-lg bg-[#8CDD05] px-3 py-2 text-white hover:bg-[#7bc204]">
+                    <Button className="flex items-center justify-center gap-2 rounded-lg bg-[#8CDD05] px-3 py-2 text-white hover:bg-[#7bc204]">
                         <img src={addUser} alt="" className="h-4 w-4" />
                         Add Role
                     </Button>

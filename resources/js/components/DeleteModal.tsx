@@ -6,6 +6,7 @@ import patternBg from '../images/icons/patternBg.svg'
 import RadioGroup from './ui/RadioGroup';
 import IconButton from './ui/IconButton';
 import Button from './ui/Button';
+import { Checkbox, Select } from './ui/FormElements';
 
 interface SimpleErrorModalProps {
     isOpen: boolean;
@@ -43,17 +44,20 @@ export default function DeleteModal({ isOpen, onClose, onRetry }: SimpleErrorMod
                                 <DelIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                             </div>
                         </div>
+                                                    <div className='relative z-10 text-md font-medium'>
+                                <h3>Delete record</h3>
+                            </div>
                     </div>
                 </div>
 
                 {/* Content (Z-10) */}
-                <div className="relative z-10">
-                    <div className="text-center mb-8">
+                <div className="relative z-10 border border-borderColor shadow-xs rounded-xl p-8 z-10 bg-white">
+                    <div className="text-center mb-20">
                         <h3 className="text-4xl font-bold text-gray-900 mb-3">Are you sure?</h3>
                         <p className="text-lg text-gray-600 font-semibold">You will no be able to revover the deleted record!</p>
                     </div>
-                    <div>
-                        <RadioGroup className='pl-6 mt-12 mb-12' label="" name="frequency" options={['I confirm to proceed']} defaultValue="I confirm to proceed" />
+                    <div className='pl-6 mt-12 border rounded-xl border-borderColor py-4'>
+                        <Checkbox  label="I confirm to proceed" />
                     </div>
                 </div>
             </div>
@@ -64,7 +68,7 @@ export default function DeleteModal({ isOpen, onClose, onRetry }: SimpleErrorMod
                         </IconButton>
                     </div>
                     <div className='w-1/2'>
-                        <Button className='w-full bg-[#F04438]' onClick={onRetry}>
+                        <Button className='w-full bg-[#F04438] hover:bg-[#FF0000] text-white' onClick={onRetry}>
                             Yes, Delete it!
                         </Button>
                     </div>

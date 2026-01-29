@@ -54,7 +54,7 @@ export default function Modal({ isOpen, onClose, children, maxWidth = 'md' }: Mo
                                 {/* Close Button */}
                                 <button
                                     onClick={onClose}
-                                    className="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-500 p-1 rounded-md hover:bg-gray-50 transition-colors focus:outline-none"
+                                    className="cursor-pointer absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-500 p-1 rounded-md hover:bg-gray-50 transition-colors focus:outline-none"
                                 >
                                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

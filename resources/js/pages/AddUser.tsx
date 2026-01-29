@@ -1,6 +1,6 @@
+import DeleteModal from '@/components/DeleteModal';
 import SidePannel from '@/components/SidePannel';
-import { useState } from 'react';
-// import NewTopBar from '@/components/NewTopBar';
+import SingleDatePicker from '@/components/SingleDateRangePicker';
 import TopBar from '@/components/TopBar';
 import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
@@ -20,13 +20,86 @@ import {
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import BackArrow from '@/images/icons/backArrow.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
+import Profile from '@/images/icons/dp.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
-import Profile from '@/images/icons/profile.svg?react';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
+import UploadDocumentModal from '@/components/UploadDoc';
 
 const AddUser = () => {
+    // --- 1. Basic UI State ---
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
+        'profiles',
+    );
+    const [isActive, setIsActive] = useState(true);
+
+    // --- 2. Form Field States ---
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [reportTemplate, setReportTemplate] = useState('');
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+
+    // --- 3. Validation/Error State ---
+    const [errors, setErrors] = useState<{
+        fullName?: string;
+        email?: string;
+        phoneNumber?: string;
+    }>({});
+
+    // --- 4. Live Validation Handlers ---
+    const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        setFullName(val);
+        if (val.length > 0 && val.trim().length < 3) {
+            setErrors((prev) => ({
+                ...prev,
+                fullName: 'Full name must be at least 3 characters.',
+            }));
+        } else {
+            setErrors((prev) => ({ ...prev, fullName: undefined }));
+        }
+    };
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        setEmail(val);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (val.length > 0 && !emailRegex.test(val)) {
+            setErrors((prev) => ({
+                ...prev,
+                email: 'Please enter a valid email address.',
+            }));
+        } else {
+            setErrors((prev) => ({ ...prev, email: undefined }));
+        }
+    };
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+
+        // 1. Only allow numeric input AND 2. Limit to exactly 8 digits
+        if ((val === '' || /^[0-9]+$/.test(val)) && val.length <= 8) {
+            setPhoneNumber(val);
+
+            // Validation message logic
+            if (val.length > 0 && val.length < 8) {
+                setErrors((prev) => ({
+                    ...prev,
+                    phoneNumber: 'Phone number must be at least 8 digits.',
+                }));
+            } else {
+                setErrors((prev) => ({
+                    ...prev,
+                    phoneNumber: undefined,
+                }));
+            }
+        }
+    };
+
+    // --- 5. Data & Constants ---
     const documents = [
         {
             fileName: 'Contract_2025.pdf',
@@ -40,28 +113,12 @@ const AddUser = () => {
         },
     ];
 
-    const [reportTemplate, setReportTemplate] = useState('');
     const templateOptions = [
         { label: 'Sales', value: 'sales' },
         { label: 'Usage', value: 'usage' },
         { label: 'Financial', value: 'financial' },
     ];
-    // State to manage the active tab in the TopBar
-    const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
-        'profiles',
-    );
-    const tabs = [
-        {
-            label: 'User Profiles',
-            isActive: true,
-            href: '/user-profiles',
-        },
-        {
-            label: 'Roles & Permissions',
-            isActive: false, // This tab is active in the design
-            href: '/roles-permissions',
-        },
-    ];
+
     const breadcrumbs = [
         {
             label: 'Internal User Management',
@@ -71,45 +128,39 @@ const AddUser = () => {
         { label: 'User Profiles', isActive: false, href: '/userprofiles' },
         { label: 'Add new User', isActive: true, href: '/adduser' },
     ];
-    const [isActive, setIsActive] = useState(false);
-    const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIsActive(e.target.checked);
-    };
+
+    const handleDelete = () => setIsDeleteModalOpen(false);
+
     return (
         <div className="flex min-h-screen">
-            {/* 1. Sidebar */}
             <SidePannel />
 
-            {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
-                {/* Top Navigation with Dynamic Add User State */}
-
-                <div className='sticky top-0 z-10 bg-white'>
-                <TopBar
-                    title="Add New User"
-                    icon={DashBoardIcon}
-                    breadcrumbs={breadcrumbs}
-                    tabs={tabs}
-                />
+                <div className="sticky top-0 z-10 bg-white">
+                    <TopBar
+                        title="Add New User"
+                        icon={DashBoardIcon}
+                        breadcrumbs={breadcrumbs}
+                    />
                 </div>
-                {/* Page Content Container */}
+
                 <div className="flex-1 overflow-y-auto px-8 py-6">
-                    {/* "Back" Button */}
                     <div className="mb-8">
                         <Link
                             href="/usermanagement"
-                            className="flex w-[210px] items-center gap-3 rounded-lg border border-[#CFCBD2] bg-white px-4 py-2 text-sm font-medium text-gray-700"
+                            className="hover:bg-gray-50 flex w-[210px] items-center gap-3 rounded-lg border border-[#CFCBD2] bg-white px-4 py-2 text-sm font-medium text-gray-700"
                         >
                             <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
                             Back to User Profiles
                         </Link>
                     </div>
 
-                    {/* --- FORM SECTION --- */}
-                    <form className="space-y-8 pb-12">
+                    <form
+                        className="space-y-8 pb-12"
+                        onSubmit={(e) => e.preventDefault()}
+                    >
                         {/* SECTION 1: Basic Information */}
                         <div className="grid grid-cols-1 gap-8 border-t border-[#E8E6EA] py-6 lg:grid-cols-3">
-                            {/* Left Column: Title & Description */}
                             <div className="lg:col-span-1">
                                 <h3 className="text-base font-bold text-gray-900">
                                     Basic information
@@ -119,13 +170,8 @@ const AddUser = () => {
                                 </p>
                             </div>
 
-                            {/* Right Column: Form Card */}
                             <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm lg:col-span-2">
-                                {/* Photo Upload */}
                                 <div className="mb-6">
-                                    {/* <label className="text-md mb-2 block font-semibold text-[#696170]">
-                                        User photo
-                                    </label> */}
                                     <Label className="text-md font-semibold">
                                         User Photo
                                     </Label>
@@ -134,41 +180,44 @@ const AddUser = () => {
                                     </p>
                                     <div className="flex items-center gap-4">
                                         <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100">
-                                            {/* Placeholder Image */}
-                                            <Profile className="h-16 w-16" />
+                                            <Profile className="h-8 w-8" />
                                         </div>
-                                        <IconButton>Upload Photo</IconButton>
+                                        <IconButton onClick={() => setIsUploadModalOpen(true)}>Upload Photo</IconButton>
                                     </div>
                                 </div>
 
-                                {/* Inputs Grid */}
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    {/* Full Name */}
                                     <div>
                                         <Label className="mb-2 text-sm font-medium">
-                                            Full Name
+                                            Full Name{' '}
                                             <span className="text-primary">
                                                 *
                                             </span>
                                         </Label>
-                                        <Input placeholder="eg., Noah Pierre" />
+                                        <Input
+                                            placeholder="eg., Noah Pierre"
+                                            value={fullName}
+                                            onChange={handleFullNameChange}
+                                            error={errors.fullName}
+                                        />
                                     </div>
 
-                                    {/* Email */}
                                     <div>
                                         <Label className="mb-2 text-sm font-medium">
                                             Email Address{' '}
                                             <span className="text-primary">
                                                 *
-                                            </span>{' '}
+                                            </span>
                                         </Label>
                                         <Input
                                             placeholder="eg., Noah@ordermark.com"
                                             icon={MailIcon}
+                                            value={email}
+                                            onChange={handleEmailChange}
+                                            error={errors.email}
                                         />
                                     </div>
 
-                                    {/* Phone Number */}
                                     <div>
                                         <Label className="mb-2 text-sm font-medium">
                                             Phone Number{' '}
@@ -176,7 +225,13 @@ const AddUser = () => {
                                                 *
                                             </span>
                                         </Label>
-                                        <div className="flex rounded-lg border border-gray-300 shadow-xs focus-within:border-[#84cc16] focus-within:ring-1 focus-within:ring-[#84cc16]">
+                                        <div
+                                            className={`flex rounded-lg border shadow-xs transition-colors focus-within:ring-1 ${
+                                                errors.phoneNumber
+                                                    ? 'border-red-500 focus-within:ring-red-500'
+                                                    : 'border-gray-300 focus-within:border-[#84cc16] focus-within:ring-[#84cc16]'
+                                            }`}
+                                        >
                                             <div className="relative">
                                                 <select className="h-full appearance-none rounded-l-lg border-0 bg-white py-2.5 pr-7 pl-3 text-sm text-gray-900 outline-none focus:ring-0">
                                                     <option>+91</option>
@@ -201,14 +256,19 @@ const AddUser = () => {
                                             <div className="h-6 w-px self-center bg-gray-300"></div>
                                             <Input
                                                 placeholder="1825462385"
+                                                value={phoneNumber}
+                                                onChange={handlePhoneChange}
                                                 className="!rounded-l-none !rounded-r-lg !border-0 !shadow-none focus:!ring-0"
                                             />
                                         </div>
+                                        {errors.phoneNumber && (
+                                            <p className="mt-1.5 text-xs font-medium text-red-600">
+                                                {errors.phoneNumber}
+                                            </p>
+                                        )}
                                     </div>
 
-                                    {/* Primary Role */}
                                     <div>
-                                        {' '}
                                         <CustomDropdown
                                             label="Primary Role"
                                             options={templateOptions}
@@ -220,7 +280,6 @@ const AddUser = () => {
                                     </div>
                                 </div>
 
-                                {/* Status */}
                                 <div className="mt-6">
                                     <RadioGroup
                                         label="Status"
@@ -250,49 +309,50 @@ const AddUser = () => {
                                     <h4 className="text-md font-semibold text-gray-900">
                                         Documents
                                     </h4>
-                                    <IconButton>
+                                    <IconButton onClick={() => setIsUploadModalOpen(true)}>
                                         <PlusIcon className="h-4 w-4 text-[#B5B0BA]" />
                                         Add Document
                                     </IconButton>
                                 </div>
 
-                                {/* Documents Table */}
-                                <div className="">
-                                    <TableContainer>
-                                        <Table>
-                                            <TableHeader>
-                                                <TableHead>File Name</TableHead>
-                                                <TableHead>
-                                                    Document Type
-                                                </TableHead>
-                                                <TableHead>Expiry</TableHead>
-                                                <TableHead className="text-right">
-                                                    Action
-                                                </TableHead>
-                                            </TableHeader>
-                                            <TableBody>
-                                                {documents.map((doc, index) => (
-                                                    <TableRow key={index}>
-                                                        <TableCell className="font-medium text-gray-900">
-                                                            {doc.fileName}
-                                                        </TableCell>
-                                                        <TableCell className="text-gray-600">
-                                                            {doc.documentType}
-                                                        </TableCell>
-                                                        <TableCell className="text-gray-600">
-                                                            {doc.expiry}
-                                                        </TableCell>
-                                                        <TableCell className="flex items-center justify-center">
-                                                            <ActionButton className="ml-auto">
-                                                                <DelIcon className="h-4 w-4 text-[#B5B0BA]" />
-                                                            </ActionButton>
-                                                        </TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </div>
+                                <TableContainer>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableHead>File Name</TableHead>
+                                            <TableHead>Document Type</TableHead>
+                                            <TableHead>Expiry</TableHead>
+                                            <TableHead className="text-right">
+                                                Action
+                                            </TableHead>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {documents.map((doc, index) => (
+                                                <TableRow key={index}>
+                                                    <TableCell className="font-medium text-gray-900">
+                                                        {doc.fileName}
+                                                    </TableCell>
+                                                    <TableCell className="text-gray-600">
+                                                        {doc.documentType}
+                                                    </TableCell>
+                                                    <TableCell className="text-gray-600">
+                                                        {doc.expiry}
+                                                    </TableCell>
+                                                    <TableCell className="flex justify-end">
+                                                        <ActionButton
+                                                            onClick={() =>
+                                                                setIsDeleteModalOpen(
+                                                                    true,
+                                                                )
+                                                            }
+                                                        >
+                                                            <DelIcon className="h-4 w-4 text-iconColor" />
+                                                        </ActionButton>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
                             </div>
                         </div>
 
@@ -308,47 +368,21 @@ const AddUser = () => {
 
                             <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm lg:col-span-2">
                                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                                    {/* Account Expiry */}
-                                    <div className="">
-                                        {/* <label className="mb-1 block text-sm font-medium text-gray-700">
-                                            Account Expiry
-                                        </label> */}
+                                    <div>
                                         <Label className="mb-1 block text-sm font-medium">
                                             Account Expiry
                                         </Label>
-                                        <div className="relative">
-                                            <input
-                                                type="text"
-                                                placeholder="DD MMM YYYY"
-                                                defaultValue="22 Aug 2025"
-                                                className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-3 text-gray-400 shadow-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
-                                            />
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                                                <svg
-                                                    className="h-5 w-5"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                                    />
-                                                </svg>
-                                            </div>
-                                        </div>
+                                        <SingleDatePicker />
                                     </div>
-
-                                    {/* MFA Toggle */}
                                     <div>
                                         <Label className="mb-3 block text-sm font-medium">
                                             Multi-Factor Authentication
                                         </Label>
                                         <ToggleSwitch
                                             checked={isActive}
-                                            onChange={handleToggleChange}
+                                            onChange={(e) =>
+                                                setIsActive(e.target.checked)
+                                            }
                                             statusLabel={
                                                 isActive ? 'Active' : 'Inactive'
                                             }
@@ -359,13 +393,26 @@ const AddUser = () => {
                         </div>
 
                         {/* Footer Buttons */}
-                        <div className="flex items-center justify-end gap-4 pt-4 border-t border-borderColor">
+                        <div className="flex items-center justify-end gap-4 border-t border-borderColor pt-4">
                             <IconButton>Cancel</IconButton>
-                            <Button>Send invite & Add User</Button>
+                            <Button type="submit">
+                                Send invite & Add User
+                            </Button>
                         </div>
                     </form>
                 </div>
             </main>
+
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={handleDelete}
+            />
+                        <UploadDocumentModal
+                            isOpen={isUploadModalOpen}
+                            onClose={() => setIsUploadModalOpen(false)}
+                            onUpload={() => setIsUploadModalOpen(false)}
+                        />
         </div>
     );
 };
