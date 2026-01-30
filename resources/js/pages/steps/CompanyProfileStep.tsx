@@ -28,6 +28,16 @@ const CompanyProfileStep = ({
     canNext = true,
     isEditMode = false,
 }: StepProps) => {
+    const handleToggleChangee = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.checked;
+        setIsActive(val); // Updates local UI state for the label ('Yes'/'No')
+        update('isBranch', val); // Updates master formData.isBranch
+
+        // Optional: Clear the parent business value if it's no longer a branch
+        if (!val) {
+            update('parentBusiness', '');
+        }
+    };
     const [isPhoneOpen, setIsPhoneOpen] = useState(false);
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
     const [isActive, setIsActive] = useState(true);
@@ -127,7 +137,7 @@ const CompanyProfileStep = ({
                             />
                         </div>
                         <div className="grid grid-cols-2 items-start gap-6">
-                            <div className="space-y-2">
+                            {/* <div className="space-y-2">
                                 <Label className="text-sm font-medium text-gray-700">
                                     Is this a Branch?
                                     <span className="text-primary">*</span>
@@ -139,9 +149,25 @@ const CompanyProfileStep = ({
                                         statusLabel={isActive ? 'Yes' : 'No'}
                                     />
                                 </div>
+                            </div> */}
+                            <div className="space-y-2">
+                                <Label className="text-sm font-medium text-gray-700">
+                                    Is this a Branch?
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <div className="flex items-center gap-3">
+                                    <ToggleSwitch
+                                        checked={data.isBranch} // Use data.isBranch directly for better reliability
+                                        onChange={handleToggleChangee}
+                                        statusLabel={
+                                            data.isBranch ? 'Yes' : 'No'
+                                        }
+                                    />
+                                </div>
                             </div>
-                            {/* <CustomDropdown
+                            {/* <SearchableDropdown
                                 label="Parent Business"
+                                required
                                 disabled={!data.isBranch}
                                 placeholder="Search by Business Name or ID..."
                                 value={data.parentBusiness}
@@ -152,7 +178,8 @@ const CompanyProfileStep = ({
                             /> */}
                             <SearchableDropdown
                                 label="Parent Business"
-                                required
+                                required={data.isBranch}
+                                // This logic ensures it is only enabled when toggle is "Yes"
                                 disabled={!data.isBranch}
                                 placeholder="Search by Business Name or ID..."
                                 value={data.parentBusiness}
@@ -160,6 +187,8 @@ const CompanyProfileStep = ({
                                     update('parentBusiness', val)
                                 }
                                 options={parentOptions}
+                                // Pass the disabled style logic we added to Input.tsx if needed
+                                // className={!data.isBranch ? 'bg-[#F9F7FA] cursor-not-allowed' : 'bg-white'}
                             />
                         </div>
                     </div>

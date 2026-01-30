@@ -1,24 +1,22 @@
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Dashboard from '../images/icons/dashBaordSvg.svg';
-import { router } from '@inertiajs/react';
 
 // Import Your Existing Steps
+import Button from '@/components/ui/Button';
+import IconButton from '@/components/ui/IconButton';
+import ActivityLogStep from './steps/ActivityLogStep';
 import CompanyProfileStep from './steps/CompanyProfileStep';
 import OperationalConfigStep from './steps/OperationalConfigStep';
 import SubscriptionStep from './steps/SubscriptionComplianceStep';
 import TeamAccessStep from './steps/TeamAccessStep';
-import ActivityLogStep from './steps/ActivityLogStep';
-import IconButton from '@/components/ui/IconButton';
-import Button from '@/components/ui/Button';
 
 const EditBusiness = () => {
     const [activeTab, setActiveTab] = useState(1);
-    
-    // --- 1. Initial Data (Simulating DB Data) ---
+
+    // --- Initial Data ---
     const initialDbData = {
-        // Step 1
         legalName: 'Tea Time Jumeirah',
         businessId: 'BIZ-2049',
         businessType: 'Restaurant',
@@ -32,7 +30,6 @@ const EditBusiness = () => {
         phoneCode: '+965',
         phone: '965444888222',
         email: 'omar@teatime.com',
-        // Step 2
         dineIn: true,
         takeaway: true,
         delivery: false,
@@ -45,7 +42,6 @@ const EditBusiness = () => {
         websiteUrl: '',
         posCount: 3,
         kioskCount: 0,
-        // Step 3
         subscriptionTier: 'Enterprise',
         billingFrequency: 'Monthly',
         startDate: '2025-08-29',
@@ -54,7 +50,6 @@ const EditBusiness = () => {
         autoRenew: 'Enabled',
         discountType: 'Percentage',
         discountValue: '',
-        // Step 4
         fullName: '',
         role: 'Select Role',
     };
@@ -62,9 +57,9 @@ const EditBusiness = () => {
     const [formData, setFormData] = useState(initialDbData);
     const [isDirty, setIsDirty] = useState(false);
 
-    // Check for unsaved changes
     useEffect(() => {
-        const isChanged = JSON.stringify(formData) !== JSON.stringify(initialDbData);
+        const isChanged =
+            JSON.stringify(formData) !== JSON.stringify(initialDbData);
         setIsDirty(isChanged);
     }, [formData]);
 
@@ -74,9 +69,7 @@ const EditBusiness = () => {
 
     const handleSave = () => {
         if (!isDirty) return;
-        console.log("Saving...", formData);
-        alert("Changes Saved!");
-        setFormData(formData); // Reset state
+        alert('Changes Saved!');
         setIsDirty(false);
     };
 
@@ -85,13 +78,29 @@ const EditBusiness = () => {
         setIsDirty(false);
     };
 
+    // --- NAVIGATION DATA FROM IMAGE ---
     const breadcrumbs = [
-        { label: 'Business Management', isActive: false, href: '/business-management' },
+        {
+            label: 'Business Management',
+            isActive: false,
+            href: '/business-management',
+        },
+        { label: '...', isActive: false },
         { label: 'Business Overview', isActive: false, href: '#' },
         { label: 'Edit', isActive: true },
     ];
 
-    const tabs = [
+    const topBarTabs = [
+        { label: 'Business Profiles', isActive: true, onClick: () => {} },
+        {
+            label: 'Multi-Tenancy & Franchise',
+            isActive: false,
+            onClick: () => {},
+        },
+        { label: 'Feature Access & Beta', isActive: false, onClick: () => {} },
+    ];
+
+    const stepTabs = [
         { id: 1, label: 'Company Profile' },
         { id: 2, label: 'Operational Config' },
         { id: 3, label: 'Subscription & Compliance' },
@@ -102,18 +111,20 @@ const EditBusiness = () => {
     return (
         <div className="flex min-h-screen bg-white">
             <SidePannel />
-            <main className="flex flex-1 flex-col relative">
-                <TopBar title="Business Management" icon={Dashboard} breadcrumbs={breadcrumbs} tabs={[]} />
+            <main className="relative flex flex-1 flex-col">
+                {/* Corrected TopBar per image_7f0598.png */}
+                <TopBar
+                    title="Edit Businesses Details"
+                    icon={Dashboard}
+                    breadcrumbs={breadcrumbs}
+                    tabs={topBarTabs}
+                />
 
-                {/* Main Content Area (with padding for footer) */}
-                <div className="flex-1 px-12 pt-12"> 
-                    
-                    {/* <h2 className="mb-6 text-xl font-semibold text-gray-900">Edit Businesses Details</h2> */}
-
-                    {/* --- TABS (Pill Style as requested) --- */}
+                <div className="flex-1 px-12 pt-12">
+                    {/* --- STEP NAVIGATION (Center Pill Style) --- */}
                     <div className="mb-8 flex justify-center">
                         <div className="inline-flex rounded-lg border border-gray-100 bg-gray-50 p-1">
-                            {tabs.map((tab) => {
+                            {stepTabs.map((tab) => {
                                 const isActive = activeTab === tab.id;
                                 return (
                                     <button
@@ -121,8 +132,8 @@ const EditBusiness = () => {
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                             isActive
-                                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' // Active: White & Shadow
-                                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100' // Inactive: Gray
+                                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200'
+                                                : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
                                         }`}
                                     >
                                         {tab.label}
@@ -133,44 +144,65 @@ const EditBusiness = () => {
                     </div>
 
                     {/* --- STEP RENDERER --- */}
-                    <div>
-                        {activeTab === 1 && <CompanyProfileStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
-                        {activeTab === 2 && <OperationalConfigStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
-                        {activeTab === 3 && <SubscriptionStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
-                        {activeTab === 4 && <TeamAccessStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
-                        {activeTab === 5 && <ActivityLogStep data={formData} update={updateFormData} onNext={()=>{}} onBack={()=>{}} isEditMode={true} />}
+                    <div className="pb-32">
+                        {activeTab === 1 && (
+                            <CompanyProfileStep
+                                data={formData}
+                                update={updateFormData}
+                                onNext={() => {}}
+                                onBack={() => {}}
+                                isEditMode={true}
+                                canNext={true}
+                            />
+                        )}
+                        {activeTab === 2 && (
+                            <OperationalConfigStep
+                                data={formData}
+                                update={updateFormData}
+                                onNext={() => {}}
+                                onBack={() => {}}
+                                isEditMode={true}
+                                canNext={true}
+                            />
+                        )}
+                        {activeTab === 3 && (
+                            <SubscriptionStep
+                                data={formData}
+                                update={updateFormData}
+                                onNext={() => {}}
+                                onBack={() => {}}
+                                isEditMode={true}
+                                canNext={true}
+                            />
+                        )}
+                        {activeTab === 4 && (
+                            <TeamAccessStep
+                                data={formData}
+                                update={updateFormData}
+                                onNext={() => {}}
+                                onBack={() => {}}
+                                isEditMode={true}
+                                canNext={true}
+                            />
+                        )}
+                        {activeTab === 5 && (
+                            <ActivityLogStep
+                                data={formData}
+                                update={updateFormData}
+                                onNext={() => {}}
+                                onBack={() => {}}
+                                isEditMode={true}
+                            />
+                        )}
                     </div>
                 </div>
 
                 {/* --- FIXED STICKY FOOTER --- */}
-                {/* z-50 ensures it stays on top. left-[280px] accounts for Sidebar width (approx) */}
-                <div className="right-0 left-0 sm:ml-[16rem] z-50 bg-white px-12 py-4">
-                    <div className="flex items-center justify-end gap-3 max-w-[1400px] mx-auto">
-                        {/* <button 
-                            onClick={handleCancel}
-                            disabled={!isDirty}
-                            className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
-                                isDirty 
-                                ? 'border-gray-300 text-gray-700 hover:bg-gray-50' 
-                                : 'border-gray-200 text-gray-400 cursor-not-allowed bg-gray-50'
-                            }`}
-                        >
-                            Cancel
-                        </button> */}
+                <div className="fixed right-0 bottom-0 left-0 z-50 border-t border-gray-100 bg-white px-12 py-4 sm:ml-[16rem]">
+                    <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-3">
                         <IconButton onClick={handleCancel} disabled={!isDirty}>
                             Cancel
                         </IconButton>
-                        {/* <button 
-                            onClick={handleSave} 
-                            disabled={!isDirty} 
-                            className={`rounded-lg px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors ${
-                                isDirty 
-                                ? 'bg-[#8CDD05] hover:bg-[#7AB621]' // Active Green
-                                : 'bg-[#E0E0E0] cursor-not-allowed text-gray-400' // Disabled Gray
-                            }`}
-                        >
-                            Save Changes
-                        </button> */}
                         <Button onClick={handleSave} disabled={!isDirty}>
                             Save Changes
                         </Button>
