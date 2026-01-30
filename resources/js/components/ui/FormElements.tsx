@@ -198,10 +198,100 @@ export const Label = ({ children, className = '' }: LabelProps) => (
 // disabled input. 
 
 
+// export const Input = ({ 
+//     placeholder, 
+//     value,
+//     onChange,
+//     disabled,
+//     icon, 
+//     iconClassName = 'text-gray-400',
+//     className = '',
+//     as = 'input',
+//     rows = 4,
+//     error,
+    
+// }: { 
+//     placeholder: string; 
+//     icon?: any; 
+//     iconClassName?: string;
+//     className?: string;
+//     value?: string;
+//     disabled?: boolean;
+//     as?: 'input' | 'textarea';
+//     rows?: number;
+//     error?: string;
+//     onChange?: (e: React.ChangeEvent<any>) => void; 
+// }) => {
+//     // Red border when error exists, standard green/gray otherwise
+//     const stateStyles = error 
+//         ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+//         : 'border-gray-300 focus:border-[#84cc16] focus:ring-[#84cc16]';
+
+//     // NEW: Handle background color and cursor for disabled state
+//     const backgroundStyles = disabled 
+//         ? 'bg-[#F9F7FA] cursor-not-allowed text-gray-500' 
+//         : 'bg-white text-gray-900';
+
+//     // Pr-10 ensures text doesn't overlap the right-side error icon
+//     const sharedClassName = `w-full rounded-lg border py-2.5 pr-10 text-sm placeholder-gray-400 shadow-xs focus:ring-1 focus:outline-none transition-colors ${
+//         icon ? 'pl-10' : 'pl-3'
+//     } ${stateStyles} ${backgroundStyles} ${className}`;
+
+//     return (
+//         <div className="w-full">
+//             <div className="relative">
+//                 {/* Left Icon (e.g., Mail) */}
+//                 {icon && (
+//                     <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+//                         <RenderIcon icon={icon} className={`h-5 w-5 ${iconClassName}`} />
+//                     </span>
+//                 )}
+
+//                 {as === 'textarea' ? (
+//                     <textarea 
+//                         placeholder={placeholder} 
+//                         value={value} 
+//                         disabled={disabled} 
+//                         onChange={onChange} 
+//                         rows={rows} 
+//                         className={sharedClassName} 
+//                     />
+//                 ) : (
+//                     <input 
+//                         type="text" 
+//                         placeholder={placeholder} 
+//                         value={value} 
+//                         disabled={disabled} 
+//                         onChange={onChange} 
+//                         className={sharedClassName} 
+//                     />
+//                 )}
+
+//                 {/* Right Error Icon - Only shows if error exists */}
+//                 {error && (
+//                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+//                         <RenderIcon icon={ErrorIcon} className="h-5 w-5 text-red-500" />
+//                     </span>
+//                 )}
+//             </div>
+            
+//             {/* Error Message Text */}
+//             {error && (
+//                 <p className="mt-1.5 text-xs text-red-600 font-medium">
+//                     {error}
+//                 </p>
+//             )}
+//         </div>
+//     );
+// };
+
+// claude. 
+
 export const Input = ({ 
     placeholder, 
     value,
     onChange,
+    onBlur, // NEW: Added onBlur support
     disabled,
     icon, 
     iconClassName = 'text-gray-400',
@@ -219,14 +309,15 @@ export const Input = ({
     as?: 'input' | 'textarea';
     rows?: number;
     error?: string;
-    onChange?: (e: React.ChangeEvent<any>) => void; 
+    onChange?: (e: React.ChangeEvent<any>) => void;
+    onBlur?: (e: React.FocusEvent<any>) => void; // NEW: Added onBlur prop type
 }) => {
     // Red border when error exists, standard green/gray otherwise
     const stateStyles = error 
         ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
         : 'border-gray-300 focus:border-[#84cc16] focus:ring-[#84cc16]';
 
-    // NEW: Handle background color and cursor for disabled state
+    // Handle background color and cursor for disabled state
     const backgroundStyles = disabled 
         ? 'bg-[#F9F7FA] cursor-not-allowed text-gray-500' 
         : 'bg-white text-gray-900';
@@ -251,7 +342,8 @@ export const Input = ({
                         placeholder={placeholder} 
                         value={value} 
                         disabled={disabled} 
-                        onChange={onChange} 
+                        onChange={onChange}
+                        onBlur={onBlur} // NEW: Added onBlur
                         rows={rows} 
                         className={sharedClassName} 
                     />
@@ -261,7 +353,8 @@ export const Input = ({
                         placeholder={placeholder} 
                         value={value} 
                         disabled={disabled} 
-                        onChange={onChange} 
+                        onChange={onChange}
+                        onBlur={onBlur} // NEW: Added onBlur
                         className={sharedClassName} 
                     />
                 )}
@@ -283,6 +376,7 @@ export const Input = ({
         </div>
     );
 };
+
 
 export const Select = ({ placeholder, options, icon = DownArrow }: { placeholder: string; options?: string[]; icon?: any }) => (
     <div className="relative">
