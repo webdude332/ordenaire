@@ -1,19 +1,17 @@
 import AddDocModal from '@/components/AddDocModal';
+import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
+import { Input, Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
+import RadioGroup from '@/components/ui/RadioGroup';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
-import Upload from '@/images/icons/upload.svg?react';
-import { Plus, PlusIcon } from 'lucide-react';
-import { useState } from 'react';
-import {Label, Input} from '@/components/ui/FormElements';
-import ToggleSwitch from '@/components/ui/ToggleSwitch';
-import RadioGroup from '@/components/ui/RadioGroup';
-import ActionButton from '@/components/ui/ActionButton';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-
+import Upload from '@/images/icons/upload.svg?react';
+import { PlusIcon } from 'lucide-react';
+import { useState } from 'react';
 
 interface StepProps {
     data: any;
@@ -21,6 +19,7 @@ interface StepProps {
     onNext: () => void;
     onBack: () => void;
     isEditMode?: boolean; // New
+    canNext?: boolean; // New
 }
 
 const SubscriptionStep = ({
@@ -29,6 +28,7 @@ const SubscriptionStep = ({
     onNext,
     onBack,
     isEditMode = false,
+    canNext = true,
 }: StepProps) => {
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
     const [selectedDocTitle, setSelectedDocTitle] = useState('');
@@ -135,7 +135,7 @@ const SubscriptionStep = ({
                                         update('subscriptionTier', val)
                                     }
                                     options={tierOptions}
-                                    labelClassName='font-medium text-sm'
+                                    labelClassName="font-medium text-sm"
                                 />
                             </div>
                             <div className="space-y-3">
@@ -144,7 +144,7 @@ const SubscriptionStep = ({
                                 </label>
                                 <div className="pt-2">
                                     <RadioGroup
-                                        name=''
+                                        name=""
                                         options={['Monthly', 'Yearly']}
                                         value={data.billingFrequency}
                                         onChange={(val) =>
@@ -160,7 +160,7 @@ const SubscriptionStep = ({
                                     Start Date
                                     <span className="text-[#8CDD05]">*</span>
                                 </label> */}
-                                <Label className='font-medium text-sm'>
+                                <Label className="text-sm font-medium">
                                     Start Date
                                     <span className="text-[#8CDD05]">*</span>
                                 </Label>
@@ -177,7 +177,7 @@ const SubscriptionStep = ({
                                 {/* <label className="text-sm font-medium text-gray-700">
                                     Trial Period (Days)
                                 </label> */}
-                                <Label className='text-sm font-medium'>
+                                <Label className="text-sm font-medium">
                                     Trial Period (Days)
                                 </Label>
                                 {/* <input
@@ -186,8 +186,9 @@ const SubscriptionStep = ({
                                     className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-[#8CDD05] focus:ring-1 focus:ring-[#8CDD05]"
                                 /> */}
                                 <Input
-                                    placeholder='Days'
-                                    className='w-full rounded-lg border border-gray-300 px-3 py-2.5 text-'/>
+                                    placeholder="Days"
+                                    className="text- w-full rounded-lg border border-gray-300 px-3 py-2.5"
+                                />
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
@@ -195,7 +196,7 @@ const SubscriptionStep = ({
                                 {/* <label className="text-sm font-medium text-gray-700">
                                     One-Time Setup Fee
                                 </label> */}
-                                <Label className='text-sm font-medium'>
+                                <Label className="text-sm font-medium">
                                     One-Time Setup Fee
                                 </Label>
                                 <div className="relative">
@@ -211,13 +212,12 @@ const SubscriptionStep = ({
                                         AED
                                     </span> */}
                                     <Input
-                                        placeholder='AED'
+                                        placeholder="AED"
                                         value={data.setupFee}
                                         onChange={(e) =>
                                             update('setupFee', e.target.value)
                                         }
-                                        />
-                                        
+                                    />
                                 </div>
                             </div>
                             <div className="space-y-3">
@@ -246,7 +246,7 @@ const SubscriptionStep = ({
                                         </label>
                                         <div className="mt-2">
                                             <RadioGroup
-                                            name=''
+                                                name=""
                                                 options={[
                                                     'Percentage',
                                                     'Amount',
@@ -302,7 +302,7 @@ const SubscriptionStep = ({
                                     <th className="flex items-center px-6 py-4 font-medium">
                                         Expiry{' '}
                                         <span className="text-gray-400">
-                                            <SelectorIcon className="h-3 w-3"/>
+                                            <SelectorIcon className="h-3 w-3" />
                                         </span>
                                     </th>
                                     <th className="px-6 py-4 text-right font-medium">
@@ -334,14 +334,18 @@ const SubscriptionStep = ({
                                         </td>
                                         <td className="px-6 py-4 text-right">
                                             {doc.isUploaded ? (
-                                                <ActionButton className='ml-auto'>
+                                                <ActionButton className="ml-auto">
                                                     <DelIcon className="h-4 w-4 text-iconColor" />
                                                     Delete
                                                 </ActionButton>
                                             ) : (
-    
-                                                <ActionButton onClick={()=> handleOpenUpload} className='ml-auto'>
-                                                    <Upload/>
+                                                <ActionButton
+                                                    onClick={() =>
+                                                        handleOpenUpload
+                                                    }
+                                                    className="ml-auto"
+                                                >
+                                                    <Upload />
                                                 </ActionButton>
                                             )}
                                         </td>
@@ -351,7 +355,7 @@ const SubscriptionStep = ({
                         </table>
                         <div className="flex justify-end border-t border-gray-200 p-4">
                             <IconButton>
-                                <PlusIcon className='w-4 h-4 text-iconColor'/>
+                                <PlusIcon className="h-4 w-4 text-iconColor" />
                                 Add New Document
                             </IconButton>
                         </div>
@@ -362,7 +366,7 @@ const SubscriptionStep = ({
                 {!isEditMode && (
                     <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
                         <IconButton onClick={onBack}>Cancel</IconButton>
-                        <Button onClick={onNext}>
+                        <Button onClick={onNext} disabled={!canNext}>
                             Next: Operations <ColorRight />
                         </Button>
                     </div>

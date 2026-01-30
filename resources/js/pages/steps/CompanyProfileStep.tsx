@@ -2,9 +2,10 @@ import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import { Input, Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
+import SearchableDropdown from '@/components/ui/SearchableDropdown';
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
-import BusinessProfileIcon from '@/images/icons/businessProfileIcon.svg?react';
+import BusinessProfileIcon from '@/images/icons/businessProfile.svg?react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
 import { ChevronDown } from 'lucide-react';
@@ -16,6 +17,7 @@ interface StepProps {
     onNext: () => void;
     onBack: () => void;
     isEditMode?: boolean;
+    canNext?: boolean;
 }
 
 const CompanyProfileStep = ({
@@ -23,22 +25,21 @@ const CompanyProfileStep = ({
     update,
     onNext,
     onBack,
+    canNext = true,
     isEditMode = false,
 }: StepProps) => {
     const [isPhoneOpen, setIsPhoneOpen] = useState(false);
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(true);
 
     const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsActive(e.target.checked);
     };
 
     const typeOptions = [
-        { label: 'Restaurant', value: 'Restaurant' },
-        { label: 'Cafe', value: 'Cafe' },
-        { label: 'Food Truck', value: 'Food Truck' },
-        { label: 'Bakery', value: 'Bakery' },
-        { label: 'Retail', value: 'Retail' },
+        { label: 'Full Service (Dine-in)', value: 'Full Service (Dine-in)' },
+        { label: 'Quick Service (QSR)', value: 'Quick Service (QSR)' },
+        { label: 'Cloud Kitchen', value: 'Cloud Kitchen' },
     ];
 
     const parentOptions = [
@@ -99,13 +100,19 @@ const CompanyProfileStep = ({
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Label className="text-sm font-medium text-gray-700">Business logo</Label>
+                            <Label className="text-sm font-medium text-gray-700">
+                                Business logo
+                            </Label>
                             <p className="text-xs text-gray-500">
                                 Upload the Business logo.
                             </p>
                             <div className="flex items-center gap-4 pt-2">
-                                <BusinessProfileIcon className="h-20 w-20" />
-                                <IconButton onClick={() => setIsUploadModalOpen(true)}>
+                                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#F9F7FA] p-2">
+                                    <BusinessProfileIcon className="h-8 w-8" />
+                                </div>
+                                <IconButton
+                                    onClick={() => setIsUploadModalOpen(true)}
+                                >
                                     Click To Upload
                                 </IconButton>
                             </div>
@@ -115,9 +122,7 @@ const CompanyProfileStep = ({
                                 label="Business Type"
                                 required
                                 value={data.businessType}
-                                onChange={(val) =>
-                                    update('businessType', val)
-                                }
+                                onChange={(val) => update('businessType', val)}
                                 options={typeOptions}
                             />
                         </div>
@@ -131,14 +136,23 @@ const CompanyProfileStep = ({
                                     <ToggleSwitch
                                         checked={isActive}
                                         onChange={handleToggleChange}
-                                        statusLabel={
-                                            isActive ? 'Active' : 'Inactive'
-                                        }
+                                        statusLabel={isActive ? 'Yes' : 'No'}
                                     />
                                 </div>
                             </div>
-                            <CustomDropdown
+                            {/* <CustomDropdown
                                 label="Parent Business"
+                                disabled={!data.isBranch}
+                                placeholder="Search by Business Name or ID..."
+                                value={data.parentBusiness}
+                                onChange={(val) =>
+                                    update('parentBusiness', val)
+                                }
+                                options={parentOptions}
+                            /> */}
+                            <SearchableDropdown
+                                label="Parent Business"
+                                required
                                 disabled={!data.isBranch}
                                 placeholder="Search by Business Name or ID..."
                                 value={data.parentBusiness}
@@ -212,7 +226,9 @@ const CompanyProfileStep = ({
                         </div>
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-medium text-gray-700">Currency (Auto-filled)</Label>
+                                <Label className="text-sm font-medium text-gray-700">
+                                    Currency (Auto-filled)
+                                </Label>
                                 <Input
                                     placeholder="Based on Country, e.g., AED"
                                     disabled
@@ -271,7 +287,7 @@ const CompanyProfileStep = ({
                                         onClick={() =>
                                             setIsPhoneOpen(!isPhoneOpen)
                                         }
-                                        className="flex items-center gap-1 pl-3 pr-2 text-sm text-gray-900 outline-none"
+                                        className="flex items-center gap-1 pr-2 pl-3 text-sm text-gray-900 outline-none"
                                     >
                                         <span>{data.phoneCode}</span>
                                         <ChevronDown
@@ -285,7 +301,7 @@ const CompanyProfileStep = ({
                                         onChange={(e) =>
                                             update('phone', e.target.value)
                                         }
-                                        className="w-full border-none bg-transparent py-2.5 pl-2 pr-3 text-sm text-gray-900 placeholder-gray-400 outline-none focus:ring-0"
+                                        className="w-full border-none bg-transparent py-2.5 pr-3 pl-2 text-sm text-gray-900 placeholder-gray-400 outline-none focus:ring-0"
                                     />
                                     {isPhoneOpen && (
                                         <>
@@ -295,7 +311,7 @@ const CompanyProfileStep = ({
                                                     setIsPhoneOpen(false)
                                                 }
                                             />
-                                            <ul className="absolute left-0 top-full z-20 mt-1 max-h-48 w-24 overflow-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+                                            <ul className="absolute top-full left-0 z-20 mt-1 max-h-48 w-24 overflow-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
                                                 {phoneCodeOptions.map(
                                                     (option) => (
                                                         <li key={option.value}>
@@ -350,7 +366,7 @@ const CompanyProfileStep = ({
                 {!isEditMode && (
                     <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
                         <IconButton onClick={onBack}>Cancel</IconButton>
-                        <Button onClick={onNext}>
+                        <Button onClick={onNext} disabled={!canNext}>
                             Next: Operations <ColorRight />
                         </Button>
                     </div>

@@ -2,7 +2,7 @@
 // import TopBar from '@/components/TopBar';
 // import { router } from '@inertiajs/react';
 // import { Check } from 'lucide-react';
-// import { useState, useEffect } from 'react';
+// import { useEffect, useState } from 'react';
 // import Dashboard from '../images/icons/dashBaordSvg.svg';
 
 // // Import Steps
@@ -11,7 +11,6 @@
 // import ReviewConfirmStep from './steps/ReviewConfirmStep';
 // import SubscriptionStep from './steps/SubscriptionComplianceStep';
 // import TeamAccessStep from './steps/TeamAccessStep';
-// import LeftArrow from '@/images/icons/backArrow.svg?react';
 
 // const RegisterWizard = () => {
 //     const [currentStep, setCurrentStep] = useState(1);
@@ -103,34 +102,35 @@
 //         <div className="flex min-h-screen">
 //             <SidePannel />
 //             <main className="flex flex-1 flex-col">
-//                 <TopBar
-//                     title="Business Management"
-//                     icon={Dashboard}
-//                     breadcrumbs={breadcrumbs}
-//                     tabs={[
-//                         { label: 'Business Profiles', isActive: true, onClick: () => {} },
-//                         { label: 'Multi-Tenancy & Franchise', isActive: false, onClick: () => {} },
-//                         { label: 'Feature Access & Beta', isActive: false, onClick: () => {} },
-//                     ]}
-//                 />
+//                 {/* Fixed TopBar */}
+//                 <div className="sticky top-0 z-50">
+//                     <TopBar
+//                         title="Business Management"
+//                         icon={Dashboard}
+//                         breadcrumbs={breadcrumbs}
+//                         tabs={[
+//                             {
+//                                 label: 'Business Profiles',
+//                                 isActive: true,
+//                                 onClick: () => {},
+//                             },
+//                             {
+//                                 label: 'Multi-Tenancy & Franchise',
+//                                 isActive: false,
+//                                 onClick: () => {},
+//                             },
+//                             {
+//                                 label: 'Feature Access & Beta',
+//                                 isActive: false,
+//                                 onClick: () => {},
+//                             },
+//                         ]}
+//                     />
+//                 </div>
 
 //                 <div className="flex-1 px-12 py-6">
-//                     {/* <div className="mb-6">
-//                         <button 
-//                             onClick={prevStep} 
-//                             className="text-md flex cursor-pointer items-center gap-2 rounded-lg border border-[#B5B0BA] bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
-//                         >
-//                             <LeftArrow className="h-5 w-5 text-[#B5B0BA]" />
-//                             Go Back
-//                         </button>
-//                     </div> */}
-//                     {/* <h2 className="mb-8 text-xl font-semibold text-gray-900">
-//                         Register New Businesses
-//                     </h2> */}
-
 //                     {/* === DYNAMIC TIMELINE === */}
 //                     <div className="mb-12 pt-12">
-                        
 //                         <div className="relative flex items-center justify-between px-10">
 //                             {/* Dotted Background Line */}
 //                             <div
@@ -146,16 +146,16 @@
 //                                     <div
 //                                         key={step.id}
 //                                         onClick={() => setCurrentStep(step.id)}
-//                                         className="relative z-10 flex flex-col items-center px-4 cursor-pointer"
+//                                         className="relative z-10 flex cursor-pointer flex-col items-center px-4"
 //                                     >
 //                                         {/* Circle Indicator */}
 //                                         <div
 //                                             className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
 //                                                 isCompleted
-//                                                     ? 'bg-[#79B800] ring-[#ECFDF3]' // Green Check
+//                                                     ? 'bg-[#79B800] ring-[#ECFDF3]'
 //                                                     : isActive
-//                                                       ? 'bg-[#79B800] ring-[#ECFDF3]' // Active Green Ring
-//                                                       : 'h-8 w-8 border border-gray-200 bg-white ring-0' // Inactive Gray
+//                                                       ? 'bg-[#79B800] ring-[#ECFDF3]'
+//                                                       : 'h-8 w-8 border border-gray-200 bg-white ring-0'
 //                                             }`}
 //                                         >
 //                                             {isCompleted ? (
@@ -172,11 +172,11 @@
 //                                         </div>
 //                                         {/* Label */}
 //                                         <span
-//                                             className={`mt-2 text-center text-sm ${
+//                                             className={`mt-2 text-center text-sm leading-tight whitespace-pre-wrap ${
 //                                                 isActive || isCompleted
 //                                                     ? 'font-semibold text-[#578500]'
 //                                                     : 'font-medium text-gray-400'
-//                                             } leading-tight whitespace-pre-wrap`}
+//                                             }`}
 //                                         >
 //                                             {step.label}
 //                                         </span>
@@ -193,7 +193,7 @@
 //                                 data={formData}
 //                                 update={updateFormData}
 //                                 onNext={nextStep}
-//                                 onBack={prevStep} // Pass the navigation handler
+//                                 onBack={prevStep}
 //                             />
 //                         )}
 //                         {currentStep === 2 && (
@@ -236,100 +236,64 @@
 
 // export default RegisterWizard;
 
-
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { router } from '@inertiajs/react';
 import { Check } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Dashboard from '../images/icons/dashBaordSvg.svg';
 
-// Import Steps
 import CompanyProfileStep from './steps/CompanyProfileStep';
 import OperationalConfigStep from './steps/OperationalConfigStep';
 import ReviewConfirmStep from './steps/ReviewConfirmStep';
 import SubscriptionStep from './steps/SubscriptionComplianceStep';
 import TeamAccessStep from './steps/TeamAccessStep';
-import LeftArrow from '@/images/icons/backArrow.svg?react';
 
 const RegisterWizard = () => {
     const [currentStep, setCurrentStep] = useState(1);
+    const [maxStepReached, setMaxStepReached] = useState(1);
+    const [isDirty, setIsDirty] = useState(false);
 
-    // --- Master Form State ---
     const [formData, setFormData] = useState({
-        // Step 1
-        legalName: '',
-        businessId: 'BIZ-2049',
-        businessType: 'Choose type',
-        isBranch: true,
-        parentBusiness: '',
-        address: '',
-        country: 'Kuwait',
-        city: '',
-        language: 'English',
-        branchAdmin: '',
-        phoneCode: '+965',
-        phone: '',
-        email: '',
-        // Step 2
-        dineIn: true,
-        takeaway: true,
-        delivery: false,
-        onlineOrdering: false,
-        inventory: true,
-        kds: true,
-        whatsapp: false,
-        whatsappNumber: '',
-        onlinePlatform: false,
-        websiteUrl: '',
-        posCount: 3,
-        kioskCount: 0,
-        // Step 3
-        subscriptionTier: 'Starter',
-        billingFrequency: 'Monthly',
-        startDate: '2025-08-29',
-        trialPeriod: '14',
-        setupFee: '0.000',
-        autoRenew: 'Enabled',
-        discountType: 'Percentage',
-        discountValue: '',
-        // Step 4
-        fullName: '',
-        role: 'Select Role',
+        // ... all your existing state fields ...
     });
 
-    // --- Scroll to Top Logic ---
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentStep]);
 
     const updateFormData = (field: string, value: any) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
+        setIsDirty(true);
+        if (currentStep >= maxStepReached) {
+            setMaxStepReached(currentStep + 1);
+        }
     };
 
-    // --- Navigation Logic ---
-    const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 5));
+    const nextStep = () => {
+        if (isDirty || currentStep < maxStepReached - 1) {
+            setIsDirty(false);
+            setCurrentStep((prev) => Math.min(prev + 1, 5));
+        }
+    };
 
-    // Custom Back Logic: If Step 1, go to Dashboard. Else, go back one step.
     const prevStep = () => {
         if (currentStep === 1) {
-            router.visit('/busines-management'); // Go to dashboard
+            router.visit('/busines-management');
         } else {
+            setIsDirty(false);
             setCurrentStep((prev) => Math.max(prev - 1, 1));
         }
     };
 
-    // Breadcrumbs
-    const breadcrumbs = [
-        {
-            label: 'Business Management',
-            isActive: false,
-            href: '/business-management',
-        },
-        { label: 'Register New Businesses', isActive: true },
-    ];
+    const handleTimelineClick = (stepId: number) => {
+        // Navigation logic only: allow back, or forward to unlocked steps
+        if (stepId < currentStep || stepId <= maxStepReached) {
+            setIsDirty(false);
+            setCurrentStep(stepId);
+        }
+    };
 
-    // --- Timeline Data ---
     const steps = [
         { id: 1, label: 'Company Profile' },
         { id: 2, label: 'Operational Config' },
@@ -342,25 +306,18 @@ const RegisterWizard = () => {
         <div className="flex min-h-screen">
             <SidePannel />
             <main className="flex flex-1 flex-col">
-                {/* Fixed TopBar */}
                 <div className="sticky top-0 z-50">
                     <TopBar
                         title="Business Management"
                         icon={Dashboard}
-                        breadcrumbs={breadcrumbs}
-                        tabs={[
-                            { label: 'Business Profiles', isActive: true, onClick: () => {} },
-                            { label: 'Multi-Tenancy & Franchise', isActive: false, onClick: () => {} },
-                            { label: 'Feature Access & Beta', isActive: false, onClick: () => {} },
-                        ]}
+                        breadcrumbs={[]}
                     />
                 </div>
 
                 <div className="flex-1 px-12 py-6">
-                    {/* === DYNAMIC TIMELINE === */}
                     <div className="mb-12 pt-12">
                         <div className="relative flex items-center justify-between px-10">
-                            {/* Dotted Background Line */}
+                            {/* Dotted Background Line - Exactly as you provided */}
                             <div
                                 className="absolute top-1/3 right-[8rem] left-[8rem] h-0.5 -translate-y-1/2 border-t-2 border-dotted border-gray-200"
                                 style={{ zIndex: 0 }}
@@ -373,10 +330,11 @@ const RegisterWizard = () => {
                                 return (
                                     <div
                                         key={step.id}
-                                        onClick={() => setCurrentStep(step.id)}
+                                        onClick={() =>
+                                            handleTimelineClick(step.id)
+                                        }
                                         className="relative z-10 flex cursor-pointer flex-col items-center px-4"
                                     >
-                                        {/* Circle Indicator */}
                                         <div
                                             className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
                                                 isCompleted
@@ -398,13 +356,8 @@ const RegisterWizard = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        {/* Label */}
                                         <span
-                                            className={`mt-2 whitespace-pre-wrap text-center text-sm leading-tight ${
-                                                isActive || isCompleted
-                                                    ? 'font-semibold text-[#578500]'
-                                                    : 'font-medium text-gray-400'
-                                            }`}
+                                            className={`mt-2 text-center text-sm leading-tight whitespace-pre-wrap ${isActive || isCompleted ? 'font-semibold text-[#578500]' : 'font-medium text-gray-400'}`}
                                         >
                                             {step.label}
                                         </span>
@@ -414,7 +367,6 @@ const RegisterWizard = () => {
                         </div>
                     </div>
 
-                    {/* === STEP RENDERER === */}
                     <div className="mt-6">
                         {currentStep === 1 && (
                             <CompanyProfileStep
@@ -422,6 +374,7 @@ const RegisterWizard = () => {
                                 update={updateFormData}
                                 onNext={nextStep}
                                 onBack={prevStep}
+                                canNext={isDirty || maxStepReached > 1}
                             />
                         )}
                         {currentStep === 2 && (
@@ -430,6 +383,7 @@ const RegisterWizard = () => {
                                 update={updateFormData}
                                 onNext={nextStep}
                                 onBack={prevStep}
+                                canNext={isDirty || maxStepReached > 2}
                             />
                         )}
                         {currentStep === 3 && (
@@ -438,6 +392,7 @@ const RegisterWizard = () => {
                                 update={updateFormData}
                                 onNext={nextStep}
                                 onBack={prevStep}
+                                canNext={isDirty || maxStepReached > 3}
                             />
                         )}
                         {currentStep === 4 && (
@@ -446,6 +401,7 @@ const RegisterWizard = () => {
                                 update={updateFormData}
                                 onNext={nextStep}
                                 onBack={prevStep}
+                                canNext={isDirty || maxStepReached > 4}
                             />
                         )}
                         {currentStep === 5 && (

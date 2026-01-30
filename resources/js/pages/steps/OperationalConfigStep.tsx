@@ -1,5 +1,3 @@
-
-
 import Button from '@/components/ui/Button';
 import IconButton from '@/components/ui/IconButton';
 import ColorRight from '@/images/icons/colorRight.svg?react';
@@ -7,15 +5,13 @@ import Delivery from '@/images/icons/delivery.svg?react';
 import DineIn from '@/images/icons/dineIn.svg?react';
 import OnlineOrder from '@/images/icons/onlineOrder.svg?react';
 import TakeAway from '@/images/icons/takeAway.svg?react';
-import {Label, Input} from '@/components/ui/FormElements';
-import { useState } from 'react';
-import ToggleSwitch from '@/components/ui/ToggleSwitch';
 interface StepProps {
     data: any;
     update: (field: string, value: any) => void;
     onNext: () => void;
     onBack: () => void;
     isEditMode?: boolean; // New
+    canNext?: boolean; // New
 }
 
 const OperationalConfigStep = ({
@@ -24,6 +20,7 @@ const OperationalConfigStep = ({
     onNext,
     onBack,
     isEditMode = false,
+    canNext = true,
 }: StepProps) => {
     const Toggle = ({
         checked,
@@ -271,7 +268,7 @@ const OperationalConfigStep = ({
             {!isEditMode && (
                 <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
                     <IconButton onClick={onBack}>Cancel</IconButton>
-                    <Button onClick={onNext}>
+                    <Button onClick={onNext} disabled={!canNext}>
                         Next: Operations <ColorRight />
                     </Button>
                 </div>

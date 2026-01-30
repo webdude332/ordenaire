@@ -2,29 +2,23 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 // Layout Components
-import IconButton from '@/components/ui/IconButton';
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import BusinessHeader from '@/components/ui/BusinessHeader';
-
+import IconButton from '@/components/ui/IconButton';
 
 // Icons (Using your existing imports where possible, added placeholders for new ones)
+import BusinessPlan from '@/components/BusinessPlan';
+import StatCard from '@/components/StatCard';
 import backArrow from '@/images/icons/backArrow.png';
 import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
-import Edit from '@/images/icons/editIcon.svg?react';
 import Eye from '@/images/icons/eyeIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
-import Profile from '@/images/icons/teaProfile.svg?react';
-import BusinessPlan from '@/components/BusinessPlan'
-import StatusBadge from '@/components/StatusBadge'
-import HealthAlert from '../components/HealthAlert'
-import StatCard from '@/components/StatCard'
-import trendGreen from '@/images/icons/trendGreen.png'
-import trendRed from '@/images/icons/trendRed.png'
-import UploadIcon from '@/images/icons/upload.svg?react'
-
+import TrendGreen from '@/images/icons/trendGreen.svg?react';
+import UploadIcon from '@/images/icons/upload.svg?react';
+import HealthAlert from '../components/HealthAlert';
 
 const AddonsTable = () => {
     const data = [
@@ -58,7 +52,7 @@ const AddonsTable = () => {
         },
     ];
 
-    const getStatusStyle = (status:any) => {
+    const getStatusStyle = (status: any) => {
         switch (status) {
             case 'Enabled':
                 return 'bg-[#ECFDF3] text-[#067647] ring-[#ABEFC6] rounded-xl';
@@ -79,7 +73,7 @@ const AddonsTable = () => {
                 </h3>
             </div>
             <table className="min-w-full divide-y divide-gray-100">
-                <thead className="bg-[#F9F9FB] border-b border-[#E8E6EA]">
+                <thead className="border-b border-[#E8E6EA] bg-[#F9F9FB]">
                     <tr>
                         {[
                             'Add-on Name',
@@ -286,49 +280,64 @@ const BusinessOverviewPage = () => {
                     <div className="mb-8 overflow-hidden rounded-xl bg-white">
                         <BusinessHeader />
                     </div>
-                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-4 divide-x border border-borderColor rounded-lg divide-borderColor">
-                        <BusinessPlan title={'Current Plan'} value={'Pro Yearly'} />
-                        <BusinessPlan title={'Current Plan'} value={'Pro Yearly'} />
-                        <BusinessPlan title={'Current Plan'} value={'Pro Yearly'} />
-                        <BusinessPlan title={''} value={'Auto Renew'} trendType="negative" />
+                    <div className="mb-6 grid grid-cols-1 divide-x divide-borderColor rounded-lg border border-borderColor p-4 md:grid-cols-2 lg:grid-cols-4">
+                        <BusinessPlan
+                            title={'Current Plan'}
+                            value={'Pro Yearly'}
+                        />
+                        <BusinessPlan
+                            title={'Current Plan'}
+                            value={'Pro Yearly'}
+                        />
+                        <BusinessPlan
+                            title={'Current Plan'}
+                            value={'Pro Yearly'}
+                        />
+                        <BusinessPlan
+                            title={''}
+                            value={'Auto Renew'}
+                            trendType="negative"
+                        />
                     </div>
 
                     {/* --- HEALTH ALERT --- */}
-                    <HealthAlert  />
+                    <HealthAlert />
 
                     {/* --- QUICK STATS --- */}
                     <div>
-                        <h2 className="text-2xl font-semibold mb-3">Quick Stats</h2>
-                                            <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
+                        <h2 className="mb-3 text-2xl font-semibold">
+                            Quick Stats
+                        </h2>
+                        <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
                             <StatCard
-                            title="Order This Month"
-                            value="1,240"
-                            trend="12%"
-                            trendType="positive"
-                            trendIcon={trendGreen}
-                        />
+                                title="Order This Month"
+                                value="1,240"
+                                trend="12%"
+                                trendType="positive"
+                                trendIcon={TrendGreen}
+                            />
                             <StatCard
-                            title="Total Staff"
-                            value="9"
-                            trend="1"
-                            trendType="positive"
-                            trendIcon={trendGreen}
-                        />
+                                title="Total Staff"
+                                value="9"
+                                trend="1"
+                                trendType="positive"
+                                trendIcon={TrendGreen}
+                            />
                             <StatCard
-                            title="POS Terminal Status"
-                            value="2/3"
-                            // trend="841"
-                            // trendType="positive"
-                            // trendIcon={trendGreen}
-                        />
+                                title="POS Terminal Status"
+                                value="2/3"
+                                // trend="841"
+                                // trendType="positive"
+                                // trendIcon={trendGreen}
+                            />
                             <StatCard
-                            title="Credit Balance"
-                            value="105.000 AED"
-                            // trend="841"
-                            // trendType="positive"
-                            // trendIcon={trendGreen}
-                        />
-                    </div>
+                                title="Credit Balance"
+                                value="105.000 AED"
+                                // trend="841"
+                                // trendType="positive"
+                                // trendIcon={trendGreen}
+                            />
+                        </div>
                     </div>
 
                     {/* --- ADD-ONS TABLE --- */}
@@ -349,7 +358,7 @@ const BusinessOverviewPage = () => {
                             </button>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
-                            <thead className="bg-[#F9F9FB] border-b border-borderColor">
+                            <thead className="border-b border-borderColor bg-[#F9F9FB]">
                                 <tr>
                                     {[
                                         'Outlet Info',
@@ -400,7 +409,7 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="border border-[#CFCBD2] p-2 hover:bg-gray-50 rounded-lg">
+                                        <button className="rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
                                             <Eye className="h-4 w-4 text-iconColor" />
                                         </button>
                                     </td>
@@ -436,7 +445,7 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="border border-[#CFCBD2] p-2 hover:bg-gray-50 rounded-lg">
+                                        <button className="rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
                                             <Eye className="h-4 w-4 text-iconColor" />
                                         </button>
                                     </td>
@@ -530,7 +539,7 @@ const BusinessOverviewPage = () => {
                                             Download
                                         </button>
                                         <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
-                                            <DelIcon className="h-4 w-4 text-iconColor " />{' '}
+                                            <DelIcon className="h-4 w-4 text-iconColor" />{' '}
                                             Delete
                                         </button>
                                     </td>
@@ -541,7 +550,7 @@ const BusinessOverviewPage = () => {
 
                     {/* --- NOTES SECTION (Reused from your code) --- */}
                     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                        <h3 className="text-xl mb-4 text-sm font-semibold text-gray-900">
+                        <h3 className="mb-4 text-sm text-xl font-semibold text-gray-900">
                             Notes
                         </h3>
                         <div className="mb-4">
