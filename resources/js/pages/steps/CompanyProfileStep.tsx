@@ -137,19 +137,6 @@ const CompanyProfileStep = ({
                             />
                         </div>
                         <div className="grid grid-cols-2 items-start gap-6">
-                            {/* <div className="space-y-2">
-                                <Label className="text-sm font-medium text-gray-700">
-                                    Is this a Branch?
-                                    <span className="text-primary">*</span>
-                                </Label>
-                                <div className="flex items-center gap-3">
-                                    <ToggleSwitch
-                                        checked={isActive}
-                                        onChange={handleToggleChange}
-                                        statusLabel={isActive ? 'Yes' : 'No'}
-                                    />
-                                </div>
-                            </div> */}
                             <div className="space-y-2">
                                 <Label className="text-sm font-medium text-gray-700">
                                     Is this a Branch?
@@ -165,17 +152,6 @@ const CompanyProfileStep = ({
                                     />
                                 </div>
                             </div>
-                            {/* <SearchableDropdown
-                                label="Parent Business"
-                                required
-                                disabled={!data.isBranch}
-                                placeholder="Search by Business Name or ID..."
-                                value={data.parentBusiness}
-                                onChange={(val) =>
-                                    update('parentBusiness', val)
-                                }
-                                options={parentOptions}
-                            /> */}
                             <SearchableDropdown
                                 label="Parent Business"
                                 required={data.isBranch}
@@ -187,8 +163,6 @@ const CompanyProfileStep = ({
                                     update('parentBusiness', val)
                                 }
                                 options={parentOptions}
-                                // Pass the disabled style logic we added to Input.tsx if needed
-                                // className={!data.isBranch ? 'bg-[#F9F7FA] cursor-not-allowed' : 'bg-white'}
                             />
                         </div>
                     </div>
