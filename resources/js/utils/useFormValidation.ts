@@ -1,4 +1,3 @@
-// useFormValidation.ts
 import { useState, useCallback } from 'react';
 import { ValidationRule } from './validationRules';
 
@@ -12,7 +11,6 @@ export interface FormConfig {
 }
 
 export const useFormValidation = (initialConfig: FormConfig) => {
-    // Extract initial values
     const initialValues = Object.keys(initialConfig).reduce((acc, key) => {
         acc[key] = initialConfig[key].value;
         return acc;
@@ -37,14 +35,12 @@ export const useFormValidation = (initialConfig: FormConfig) => {
         [initialConfig]
     );
 
-    // Handle input change
     const handleChange = useCallback(
         (fieldName: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             const newValue = e.target.value;
             
             setValues((prev) => ({ ...prev, [fieldName]: newValue }));
-
-            // Validate on change (only if field has been touched or has a value)
+            
             if (touched[fieldName] || newValue.length > 0) {
                 const error = validateField(fieldName, newValue);
                 setErrors((prev) => ({ ...prev, [fieldName]: error }));
@@ -85,14 +81,12 @@ export const useFormValidation = (initialConfig: FormConfig) => {
         return isValid;
     }, [initialConfig, values, validateField]);
 
-    // Reset form
     const resetForm = useCallback(() => {
         setValues(initialValues);
         setErrors({});
         setTouched({});
     }, [initialValues]);
 
-    // Set a specific field value programmatically
     const setValue = useCallback(
         (fieldName: string, value: string) => {
             setValues((prev) => ({ ...prev, [fieldName]: value }));

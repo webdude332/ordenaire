@@ -1,6 +1,3 @@
-// validationRules.ts
-// Define all your validation rules in one place
-
 export type ValidationRule = (value: string) => string | undefined;
 
 export const validationRules = {
@@ -87,7 +84,6 @@ export const validationRules = {
     },
 };
 
-// Helper to combine multiple validation rules
 export const combineValidators = (...validators: ValidationRule[]): ValidationRule => {
     return (value: string) => {
         for (const validator of validators) {
