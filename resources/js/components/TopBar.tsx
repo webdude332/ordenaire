@@ -1,4 +1,3 @@
-
 // import React, { ReactNode, ComponentType, SVGProps } from 'react';
 // import RightArrow from '../images/icons/chevron-right.svg?react';
 
@@ -48,7 +47,7 @@
 //                     <div>
 //                         {/* Breadcrumb Row */}
 //                         <div className="mb-2 flex items-center text-sm text-gray-500">
-                            
+
 //                             {/* The Main Icon */}
 //                             {isIconComponent && IconComponent ? (
 //                                 <IconComponent className={finalIconClass} />
@@ -144,7 +143,7 @@
 //     );
 // }
 
-import React, { ReactNode, ComponentType, SVGProps } from 'react';
+import React, { ComponentType, ReactNode, SVGProps } from 'react';
 import RightArrow from '../images/icons/chevron-right.svg?react';
 
 // --- Types ---
@@ -180,7 +179,9 @@ export default function TopBar({
     iconClassName = '',
 }: TopBarProps) {
     const isIconComponent = typeof icon !== 'string';
-    const IconComponent = isIconComponent ? (icon as ComponentType<SVGProps<SVGSVGElement>>) : null;
+    const IconComponent = isIconComponent
+        ? (icon as ComponentType<SVGProps<SVGSVGElement>>)
+        : null;
 
     const finalIconClass = `h-5 w-5 object-contain opacity-60 ${iconClassName}`;
 
@@ -193,7 +194,6 @@ export default function TopBar({
                     <div>
                         {/* Breadcrumb Row */}
                         <div className="mb-2 flex items-center text-sm text-gray-500">
-                            
                             {/* The Main Icon */}
                             {isIconComponent && IconComponent ? (
                                 <IconComponent className={finalIconClass} />
@@ -223,14 +223,14 @@ export default function TopBar({
                                         <a
                                             href={item.href}
                                             onClick={item.onClick}
-                                            className="font-medium text-[#9C94A3] hover:text-gray-700 transition-colors"
+                                            className="font-medium text-[#9C94A3] transition-colors hover:text-gray-700"
                                         >
                                             {item.label}
                                         </a>
                                     ) : item.onClick ? (
                                         <button
                                             onClick={item.onClick}
-                                            className="font-medium text-[#9C94A3] hover:text-gray-700 transition-colors"
+                                            className="font-medium text-[#9C94A3] transition-colors hover:text-gray-700"
                                         >
                                             {item.label}
                                         </button>
@@ -260,29 +260,34 @@ export default function TopBar({
             <div className="mt-2 px-8">
                 <div className="flex space-x-8 border-b border-gray-200">
                     {/* CHANGE: Added check here to only map if tabs exist */}
-                    {tabs && tabs.length > 0 && tabs.map((tab, index) => {
-                        const activeClass = 'border-lime-500 text-[#578500]';
-                        const inactiveClass = 'border-transparent text-[#9C94A3] hover:text-gray-700';
-                        const commonClasses = 'pb-3 text-sm font-semibold border-b-2 transition-colors';
+                    {tabs &&
+                        tabs.length > 0 &&
+                        tabs.map((tab, index) => {
+                            const activeClass =
+                                'cursor-pointer border-lime-500 text-[#578500]';
+                            const inactiveClass =
+                                'cursor-pointer border-transparent text-[#9C94A3] hover:text-gray-700';
+                            const commonClasses =
+                                'pb-3 text-sm font-semibold border-b-2 transition-colors';
 
-                        return tab.href ? (
-                            <a
-                                key={index}
-                                href={tab.href}
-                                className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
-                            >
-                                {tab.label}
-                            </a>
-                        ) : (
-                            <button
-                                key={index}
-                                onClick={tab.onClick}
-                                className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
-                            >
-                                {tab.label}
-                            </button>
-                        );
-                    })}
+                            return tab.href ? (
+                                <a
+                                    key={index}
+                                    href={tab.href}
+                                    className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
+                                >
+                                    {tab.label}
+                                </a>
+                            ) : (
+                                <button
+                                    key={index}
+                                    onClick={tab.onClick}
+                                    className={`${commonClasses} ${tab.isActive ? activeClass : inactiveClass}`}
+                                >
+                                    {tab.label}
+                                </button>
+                            );
+                        })}
                 </div>
             </div>
         </header>

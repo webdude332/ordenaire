@@ -1,13 +1,13 @@
 import { Link } from '@inertiajs/react';
+import { useState } from 'react'; // Added useState
 import Button from '../components/ui/Button';
-// --- ICONS ---
 import addUser from '../images/icons/addUserIcon.svg';
 import InfoIcon from '../images/icons/gray-info.svg?react';
 import PencilIcon from '../images/icons/pencilIcon.svg?react';
 import tickIcon from '../images/icons/tickIcon.png';
 
-// --- MOCK DATA ---
-const PERMISSIONS = [
+// --- INITIAL DATA ---
+const INITIAL_PERMISSIONS = [
     {
         section: 'Dashboard',
         super: true,
@@ -100,30 +100,68 @@ const PERMISSIONS = [
     },
 ];
 
+// Map column index to keys for easier state updates
+const ROLE_KEYS = [
+    'super',
+    'org',
+    'accounts',
+    'onboard',
+    'manager',
+    'crm',
+] as const;
+
 export default function RolesAndPermissionsTable() {
+    // 1. Initialize State
+    const [permissions, setPermissions] = useState(INITIAL_PERMISSIONS);
+
+    // 2. Toggle Function
+    const togglePermission = (
+        rowIndex: number,
+        roleKey: (typeof ROLE_KEYS)[number],
+    ) => {
+        setPermissions((prev) =>
+            prev.map((row, idx) => {
+                if (idx !== rowIndex) return row;
+
+                const currentVal = row[roleKey as keyof typeof row];
+                let newVal: any;
+
+                // Logic: Toggle between Boolean or cycle through string types if needed
+                // If it's boolean, just flip it.
+                // If you want 'View' to be toggleable, you can add logic here.
+                if (typeof currentVal === 'boolean') {
+                    newVal = !currentVal;
+                } else if (currentVal === 'View') {
+                    newVal = true; // Switch View to Full Access, or false for No access
+                } else {
+                    newVal = true;
+                }
+
+                return { ...row, [roleKey]: newVal };
+            }),
+        );
+    };
+
     return (
         <div className="space-y-6">
-            {/* Table Card */}
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                {/* Header */}
                 <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
                     <h2 className="text-lg font-semibold text-gray-900">
                         Role & Permissions
                     </h2>
                     <Link href="/users/addrole">
-                    <Button className="flex items-center justify-center gap-2 rounded-lg bg-[#8CDD05] px-3 py-2 text-white hover:bg-[#7bc204]">
-                        <img src={addUser} alt="" className="h-4 w-4" />
-                        Add Role
-                    </Button>
+                        <Button className="flex items-center justify-center gap-2 rounded-lg bg-[#8CDD05] px-3 py-2 text-white hover:bg-[#7bc204]">
+                            <img src={addUser} alt="" className="h-4 w-4" />
+                            Add Role
+                        </Button>
                     </Link>
                 </div>
 
-                {/* Table Content */}
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="w-1/4 px-6 py-3 text-left text-xs font-bold tracking-wider text-gray-500 uppercase">
+                                <th className="w-1/4 px-6 py-3 text-left text-xs font-bold text-gray-500">
                                     Feature/Section
                                 </th>
                                 {[
@@ -136,7 +174,7 @@ export default function RolesAndPermissionsTable() {
                                 ].map((role) => (
                                     <th
                                         key={role}
-                                        className="px-4 py-3 text-center text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                        className="px-4 py-3 text-center text-xs font-medium text-gray-500"
                                     >
                                         {role}
                                     </th>
@@ -144,51 +182,68 @@ export default function RolesAndPermissionsTable() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 bg-white">
-                            {PERMISSIONS.map((row, idx) => (
+                            {permissions.map((row, rowIndex) => (
                                 <tr
-                                    key={idx}
+                                    key={rowIndex}
                                     className="transition-colors hover:bg-gray-50"
                                 >
                                     <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
                                         {row.section}
                                     </td>
-                                    {[
-                                        row.super,
-                                        row.org,
-                                        row.accounts,
-                                        row.onboard,
-                                        row.manager,
-                                        row.crm,
-                                    ].map((val, i) => (
-                                        <td
-                                            key={i}
-                                            className="px-4 py-4 text-center whitespace-nowrap"
-                                        >
-                                            <div className="flex justify-center">
-                                                {val === true ? (
-                                                    // GREEN SQUARE CHECKBOX
-                                                    <span className="flex h-5 w-5 items-center justify-center rounded-[4px] bg-[#79B800] text-white">
-                                                        {/* <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                                        </svg> */}
-                                                        <img
-                                                            src={tickIcon}
-                                                            alt=""
-                                                        />
-                                                    </span>
-                                                ) : val === 'View' ? (
-                                                    <span className="text-sm font-medium text-gray-400">
-                                                        View
-                                                    </span>
-                                                ) : (
-                                                    // GRAY CIRCLE DASH
-                                                    <span className="flex h-5 w-5 items-center justify-center rounded bg-[#D0D5DD] text-white">
-                                                        <span className="h-0.5 w-2.5 bg-white"></span>
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </td>
-                                    ))}
+                                    {ROLE_KEYS.map((roleKey, colIndex) => {
+                                        const val =
+                                            row[roleKey as keyof typeof row];
+                                        return (
+                                            <td
+                                                key={colIndex}
+                                                className="px-4 py-4 text-center whitespace-nowrap"
+                                            >
+                                                <div className="flex justify-center">
+                                                    {val === true ? (
+                                                        <button
+                                                            onClick={() =>
+                                                                togglePermission(
+                                                                    rowIndex,
+                                                                    roleKey,
+                                                                )
+                                                            }
+                                                            className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-[4px] bg-[#79B800] text-white transition-transform active:scale-90"
+                                                        >
+                                                            <img
+                                                                src={tickIcon}
+                                                                alt=""
+                                                                className="h-3 w-3"
+                                                            />
+                                                        </button>
+                                                    ) : val === 'View' ? (
+                                                        <button
+                                                            onClick={() =>
+                                                                togglePermission(
+                                                                    rowIndex,
+                                                                    roleKey,
+                                                                )
+                                                            }
+                                                            className="text-sm font-medium text-gray-400 transition-colors hover:text-[#79B800]"
+                                                        >
+                                                            View
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            onClick={() =>
+                                                                togglePermission(
+                                                                    rowIndex,
+                                                                    roleKey,
+                                                                )
+                                                            }
+                                                            className="flex h-5 w-5 cursor-pointer items-center justify-center rounded bg-[#D0D5DD] text-white transition-transform active:scale-90"
+                                                        >
+                                                            <span className="h-0.5 w-2.5 bg-white"></span>
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            </td>
+                                        );
+                                    })}
                                 </tr>
                             ))}
                             {/* Action Row */}
@@ -196,16 +251,16 @@ export default function RolesAndPermissionsTable() {
                                 <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
                                     Action
                                 </td>
-                                {[1, 2, 3, 4, 5, 6].map((i) => (
+                                {ROLE_KEYS.map((_, i) => (
                                     <td
                                         key={i}
                                         className="px-4 py-4 text-center whitespace-nowrap"
                                     >
                                         <div className="flex justify-center">
                                             <Link href="/users/editrole">
-                                                                                        <button className="rounded-lg border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
-                                            <PencilIcon className='w-4 h-4'/>
-                                            </button>
+                                                <button className="cursor-pointer rounded-lg border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
+                                                    <PencilIcon className="h-4 w-4" />
+                                                </button>
                                             </Link>
                                         </div>
                                     </td>
@@ -219,41 +274,30 @@ export default function RolesAndPermissionsTable() {
             {/* Legend Card */}
             <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="flex items-center gap-2 border-b border-[#E8E6EA] pb-4">
-                    <InfoIcon className='w-10 h-10'/>
+                    <InfoIcon className="h-10 w-10" />
                     <h3 className="text-sm font-semibold text-gray-700">
                         Permission Types Legend
                     </h3>
                 </div>
                 <div className="space-y-3 px-6 py-4 text-sm text-gray-500">
-                    {/* 1. Full Access: Simple Checkmark (No Green Box) */}
                     <div className="flex items-center gap-3">
-                        <svg
-                            className="h-4 w-4 text-gray-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M5 13l4 4L19 7"
-                            />
-                        </svg>
+                        <img
+                            src={tickIcon}
+                            className="h-4 w-4 rounded-sm bg-[#79B800] p-0.5"
+                            alt=""
+                        />
                         <span>= Full access (view, add, edit, delete)</span>
                     </div>
-
-                    {/* 2. Read Only: "View" Text */}
                     <div className="flex items-center gap-3">
                         <span className="font-medium text-gray-600">
                             "View"
                         </span>
                         <span>= Read only</span>
                     </div>
-
-                    {/* 3. No Access: "-" Text (No Gray Circle) */}
                     <div className="flex items-center gap-3">
-                        <span className="font-medium text-gray-600">"-"</span>
+                        <span className="flex h-4 w-4 items-center justify-center rounded bg-[#D0D5DD]">
+                            <span className="h-0.5 w-2 bg-white"></span>
+                        </span>
                         <span>= No access</span>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
+
 // Icons
 import Button from '@/components/ui/Button';
 import PlusIcon from '@/images/icons/plus.svg?react';
@@ -9,6 +11,7 @@ import Search from '../../images/icons/inputSearch.svg?react';
 import PencilIcon from '../../images/icons/pencilIcon.svg?react';
 
 // UI Components
+import CustomDropdown from '@/components/ui/CustomDropdown';
 import ActionButton from '../ui/ActionButton';
 import BusinessStatusBadge from '../ui/BusinessStatusBadge';
 import Pagination from '../ui/Pagination';
@@ -27,6 +30,7 @@ const MultiTenancyTab = () => {
     const [expandedRowId, setExpandedRowId] = useState<string | null>(
         'BIZ-2050',
     );
+    const [selectedStatus, setSelectedStatus] = useState('');
 
     const toggleRow = (id: string) => {
         setExpandedRowId((prev) => (prev === id ? null : id));
@@ -114,17 +118,61 @@ const MultiTenancyTab = () => {
 
                 <div className="flex items-center gap-3">
                     <div className="relative">
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50">
-                            <span>Location: All</span>
-                            <ArrowDown className="h-4 w-4 text-gray-400" />
-                        </button>
+                        <CustomDropdown
+                            label=""
+                            options={[
+                                {
+                                    label: 'Location: All',
+                                    value: 'all',
+                                },
+                                {
+                                    label: 'UAE',
+                                    value: 'UAE',
+                                },
+                                {
+                                    label: 'Saudi Arabia',
+                                    value: 'saudiArabia',
+                                },
+                                {
+                                    label: 'Qatar',
+                                    value: 'Qatar',
+                                },
+                                {
+                                    label: 'Bahrain',
+                                    value: 'Bahrain',
+                                },
+                            ]}
+                            value={selectedStatus}
+                            onChange={setSelectedStatus}
+                            placeholder="Location: All"
+                        />
                     </div>
 
                     <div className="relative">
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50">
-                            <span>Status: All</span>
-                            <ArrowDown className="h-4 w-4 text-gray-400" />
-                        </button>
+                        <CustomDropdown
+                            label=""
+                            options={[
+                                {
+                                    label: 'Status: All',
+                                    value: 'all',
+                                },
+                                {
+                                    label: 'Active',
+                                    value: 'Expired',
+                                },
+                                {
+                                    label: 'Archived',
+                                    value: 'Archived',
+                                },
+                                {
+                                    label: 'Pending',
+                                    value: 'Pending',
+                                },
+                            ]}
+                            value={selectedStatus}
+                            onChange={setSelectedStatus}
+                            placeholder="Status: All"
+                        />
                     </div>
                 </div>
             </div>
@@ -196,12 +244,16 @@ const MultiTenancyTab = () => {
                                         </TableCell>
                                         <TableCell className="py-4 pr-6 text-right">
                                             <div className="flex items-center justify-end gap-2">
-                                                <ActionButton>
-                                                    <EyeIcon className="h-4 w-4 text-gray-400" />
-                                                </ActionButton>
-                                                <ActionButton>
-                                                    <PencilIcon className="h-4 w-4 text-gray-400" />
-                                                </ActionButton>
+                                                <Link href="/business/businessoverview">
+                                                    <ActionButton>
+                                                        <EyeIcon className="h-4 w-4 text-gray-400" />
+                                                    </ActionButton>
+                                                </Link>
+                                                <Link href="/business/editbusiness">
+                                                    <ActionButton>
+                                                        <PencilIcon className="h-4 w-4 text-gray-400" />
+                                                    </ActionButton>
+                                                </Link>
                                                 <ActionButton
                                                     onClick={() =>
                                                         toggleRow(item.id)
@@ -309,12 +361,16 @@ const MultiTenancyTab = () => {
 
                                                                     {/* Actions */}
                                                                     <div className="col-span-1 flex items-center justify-end gap-2">
-                                                                        <ActionButton>
-                                                                            <EyeIcon className="h-4 w-4 text-gray-400" />
-                                                                        </ActionButton>
-                                                                        <ActionButton>
-                                                                            <PencilIcon className="h-4 w-4 text-gray-400" />
-                                                                        </ActionButton>
+                                                                        <Link href="/business/businessoverviewchild">
+                                                                            <ActionButton>
+                                                                                <EyeIcon className="h-4 w-4 text-gray-400" />
+                                                                            </ActionButton>
+                                                                        </Link>
+                                                                        <Link href="/business/editbusiness">
+                                                                            <ActionButton>
+                                                                                <PencilIcon className="h-4 w-4 text-gray-400" />
+                                                                            </ActionButton>
+                                                                        </Link>
                                                                     </div>
                                                                 </div>
                                                             ),
@@ -323,10 +379,12 @@ const MultiTenancyTab = () => {
 
                                                     {/* Footer Action */}
                                                     <div className="border-t border-[#E0F2C3] bg-[#F8FFEB] px-6 py-4">
-                                                        <Button>
-                                                            <PlusIcon className="h-4 w-4" />
-                                                            Add new outlet
-                                                        </Button>
+                                                        <Link href="/business/registerwizard">
+                                                            <Button>
+                                                                <PlusIcon className="h-4 w-4" />
+                                                                Add new outlet
+                                                            </Button>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </td>

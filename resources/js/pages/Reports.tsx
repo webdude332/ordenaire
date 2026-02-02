@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // Layout & UI
 import SidePannel from '@/components/SidePannel';
-import RenderIcon from '@/components/ui/RenderIcon'; 
+import RenderIcon from '@/components/ui/RenderIcon';
 import ArrowBack from '@/images/icons/backArrow.svg?react';
 import ArrowRight from '@/images/icons/chevron-right.svg?react';
 import AnalyticsIcon from '@/images/icons/dashBaordSvg.svg?react';
@@ -14,11 +14,15 @@ import SchedulingSection from '../components/SchedulingSection';
 import UpcomingTable from '../components/UpcomingTable';
 
 // Modals
+import DeleteModal from '../components/DeleteModal';
 import EditReportModal from '../components/EditReportModal';
 import ErrorDetailsModal from '../components/ErrorDetailsModal';
-import RunReportModal from '../components/RunReportModal'
-import DeleteModal from '../components/DeleteModal';
+import RunReportModal from '../components/RunReportModal';
 import SuccessModal from '../components/SuccessModal';
+
+//Form Validations
+import { useFormValidation } from '@/utils/useFormValidation';
+import { validationRules } from '@/utils/validationRules';
 
 const upcomingReports = [
     {
@@ -28,13 +32,6 @@ const upcomingReports = [
         nextRun: '03 Sept 2025 7:30 AM',
         status: 'Scheduled',
     },
-    // {
-    //     title: 'Weekly Update',
-    //     tenant: 'Acme Corp',
-    //     frequency: 'Weekly',
-    //     nextRun: '04 Sept 2025 01:15 PM',
-    //     status: 'Completed',
-    // },
     {
         title: 'Weekly Review',
         tenant: 'Stark Ind.',
@@ -83,6 +80,22 @@ const historyReports = [
 ];
 
 export default function ReportsPage() {
+    //form validations
+    const { values, errors, handleChange, handleBlur, validateAll, resetForm } =
+        useFormValidation({
+            fullName: {
+                value: '',
+                validators: [validationRules.minLength(3, 'Full name')],
+            },
+            email: {
+                value: '',
+                validators: [validationRules.email()],
+            },
+            phoneNumber: {
+                value: '',
+                validators: [validationRules.phone(8)],
+            },
+        });
     // Modal State
     const [isRunModalOpen, setIsRunModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -136,20 +149,21 @@ export default function ReportsPage() {
                                 className="h-4 w-4 text-[#B5B0BA]"
                             />
                         </span>
-                        <Link href='/dashboard'>
-                        <span className="font-semibold text-[#82798B]">
-                            Dashboard
-                        </span></Link>
+                        <Link href="/dashboard">
+                            <span className="font-semibold text-[#82798B]">
+                                Dashboard
+                            </span>
+                        </Link>
                         <span className="mx-2 text-gray-300">
                             <RenderIcon
                                 icon={ArrowRight}
                                 className="h-4 w-4 text-[#B5B0BA]"
                             />
                         </span>
-                        <Link href='/reports'>
-                                                <span className="rounded-sm bg-[#F9F7FA] px-3 py-1.5 font-semibold text-[#4F4955]">
-                            Reports page
-                        </span>
+                        <Link href="/reports">
+                            <span className="rounded-sm bg-[#F9F7FA] px-3 py-1.5 font-semibold text-[#4F4955]">
+                                Reports page
+                            </span>
                         </Link>
                     </nav>
                     <h1 className="mb-6 text-2xl font-bold tracking-tight text-gray-900">

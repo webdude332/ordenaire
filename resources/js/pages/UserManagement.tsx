@@ -1,12 +1,14 @@
+import DeleteModal from '@/components/DeleteModal';
 import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar'; // Uses the unified component
+import TopBar from '@/components/TopBar';
 import ActionButton from '@/components/ui/ActionButton';
 import CustomDropdown from '@/components/ui/CustomDropdown';
+import Pagination from '@/components/ui/Pagination';
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
 import Button from '../components/ui/Button';
 import BakerFinch from '../images/icons/BakerFinch.png';
-import DashBoardSvg from '../images/icons/dashBaordSvg.svg?react'; // User Management uses SVG
+import DashBoardSvg from '../images/icons/dashBaordSvg.svg?react';
 import DelIcon from '../images/icons/delIcon.svg?react';
 import EyeIcon from '../images/icons/eyeIcon.svg?react';
 import leonprice from '../images/icons/leonprice.png';
@@ -14,8 +16,6 @@ import PencilIcon from '../images/icons/pencilIcon.svg?react';
 import AddUser from '../images/icons/plus.svg?react';
 import SearchIcon from '../images/icons/searchIcon.svg?react';
 import RolesAndPermissionsTable from './RolesAndPermissions';
-import Pagination from '@/components/ui/Pagination';
-import DeleteModal from '@/components/DeleteModal';
 // --- MOCK DATA ---
 const USERS = [
     {
@@ -330,8 +330,18 @@ export default function UserManagement() {
                                                                     <PencilIcon className="h-4 w-4 text-iconColor" />
                                                                 </ActionButton>
                                                             </Link>
-                                                            <Link onClick={(e) => e.preventDefault()}>
-                                                                <ActionButton onClick={() => setIsDeleteModalOpen(true)}>
+                                                            <Link
+                                                                onClick={(e) =>
+                                                                    e.preventDefault()
+                                                                }
+                                                            >
+                                                                <ActionButton
+                                                                    onClick={() =>
+                                                                        setIsDeleteModalOpen(
+                                                                            true,
+                                                                        )
+                                                                    }
+                                                                >
                                                                     <DelIcon className="h-4 w-4 text-iconColor" />
                                                                 </ActionButton>
                                                             </Link>
@@ -342,9 +352,8 @@ export default function UserManagement() {
                                         </tbody>
                                     </table>
                                 </div>
-                                <Pagination/>
+                                <Pagination />
                             </div>
-
                         </div>
                     )}
 
@@ -352,11 +361,11 @@ export default function UserManagement() {
                     {activeTab === 'roles' && <RolesAndPermissionsTable />}
                 </main>
             </div>
-                        <DeleteModal
-                            isOpen={isDeleteModalOpen}
-                            onClose={() => setIsDeleteModalOpen(false)}
-                            onRetry={handleDelete}
-                        />
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={handleDelete}
+            />
         </div>
     );
 }

@@ -1,17 +1,15 @@
 import ActionButton from '@/components/ui/ActionButton';
+import RenderIcon from '@/components/ui/RenderIcon';
 import StatusBadge from '@/components/ui/StatusBadge';
 import DelBtn from '@/images/icons/delIcon.svg?react';
 import PencilBtn from '@/images/icons/pencilIcon.svg?react';
 import RunBtn from '@/images/icons/runNow.svg?react';
-import Pagination from './ui/Pagination';
-import { Input } from './ui/FormElements';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Search } from 'lucide-react';
 import CustomDateRangePicker from './CustomDateRangePicker';
 import DateRangeButton from './DateRangeButton';
-import RenderIcon from '@/components/ui/RenderIcon';
-import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-
-
+import { Input } from './ui/FormElements';
+import Pagination from './ui/Pagination';
 
 interface Report {
     title: string;
@@ -41,17 +39,17 @@ export default function UpcomingTable({
                     Upcoming Scheduled Reports
                 </h2>
                 {/* Search Bar Logic Here... */}
-                                <div className='flex gap-4'>
-                                    <Input
-                                    icon={Search}
-                                    placeholder='Search by Tenant Name'
-                                    className=''
-                                    />
-                                    {/**error */}
-                                    <DateRangeButton>
-                                        <CustomDateRangePicker />
-                                    </DateRangeButton>
-                                </div>
+                <div className="flex gap-4">
+                    <Input
+                        icon={Search}
+                        placeholder="Search by Tenant Name"
+                        className=""
+                    />
+                    {/**error */}
+                    <DateRangeButton>
+                        <CustomDateRangePicker />
+                    </DateRangeButton>
+                </div>
             </div>
 
             <div className="overflow-x-auto">
@@ -71,7 +69,13 @@ export default function UpcomingTable({
                                 Next Run
                             </th>
                             <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
-                                <div className="flex cursor-pointer items-center gap-1">Status <RenderIcon icon={SelectorIcon} className="h-4 w-4 text-[#B5B0BA]" /></div>
+                                <div className="flex cursor-pointer items-center gap-1">
+                                    Status{' '}
+                                    <RenderIcon
+                                        icon={SelectorIcon}
+                                        className="h-4 w-4 text-[#B5B0BA]"
+                                    />
+                                </div>
                             </th>
                             <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
                                 Actions
