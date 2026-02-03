@@ -118,7 +118,7 @@
 
 //     return (
 //         <div className="w-full space-y-6">
-            
+
 //             {/* Top Controls: Tabs & Search */}
 //             <div className="flex items-center justify-between">
 //                 {/* Custom Tab Switcher */}
@@ -200,7 +200,7 @@
 //                         </TableBody>
 //                     </Table>
 //                 </TableContainer>
-                
+
 //                 <div className="border-t border-gray-200 p-4">
 //                     <Pagination />
 //                 </div>
@@ -221,7 +221,7 @@
 //             {/* AUDIT LOG SECTION (Collapsible) */}
 //             <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
 //                 {/* Collapsible Header */}
-//                 <button 
+//                 <button
 //                     onClick={() => setIsAuditLogOpen(!isAuditLogOpen)}
 //                     className="flex w-full items-center justify-between bg-white px-6 py-4 hover:bg-gray-50 transition-colors"
 //                 >
@@ -270,37 +270,19 @@
 
 // export default FeatureAccessTab;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { useState } from 'react';
 // Icons
+import ArrowDown from '@/images/icons/chevron-down.svg?react';
 import Search from '@/images/icons/inputSearch.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
-import ArrowDown from '@/images/icons/chevron-down.svg?react';
-import PlusIcon from '@/images/icons/plus.svg?react'; 
+import PlusIcon from '@/images/icons/plus.svg?react';
+import AddNewFeatureModal from '../AddNewFeatureModal';
+import EditNewFeature from '../EditNewFeature';
 
 // UI Components
 import ActionButton from '../ui/ActionButton';
-import Pagination from '../ui/Pagination';
 import BusinessStatusBadge from '../ui/BusinessStatusBadge'; // Imported your component
+import Pagination from '../ui/Pagination';
 import {
     Table,
     TableBody,
@@ -314,6 +296,8 @@ import {
 const FeatureAccessTab = () => {
     const [activeTab, setActiveTab] = useState<'features' | 'beta'>('features');
     const [isAuditLogOpen, setIsAuditLogOpen] = useState(true);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const featuresData = [
         {
@@ -390,7 +374,6 @@ const FeatureAccessTab = () => {
 
     return (
         <div className="w-full space-y-6">
-            
             {/* Top Controls: Tabs & Search */}
             <div className="flex items-center justify-between">
                 {/* Custom Tab Switcher */}
@@ -425,7 +408,7 @@ const FeatureAccessTab = () => {
                     <input
                         type="text"
                         placeholder="Search Features"
-                        className="w-64 rounded-lg border border-gray-300 py-2 pl-10 pr-4 text-sm text-gray-700 shadow-sm placeholder:text-gray-400 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+                        className="w-64 rounded-lg border border-gray-300 py-2 pr-4 pl-10 text-sm text-gray-700 shadow-sm placeholder:text-gray-400 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
                     />
                 </div>
             </div>
@@ -434,8 +417,13 @@ const FeatureAccessTab = () => {
             <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
                 {/* Section Header */}
                 <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                    <h2 className="text-base font-semibold text-gray-900">All Features</h2>
-                    <button className="flex items-center gap-2 rounded-lg bg-[#7AB621] px-4 py-2 text-sm font-semibold text-white hover:bg-[#6ba31b] transition-colors shadow-sm">
+                    <h2 className="text-base font-semibold text-gray-900">
+                        All Features
+                    </h2>
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="flex cursor-pointer items-center gap-2 rounded-lg bg-[#7AB621] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#6ba31b]"
+                    >
                         <PlusIcon className="h-4 w-4" />
                         Add new Feature
                     </button>
@@ -445,26 +433,47 @@ const FeatureAccessTab = () => {
                     <Table>
                         <TableHeader>
                             <TableHead className="py-4 pl-6">Feature</TableHead>
-                            <TableHead className="py-4">Applicable Plans</TableHead>
+                            <TableHead className="py-4">
+                                Applicable Plans
+                            </TableHead>
                             <TableHead className="py-4">Region</TableHead>
                             <TableHead className="py-4">Status</TableHead>
-                            <TableHead className="py-4 pr-6 text-right">Actions</TableHead>
+                            <TableHead className="py-4 pr-6 text-right">
+                                Actions
+                            </TableHead>
                         </TableHeader>
                         <TableBody>
                             {featuresData.map((item, idx) => (
-                                <TableRow key={idx} className="hover:bg-gray-50 border-b border-gray-200 last:border-b-0">
+                                <TableRow
+                                    key={idx}
+                                    className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50"
+                                >
                                     <TableCell className="py-4 pl-6">
-                                        <div className="font-semibold text-gray-900">{item.name}</div>
-                                        <div className="text-xs text-gray-500 mt-0.5">{item.category}</div>
+                                        <div className="font-semibold text-gray-900">
+                                            {item.name}
+                                        </div>
+                                        <div className="mt-0.5 text-xs text-gray-500">
+                                            {item.category}
+                                        </div>
                                     </TableCell>
-                                    <TableCell className="py-4 text-gray-600">{item.plans}</TableCell>
-                                    <TableCell className="py-4 text-gray-600">{item.region}</TableCell>
+                                    <TableCell className="py-4 text-gray-600">
+                                        {item.plans}
+                                    </TableCell>
+                                    <TableCell className="py-4 text-gray-600">
+                                        {item.region}
+                                    </TableCell>
                                     <TableCell className="py-4">
                                         {/* Using your consistent BusinessStatusBadge */}
-                                        <BusinessStatusBadge status={item.status} />
+                                        <BusinessStatusBadge
+                                            status={item.status}
+                                        />
                                     </TableCell>
                                     <TableCell className="py-4 pr-6 text-right">
-                                        <ActionButton>
+                                        <ActionButton
+                                            onClick={() =>
+                                                setIsEditModalOpen(true)
+                                            }
+                                        >
                                             <PencilIcon className="h-4 w-4 text-gray-400" />
                                         </ActionButton>
                                     </TableCell>
@@ -473,7 +482,7 @@ const FeatureAccessTab = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                
+
                 <div className="border-t border-gray-200 p-4">
                     <Pagination />
                 </div>
@@ -482,8 +491,13 @@ const FeatureAccessTab = () => {
             {/* STATS CARDS ROW */}
             <div className="grid grid-cols-4 gap-4">
                 {statsCards.map((card, idx) => (
-                    <div key={idx} className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-                        <div className="text-xs font-medium text-gray-500 mb-1">{card.title}</div>
+                    <div
+                        key={idx}
+                        className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
+                    >
+                        <div className="mb-1 text-xs font-medium text-gray-500">
+                            {card.title}
+                        </div>
                         <div className="text-lg font-bold text-gray-900">
                             Active Users: {card.value}
                         </div>
@@ -492,15 +506,19 @@ const FeatureAccessTab = () => {
             </div>
 
             {/* AUDIT LOG SECTION (Collapsible) */}
-            <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                 {/* Collapsible Header */}
-                <button 
+                <button
                     onClick={() => setIsAuditLogOpen(!isAuditLogOpen)}
-                    className="flex w-full items-center justify-between bg-white px-6 py-4 hover:bg-gray-50 transition-colors"
+                    className="flex w-full items-center justify-between bg-white px-6 py-4 transition-colors hover:bg-gray-50"
                 >
-                    <h2 className="text-base font-semibold text-gray-900">Audit Log</h2>
-                    <div className={`rounded-full bg-white p-1 transition-transform duration-200 ${isAuditLogOpen ? 'rotate-180' : ''}`}>
-                                                  <ActionButton>
+                    <h2 className="text-base font-semibold text-gray-900">
+                        Audit Log
+                    </h2>
+                    <div
+                        className={`rounded-full bg-white p-1 transition-transform duration-200 ${isAuditLogOpen ? 'rotate-180' : ''}`}
+                    >
+                        <ActionButton>
                             <ArrowDown className="h-4 w-4 text-gray-400" />
                         </ActionButton>
                     </div>
@@ -512,23 +530,48 @@ const FeatureAccessTab = () => {
                         <TableContainer className="border-none shadow-none">
                             <Table>
                                 <TableHeader>
-                                    <TableHead className="py-3 pl-6 text-xs font-medium text-gray-500">Date/Time</TableHead>
-                                    <TableHead className="py-3 text-xs font-medium text-gray-500">Changed By</TableHead>
-                                    <TableHead className="py-3 text-xs font-medium text-gray-500">Feature Name</TableHead>
-                                    <TableHead className="py-3 text-xs font-medium text-gray-500">Change Detail</TableHead>
-                                    <TableHead className="py-3 pr-6 text-xs font-medium text-gray-500">Notes / Reason</TableHead>
+                                    <TableHead className="py-3 pl-6 text-xs font-medium text-gray-500">
+                                        Date/Time
+                                    </TableHead>
+                                    <TableHead className="py-3 text-xs font-medium text-gray-500">
+                                        Changed By
+                                    </TableHead>
+                                    <TableHead className="py-3 text-xs font-medium text-gray-500">
+                                        Feature Name
+                                    </TableHead>
+                                    <TableHead className="py-3 text-xs font-medium text-gray-500">
+                                        Change Detail
+                                    </TableHead>
+                                    <TableHead className="py-3 pr-6 text-xs font-medium text-gray-500">
+                                        Notes / Reason
+                                    </TableHead>
                                 </TableHeader>
                                 <TableBody>
                                     {auditData.map((log, idx) => (
-                                        <TableRow key={idx} className="hover:bg-gray-50 border-b border-gray-200 last:border-b-0">
+                                        <TableRow
+                                            key={idx}
+                                            className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50"
+                                        >
                                             <TableCell className="py-3 pl-6">
-                                                <div className="text-sm font-medium text-gray-900">{log.date}</div>
-                                                <div className="text-xs text-gray-500">{log.time}</div>
+                                                <div className="text-sm font-medium text-gray-900">
+                                                    {log.date}
+                                                </div>
+                                                <div className="text-xs text-gray-500">
+                                                    {log.time}
+                                                </div>
                                             </TableCell>
-                                            <TableCell className="py-3 text-sm text-gray-900">{log.changedBy}</TableCell>
-                                            <TableCell className="py-3 text-sm text-gray-900">{log.feature}</TableCell>
-                                            <TableCell className="py-3 text-sm font-medium text-gray-900">{log.detail}</TableCell>
-                                            <TableCell className="py-3 pr-6 text-sm text-gray-500">{log.reason}</TableCell>
+                                            <TableCell className="py-3 text-sm text-gray-900">
+                                                {log.changedBy}
+                                            </TableCell>
+                                            <TableCell className="py-3 text-sm text-gray-900">
+                                                {log.feature}
+                                            </TableCell>
+                                            <TableCell className="py-3 text-sm font-medium text-gray-900">
+                                                {log.detail}
+                                            </TableCell>
+                                            <TableCell className="py-3 pr-6 text-sm text-gray-500">
+                                                {log.reason}
+                                            </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -537,6 +580,23 @@ const FeatureAccessTab = () => {
                     </div>
                 )}
             </div>
+            <AddNewFeatureModal
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
+                onSave={() => {
+                    console.log('Saving new feature...');
+                    setIsAddModalOpen(false);
+                }}
+            />
+
+            <EditNewFeature
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                onSave={() => {
+                    console.log('Updating feature...');
+                    setIsEditModalOpen(false);
+                }}
+            />
         </div>
     );
 };

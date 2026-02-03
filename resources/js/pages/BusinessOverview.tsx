@@ -10,6 +10,7 @@ import IconButton from '@/components/ui/IconButton';
 // Icons (Using your existing imports where possible, added placeholders for new ones)
 import BusinessPlan from '@/components/BusinessPlan';
 import StatCard from '@/components/StatCard';
+import Button from '@/components/ui/Button';
 import backArrow from '@/images/icons/backArrow.png';
 import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
@@ -19,6 +20,7 @@ import PlusIcon from '@/images/icons/plus.svg?react';
 import TrendGreen from '@/images/icons/trendGreen.svg?react';
 import UploadIcon from '@/images/icons/upload.svg?react';
 import HealthAlert from '../components/HealthAlert';
+// import IconButton from '@/components/ui/IconButton'
 
 const AddonsTable = () => {
     const data = [
@@ -137,9 +139,9 @@ const BillingTable = () => {
                 <h3 className="text-xl font-semibold text-gray-900">
                     Billing History
                 </h3>
-                <button className="rounded-lg bg-[#7AB621] px-4 py-2 text-xs font-semibold text-white hover:bg-[#689c1b]">
-                    View Payment Overview
-                </button>
+                <Link>
+                    <Button>View payment overview</Button>
+                </Link>
             </div>
             <table className="min-w-full divide-y divide-gray-100">
                 <thead className="bg-[#F9F9FB]">
@@ -352,10 +354,12 @@ const BusinessOverviewPage = () => {
                             <h3 className="text-xl font-semibold text-gray-900">
                                 Multi-Tenancy & Franchise
                             </h3>
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                <PlusIcon className="h-4 w-4 text-gray-400" />{' '}
-                                Add New Outlet
-                            </button>
+                            <Link href="/business/registerwizard">
+                                <IconButton>
+                                    <PlusIcon className="h-4 w-4 text-iconColor" />{' '}
+                                    Add New Outlet
+                                </IconButton>
+                            </Link>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
                             <thead className="border-b border-borderColor bg-[#F9F9FB]">

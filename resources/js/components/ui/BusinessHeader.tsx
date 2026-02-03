@@ -42,10 +42,10 @@ const BusinessHeader = () => {
                             <div className="flex gap-2">
                                 <button className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
                                     <Eye className="w-4 h-4 text-iconColor" />
-                                    Send Password Reset Link
+                                    Subscription Overview
                                 </button>
                                 <button className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
-                                    <Edit className="w-4 h-4 text-iconColor" /> Send Password Reset Link
+                                    <Edit className="w-4 h-4 text-iconColor" /> Edit Business
                                 </button>
                             </div>
                         </div>
