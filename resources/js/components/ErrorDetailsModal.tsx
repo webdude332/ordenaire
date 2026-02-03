@@ -1,11 +1,11 @@
+import Shop from '@/images/icons/shop.svg?react';
 import { useState } from 'react';
+import Alert from '../images/icons/alertBlack.svg?react';
+import Copy from '../images/icons/copy.svg?react';
 import patternBg from '../images/icons/patternBg.png';
+import Modal from './Modal';
 import Button from './ui/Button';
 import IconButton from './ui/IconButton';
-import Modal from './Modal';
-import Shop from '@/images/icons/shop.svg?react'
-import Alert from '../images/icons/alertBlack.svg?react'
-import Copy from '../images/icons/copy.svg?react'
 
 interface ErrorDetailsModalProps {
     isOpen: boolean;
@@ -30,32 +30,32 @@ export default function ErrorDetailsModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="relative overflow-hidden p-6 sm:p-8">
-                    <div className="mb-8 flex flex-col items-start gap-4">
-                        {/* --- ICON WRAPPER WITH PATTERN --- */}
-                        <div className="relative z-10 flex h-12 w-12 items-center justify-center">
-                            {/* 1. The Pattern Background (Centered behind icon) */}
-                            <div className="pointer-events-none absolute inset-0 top-0 left-0 flex items-center justify-center">
-                                <img
-                                    src={patternBg}
-                                    alt=""
-                                    className="max-w-none"
-                                    style={{
-                                        transform: 'scale(1.1)',
-                                        opacity: 1,
-                                    }}
-                                />
-                            </div>
-                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                                <Alert className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
-                            </div>
+                <div className="mb-8 flex flex-col items-start gap-4">
+                    {/* --- ICON WRAPPER WITH PATTERN --- */}
+                    <div className="relative z-10 flex h-12 w-12 items-center justify-center">
+                        {/* 1. The Pattern Background (Centered behind icon) */}
+                        <div className="pointer-events-none absolute inset-0 top-0 left-0 flex items-center justify-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 1,
+                                }}
+                            />
+                        </div>
+                        <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                            <Alert className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                         </div>
                     </div>
+                </div>
                 <div className="relative z-10 flex-1">
-                    <h3 className="mb-4 text-xl font-semibold text-gray-900">
+                    <h3 className="text-md mb-4 font-semibold text-gray-900">
                         Error Details: Annual Report
                     </h3>
                 </div>
-                <div className="relative z-10 rounded-xl border border-gray-200 px-4 pt-4 bg-white">
+                <div className="relative z-10 rounded-xl border border-gray-200 bg-white px-4 pt-4">
                     <div className="mb-6">
                         <span className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-2 py-0.5">
                             <span className="h-2 w-2 rounded-full bg-red-500"></span>
@@ -69,7 +69,7 @@ export default function ErrorDetailsModal({
                             <div>
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-gray-100">
-                                        <Shop className='w-5 h-5'/>
+                                        <Shop className="h-5 w-5" />
                                     </div>
                                     <div>
                                         <p className="mb-1 text-xs text-gray-500">
@@ -113,17 +113,17 @@ export default function ErrorDetailsModal({
                                 (node_modules/nodemailer/lib...)
                             </pre>
                         </div>
-                        <button 
+                        <button
                             onClick={copyToClipboard}
-                            className="cursor-pointer mt-3 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-800"
+                            className="mt-3 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-800"
                         >
-                            <Copy className='w-4 h-4'/>
+                            <Copy className="h-4 w-4" />
                             {copied ? 'Copied!' : 'Copy Log to Clipboard'}
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="flex gap-3 pt-4 px-4 pb-4 border-t border-gray-200">
+            <div className="flex gap-3 border-t border-gray-200 px-4 pt-4 pb-4">
                 <IconButton className="flex-1" onClick={onClose}>
                     Close
                 </IconButton>

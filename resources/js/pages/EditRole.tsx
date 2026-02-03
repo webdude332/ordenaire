@@ -375,7 +375,7 @@ const EditRole = () => {
                 <div className="flex-1 overflow-y-auto px-8 py-6">
                     {/* Back Button */}
                     <div className="mb-8">
-                        <Link href="/roles-permissions">
+                        <Link href="/usermanagement">
                             <IconButton className="">
                                 <BackArrow className="h-5 w-5 text-[#B5B0BA]" />
                                 Back to Roles & Permissions

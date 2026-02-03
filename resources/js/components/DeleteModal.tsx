@@ -44,7 +44,7 @@ export default function DeleteModal({
                                 <DelIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                             </div>
                         </div>
-                        <div className="text-md relative z-10 font-medium">
+                        <div className="text-md relative z-10 font-medium font-semibold">
                             <h3>Delete record</h3>
                         </div>
                     </div>

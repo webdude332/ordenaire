@@ -1,14 +1,13 @@
 import Button from '@/components/ui/Button';
-import UploadPlus from '@/images/icons/filePlus.svg?react';
 import patternBg from '@/images/icons/patternBg.svg';
+import ProfileIcon from '@/images/icons/profielicon.svg?react';
 import { useState } from 'react';
 import Modal from './Modal';
-import ProfileIcon from '@/images/icons/profielicon.svg?react'
 // Import your new sub-components
+import GalleryIcon from '@/images/icons/galleryIcon.svg?react';
 import { UploadDropzone } from './upload/UploadDropzone';
 import { UploadError } from './upload/UploadError';
 import { UploadSuccess } from './upload/UploadSuccess';
-import GalleryIcon from '@/images/icons/galleryIcon.svg?react'
 
 interface AddDocumentModalProps {
     isOpen: boolean;
@@ -28,8 +27,8 @@ export default function UploadDocumentModal({
     const [progress, setProgress] = useState(0);
 
     // Mock Data (In a real app, this comes from the selected file)
-    const fileName = "photo.jpg";
-    const fileSize = "200 KB";
+    const fileName = 'photo.jpg';
+    const fileSize = '200 KB';
 
     // --- Helper Functions (For Demo/Testing) ---
     const reset = () => {
@@ -40,7 +39,7 @@ export default function UploadDocumentModal({
     const simulateUpload = () => {
         setUploadStatus('uploading');
         setProgress(10);
-        
+
         // Simulate progress bar
         const interval = setInterval(() => {
             setProgress((prev) => {
@@ -61,11 +60,26 @@ export default function UploadDocumentModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             {/* --- TEMP TESTING BAR (Remove this later) --- */}
-            <div className="absolute top-0 left-0 z-50 flex gap-2 p-2 bg-gray-100 rounded-br-lg opacity-50 hover:opacity-100">
-                <span className="text-xs font-bold p-1">Debug:</span>
-                <button onClick={reset} className="text-xs border bg-white px-2">Reset</button>
-                <button onClick={simulateUpload} className="text-xs border bg-white px-2">Success</button>
-                <button onClick={simulateError} className="text-xs border bg-white px-2">Error</button>
+            <div className="absolute top-0 left-0 z-50 flex gap-2 rounded-br-lg bg-gray-100 p-2 opacity-50 hover:opacity-100">
+                <span className="p-1 text-xs font-bold">Debug:</span>
+                <button
+                    onClick={reset}
+                    className="border bg-white px-2 text-xs"
+                >
+                    Reset
+                </button>
+                <button
+                    onClick={simulateUpload}
+                    className="border bg-white px-2 text-xs"
+                >
+                    Success
+                </button>
+                <button
+                    onClick={simulateError}
+                    className="border bg-white px-2 text-xs"
+                >
+                    Error
+                </button>
             </div>
 
             <div className="relative overflow-hidden p-6 sm:p-8">
@@ -84,7 +98,7 @@ export default function UploadDocumentModal({
                             <GalleryIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                         </div>
                         <div className="relative z-10 pt-4">
-                            <h3 className="text-xl font-semibold text-gray-900">
+                            <h3 className="text-md font-semibold text-gray-900">
                                 Update Business Logo
                             </h3>
                         </div>
@@ -94,28 +108,29 @@ export default function UploadDocumentModal({
                 {/* --- Main Content Area --- */}
                 <div className="relative z-10 mb-4 rounded-lg border border-gray-200 bg-white p-4">
                     <div className="relative z-10 mb-6">
-                        <div className='flex justify-center items-center'>
-                            <ProfileIcon className=' w-28 h-28 mb-4'/>
+                        <div className="flex items-center justify-center">
+                            <ProfileIcon className="mb-4 h-28 w-28" />
                         </div>
-                        
+
                         {/* --- DYNAMIC UPLOAD VIEWS --- */}
                         {uploadStatus === 'initial' && (
                             <UploadDropzone onClick={simulateUpload} />
                         )}
 
                         {uploadStatus === 'error' && (
-                            <UploadError 
-                                fileName={fileName} 
-                                fileSize={fileSize} 
-                                onRetry={reset} 
+                            <UploadError
+                                fileName={fileName}
+                                fileSize={fileSize}
+                                onRetry={reset}
                             />
                         )}
 
-                        {(uploadStatus === 'uploading' || uploadStatus === 'success') && (
-                            <UploadSuccess 
-                                fileName={fileName} 
-                                fileSize={fileSize} 
-                                progress={progress} 
+                        {(uploadStatus === 'uploading' ||
+                            uploadStatus === 'success') && (
+                            <UploadSuccess
+                                fileName={fileName}
+                                fileSize={fileSize}
+                                progress={progress}
                                 isComplete={uploadStatus === 'success'}
                                 onRemove={reset}
                             />
@@ -134,12 +149,23 @@ export default function UploadDocumentModal({
                 </button>
                 <div className="flex-1">
                     {/* Logic: Disable button while uploading or if error */}
-                    <Button 
-                        onClick={uploadStatus === 'success' ? onUpload : simulateUpload} 
+                    <Button
+                        onClick={
+                            uploadStatus === 'success'
+                                ? onUpload
+                                : simulateUpload
+                        }
                         className={`w-full ${uploadStatus === 'success' ? 'bg-[#79B800] hover:bg-[#6aa300]' : ''}`}
-                        disabled={uploadStatus === 'uploading' || uploadStatus === 'error'}
+                        disabled={
+                            uploadStatus === 'uploading' ||
+                            uploadStatus === 'error'
+                        }
                     >
-                        {uploadStatus === 'uploading' ? 'Uploading...' : uploadStatus === 'success' ? 'Save Document' : 'Add Document'}
+                        {uploadStatus === 'uploading'
+                            ? 'Uploading...'
+                            : uploadStatus === 'success'
+                              ? 'Save Document'
+                              : 'Add Document'}
                     </Button>
                 </div>
             </div>

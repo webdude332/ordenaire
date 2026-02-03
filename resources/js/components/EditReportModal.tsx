@@ -87,7 +87,7 @@ export default function EditReportModal({
                         </div>
 
                         <div className="relative z-10">
-                            <h3 className="text-xl font-semibold text-gray-900">
+                            <h3 className="text-md font-semibold text-gray-900">
                                 Edit Scheduled Report
                             </h3>
                         </div>

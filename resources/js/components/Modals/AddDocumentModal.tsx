@@ -1,15 +1,15 @@
-import { useState, useRef } from 'react';
 import Modal from '@/components/Modal';
-import Button from '@/components/ui/Button';
-import { Input, Label } from '@/components/ui/FormElements';
-import CustomDropdown from '@/components/ui/CustomDropdown';
 import SingleDatePicker from '@/components/SingleDateRangePicker';
-import FilePlusIcon from '@/images/icons/filePlus.svg?react';
+import Button from '@/components/ui/Button';
+import CustomDropdown from '@/components/ui/CustomDropdown';
+import { Input, Label } from '@/components/ui/FormElements';
 import CloudIcon from '@/images/icons/cloudIcon.svg?react';
-import TrashIcon from '@/images/icons/delIcon.svg?react';
-import patternBg from '@/images/icons/patternBg.svg';
 import Complete from '@/images/icons/complete.svg?react';
+import TrashIcon from '@/images/icons/delIcon.svg?react';
 import Failed from '@/images/icons/failed.svg?react';
+import FilePlusIcon from '@/images/icons/filePlus.svg?react';
+import patternBg from '@/images/icons/patternBg.svg';
+import { useRef, useState } from 'react';
 
 interface AddDocumentModalProps {
     isOpen: boolean;
@@ -35,8 +35,10 @@ export default function AddDocumentModal({
     const [docType, setDocType] = useState('Passport');
     const [expiryDate, setExpiryDate] = useState<Date | null>(null);
 
-    const fileName = selectedFile?.name || "e.g. Passport_Scan_Noah.pdf";
-    const fileSize = selectedFile ? `${(selectedFile.size / 1024).toFixed(0)} KB` : "0 KB";
+    const fileName = selectedFile?.name || 'e.g. Passport_Scan_Noah.pdf';
+    const fileSize = selectedFile
+        ? `${(selectedFile.size / 1024).toFixed(0)} KB`
+        : '0 KB';
 
     // --- Handlers ---
     const reset = () => {
@@ -77,7 +79,7 @@ export default function AddDocumentModal({
                 file: selectedFile,
                 name: docName,
                 type: docType,
-                expiry: expiryDate
+                expiry: expiryDate,
             });
             onClose();
             reset();
@@ -87,9 +89,19 @@ export default function AddDocumentModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             {/* Debug Controls */}
-            <div className="absolute top-0 left-0 z-50 flex gap-2 p-2 bg-gray-100 rounded-br-lg opacity-30 hover:opacity-100">
-                <button onClick={reset} className="text-[10px] border bg-white px-2">Reset</button>
-                <button onClick={() => setUploadStatus('error')} className="text-[10px] border bg-white px-2 text-red-500">Error</button>
+            <div className="absolute top-0 left-0 z-50 flex gap-2 rounded-br-lg bg-gray-100 p-2 opacity-30 hover:opacity-100">
+                <button
+                    onClick={reset}
+                    className="border bg-white px-2 text-[10px]"
+                >
+                    Reset
+                </button>
+                <button
+                    onClick={() => setUploadStatus('error')}
+                    className="border bg-white px-2 text-[10px] text-red-500"
+                >
+                    Error
+                </button>
             </div>
 
             <div className="relative overflow-hidden p-6 sm:p-8">
@@ -108,7 +120,9 @@ export default function AddDocumentModal({
                             <FilePlusIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
                         </div>
                         <div className="relative z-10 pt-4">
-                            <h3 className="text-md font-medium text-gray-900">Add Document</h3>
+                            <h3 className="text-md font-semibold text-gray-900">
+                                Add Document
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -117,76 +131,111 @@ export default function AddDocumentModal({
                 <div className="relative z-10 mb-4 rounded-lg border border-gray-200 bg-white p-6 shadow-xs">
                     <div className="space-y-6">
                         <div>
-                            <p className="text-sm font-semibold text-gray-900 mb-1">Upload Document</p>
-                            <p className="text-xs text-gray-500 mb-4">Accepted: PDF, PNG, DOC & JPG</p>
-                            
-                            <input 
-                                type="file" 
-                                ref={fileInputRef} 
-                                className="hidden" 
+                            <p className="mb-1 text-sm font-semibold text-gray-900">
+                                Upload Document
+                            </p>
+                            <p className="mb-4 text-xs text-gray-500">
+                                Accepted: PDF, PNG, DOC & JPG
+                            </p>
+
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                className="hidden"
                                 accept=".pdf,.png,.doc,.jpg"
-                                onChange={handleFileChange} 
+                                onChange={handleFileChange}
                             />
 
                             {/* --- UPLOAD STATES --- */}
                             {uploadStatus === 'initial' && (
-                                <div 
-                                    onClick={() => fileInputRef.current?.click()}
-                                    className="w-full flex flex-col items-center justify-center space-y-2 rounded-lg border border-[#E8E6EA] p-6 shadow-xs cursor-pointer hover:bg-gray-50 transition-colors"
+                                <div
+                                    onClick={() =>
+                                        fileInputRef.current?.click()
+                                    }
+                                    className="flex w-full cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border border-[#E8E6EA] p-6 shadow-xs transition-colors hover:bg-gray-50"
                                 >
-                                    <div className="rounded-md border border-gray-200 p-2 shadow-xs bg-white">
+                                    <div className="rounded-md border border-gray-200 bg-white p-2 shadow-xs">
                                         <CloudIcon className="h-5 w-5 text-gray-400" />
                                     </div>
                                     <p className="text-sm">
-                                        <span className="text-[#84cc16] font-bold">Click to upload</span> or drag and drop
+                                        <span className="font-bold text-[#84cc16]">
+                                            Click to upload
+                                        </span>{' '}
+                                        or drag and drop
                                     </p>
                                 </div>
                             )}
 
                             {uploadStatus === 'error' && (
-                                <div className="w-full rounded-lg border-2 border-[#FDA29B] bg-white p-4 flex items-center justify-between shadow-sm">
+                                <div className="flex w-full items-center justify-between rounded-lg border-2 border-[#FDA29B] bg-white p-4 shadow-sm">
                                     <div className="flex flex-col">
-                                        <span className="text-sm font-medium text-gray-900">{fileName}</span>
-                                        <div className="flex items-center gap-2 mt-1">
-                                            <span className="text-xs text-gray-500 pr-2 border-r border-gray-200">0 KB of 200 KB</span>
-                                            <span className="text-xs text-[#D92D20] font-bold flex items-center gap-1.5">
-                                                <Failed className="w-4 h-4" /> Failed
+                                        <span className="text-sm font-medium text-gray-900">
+                                            {fileName}
+                                        </span>
+                                        <div className="mt-1 flex items-center gap-2">
+                                            <span className="border-r border-gray-200 pr-2 text-xs text-gray-500">
+                                                0 KB of 200 KB
+                                            </span>
+                                            <span className="flex items-center gap-1.5 text-xs font-bold text-[#D92D20]">
+                                                <Failed className="h-4 w-4" />{' '}
+                                                Failed
                                             </span>
                                         </div>
-                                        <button onClick={() => fileInputRef.current?.click()} className="text-xs font-bold text-[#D92D20] underline text-left mt-2">Try again</button>
+                                        <button
+                                            onClick={() =>
+                                                fileInputRef.current?.click()
+                                            }
+                                            className="mt-2 text-left text-xs font-bold text-[#D92D20] underline"
+                                        >
+                                            Try again
+                                        </button>
                                     </div>
-                                    <button onClick={reset} className="text-gray-400 hover:text-gray-600">
+                                    <button
+                                        onClick={reset}
+                                        className="text-gray-400 hover:text-gray-600"
+                                    >
                                         <TrashIcon className="h-5 w-5" />
                                     </button>
                                 </div>
                             )}
 
-                            {(uploadStatus === 'uploading' || uploadStatus === 'success') && (
+                            {(uploadStatus === 'uploading' ||
+                                uploadStatus === 'success') && (
                                 <div className="w-full rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                                    <div className="flex items-center justify-between mb-2">
+                                    <div className="mb-2 flex items-center justify-between">
                                         <div className="flex flex-col">
-                                            <span className="text-sm font-medium text-gray-900">{fileName}</span>
-                                            <div className="flex items-center gap-2 mt-0.5">
-                                                <span className="text-xs text-gray-500 pr-2 border-r border-gray-200">{fileSize} of {fileSize}</span>
+                                            <span className="text-sm font-medium text-gray-900">
+                                                {fileName}
+                                            </span>
+                                            <div className="mt-0.5 flex items-center gap-2">
+                                                <span className="border-r border-gray-200 pr-2 text-xs text-gray-500">
+                                                    {fileSize} of {fileSize}
+                                                </span>
                                                 {uploadStatus === 'success' && (
-                                                    <span className="text-[#079455] font-bold text-xs inline-flex items-center gap-1.5">
-                                                        <Complete className="w-4 h-4" /> Complete
+                                                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#079455]">
+                                                        <Complete className="h-4 w-4" />{' '}
+                                                        Complete
                                                     </span>
                                                 )}
                                             </div>
                                         </div>
-                                        <button onClick={reset} className="text-gray-400 hover:text-gray-600">
+                                        <button
+                                            onClick={reset}
+                                            className="text-gray-400 hover:text-gray-600"
+                                        >
                                             <TrashIcon className="h-5 w-5" />
                                         </button>
                                     </div>
                                     <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                                        <div 
-                                            className="h-full bg-[#84cc16] transition-all duration-300" 
+                                        <div
+                                            className="h-full bg-[#84cc16] transition-all duration-300"
                                             style={{ width: `${progress}%` }}
                                         />
                                     </div>
                                     <div className="mt-1 flex justify-end">
-                                        <span className="text-xs font-medium text-gray-500">{progress}%</span>
+                                        <span className="text-xs font-medium text-gray-500">
+                                            {progress}%
+                                        </span>
                                     </div>
                                 </div>
                             )}
@@ -195,24 +244,35 @@ export default function AddDocumentModal({
                         {/* --- FORM FIELDS --- */}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="col-span-1">
-                                <Label className="mb-2 text-sm font-medium">Document Name<span className="text-primary">*</span></Label>
-                                <Input 
-                                    placeholder="e.g. Passport_Scan_Noah.pdf" 
-                                    value={docName} 
+                                <Label className="mb-2 text-sm font-medium">
+                                    Document Name
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <Input
+                                    placeholder="e.g. Passport_Scan_Noah.pdf"
+                                    value={docName}
                                     onChange={(e) => setDocName(e.target.value)}
                                 />
                             </div>
                             <div className="col-span-1">
-                                <CustomDropdown 
-                                    label="Document Type" 
-                                    options={[{ label: 'Passport', value: 'Passport' }, { label: 'Visa', value: 'Visa' }]} 
-                                    value={docType} 
-                                    onChange={setDocType} 
+                                <CustomDropdown
+                                    label="Document Type"
+                                    options={[
+                                        {
+                                            label: 'Passport',
+                                            value: 'Passport',
+                                        },
+                                        { label: 'Visa', value: 'Visa' },
+                                    ]}
+                                    value={docType}
+                                    onChange={setDocType}
                                     labelClassName="mb-2 text-sm font-medium"
                                 />
                             </div>
                             <div className="col-span-1">
-                                <Label className="mb-2 text-sm font-medium">Expiry Date</Label>
+                                <Label className="mb-2 text-sm font-medium">
+                                    Expiry Date
+                                </Label>
                                 <SingleDatePicker />
                             </div>
                         </div>
@@ -229,8 +289,8 @@ export default function AddDocumentModal({
                     Cancel
                 </button>
                 <div className="flex-1">
-                    <Button 
-                        onClick={handleSubmit} 
+                    <Button
+                        onClick={handleSubmit}
                         className={`w-full ${uploadStatus === 'success' ? 'bg-[#79B800] hover:bg-[#6aa300]' : ''}`}
                         disabled={uploadStatus !== 'success'}
                     >

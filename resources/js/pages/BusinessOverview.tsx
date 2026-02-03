@@ -266,7 +266,7 @@ const BusinessOverviewPage = () => {
                     {/* Back Button */}
                     <div className="mb-6">
                         <Link
-                            href="/business"
+                            href="/business-management"
                             className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
                         >
                             <img
