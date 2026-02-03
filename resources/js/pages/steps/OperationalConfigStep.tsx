@@ -456,7 +456,7 @@ const OperationalConfigStep = ({
                     </div>
                     <div className="col-span-9 space-y-6 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-xs">
                         <div>
-                            <h4 className="text-sm font-semibold text-gray-900">
+                            <h4 className="mb-3 text-sm font-semibold text-gray-900">
                                 Inventory Management
                             </h4>
                             <p className="mb-3 text-sm text-gray-500">
@@ -470,7 +470,7 @@ const OperationalConfigStep = ({
                             />
                         </div>
                         <div>
-                            <h4 className="text-sm font-semibold text-gray-900">
+                            <h4 className="mb-3 text-sm font-semibold text-gray-900">
                                 Kitchen Display
                             </h4>
                             <p className="mb-3 text-sm text-gray-500">
@@ -494,7 +494,7 @@ const OperationalConfigStep = ({
                     <div className="col-span-9 space-y-8 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-xs">
                         <div className="grid grid-cols-2 gap-6">
                             <div className="flex flex-col">
-                                <h4 className="text-sm font-semibold text-gray-900">
+                                <h4 className="text-md mb-3 font-semibold text-gray-900">
                                     WhatsApp Integration
                                 </h4>
                                 <p className="mb-3 text-sm text-gray-500">
@@ -653,7 +653,7 @@ const OperationalConfigStep = ({
             {/* Footer Buttons - HIDDEN IN EDIT MODE */}
             {!isEditMode && (
                 <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
-                    <IconButton onClick={onBack}>Cancel</IconButton>
+                    <IconButton onClick={onBack}>Back</IconButton>
                     <Button onClick={handleNext} disabled={!canNext}>
                         Next: Operations <ColorRight />
                     </Button>

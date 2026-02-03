@@ -222,7 +222,6 @@ const CompanyProfileStep = ({
                             <div className="space-y-2">
                                 <Label className="text-sm font-medium text-gray-700">
                                     Is this a Branch?
-                                    <span className="text-primary">*</span>
                                 </Label>
                                 <div className="flex items-center gap-3">
                                     <ToggleSwitch

@@ -1,9 +1,7 @@
-import React from 'react';
+import ReportOk from '../images/icons/reportOk.svg?react';
 import Modal from './Modal';
-import patternBg from '../images/icons/patternBg.png';
-import ReportOk from '../images/icons/reportOk.svg?react'
 // import successIcon from '../images/icons/successIcon.png'
-import SuccessIcon from '../images/icons/successIcon.svg?react'
+import SuccessIcon from '../images/icons/successIcon.svg?react';
 import IconButton from './ui/IconButton';
 
 interface SuccessModalProps {
@@ -14,35 +12,39 @@ interface SuccessModalProps {
 export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
-             {/* Added relative overflow-hidden */}
-            <div className="p-6 sm:p-8 relative overflow-hidden">
-                
+            {/* Added relative overflow-hidden */}
+            <div className="relative overflow-hidden p-6 sm:p-8">
                 {/* Icon Wrapper */}
-                <div className="mb-6 relative">
+                <div className="relative mb-6">
                     {/* Icon Container: Made relative */}
-                    <div className="relative w-12 h-12 rounded-xl flex items-center justify-center bg-white mx-auto sm:mx-0 border border-borderColor p-3 shadow-xs">
+                    <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-borderColor bg-white p-3 shadow-xs sm:mx-0">
                         {/* <img src={reportOk} alt="" /> */}
-                        <ReportOk className='w-8 h-8'/>
+                        <ReportOk className="h-8 w-8" />
                     </div>
                 </div>
 
                 {/* Content (Z-10) */}
                 <div className="relative z-10">
-                    <div className="text-center mb-8">
-                        <div className='inline-flex items-center justify-center w-20 h-20 rounded-full mb-4'>
+                    <div className="mb-8 text-center">
+                        <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full">
                             {/* <img src={successIcon} alt="" /> */}
-                            <SuccessIcon className='w-28 h-28'/>
+                            <SuccessIcon className="h-28 w-28" />
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3">Report Generated Successfully</h3>
-                        <p className="text-base text-gray-600">The 'Monthly Summary' has been emailed to 2 recipients.</p>
+                        <h3 className="mb-3 text-2xl font-bold text-gray-900">
+                            Report Generated Successfully
+                        </h3>
+                        <p className="text-base text-gray-600">
+                            The 'Monthly Summary' has been emailed to 2
+                            recipients.
+                        </p>
                     </div>
                 </div>
             </div>
-                            <div className='px-6 py-6 border-t border-borderColor'>
-                                        <IconButton className='w-full' onClick={onClose}>
-                        Close
-                    </IconButton>
-                </div>
+            <div className="border-t border-borderColor px-6 py-6">
+                <IconButton className="w-full" onClick={onClose}>
+                    Close
+                </IconButton>
+            </div>
         </Modal>
     );
 }

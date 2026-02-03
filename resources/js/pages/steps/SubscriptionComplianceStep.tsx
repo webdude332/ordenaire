@@ -1010,21 +1010,24 @@ const SubscriptionStep = ({
                                         error={errors.setupFee}
                                     />
                                 </div>
-                            </div>
-                            <div className="space-y-3">
                                 <div className="space-y-3">
-                                    <label className="text-sm font-medium text-gray-700">
-                                        Auto-renew
-                                    </label>
-                                    <div className="pt-2">
-                                        <RadioGroup
-                                            name=""
-                                            options={['Enabled', 'Disabled']}
-                                            value={data.autoRenew}
-                                            onChange={(val) =>
-                                                update('autoRenew', val)
-                                            }
-                                        />
+                                    <div className="mt-4 space-y-3">
+                                        <label className="text-sm font-medium text-gray-700">
+                                            Auto-renew
+                                        </label>
+                                        <div className="pt-2">
+                                            <RadioGroup
+                                                name=""
+                                                options={[
+                                                    'Enabled',
+                                                    'Disabled',
+                                                ]}
+                                                value={data.autoRenew}
+                                                onChange={(val) =>
+                                                    update('autoRenew', val)
+                                                }
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1062,9 +1065,11 @@ const SubscriptionStep = ({
                                     </div>
                                 </div>
                             </div>
-                            <p className="mt-2 text-xs text-gray-500">
+                            <p className="mt-2 text-xs text-gray-700">
                                 Note: If a discount is applied, it is valid only
-                                for the first billing cycle.
+                                for the first billing cycle. Any future
+                                discounts must be applied again from the Billing
+                                section.
                             </p>
                         </div>
                     </div>
@@ -1134,7 +1139,6 @@ const SubscriptionStep = ({
                                                     className="ml-auto"
                                                 >
                                                     <DelIcon className="h-4 w-4 text-iconColor" />
-                                                    Delete
                                                 </ActionButton>
                                             ) : (
                                                 <ActionButton
@@ -1156,7 +1160,7 @@ const SubscriptionStep = ({
                         <div className="flex justify-end border-t border-gray-200 p-4">
                             <IconButton onClick={handleOpenAddDoc}>
                                 <PlusIcon className="h-4 w-4 text-iconColor" />
-                                Add New Document
+                                Add other document
                             </IconButton>
                         </div>
                     </div>
@@ -1165,7 +1169,7 @@ const SubscriptionStep = ({
                 {/* Footer Buttons - HIDDEN IN EDIT MODE */}
                 {!isEditMode && (
                     <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
-                        <IconButton onClick={onBack}>Cancel</IconButton>
+                        <IconButton onClick={onBack}>Back</IconButton>
                         <Button onClick={handleNext} disabled={!canNext}>
                             Next: Operations <ColorRight />
                         </Button>
