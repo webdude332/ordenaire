@@ -220,7 +220,7 @@ const CompanyProfileStep = ({
                         </div>
                         <div className="grid grid-cols-2 items-start gap-6">
                             <div className="space-y-2">
-                                <Label className="text-sm font-medium text-gray-700">
+                                <Label className="mb-4 text-sm font-medium text-gray-700">
                                     Is this a Branch?
                                 </Label>
                                 <div className="flex items-center gap-3">
@@ -272,27 +272,33 @@ const CompanyProfileStep = ({
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-6">
-                            <CustomDropdown
-                                label="Country"
-                                required
-                                value={data.country}
-                                onChange={(val) => update('country', val)}
-                                options={countryOptions}
-                                renderOption={(option) => (
-                                    <div className="flex items-center gap-2">
-                                        {option.value === 'Kuwait' ? (
-                                            <div className="flex h-4 w-6 flex-col overflow-hidden rounded-sm border border-gray-200 bg-gray-100">
-                                                <div className="h-1 bg-green-600"></div>
-                                                <div className="h-1 bg-white"></div>
-                                                <div className="h-1 bg-red-600"></div>
-                                            </div>
-                                        ) : (
-                                            <div className="h-4 w-6 overflow-hidden rounded-sm border border-gray-200 bg-green-600"></div>
-                                        )}
-                                        <span>{option.label}</span>
-                                    </div>
-                                )}
-                            />
+                            <div>
+                                <Label className="mb-2 text-sm font-medium text-gray-700">
+                                    Country
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <CustomDropdown
+                                    label="Country"
+                                    required
+                                    value={data.country}
+                                    onChange={(val) => update('country', val)}
+                                    options={countryOptions}
+                                    renderOption={(option) => (
+                                        <div className="flex items-center gap-2">
+                                            {option.value === 'Kuwait' ? (
+                                                <div className="flex h-4 w-6 flex-col overflow-hidden rounded-sm border border-gray-200 bg-gray-100">
+                                                    <div className="h-1 bg-green-600"></div>
+                                                    <div className="h-1 bg-white"></div>
+                                                    <div className="h-1 bg-red-600"></div>
+                                                </div>
+                                            ) : (
+                                                <div className="h-4 w-6 overflow-hidden rounded-sm border border-gray-200 bg-green-600"></div>
+                                            )}
+                                            <span>{option.label}</span>
+                                        </div>
+                                    )}
+                                />
+                            </div>
                             <div className="space-y-2">
                                 <Label className="text-sm font-medium text-gray-700">
                                     City
@@ -317,20 +323,26 @@ const CompanyProfileStep = ({
                                     disabled
                                 />
                             </div>
-                            <CustomDropdown
-                                label="Preferred Language"
-                                value={data.language}
-                                onChange={(val) => update('language', val)}
-                                options={langOptions}
-                                renderOption={(option) => (
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-lg leading-none">
-                                            {option.flag}
-                                        </span>
-                                        <span>{option.label}</span>
-                                    </div>
-                                )}
-                            />
+                            <div>
+                                <Label className="mb-2 text-sm font-medium text-gray-700">
+                                    Language
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <CustomDropdown
+                                    label="Preferred Language"
+                                    value={data.language}
+                                    onChange={(val) => update('language', val)}
+                                    options={langOptions}
+                                    renderOption={(option) => (
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-lg leading-none">
+                                                {option.flag}
+                                            </span>
+                                            <span>{option.label}</span>
+                                        </div>
+                                    )}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

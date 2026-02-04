@@ -235,11 +235,15 @@ const BusinessOverviewPage = () => {
 
     // Breadcrumbs
     const breadcrumbs = [
-        { label: 'Business Management', isActive: false, href: '/business' },
+        {
+            label: 'Business Management',
+            isActive: false,
+            href: '/business-management',
+        },
         {
             label: 'Business Profiles',
             isActive: false,
-            href: '/business/profiles',
+            href: '/business-management',
         },
         { label: 'Business Overview', isActive: true },
     ];
