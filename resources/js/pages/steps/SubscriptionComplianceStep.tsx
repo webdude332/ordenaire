@@ -931,6 +931,10 @@ const SubscriptionStep = ({
                     <div className="col-span-9 space-y-6 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-xs">
                         <div className="grid grid-cols-2 gap-6">
                             <div>
+                                <Label className="mb-2">
+                                    Subscription Tier
+                                    <span className="text-primary">*</span>
+                                </Label>
                                 <CustomDropdown
                                     label="Subscription Tier"
                                     required
@@ -944,9 +948,12 @@ const SubscriptionStep = ({
                                 />
                             </div>
                             <div className="space-y-3">
-                                <label className="text-sm font-medium text-gray-700">
+                                {/* <label className="text-sm font-medium text-gray-700">
                                     Billing Frequency
-                                </label>
+                                </label> */}
+                                <Label className="text-sm font-medium">
+                                    Billing Frequency
+                                </Label>
                                 <div className="pt-2">
                                     <RadioGroup
                                         name=""

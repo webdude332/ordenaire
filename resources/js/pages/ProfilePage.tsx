@@ -48,13 +48,6 @@ const ProfilePage = () => {
         setDocuments((prev) => [...prev, newDoc]);
         setIsUploadModalOpen(false);
     };
-
-    // State for TopBar tabs
-    // const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
-    //     'profiles',
-    // );
-
-    // 1. Define Breadcrumbs Structure
     const breadcrumbs = [
         {
             label: 'User Management',
@@ -72,20 +65,6 @@ const ProfilePage = () => {
         },
     ];
 
-    // 2. Define Tabs Structure
-    // const tabs = [
-    //     {
-    //         label: 'User Profiles',
-    //         isActive: activeTab === 'profiles',
-    //         onClick: () => setActiveTab('profiles'),
-    //     },
-    //     {
-    //         label: 'Roles & Permissions',
-    //         isActive: activeTab === 'roles',
-    //         onClick: () => setActiveTab('roles'),
-    //     },
-    // ];
-
     return (
         <div className="flex min-h-screen">
             {/* 1. Sidebar */}
@@ -93,7 +72,6 @@ const ProfilePage = () => {
 
             {/* 2. Main Content Area */}
             <main className="flex flex-1 flex-col">
-                {/* ✅ Dynamic TopBar Integrated */}
                 <div className="sticky top-0 z-10 bg-white">
                     <TopBar
                         title="User Management"
@@ -142,7 +120,7 @@ const ProfilePage = () => {
                                     </div>
 
                                     {/* Name & Role */}
-                                    <div className="pt-3">
+                                    <div className="pt-5">
                                         <div className="mb-1 flex items-center gap-3">
                                             <h2 className="text-2xl font-semibold text-gray-900">
                                                 Noah Pierre
@@ -166,7 +144,7 @@ const ProfilePage = () => {
                                 </div>
 
                                 {/* Right Side: Status */}
-                                <div className="flex items-center gap-2 pt-4">
+                                <div className="flex items-center gap-2 pt-5">
                                     <span className="text-sm text-gray-500">
                                         Current status:
                                     </span>
@@ -179,11 +157,11 @@ const ProfilePage = () => {
 
                             {/* 3. Info Grid (Footer of Card) */}
                         </div>
-                        <div className="mt-3 rounded-xl border border-[#E8E6EA] bg-[#F8FFEB] px-6 pt-6 pb-6">
-                            <div className="grid grid-cols-4 gap-8 border-b border-[#8CDD05] py-2">
+                        <div className="rounded-xl border border-[#E8E6EA] bg-[#F8FFEB] px-6 pt-8 pb-8">
+                            <div className="grid grid-cols-4 gap-8 border-b border-[#8CDD05] pb-4">
                                 {/* Column 1 */}
                                 <div>
-                                    <div className="mb-2 text-xs font-medium text-gray-500">
+                                    <div className="mb-2 text-sm font-medium text-gray-500">
                                         Phone Number
                                     </div>
                                     <div className="text-sm font-medium text-gray-900">
@@ -193,7 +171,7 @@ const ProfilePage = () => {
 
                                 {/* Column 2 */}
                                 <div>
-                                    <div className="mb-2 text-xs font-medium text-gray-500">
+                                    <div className="mb-2 text-sm font-medium text-gray-500">
                                         Joining Date
                                     </div>
                                     <div className="text-sm font-medium text-gray-900">
@@ -203,7 +181,7 @@ const ProfilePage = () => {
 
                                 {/* Column 3 */}
                                 <div>
-                                    <div className="mb-2 text-xs font-medium text-gray-500">
+                                    <div className="mb-2 text-sm font-medium text-gray-500">
                                         Account Expiry
                                     </div>
                                     <div className="text-sm font-medium text-gray-900">
@@ -213,7 +191,7 @@ const ProfilePage = () => {
 
                                 {/* Column 4 */}
                                 <div>
-                                    <div className="mb-1 text-xs font-medium text-gray-500">
+                                    <div className="mb-1 text-sm font-medium text-gray-500">
                                         Multi-Factor Authentication
                                     </div>
                                     <div className="text-sm font-medium text-gray-900">

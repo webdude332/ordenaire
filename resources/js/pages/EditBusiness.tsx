@@ -130,7 +130,7 @@ const EditBusiness = () => {
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                                        className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                             isActive
                                                 ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200'
                                                 : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'

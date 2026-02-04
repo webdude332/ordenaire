@@ -850,12 +850,12 @@ import DeleteModal from '@/components/DeleteModal';
 import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
+import { Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import Pencil from '@/images/icons/pencilIcon.svg?react';
 import { useState } from 'react';
-
 // NEW: Import validation system
 import { useFormValidation } from '@/utils/useFormValidation';
 import { validationRules } from '@/utils/validationRules';
@@ -1000,10 +1000,10 @@ const TeamAccessStep = ({
                     <div className="col-span-9 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-xs">
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
+                                <Label>
                                     Full name{' '}
                                     <span className="text-[#8CDD05]">*</span>
-                                </label>
+                                </Label>
                                 <input
                                     type="text"
                                     placeholder="Enter Full name"
@@ -1023,10 +1023,10 @@ const TeamAccessStep = ({
                                 )}
                             </div>
                             <div className="space-y-1.5">
-                                <label className="text-sm font-medium text-gray-700">
+                                <Label>
                                     Email address{' '}
                                     <span className="text-[#8CDD05]">*</span>
-                                </label>
+                                </Label>
                                 <input
                                     type="email"
                                     placeholder="Enter Email address"
@@ -1048,6 +1048,10 @@ const TeamAccessStep = ({
                         </div>
                         <div className="mt-6 grid grid-cols-2 gap-6">
                             <div className="space-y-1.5">
+                                <Label>
+                                    User Role{' '}
+                                    <span className="text-[#8CDD05]">*</span>
+                                </Label>
                                 <CustomDropdown
                                     label="User Role"
                                     required

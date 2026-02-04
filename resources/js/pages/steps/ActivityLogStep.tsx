@@ -1,5 +1,5 @@
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import {
-    ArrowUpDown,
     Calendar,
     ChevronLeft,
     ChevronRight,
@@ -150,28 +150,28 @@ const ActivityLogStep = ({
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-[#F9FAFB]">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1 hover:text-gray-700">
                                     Timestamp
-                                    <ArrowUpDown className="h-3 w-3" />
+                                    <SelectorIcon className="h-3 w-3" />
                                 </div>
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1 hover:text-gray-700">
                                     User
-                                    <ArrowUpDown className="h-3 w-3" />
+                                    <SelectorIcon className="h-3 w-3" />
                                 </div>
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1 hover:text-gray-700">
                                     Event Type
-                                    <ArrowUpDown className="h-3 w-3" />
+                                    <SelectorIcon className="h-3 w-3" />
                                 </div>
                             </th>
-                            <th className="w-1/3 px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+                            <th className="w-1/3 px-6 py-3 text-left text-xs font-medium text-gray-500">
                                 Description
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium tracking-wider text-gray-500 uppercase">
+                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500">
                                 IP Address
                             </th>
                         </tr>
