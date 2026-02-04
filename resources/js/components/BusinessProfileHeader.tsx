@@ -101,7 +101,7 @@ const BusinessProfileHeader = ({
             ></div>
 
             {/* 2. Profile Info Header */}
-            <div className="px-8 pb-8">
+            <div className="px-8">
                 <div className="flex items-start justify-between">
                     {/* Left Side: Avatar & Name */}
                     <div className="flex gap-6">
@@ -121,7 +121,7 @@ const BusinessProfileHeader = ({
                         </div>
 
                         {/* Name & Role */}
-                        <div className="pt-3">
+                        <div className="pt-5">
                             <div className="mb-1 flex items-center gap-3">
                                 <h2 className="text-2xl font-semibold text-gray-900">
                                     {businessName}
@@ -136,14 +136,14 @@ const BusinessProfileHeader = ({
                             <div className="flex gap-2">
                                 <button
                                     onClick={onViewSubscription}
-                                    className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+                                    className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     <Eye className="h-4 w-4 text-iconColor" />
                                     Subscription Overview
                                 </button>
                                 <button
                                     onClick={onEditBusiness}
-                                    className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+                                    className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     <Edit className="h-4 w-4 text-iconColor" />
                                     Edit Business
@@ -153,7 +153,7 @@ const BusinessProfileHeader = ({
                     </div>
 
                     {/* Right Side: Status */}
-                    <div className="flex items-center gap-2 pt-4">
+                    <div className="flex items-center gap-2 pt-6">
                         <span className="text-sm text-gray-500">
                             Subscription Status:
                         </span>
@@ -172,7 +172,7 @@ const BusinessProfileHeader = ({
             {/* 3. Info Grid (Footer of Card) */}
             <div className="mt-8 rounded-xl border border-[#E8E6EA] bg-[#F8FFEB] px-6 pt-6 pb-6">
                 {/* First Row */}
-                <div className="grid grid-cols-4 gap-8 pt-6">
+                <div className="grid grid-cols-4 pt-6">
                     <div>
                         <div className="mb-2 text-xs font-medium text-gray-500">
                             Business Email

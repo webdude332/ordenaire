@@ -368,12 +368,12 @@ export const DocumentsTable = ({
                             <td className="px-6 py-4 text-sm">
                                 {doc.fileStatus === 'Uploaded' &&
                                 doc.fileName ? (
-                                    <span className="inline-flex items-center gap-2 rounded-lg bg-[#ECFDF3] px-2 py-1 text-xs font-medium text-[#067647]">
+                                    <span className="inline-flex items-center gap-2 rounded-lg bg-[#ECFDF3] px-2 py-1 text-xs font-medium text-[#067647] border border-green-200">
                                         <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
                                         {doc.fileName}
                                     </span>
                                 ) : (
-                                    <span className="inline-flex items-center gap-2 text-xs text-gray-500">
+                                    <span className="inline-flex items-center gap-2 text-xs text-gray-500 bg-gray-100 p-1 rounded-lg border border-gray-200">
                                         <span className="h-1.5 w-1.5 rounded-full bg-gray-400"></span>
                                         Not Uploaded
                                     </span>
@@ -520,13 +520,13 @@ export const AddonsTable = ({
                             <td className="px-6 py-4 text-sm text-gray-500">
                                 {row.pricing}
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-500">
+                            <td className="px-6 py-4 text-sm text-gray-900">
                                 {row.installDate} <br />
                                 <span className="text-xs text-gray-400">
                                     {row.installTime}
                                 </span>
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-500">
+                            <td className="px-6 py-4 text-sm text-gray-900">
                                 {row.endSub} <br />
                                 <span className="text-xs text-gray-400">
                                     {row.endSubTime}

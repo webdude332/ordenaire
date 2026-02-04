@@ -1,19 +1,21 @@
-import { useState } from 'react';
 import BusinessPlan from '@/components/BusinessPlan';
 import BusinessProfileHeader from '@/components/BusinessProfileHeader';
+import HealthAlert from '@/components/HealthAlert';
+import Notes from '@/components/Notes';
+import SidePannel from '@/components/SidePannel';
+import StatCard from '@/components/StatCard';
+import TopBar from '@/components/TopBar';
 import Button from '@/components/ui/Button';
 import {
     AddonsTable,
     BillingHistoryTable,
     DocumentsTable,
 } from '@/components/ui/DataTable';
-import HealthAlert from '@/components/HealthAlert';
-import Notes from '@/components/Notes';
-import SidePannel from '@/components/SidePannel';
-import StatCard from '@/components/StatCard';
-import TopBar from '@/components/TopBar';
-import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
 import IconButton from '@/components/ui/IconButton';
+import BackArrow from '@/images/icons/backArrow.svg?react';
+import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
+import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 
 const BusinessOverviewChildParent = () => {
     const [activeTab, setActiveTab] = useState('business_profiles');
@@ -49,8 +51,8 @@ const BusinessOverviewChildParent = () => {
     const addOnData = [
         {
             name: 'Inventory Management',
-            status: 'Enabled' as const, 
-            pricing: 'Free', 
+            status: 'Enabled' as const,
+            pricing: 'Free',
             installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
@@ -58,36 +60,36 @@ const BusinessOverviewChildParent = () => {
         },
         {
             name: 'Inventory Management',
-            status: 'Enabled' as const, 
-            pricing: 'Free', 
-            installDate: '03 Sept 2025', 
-            installTime: '11:30 AM',
-            endSub: '03 Sept 2026',
-            endSubTime: '11:30 AM',
-        },
-        {
-            name: 'Inventory Management',
-            status: 'Disabled' as const, 
+            status: 'Enabled' as const,
             pricing: 'Free',
-            installDate: '03 Sept 2025', 
+            installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
             endSubTime: '11:30 AM',
         },
         {
             name: 'Inventory Management',
-            status: 'Trial' as const, 
-            pricing: 'Free', 
-            installDate: '03 Sept 2025', 
+            status: 'Disabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
             endSubTime: '11:30 AM',
         },
         {
             name: 'Inventory Management',
-            status: 'Enabled' as const, 
-            pricing: 'Free', 
-            installDate: '03 Sept 2025', 
+            status: 'Trial' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+        {
+            name: 'Inventory Management',
+            status: 'Enabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
             endSubTime: '11:30 AM',
@@ -140,8 +142,8 @@ const BusinessOverviewChildParent = () => {
             fileStatus: 'Not Uploaded' as const,
         },
     ];
-  return (
-            <div className="flex min-h-screen">
+    return (
+        <div className="flex min-h-screen">
             <div>
                 <SidePannel />
             </div>
@@ -153,8 +155,17 @@ const BusinessOverviewChildParent = () => {
                     tabs={tabs}
                 />
                 {/**contains all the page content */}
-                <div className="px-12 py-12">
+                <div className="px-8 py-6">
                     {/**Business Profile Header (dynamic) */}
+                    <div className="mb-6">
+                        <Link
+                            href="/business-management"
+                            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
+                        >
+                            <BackArrow className="h-4 w-4 text-iconColor" />
+                            Back to Business overview
+                        </Link>
+                    </div>
                     <div>
                         <BusinessProfileHeader
                             businessName="Tea Time"
@@ -186,8 +197,8 @@ const BusinessOverviewChildParent = () => {
                             value={'Pro Yearly'}
                         />
                         <BusinessPlan
-                            title={''}
-                            value={'Auto Renew'}
+                            title={'Auto Renew'}
+                            value={''}
                             trendType="negative"
                         />
                     </div>
@@ -195,7 +206,9 @@ const BusinessOverviewChildParent = () => {
                         <HealthAlert />
                     </div>
                     <div>
-                        <h2>Quick Stats</h2>
+                        <h2 className="mb-4 text-xl font-semibold">
+                            Quick Stats
+                        </h2>
                         <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
                             <StatCard
                                 title="Order This Month"
@@ -231,9 +244,7 @@ const BusinessOverviewChildParent = () => {
                             <BillingHistoryTable
                                 billingRecords={billingRecords}
                                 headerButton={
-                                    <Button>
-                                        View Payment Overview
-                                    </Button>
+                                    <Button>View Payment Overview</Button>
                                 }
                             />
                         </div>
@@ -247,7 +258,7 @@ const BusinessOverviewChildParent = () => {
                 </div>
             </main>
         </div>
-  )
-}
+    );
+};
 
-export default BusinessOverviewChildParent
+export default BusinessOverviewChildParent;

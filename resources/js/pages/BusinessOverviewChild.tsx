@@ -12,7 +12,9 @@ import {
     DocumentsTable,
 } from '@/components/ui/DataTable';
 import IconButton from '@/components/ui/IconButton';
+import BackArrow from '@/images/icons/backArrow.svg?react';
 import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 const BusinessOverviewChild = () => {
@@ -154,7 +156,17 @@ const BusinessOverviewChild = () => {
                     tabs={tabs}
                 />
                 {/**contains all the page content */}
-                <div className="px-12 py-12">
+
+                <div className="px-8 py-6">
+                    <div className="mb-6">
+                        <Link
+                            href="/business-management"
+                            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
+                        >
+                            <BackArrow className="h-4 w-4 text-iconColor" />
+                            Back to Business overview
+                        </Link>
+                    </div>
                     {/**Business Profile Header (dynamic) */}
                     <div>
                         <BusinessProfileHeader
@@ -176,19 +188,19 @@ const BusinessOverviewChild = () => {
                     <div className="mb-6 grid grid-cols-1 divide-x divide-borderColor rounded-lg border border-borderColor p-4 md:grid-cols-2 lg:grid-cols-4">
                         <BusinessPlan
                             title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            value={'Pro (Yearly)'}
                         />
                         <BusinessPlan
-                            title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            title={'Plan start date'}
+                            value={'Jan 15, 2025'}
                         />
                         <BusinessPlan
-                            title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            title={'Plan end date'}
+                            value={'Jan 15, 2026'}
                         />
                         <BusinessPlan
-                            title={''}
-                            value={'Auto Renew'}
+                            title={'Auto Renew'}
+                            value={''}
                             trendType="negative"
                         />
                     </div>
@@ -196,7 +208,7 @@ const BusinessOverviewChild = () => {
                         <HealthAlert />
                     </div>
                     <div>
-                        <h2 className="mb-4 text-lg font-medium">
+                        <h2 className="mb-4 text-xl font-semibold">
                             Quick Stats
                         </h2>
                         <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">

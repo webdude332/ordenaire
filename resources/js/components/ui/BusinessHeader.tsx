@@ -15,7 +15,7 @@ const BusinessHeader = () => {
             ></div>
 
             {/* 2. Profile Info Header */}
-            <div className="px-8 pb-8">
+            <div className="px-8">
                 <div className="flex items-start justify-between">
                     {/* Left Side: Avatar & Name */}
                     <div className="flex gap-6">

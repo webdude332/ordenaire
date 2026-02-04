@@ -318,7 +318,7 @@ const BusinessOverviewPage = () => {
 
                     {/* --- QUICK STATS --- */}
                     <div>
-                        <h2 className="mb-3 text-2xl font-semibold">
+                        <h2 className="mb-3 text-xl font-semibold">
                             Quick Stats
                         </h2>
                         <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">

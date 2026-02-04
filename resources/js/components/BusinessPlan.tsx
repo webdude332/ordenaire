@@ -8,9 +8,9 @@ interface StatCardProps {
 
 const BusinessPlan = ({ title, value, trendType }: StatCardProps) => {
     return (
-        <div className="bg-white px-6 py-2 transition-shadow">
+        <div className="bg-white px-6 py-3 transition-shadow">
             {/* Title */}
-            <p className="mb-2 text-sm font-medium text-gray-600">{title}</p>
+            <p className="mb-3 text-sm font-medium text-gray-600">{title}</p>
 
             {/* Value */}
             <div className="mb-1 text-lg font-medium text-gray-900">
