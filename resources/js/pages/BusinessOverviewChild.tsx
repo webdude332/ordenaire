@@ -1,20 +1,19 @@
-import { useState } from 'react';
 import BusinessPlan from '@/components/BusinessPlan';
 import BusinessProfileHeader from '@/components/BusinessProfileHeader';
+import HealthAlert from '@/components/HealthAlert';
+import Notes from '@/components/Notes';
+import SidePannel from '@/components/SidePannel';
+import StatCard from '@/components/StatCard';
+import TopBar from '@/components/TopBar';
 import Button from '@/components/ui/Button';
 import {
     AddonsTable,
     BillingHistoryTable,
     DocumentsTable,
 } from '@/components/ui/DataTable';
-import HealthAlert from '@/components/HealthAlert';
-import Notes from '@/components/Notes';
-import SidePannel from '@/components/SidePannel';
-import StatCard from '@/components/StatCard';
-import TopBar from '@/components/TopBar';
-import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
 import IconButton from '@/components/ui/IconButton';
-
+import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
+import { useState } from 'react';
 
 const BusinessOverviewChild = () => {
     const [activeTab, setActiveTab] = useState('business_profiles');
@@ -50,8 +49,8 @@ const BusinessOverviewChild = () => {
     const addOnData = [
         {
             name: 'Inventory Management',
-            status: 'Enabled' as const, 
-            pricing: 'Free', 
+            status: 'Enabled' as const,
+            pricing: 'Free',
             installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
@@ -59,36 +58,36 @@ const BusinessOverviewChild = () => {
         },
         {
             name: 'Inventory Management',
-            status: 'Enabled' as const, 
-            pricing: 'Free', 
-            installDate: '03 Sept 2025', 
-            installTime: '11:30 AM',
-            endSub: '03 Sept 2026',
-            endSubTime: '11:30 AM',
-        },
-        {
-            name: 'Inventory Management',
-            status: 'Disabled' as const, 
+            status: 'Enabled' as const,
             pricing: 'Free',
-            installDate: '03 Sept 2025', 
+            installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
             endSubTime: '11:30 AM',
         },
         {
             name: 'Inventory Management',
-            status: 'Trial' as const, 
-            pricing: 'Free', 
-            installDate: '03 Sept 2025', 
+            status: 'Disabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
             endSubTime: '11:30 AM',
         },
         {
             name: 'Inventory Management',
-            status: 'Enabled' as const, 
-            pricing: 'Free', 
-            installDate: '03 Sept 2025', 
+            status: 'Trial' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+        {
+            name: 'Inventory Management',
+            status: 'Enabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
             endSubTime: '11:30 AM',
@@ -233,9 +232,7 @@ const BusinessOverviewChild = () => {
                             <BillingHistoryTable
                                 billingRecords={billingRecords}
                                 headerButton={
-                                    <Button>
-                                        View Payment Overview
-                                    </Button>
+                                    <Button>View Payment Overview</Button>
                                 }
                             />
                         </div>

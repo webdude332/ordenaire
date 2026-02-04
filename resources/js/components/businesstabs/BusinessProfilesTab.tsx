@@ -10,7 +10,6 @@ import BackArrow from '../../images/icons/backArrow.svg?react';
 import BranchIcon from '../../images/icons/branchIcon.svg?react';
 import Burger from '../../images/icons/burger.svg?react';
 import Cafe from '../../images/icons/cafeIcon.svg?react';
-import ArrowDown from '../../images/icons/chevron-down.svg?react';
 import Desert from '../../images/icons/desert.svg?react';
 import EyeIcon from '../../images/icons/eyeIcon.svg?react';
 import GridIcon from '../../images/icons/gridIcon.svg?react';
@@ -23,10 +22,10 @@ import PlusIcon from '../../images/icons/plus.svg?react';
 import Salad from '../../images/icons/salad.svg?react';
 import Snack from '../../images/icons/snack.svg?react';
 import Tea from '../../images/icons/teaIcon.svg?react';
+import CustomDropdown from '../ui/CustomDropdown';
 
 const BusinessProfilesTab = () => {
-    // --- PERSISTENCE LOGIC ---
-    // Initialize state from localStorage or default to 'grid'
+    const [selectedStatus, setSelectedStatus] = useState('all');
     const [viewMode, setViewMode] = useState<'grid' | 'list'>(() => {
         const savedView = localStorage.getItem('business_view_preference');
         return savedView === 'grid' || savedView === 'list'
@@ -34,7 +33,7 @@ const BusinessProfilesTab = () => {
             : 'grid';
     });
 
-    // Update localStorage whenever viewMode changes
+    // Update localStorage whenever viewMode
     useEffect(() => {
         localStorage.setItem('business_view_preference', viewMode);
     }, [viewMode]);
@@ -152,51 +151,36 @@ const BusinessProfilesTab = () => {
                         <input
                             type="text"
                             placeholder="Search"
-                            className="w-80 rounded-lg border border-gray-300 py-2 pr-4 pl-10 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+                            className="w-80 rounded-lg border border-gray-300 py-2.5 pr-4 pl-10 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
                         />
                     </div>
-                    {/* Filter Dropdown */}
-                    <details className="group relative">
-                        <summary className="flex cursor-pointer list-none items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:ring-2 focus:ring-[#8CDD05] focus:outline-none">
-                            <span>Status All</span>
-                            <ArrowDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                        </summary>
-                        <div className="absolute left-0 z-20 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-                            <ul className="py-1">
-                                {['All', 'Active', 'Expired', 'Archived'].map(
-                                    (item) => (
-                                        <li key={item}>
-                                            <button
-                                                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-[#F9F7FA]"
-                                                onClick={(e) => {
-                                                    e.currentTarget
-                                                        .closest('details')
-                                                        ?.removeAttribute(
-                                                            'open',
-                                                        );
-                                                }}
-                                            >
-                                                Status: {item}
-                                            </button>
-                                        </li>
-                                    ),
-                                )}
-                            </ul>
-                        </div>
-                        <div
-                            className="fixed inset-0 z-10 hidden h-full w-full bg-transparent group-open:block"
-                            onClick={(e) =>
-                                e.currentTarget.parentElement?.removeAttribute(
-                                    'open',
-                                )
-                            }
+                    <div className="relative w-32">
+                        <CustomDropdown
+                            label=""
+                            options={[
+                                {
+                                    label: 'Status All',
+                                    value: 'all',
+                                },
+                                {
+                                    label: 'Admin',
+                                    value: 'admin',
+                                },
+                                {
+                                    label: 'Accounts',
+                                    value: 'accounts',
+                                },
+                            ]}
+                            value={selectedStatus}
+                            onChange={setSelectedStatus}
+                            placeholder="Status All"
                         />
-                    </details>
+                    </div>
                     {/* View Switcher */}
                     <div className="inline-flex overflow-hidden rounded-xl border border-gray-300">
                         <button
                             onClick={() => setViewMode('grid')}
-                            className={`flex cursor-pointer items-center gap-2 px-5 py-2 text-sm font-medium transition ${viewMode === 'grid' ? 'bg-[#F8FFEB] text-[#578500]' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
+                            className={`flex cursor-pointer items-center gap-2 px-5 py-2.5 text-sm font-medium transition ${viewMode === 'grid' ? 'bg-[#F8FFEB] text-[#578500]' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
                         >
                             <GridIcon className="h-5 w-5" /> Grid
                         </button>

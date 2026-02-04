@@ -35,10 +35,10 @@ const CustomDropdown = ({
 
     return (
         <div className="relative space-y-2">
-            <label className={`block  ${labelClassName}`}>
+            {/* <label className={`block  ${labelClassName}`}>
                 {label}
                 {required && <span className="text-[#8CDD05]">*</span>}
-            </label>
+            </label> */}
             <button
                 type="button" 
                 disabled={disabled}

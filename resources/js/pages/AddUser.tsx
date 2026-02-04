@@ -988,7 +988,7 @@ const AddUser = () => {
             },
         });
 
-    // --- 2. UI State ---
+    // --- 2. UI State --
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);

@@ -27,9 +27,7 @@ import {
 
 const MultiTenancyTab = () => {
     // Defaulting to first ID for preview purposes
-    const [expandedRowId, setExpandedRowId] = useState<string | null>(
-        'BIZ-2050',
-    );
+    const [expandedRowId, setExpandedRowId] = useState<string | null>(null);
     const [selectedStatus, setSelectedStatus] = useState('');
 
     const toggleRow = (id: string) => {

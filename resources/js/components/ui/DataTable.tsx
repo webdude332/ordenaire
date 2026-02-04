@@ -301,7 +301,13 @@ interface DocumentsTableProps {
     onDownload?: (document: DocumentInfo) => void;
     onDelete?: (document: DocumentInfo) => void;
 }
-
+    import AddDocumentModal from "../Modals/AddDocumentModal";
+    import DeleteModal from "@/components/DeleteModal";
+    import ActionButton from "./ActionButton";
+    import Upload from '@/images/icons/upload.svg?react'
+    import DelIcon from '@/images/icons/delIcon.svg?react'
+    import DownloadIcon from '@/images/icons/downloadIcon.svg?react'
+    import {useState} from 'react'
 export const DocumentsTable = ({
     documents,
     onAddDocument,
@@ -309,6 +315,14 @@ export const DocumentsTable = ({
     onDownload,
     onDelete,
 }: DocumentsTableProps) => {
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+    const handleAddDocument = (data: any)=>{
+        setIsDeleteModalOpen(true)
+    }
+    const handleDelete = ()=>{
+        setIsDeleteModalOpen(true)
+    }
     return (
         <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
             {/* Header */}
@@ -372,67 +386,21 @@ export const DocumentsTable = ({
                                 <div className="flex items-center gap-2">
                                     {doc.fileStatus === 'Uploaded' ? (
                                         <>
-                                            <button
-                                                onClick={() =>
-                                                    onDownload?.(doc)
-                                                }
-                                                className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
-                                            >
-                                                <svg
-                                                    className="h-4 w-4"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                                                    />
-                                                </svg>
-                                                Download
-                                            </button>
-                                            <button
-                                                onClick={() => onDelete?.(doc)}
-                                                className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
-                                            >
-                                                <svg
-                                                    className="h-4 w-4"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                    />
-                                                </svg>
-                                                Delete
-                                            </button>
+                                            <ActionButton>
+                                             <DownloadIcon/>
+                                             Download
+                                            </ActionButton>
+                                            <ActionButton onClick={()=>setIsDeleteModalOpen(true)}>
+                                             <DelIcon/>
+                                             Delete
+                                            </ActionButton>
                                         </>
                                     ) : (
-                                        <button
-                                            onClick={() => onUpload?.(doc)}
-                                            className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
-                                        >
-                                            <svg
-                                                className="h-4 w-4"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L9 8m4-4v12"
-                                                />
-                                            </svg>
+
+                                        <ActionButton onClick={()=>setIsUploadModalOpen(true)}>
+                                            <Upload/>
                                             Upload
-                                        </button>
+                                        </ActionButton>
                                     )}
                                 </div>
                             </td>
@@ -447,6 +415,16 @@ export const DocumentsTable = ({
                     <p className="text-sm text-gray-500">No documents found</p>
                 </div>
             )}
+            <AddDocumentModal
+                isOpen={isUploadModalOpen}
+                onClose={() => setIsUploadModalOpen(false)}
+                onAdd={handleAddDocument}
+            />
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={handleDelete}
+            />
         </div>
     );
 };

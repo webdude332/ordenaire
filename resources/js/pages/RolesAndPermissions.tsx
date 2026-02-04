@@ -1,10 +1,9 @@
 import { Link } from '@inertiajs/react';
-import { useState } from 'react'; // Added useState
+import { useState } from 'react';
 import Button from '../components/ui/Button';
 import addUser from '../images/icons/addUserIcon.svg';
 import InfoIcon from '../images/icons/gray-info.svg?react';
 import PencilIcon from '../images/icons/pencilIcon.svg?react';
-import tickIcon from '../images/icons/tickIcon.png';
 
 // --- INITIAL DATA ---
 const INITIAL_PERMISSIONS = [
@@ -110,6 +109,26 @@ const ROLE_KEYS = [
     'crm',
 ] as const;
 
+// Reusable SVG Check Icon to replace the image file
+const CheckIconSVG = ({ className }: { className?: string }) => (
+    <svg
+        width="10"
+        height="8"
+        viewBox="0 0 10 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+    >
+        <path
+            d="M9 1L3.5 6.5L1 4"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    </svg>
+);
+
 export default function RolesAndPermissionsTable() {
     // 1. Initialize State
     const [permissions, setPermissions] = useState(INITIAL_PERMISSIONS);
@@ -126,13 +145,10 @@ export default function RolesAndPermissionsTable() {
                 const currentVal = row[roleKey as keyof typeof row];
                 let newVal: any;
 
-                // Logic: Toggle between Boolean or cycle through string types if needed
-                // If it's boolean, just flip it.
-                // If you want 'View' to be toggleable, you can add logic here.
                 if (typeof currentVal === 'boolean') {
                     newVal = !currentVal;
                 } else if (currentVal === 'View') {
-                    newVal = true; // Switch View to Full Access, or false for No access
+                    newVal = true;
                 } else {
                     newVal = true;
                 }
@@ -144,6 +160,26 @@ export default function RolesAndPermissionsTable() {
 
     return (
         <div className="space-y-6">
+            {/* Custom Scrollbar Styles */}
+            <style>{`
+                .scrollbar-custom::-webkit-scrollbar {
+                    height: 8px;
+                    width: 8px;
+                }
+                .scrollbar-custom::-webkit-scrollbar-track {
+                    background: #F2F4F7;
+                    border-radius: 4px;
+                    margin: 0 20px; /* Slight offset from edges like image */
+                }
+                .scrollbar-custom::-webkit-scrollbar-thumb {
+                    background: #D0D5DD;
+                    border-radius: 4px;
+                }
+                .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+                    background: #98A2B3;
+                }
+            `}</style>
+
             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                 <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
                     <h2 className="text-lg font-semibold text-gray-900">
@@ -157,11 +193,12 @@ export default function RolesAndPermissionsTable() {
                     </Link>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200">
+                {/* Horizontal Scroll Container */}
+                <div className="scrollbar-custom overflow-x-auto pb-3">
+                    <table className="w-full min-w-[1200px] divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="w-1/4 px-6 py-3 text-left text-xs font-bold text-gray-500">
+                                <th className="sticky left-0 z-10 w-1/4 bg-gray-50 px-6 py-3 text-left text-xs font-bold text-gray-500 shadow-[1px_0_0_0_rgba(0,0,0,0.05)] sm:shadow-none">
                                     Feature/Section
                                 </th>
                                 {[
@@ -187,7 +224,7 @@ export default function RolesAndPermissionsTable() {
                                     key={rowIndex}
                                     className="transition-colors hover:bg-gray-50"
                                 >
-                                    <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                    <td className="sticky left-0 z-10 bg-white px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900 shadow-[1px_0_0_0_rgba(0,0,0,0.05)] sm:shadow-none">
                                         {row.section}
                                     </td>
                                     {ROLE_KEYS.map((roleKey, colIndex) => {
@@ -209,11 +246,7 @@ export default function RolesAndPermissionsTable() {
                                                             }
                                                             className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-[4px] bg-[#79B800] text-white transition-transform active:scale-90"
                                                         >
-                                                            <img
-                                                                src={tickIcon}
-                                                                alt=""
-                                                                className="h-3 w-3"
-                                                            />
+                                                            <CheckIconSVG className="h-2.5 w-2.5" />
                                                         </button>
                                                     ) : val === 'View' ? (
                                                         <button
@@ -248,23 +281,37 @@ export default function RolesAndPermissionsTable() {
                             ))}
                             {/* Action Row */}
                             <tr className="bg-white">
-                                <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                <td className="sticky left-0 z-10 bg-white px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900 shadow-[1px_0_0_0_rgba(0,0,0,0.05)] sm:shadow-none">
                                     Action
                                 </td>
-                                {ROLE_KEYS.map((_, i) => (
-                                    <td
-                                        key={i}
-                                        className="px-4 py-4 text-center whitespace-nowrap"
-                                    >
-                                        <div className="flex justify-center">
-                                            <Link href="/users/editrole">
-                                                <button className="cursor-pointer rounded-lg border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
-                                                    <PencilIcon className="h-4 w-4" />
-                                                </button>
-                                            </Link>
-                                        </div>
-                                    </td>
-                                ))}
+                                {ROLE_KEYS.map((roleKey, i) => {
+                                    const isAllSelected = permissions.every(
+                                        (row) => row[roleKey] === true,
+                                    );
+
+                                    return (
+                                        <td
+                                            key={i}
+                                            className="px-4 py-4 text-center whitespace-nowrap"
+                                        >
+                                            <div className="flex justify-center">
+                                                {isAllSelected ? (
+                                                    // Dull/Disabled State
+                                                    <div className="rounded-lg border border-gray-100 bg-gray-50 p-1.5 text-gray-300">
+                                                        <PencilIcon className="h-4 w-4 opacity-50" />
+                                                    </div>
+                                                ) : (
+                                                    // Active State
+                                                    <Link href="/users/editrole">
+                                                        <button className="cursor-pointer rounded-lg border border-gray-200 p-1.5 text-gray-400 transition-colors hover:bg-gray-50">
+                                                            <PencilIcon className="h-4 w-4" />
+                                                        </button>
+                                                    </Link>
+                                                )}
+                                            </div>
+                                        </td>
+                                    );
+                                })}
                             </tr>
                         </tbody>
                     </table>
@@ -281,11 +328,9 @@ export default function RolesAndPermissionsTable() {
                 </div>
                 <div className="space-y-3 px-6 py-4 text-sm text-gray-500">
                     <div className="flex items-center gap-3">
-                        <img
-                            src={tickIcon}
-                            className="h-4 w-4 rounded-sm bg-[#79B800] p-0.5"
-                            alt=""
-                        />
+                        <div className="flex h-5 w-5 items-center justify-center rounded-[4px] bg-[#79B800]">
+                            <CheckIconSVG className="h-2.5 w-2.5" />
+                        </div>
                         <span>= Full access (view, add, edit, delete)</span>
                     </div>
                     <div className="flex items-center gap-3">

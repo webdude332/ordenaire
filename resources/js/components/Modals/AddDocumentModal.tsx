@@ -24,7 +24,7 @@ export default function AddDocumentModal({
     onClose,
     onAdd,
 }: AddDocumentModalProps) {
-    // --- State Management ---
+    // --- State Management --
     const [uploadStatus, setUploadStatus] = useState<UploadStatus>('initial');
     const [progress, setProgress] = useState(0);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);

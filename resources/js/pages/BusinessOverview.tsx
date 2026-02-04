@@ -21,6 +21,8 @@ import TrendGreen from '@/images/icons/trendGreen.svg?react';
 import UploadIcon from '@/images/icons/upload.svg?react';
 import HealthAlert from '../components/HealthAlert';
 // import IconButton from '@/components/ui/IconButton'
+import DeleteModal from '@/components/DeleteModal';
+import AddDocumentModal from '@/components/Modals/AddDocumentModal';
 
 const AddonsTable = () => {
     const data = [
@@ -217,6 +219,14 @@ const BillingTable = () => {
 const BusinessOverviewPage = () => {
     // TopBar State
     const [activeTab, setActiveTab] = useState('business_profiles');
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const handleAddDocument = (data: any) => {
+        setIsUploadModalOpen(true);
+    };
+    const handleDeleteDocument = () => {
+        setIsDeleteModalOpen(false);
+    };
 
     // Breadcrumbs
     const breadcrumbs = [
@@ -413,9 +423,11 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
-                                            <Eye className="h-4 w-4 text-iconColor" />
-                                        </button>
+                                        <Link href="/business/businessoverviewchild">
+                                            <button className="cursor-pointer rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
+                                                <Eye className="h-4 w-4 text-iconColor" />
+                                            </button>
+                                        </Link>
                                     </td>
                                 </tr>
                                 <tr>
@@ -449,9 +461,11 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button className="rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
-                                            <Eye className="h-4 w-4 text-iconColor" />
-                                        </button>
+                                        <Link href="/business/businessoverviewchild">
+                                            <button className="cursor-pointer rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
+                                                <Eye className="h-4 w-4 text-iconColor" />
+                                            </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             </tbody>
@@ -464,7 +478,10 @@ const BusinessOverviewPage = () => {
                             <h3 className="text-xl font-semibold text-gray-900">
                                 Documents
                             </h3>
-                            <button className="flex items-center gap-2 rounded-lg border border-[#CFCBD2] px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <button
+                                onClick={() => setIsUploadModalOpen(true)}
+                                className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#CFCBD2] px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                            >
                                 <PlusIcon className="h-5 w-5 text-iconColor" />{' '}
                                 Add other document
                             </button>
@@ -500,7 +517,12 @@ const BusinessOverviewPage = () => {
                                         -
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                        <button
+                                            onClick={() =>
+                                                setIsUploadModalOpen(true)
+                                            }
+                                            className="flex cursor-pointer items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50"
+                                        >
                                             <UploadIcon className="h-4 w-4 text-iconColor" />
                                             Upload
                                         </button>
@@ -519,7 +541,12 @@ const BusinessOverviewPage = () => {
                                         -
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                        <button
+                                            onClick={() =>
+                                                setIsUploadModalOpen(true)
+                                            }
+                                            className="flex cursor-pointer items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50"
+                                        >
                                             <UploadIcon className="h-4 w-4 text-iconColor" />
                                             Upload
                                         </button>
@@ -542,7 +569,12 @@ const BusinessOverviewPage = () => {
                                             <DownloadIcon className="h-4 w-4 text-iconColor" />{' '}
                                             Download
                                         </button>
-                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                        <button
+                                            onClick={() =>
+                                                setIsDeleteModalOpen(true)
+                                            }
+                                            className="flex cursor-pointer items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50"
+                                        >
                                             <DelIcon className="h-4 w-4 text-iconColor" />{' '}
                                             Delete
                                         </button>
@@ -568,6 +600,16 @@ const BusinessOverviewPage = () => {
                     </div>
                 </div>
             </main>
+            <AddDocumentModal
+                isOpen={isUploadModalOpen}
+                onClose={() => setIsUploadModalOpen(false)}
+                onAdd={handleAddDocument}
+            />
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={handleDeleteDocument}
+            />
         </div>
     );
 };
