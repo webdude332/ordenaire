@@ -196,7 +196,9 @@ const BusinessOverviewChild = () => {
                         <HealthAlert />
                     </div>
                     <div>
-                        <h2>Quick Stats</h2>
+                        <h2 className="mb-4 text-lg font-medium">
+                            Quick Stats
+                        </h2>
                         <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
                             <StatCard
                                 title="Order This Month"

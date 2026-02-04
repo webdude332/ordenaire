@@ -223,6 +223,10 @@ export default function SchedulingSection() {
                         )}
                     </div>
                     <div>
+                        <Label className="mb-2 text-sm font-medium">
+                            &nbsp;
+                            {/* <span className="text-primary">*</span> */}
+                        </Label>
                         <CustomDropdown
                             label="Report Template"
                             options={templateOptions}

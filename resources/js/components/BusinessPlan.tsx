@@ -1,44 +1,38 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface StatCardProps {
-  title: ReactNode;
-  value: ReactNode;
-  trendType?: 'positive' | 'negative';
+    title: ReactNode;
+    value: ReactNode;
+    trendType?: 'positive' | 'negative';
 }
 
-const BusinessPlan = ({
-  title,
-  value,
-  trendType,
-}: StatCardProps) => {
-  return (
-    <div className="bg-white px-6 py-1 transition-shadow">
-      {/* Title */}
-      <p className="text-sm text-gray-600 font-medium mb-1">
-        {title}
-      </p>
+const BusinessPlan = ({ title, value, trendType }: StatCardProps) => {
+    return (
+        <div className="bg-white px-6 py-2 transition-shadow">
+            {/* Title */}
+            <p className="mb-2 text-sm font-medium text-gray-600">{title}</p>
 
-      {/* Value */}
-      <div className="text-xl font-medium text-gray-900 mb-1">
-        {value}
-      </div>
+            {/* Value */}
+            <div className="mb-1 text-lg font-medium text-gray-900">
+                {value}
+            </div>
 
-      {/* Status badge (Auto Renew) */}
-      {trendType && (
-        <div className="mt-1">
-          <span
-            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
-              trendType === 'positive'
-                ? 'bg-green-50 text-green-700 border border-green-200'
-                : 'bg-red-50 text-red-600 border border-red-200'
-            }`}
-          >
-            {trendType === 'positive' ? 'Enabled' : 'Disabled'}
-          </span>
+            {/* Status badge (Auto Renew) */}
+            {trendType && (
+                <div className="mt-1">
+                    <span
+                        className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
+                            trendType === 'positive'
+                                ? 'border border-green-200 bg-green-50 text-green-700'
+                                : 'border border-red-200 bg-red-50 text-red-600'
+                        }`}
+                    >
+                        {trendType === 'positive' ? 'Enabled' : 'Disabled'}
+                    </span>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default BusinessPlan;

@@ -11,7 +11,7 @@ import IconButton from '@/components/ui/IconButton';
 import BusinessPlan from '@/components/BusinessPlan';
 import StatCard from '@/components/StatCard';
 import Button from '@/components/ui/Button';
-import backArrow from '@/images/icons/backArrow.png';
+import BackArrow from '@/images/icons/backArrow.svg?react';
 import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
@@ -23,6 +23,7 @@ import HealthAlert from '../components/HealthAlert';
 // import IconButton from '@/components/ui/IconButton'
 import DeleteModal from '@/components/DeleteModal';
 import AddDocumentModal from '@/components/Modals/AddDocumentModal';
+import ActionButton from '@/components/ui/ActionButton';
 
 const AddonsTable = () => {
     const data = [
@@ -114,13 +115,13 @@ const AddonsTable = () => {
                             <td className="px-6 py-4 text-sm text-gray-500">
                                 {row.pricing}
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-500">
+                            <td className="px-6 py-4 text-sm text-gray-900">
                                 {row.installDate} <br />
                                 <span className="text-xs text-gray-400">
                                     11:30 AM
                                 </span>
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-500">
+                            <td className="px-6 py-4 text-sm text-gray-900">
                                 {row.endSub} <br />
                                 <span className="text-xs text-gray-400">
                                     11:30 AM
@@ -170,15 +171,17 @@ const BillingTable = () => {
                         <td className="px-6 py-4 text-sm font-medium text-gray-900">
                             INV-2025-002
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
+                        <td className="px-6 py-4 text-sm text-gray-900">
                             03 Sept 2025 <br />
-                            <span className="text-xs">11:30 AM</span>
+                            <span className="text-xs text-gray-500">
+                                11:30 AM
+                            </span>
                         </td>
                         <td className="px-6 py-4 text-sm font-medium text-gray-900">
                             450
                         </td>
                         <td className="px-6 py-4 text-sm">
-                            <span className="rounded bg-green-50 px-2 py-1 text-xs font-medium text-green-600">
+                            <span className="rounded-full border border-green-200 bg-green-100 px-2 py-1 text-xs font-medium text-green-600">
                                 ● Paid
                             </span>
                         </td>
@@ -191,15 +194,17 @@ const BillingTable = () => {
                         <td className="px-6 py-4 text-sm font-medium text-gray-900">
                             INV-2025-003
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
+                        <td className="px-6 py-4 text-sm text-gray-900">
                             04 Sept 2025 <br />
-                            <span className="text-xs">01:15 PM</span>
+                            <span className="text-xs text-gray-500">
+                                01:15 PM
+                            </span>
                         </td>
                         <td className="px-6 py-4 text-sm font-medium text-gray-900">
                             30
                         </td>
                         <td className="px-6 py-4 text-sm">
-                            <span className="rounded bg-red-50 px-2 py-1 text-xs font-medium text-red-600">
+                            <span className="rounded-full border border-red-200 bg-red-50 px-2 py-1 text-xs font-medium text-red-600">
                                 ● Failed
                             </span>
                         </td>
@@ -277,13 +282,9 @@ const BusinessOverviewPage = () => {
                     <div className="mb-6">
                         <Link
                             href="/business-management"
-                            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
+                            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
                         >
-                            <img
-                                src={backArrow}
-                                alt="Back"
-                                className="h-4 w-4"
-                            />
+                            <BackArrow className="h-4 w-4 text-iconColor" />
                             Back to Business overview
                         </Link>
                     </div>
@@ -295,19 +296,19 @@ const BusinessOverviewPage = () => {
                     <div className="mb-6 grid grid-cols-1 divide-x divide-borderColor rounded-lg border border-borderColor p-4 md:grid-cols-2 lg:grid-cols-4">
                         <BusinessPlan
                             title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            value={'Pro (Yearly)'}
                         />
                         <BusinessPlan
                             title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            value={'Jan 15, 2025'}
                         />
                         <BusinessPlan
                             title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            value={'Jan 15, 2026'}
                         />
                         <BusinessPlan
-                            title={''}
-                            value={'Auto Renew'}
+                            title={'Auto Renew'}
+                            value={''}
                             trendType="negative"
                         />
                     </div>
@@ -478,13 +479,12 @@ const BusinessOverviewPage = () => {
                             <h3 className="text-xl font-semibold text-gray-900">
                                 Documents
                             </h3>
-                            <button
+                            <IconButton
                                 onClick={() => setIsUploadModalOpen(true)}
-                                className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#CFCBD2] px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
                             >
-                                <PlusIcon className="h-5 w-5 text-iconColor" />{' '}
+                                <PlusIcon className="h-4 w-4 text-iconColor" />
                                 Add other document
-                            </button>
+                            </IconButton>
                         </div>
                         <table className="min-w-full divide-y divide-gray-100">
                             <thead className="bg-[#F9F9FB]">
@@ -509,7 +509,7 @@ const BusinessOverviewPage = () => {
                                         Trade License
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <span className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-500">
+                                        <span className="rounded-lg border border-borderColor bg-gray-100 px-2 py-1 text-xs text-gray-500">
                                             ● Not Uploaded
                                         </span>
                                     </td>
@@ -517,15 +517,14 @@ const BusinessOverviewPage = () => {
                                         -
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <button
+                                        <ActionButton
                                             onClick={() =>
                                                 setIsUploadModalOpen(true)
                                             }
-                                            className="flex cursor-pointer items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50"
                                         >
                                             <UploadIcon className="h-4 w-4 text-iconColor" />
                                             Upload
-                                        </button>
+                                        </ActionButton>
                                     </td>
                                 </tr>
                                 <tr>
@@ -533,7 +532,7 @@ const BusinessOverviewPage = () => {
                                         Trade License
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <span className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-500">
+                                        <span className="rounded-lg border border-borderColor bg-gray-100 px-2 py-1 text-xs text-gray-500">
                                             ● Not Uploaded
                                         </span>
                                     </td>
@@ -541,15 +540,14 @@ const BusinessOverviewPage = () => {
                                         -
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <button
+                                        <ActionButton
                                             onClick={() =>
                                                 setIsUploadModalOpen(true)
                                             }
-                                            className="flex cursor-pointer items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50"
                                         >
                                             <UploadIcon className="h-4 w-4 text-iconColor" />
                                             Upload
-                                        </button>
+                                        </ActionButton>
                                     </td>
                                 </tr>
                                 <tr>
@@ -557,7 +555,7 @@ const BusinessOverviewPage = () => {
                                         Tax/VAT Certificate
                                     </td>
                                     <td className="px-6 py-4 text-sm">
-                                        <span className="rounded bg-green-50 px-2 py-1 text-xs text-green-600">
+                                        <span className="rounded-lg border border-green-200 bg-green-50 px-2 py-1 text-xs text-green-600">
                                             ● Tax_Cert_2025.pdf
                                         </span>
                                     </td>
@@ -565,19 +563,18 @@ const BusinessOverviewPage = () => {
                                         30 Nov 2028
                                     </td>
                                     <td className="flex gap-2 px-6 py-4">
-                                        <button className="flex items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50">
+                                        <ActionButton>
                                             <DownloadIcon className="h-4 w-4 text-iconColor" />{' '}
                                             Download
-                                        </button>
-                                        <button
+                                        </ActionButton>
+                                        <ActionButton
                                             onClick={() =>
                                                 setIsDeleteModalOpen(true)
                                             }
-                                            className="flex cursor-pointer items-center gap-1 rounded border border-[#CFCBD2] px-2 py-1 text-xs hover:bg-gray-50"
                                         >
                                             <DelIcon className="h-4 w-4 text-iconColor" />{' '}
-                                            Delete
-                                        </button>
+                                            Delete{' '}
+                                        </ActionButton>
                                     </td>
                                 </tr>
                             </tbody>

@@ -1236,6 +1236,7 @@ const AddUser = () => {
                                         )}
                                     </div>
                                     <div>
+                                        <Label>&nbsp;</Label>
                                         <CustomDropdown
                                             label="Primary Role"
                                             options={templateOptions}
