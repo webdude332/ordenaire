@@ -1,5 +1,6 @@
-// ===== Multi-Tenancy & Franchise Table Component =====
 
+// ===== Multi-Tenancy & Franchise Table Component =====
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react'
 interface OutletInfo {
     name: string;
     bizId: string;
@@ -218,11 +219,13 @@ export const BillingHistoryTable = ({
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                             Date
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                            Amount
+                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
+                            <div className="flex items-center gap-1">
+                                Amount <span><SelectorIcon className='w-3 h-3'/></span>
+                            </div>
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                            Status
+                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 flex items-center gap-1">
+                            Status <span><SelectorIcon className='w-3 h-3'/></span>
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                             Type of Charges
@@ -292,6 +295,7 @@ interface DocumentInfo {
     fileStatus: 'Uploaded' | 'Not Uploaded';
     fileName?: string; // Only if uploaded
     expiryDate?: string; // Optional
+    
 }
 
 interface DocumentsTableProps {
@@ -300,6 +304,7 @@ interface DocumentsTableProps {
     onUpload?: (document: DocumentInfo) => void;
     onDownload?: (document: DocumentInfo) => void;
     onDelete?: (document: DocumentInfo) => void;
+    headerButton?: React.ReactNode;
 }
     import AddDocumentModal from "../Modals/AddDocumentModal";
     import DeleteModal from "@/components/DeleteModal";
@@ -314,11 +319,12 @@ export const DocumentsTable = ({
     onUpload,
     onDownload,
     onDelete,
+    headerButton,
 }: DocumentsTableProps) => {
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
     const handleAddDocument = (data: any)=>{
-        setIsDeleteModalOpen(true)
+        setIsUploadModalOpen(true)
     }
     const handleDelete = ()=>{
         setIsDeleteModalOpen(true)
@@ -330,15 +336,15 @@ export const DocumentsTable = ({
                 <h3 className="text-xl font-semibold text-gray-900">
                     Documents
                 </h3>
-                {onAddDocument && (
+{headerButton || (onAddDocument && (
                     <button
-                        onClick={onAddDocument}
+                        onClick={handleAddDocument}
                         className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                     >
                         <span className="text-lg">+</span>
                         Add other document
                     </button>
-                )}
+                ))}
             </div>
 
             {/* Table */}
@@ -351,10 +357,10 @@ export const DocumentsTable = ({
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                             File Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                            Expiry Date
+                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 flex items-center gap-1">
+                            Expiry Date <span><SelectorIcon className='w-3 h-3'/></span>
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
+                        <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500">
                             Actions
                         </th>
                     </tr>
@@ -369,12 +375,12 @@ export const DocumentsTable = ({
                                 {doc.fileStatus === 'Uploaded' &&
                                 doc.fileName ? (
                                     <span className="inline-flex items-center gap-2 rounded-lg bg-[#ECFDF3] px-2 py-1 text-xs font-medium text-[#067647] border border-green-200">
-                                        <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                                        <span className="h-1.5 w-1.5 rounded-full bg-[#17B26A]"></span>
                                         {doc.fileName}
                                     </span>
                                 ) : (
-                                    <span className="inline-flex items-center gap-2 text-xs text-gray-500 bg-gray-100 p-1 rounded-lg border border-gray-200">
-                                        <span className="h-1.5 w-1.5 rounded-full bg-gray-400"></span>
+                                    <span className="inline-flex items-center gap-2 text-xs text-gray-500 bg-gray-100 px-1.5 py-1 rounded-lg border border-gray-200">
+                                        <span className="h-1.5 w-1.5 rounded-full bg-[#9C94A3]"></span>
                                         Not Uploaded
                                     </span>
                                 )}
@@ -383,7 +389,7 @@ export const DocumentsTable = ({
                                 {doc.expiryDate || '-'}
                             </td>
                             <td className="px-6 py-4">
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center justify-end gap-2">
                                     {doc.fileStatus === 'Uploaded' ? (
                                         <>
                                             <ActionButton>
@@ -492,12 +498,20 @@ export const AddonsTable = ({
                             'Install Date',
                             'End of Subscription',
                         ].map((head) => (
-                            <th
-                                key={head}
-                                className="px-6 py-3 text-left text-xs font-semibold text-gray-500"
-                            >
-                                {head}
-                            </th>
+<th
+    key={head}
+    className="px-6 py-3 text-left text-xs font-semibold text-gray-500"
+>
+    {/* Use || (OR) to check if the head matches EITHER string */}
+    {head === 'Install Date' || head === 'End of Subscription' ? (
+        <div className="flex items-center gap-1.5">
+            {head}
+            <SelectorIcon className='w-3 h-3'/>
+        </div>
+    ) : (
+        head
+    )}
+</th>
                         ))}
                     </tr>
                 </thead>
@@ -514,10 +528,16 @@ export const AddonsTable = ({
                                     {row.status === 'Enabled' && (
                                         <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-green-600"></span>
                                     )}
+                                    {row.status === 'Disabled' && (
+                                        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-red-600"></span>
+                                    )}
+                                    {row.status === 'Trial' && (
+                                        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-blue-400"></span>
+                                    )}
                                     {row.status}
                                 </span>
                             </td>
-                            <td className="px-6 py-4 text-sm text-gray-500">
+                            <td className="px-6 py-4 text-sm font-medium text-gray-700">
                                 {row.pricing}
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-900">

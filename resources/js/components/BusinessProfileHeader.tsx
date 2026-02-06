@@ -1,6 +1,7 @@
 import Edit from '@/images/icons/editIcon.svg?react';
 import Eye from '@/images/icons/eyeIcon.svg?react';
 import Profile from '@/images/icons/teaProfile.svg?react';
+import { Link } from '@inertiajs/react';
 
 // Define the TypeScript interface for the component props
 interface BusinessProfileHeaderProps {
@@ -29,6 +30,7 @@ interface BusinessProfileHeaderProps {
 
     // Optional: Custom profile image
     profileImage?: string;
+    newButton?: React.ReactNode;
 
     // Optional: Button handlers
     onViewSubscription?: () => void;
@@ -52,6 +54,7 @@ const BusinessProfileHeader = ({
     profileImage,
     onViewSubscription,
     onEditBusiness,
+    newButton,
 }: BusinessProfileHeaderProps) => {
     // Status badge styling based on status
     const getStatusStyles = () => {
@@ -136,18 +139,21 @@ const BusinessProfileHeader = ({
                             <div className="flex gap-2">
                                 <button
                                     onClick={onViewSubscription}
-                                    className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+                                    className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
                                 >
                                     <Eye className="h-4 w-4 text-iconColor" />
                                     Subscription Overview
                                 </button>
-                                <button
-                                    onClick={onEditBusiness}
-                                    className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
-                                >
-                                    <Edit className="h-4 w-4 text-iconColor" />
-                                    Edit Business
-                                </button>
+                                <Link href="/business/editbusiness">
+                                    <button
+                                        onClick={onEditBusiness}
+                                        className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+                                    >
+                                        <Edit className="h-4 w-4 text-iconColor" />
+                                        Edit Business
+                                    </button>
+                                </Link>
+                                {newButton}
                             </div>
                         </div>
                     </div>

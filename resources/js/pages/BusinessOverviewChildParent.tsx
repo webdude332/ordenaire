@@ -5,7 +5,7 @@ import Notes from '@/components/Notes';
 import SidePannel from '@/components/SidePannel';
 import StatCard from '@/components/StatCard';
 import TopBar from '@/components/TopBar';
-import Button from '@/components/ui/Button';
+// import PlusIcon from '@/images/icons/plus.svg?react';
 import {
     AddonsTable,
     BillingHistoryTable,
@@ -14,17 +14,30 @@ import {
 import IconButton from '@/components/ui/IconButton';
 import BackArrow from '@/images/icons/backArrow.svg?react';
 import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
+import PlusIcon from '@/images/icons/plus.svg?react';
+import TrendGreen from '@/images/icons/trendGreen.svg?react';
 import { Link } from '@inertiajs/react';
+
+import AddDocumentModal from '@/components/Modals/AddDocumentModal';
 import { useState } from 'react';
 
 const BusinessOverviewChildParent = () => {
     const [activeTab, setActiveTab] = useState('business_profiles');
+    const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+    const handleAddDocument = (data: any) => {
+        setIsUploadModalOpen(true);
+    };
+
     const breadcrumbs = [
-        { label: 'Business Management', isActive: false, href: '/business' },
+        {
+            label: 'Business Management',
+            isActive: false,
+            href: '/business-management',
+        },
         {
             label: 'Business Profiles',
             isActive: false,
-            href: '/business/profiles',
+            href: '/business-management',
         },
         { label: 'Business Overview', isActive: true },
     ];
@@ -79,7 +92,7 @@ const BusinessOverviewChildParent = () => {
         {
             name: 'Inventory Management',
             status: 'Trial' as const,
-            pricing: 'Free',
+            pricing: '20 KWD',
             installDate: '03 Sept 2025',
             installTime: '11:30 AM',
             endSub: '03 Sept 2026',
@@ -152,7 +165,7 @@ const BusinessOverviewChildParent = () => {
                     title="Business Overview"
                     icon={UsersIcon}
                     breadcrumbs={breadcrumbs}
-                    tabs={tabs}
+                    // tabs={tabs}
                 />
                 {/**contains all the page content */}
                 <div className="px-8 py-6">
@@ -172,7 +185,7 @@ const BusinessOverviewChildParent = () => {
                             businessId="BIZ-2049"
                             serviceType="Quick Service (Takeaway)"
                             businessEmail="hello@coffeecorner.com"
-                            parentBusinessName="Tea Time HQ (BIZ-2050)"
+                            // parentBusinessName="Tea Time HQ (BIZ-2050)"
                             phoneNumber="+1 555-0123"
                             preferredLanguage="English"
                             country="USA"
@@ -180,21 +193,27 @@ const BusinessOverviewChildParent = () => {
                             linkedWhatsApp="+1 555-0124"
                             websiteUrl="https://www.coffeecorner.com/"
                             status="Active"
+                            newButton={
+                                <button className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
+                                    <PlusIcon className="h-4 w-4 text-iconColor" />
+                                    Add new outlet
+                                </button>
+                            }
                         />
                     </div>
 
                     <div className="mb-6 grid grid-cols-1 divide-x divide-borderColor rounded-lg border border-borderColor p-4 md:grid-cols-2 lg:grid-cols-4">
                         <BusinessPlan
                             title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            value={'Pro (Yearly)'}
                         />
                         <BusinessPlan
-                            title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            title={'Plan start date'}
+                            value={'Jan 15, 2025'}
                         />
                         <BusinessPlan
-                            title={'Current Plan'}
-                            value={'Pro Yearly'}
+                            title={'Plan end date'}
+                            value={'Jan 15, 2026'}
                         />
                         <BusinessPlan
                             title={'Auto Renew'}
@@ -211,23 +230,27 @@ const BusinessOverviewChildParent = () => {
                         </h2>
                         <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
                             <StatCard
-                                title="Order This Month"
+                                title="Orders this month"
                                 value="1,240"
+                                trend="12%"
+                                trendType="positive"
+                                trendIcon={TrendGreen}
+                            />
+                            <StatCard
+                                title="Total Staff"
+                                value="9"
+                                trend="1"
+                                trendType="positive"
+                                trendIcon={TrendGreen}
+                            />
+                            <StatCard
+                                title="POS terminal status"
+                                value="2/3"
                                 trendType="positive"
                             />
                             <StatCard
-                                title="Order This Month"
-                                value="1,240"
-                                trendType="positive"
-                            />
-                            <StatCard
-                                title="Order This Month"
-                                value="1,240"
-                                trendType="positive"
-                            />
-                            <StatCard
-                                title="Order This Month"
-                                value="1,240"
+                                title="Credit balance"
+                                value="105.000 AED"
                                 trendType="positive"
                             />
                         </div>
@@ -235,21 +258,33 @@ const BusinessOverviewChildParent = () => {
                         <div>
                             <AddonsTable
                                 addons={addOnData}
-                                headerButton={
-                                    <IconButton>Add New Add-on</IconButton>
-                                }
+                                // headerButton={
+                                //     <IconButton>Add New Add-on</IconButton>
+                                // }
                             />
                         </div>
                         <div>
                             <BillingHistoryTable
                                 billingRecords={billingRecords}
-                                headerButton={
-                                    <Button>View Payment Overview</Button>
-                                }
+                                // headerButton={
+                                //     <Button>View Payment Overview</Button>
+                                // }
                             />
                         </div>
                         <div>
-                            <DocumentsTable documents={documentsData} />
+                            <DocumentsTable
+                                documents={documentsData}
+                                headerButton={
+                                    <IconButton
+                                        onClick={() =>
+                                            setIsUploadModalOpen(true)
+                                        }
+                                    >
+                                        <PlusIcon className="h-4 w-4" /> Add
+                                        other document
+                                    </IconButton>
+                                }
+                            />
                         </div>
                         <div>
                             <Notes />
@@ -257,6 +292,11 @@ const BusinessOverviewChildParent = () => {
                     </div>
                 </div>
             </main>
+            <AddDocumentModal
+                isOpen={isUploadModalOpen}
+                onClose={() => setIsUploadModalOpen(false)}
+                onAdd={handleAddDocument}
+            />
         </div>
     );
 };
