@@ -255,6 +255,10 @@ export default function AddDocumentModal({
                                 />
                             </div>
                             <div className="col-span-1">
+                                <Label className="mb-2 text-sm font-medium">
+                                    Document type
+                                    <span className="text-primary">*</span>
+                                </Label>
                                 <CustomDropdown
                                     label="Document Type"
                                     options={[

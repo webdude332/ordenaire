@@ -20,8 +20,10 @@ import PencilIcon from '../../images/icons/pencilIcon.svg?react';
 import Pizza from '../../images/icons/pizza_one.svg?react';
 import PlusIcon from '../../images/icons/plus.svg?react';
 import Salad from '../../images/icons/salad.svg?react';
+import SelectorIcon from '../../images/icons/selectorIcon.svg?react';
 import Snack from '../../images/icons/snack.svg?react';
 import Tea from '../../images/icons/teaIcon.svg?react';
+import ActionButton from '../ui/ActionButton';
 import CustomDropdown from '../ui/CustomDropdown';
 
 const BusinessProfilesTab = () => {
@@ -69,8 +71,9 @@ const BusinessProfilesTab = () => {
             type: 'Branch',
             admin: 'Kenji Takahashi',
             lastActive: 'Nov 22, 2025',
-            parent: 'Tea Time HQ',
+            parent: 'Tea Time HQ (BIZ-2055)',
             bgColor: '#FCE7F3',
+            location: 'Jumeirah',
         },
         {
             id: 'BIZ-2054',
@@ -91,8 +94,9 @@ const BusinessProfilesTab = () => {
             type: 'Branch',
             admin: 'Luca Bianchi',
             lastActive: 'Jan 15, 2026',
-            parent: 'Tea Time HQ',
+            parent: 'Tea Time HQ (BIZ-2053)',
             bgColor: '#FEE2E2',
+            location: 'Dubai Mall',
         },
         {
             id: 'BIZ-2056',
@@ -296,18 +300,37 @@ const BusinessProfilesTab = () => {
                     <table className="w-full text-left text-sm text-gray-500">
                         <thead className="border-b border-borderColor bg-gray-50 text-xs text-gray-500">
                             <tr>
-                                <th className="px-6 py-4 font-medium">
-                                    Business ID
+                                <th className="px-6 py-4 font-semibold">
+                                    <div className="flex items-center gap-1">
+                                        Business ID
+                                        <span>
+                                            <SelectorIcon className="h-3 w-3 text-iconColor" />
+                                        </span>
+                                    </div>
                                 </th>
-                                <th className="px-6 py-4 font-medium">Name</th>
-                                <th className="px-6 py-4 font-medium">Type</th>
-                                <th className="px-6 py-4 font-medium">
+                                <th className="px-6 py-4 font-semibold">
+                                    Name
+                                </th>
+                                <th className="px-6 py-4 font-semibold">
+                                    <div className="flex items-center gap-1">
+                                        Type
+                                        <span>
+                                            <SelectorIcon className="h-3 w-3 text-iconColor" />
+                                        </span>
+                                    </div>
+                                </th>
+                                <th className="px-6 py-4 font-semibold">
                                     Parent Business
                                 </th>
-                                <th className="px-6 py-4 font-medium">
-                                    Status
+                                <th className="px-6 py-4 font-semibold">
+                                    <div className="flex items-center gap-1">
+                                        Status
+                                        <span>
+                                            <SelectorIcon className="h-3 w-3 text-iconColor" />
+                                        </span>
+                                    </div>
                                 </th>
-                                <th className="px-6 py-4 text-right font-medium">
+                                <th className="px-6 py-4 text-right font-semibold">
                                     Actions
                                 </th>
                             </tr>
@@ -322,8 +345,19 @@ const BusinessProfilesTab = () => {
                                         {business.id}
                                     </td>
                                     <td className="px-6 py-4 font-medium text-gray-900">
-                                        {business.name}
+                                        <div className="flex flex-col">
+                                            <span className="font-medium text-gray-900">
+                                                {business.name}
+                                            </span>
+
+                                            {business.location && (
+                                                <span className="text-sm font-normal text-gray-500">
+                                                    {business.location}
+                                                </span>
+                                            )}
+                                        </div>
                                     </td>
+
                                     <td className="px-6 py-4">
                                         <span
                                             className={`inline-block rounded-lg px-2 py-0.5 text-xs font-medium ${business.type === 'Parent' ? 'border border-[#D5D9EB] bg-[#F8F9FC] text-[#363F72]' : 'border border-[#B2DDFF] bg-[#EFF8FF] text-[#175CD3]'}`}
@@ -342,19 +376,28 @@ const BusinessProfilesTab = () => {
                                     <td className="px-6 py-4">
                                         <div className="flex items-center justify-end gap-2">
                                             <Link href="/business/businessoverview">
-                                                <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                                                {/* <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                                                     <EyeIcon className="h-4 w-4 text-[#B5B0BA]" />
-                                                </button>
+                                                </button> */}
+                                                <ActionButton>
+                                                    <EyeIcon className="h-4 w-4 text-[#B5B0BA]" />
+                                                </ActionButton>
                                             </Link>
                                             <Link href="/business/editbusiness">
-                                                <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
+                                                {/* <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                                                     <PencilIcon className="h-4 w-4 text-[#B5B0BA]" />
-                                                </button>
+                                                </button> */}
+                                                <ActionButton>
+                                                    <PencilIcon className="h-4 w-4 text-[#B5B0BA]" />
+                                                </ActionButton>
                                             </Link>
                                             <Link>
-                                                <button className="cursor-pointer rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-semibold text-[#B5B0BA] hover:bg-gray-50 hover:text-gray-900">
+                                                {/* <button className="cursor-pointer rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-semibold text-[#B5B0BA] hover:bg-gray-50 hover:text-gray-900">
                                                     Login
-                                                </button>
+                                                </button> */}
+                                                <ActionButton>
+                                                    Login
+                                                </ActionButton>
                                             </Link>
                                         </div>
                                     </td>

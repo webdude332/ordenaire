@@ -368,7 +368,7 @@ const EditRole = () => {
                         title="Edit Role"
                         icon={DashBoardIcon}
                         breadcrumbs={breadcrumbs}
-                        tabs={tabs}
+                        // tabs={tabs}
                     />
                 </div>
 
@@ -497,7 +497,11 @@ const EditRole = () => {
 
                         {/* 3. FOOTER BUTTONS */}
                         <div className="flex justify-end gap-3 border-t border-gray-200 pt-4">
-                            <IconButton type="button">Cancel</IconButton>
+                            <IconButton type="button">Delete role</IconButton>
+
+                            <Link href="/usermanagement">
+                                <IconButton type="button">Cancel</IconButton>
+                            </Link>
                             <Button type="submit">Save Changes</Button>
                         </div>
                     </form>

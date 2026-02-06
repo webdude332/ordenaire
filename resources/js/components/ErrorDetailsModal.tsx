@@ -51,7 +51,7 @@ export default function ErrorDetailsModal({
                     </div>
                 </div>
                 <div className="relative z-10 flex-1">
-                    <h3 className="text-md mb-4 font-semibold text-gray-900">
+                    <h3 className="text-md mb-6 font-medium text-gray-900">
                         Error Details: Annual Report
                     </h3>
                 </div>

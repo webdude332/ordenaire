@@ -1364,12 +1364,19 @@ const AddUser = () => {
                         </div>
 
                         <div className="flex items-center justify-end gap-4 border-t border-borderColor pt-4">
-                            <IconButton type="button" onClick={handleCancel}>
-                                Cancel
-                            </IconButton>
-                            <Button type="submit">
-                                Send invite & Add User
-                            </Button>
+                            <Link className="/usermanagement">
+                                <IconButton
+                                    type="button"
+                                    onClick={handleCancel}
+                                >
+                                    Cancel
+                                </IconButton>
+                            </Link>
+                            <Link href="/users/profile">
+                                <Button type="submit">
+                                    Send invite & Add User
+                                </Button>
+                            </Link>
                         </div>
                     </form>
                 </div>

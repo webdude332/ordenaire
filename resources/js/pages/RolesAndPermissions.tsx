@@ -211,7 +211,7 @@ export default function RolesAndPermissionsTable() {
                                 ].map((role) => (
                                     <th
                                         key={role}
-                                        className="px-4 py-3 text-center text-xs font-medium text-gray-500"
+                                        className="px-4 py-3 text-center text-xs font-semibold text-gray-500"
                                     >
                                         {role}
                                     </th>
