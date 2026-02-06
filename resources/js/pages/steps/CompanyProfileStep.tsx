@@ -8,6 +8,7 @@ import UploadDocumentModal from '@/components/UploadDocumentModal';
 import BusinessProfileIcon from '@/images/icons/businessProfile.svg?react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
+import { Link } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
@@ -476,7 +477,9 @@ const CompanyProfileStep = ({
                 {/* Footer Buttons - HIDDEN IF IN EDIT MODE */}
                 {!isEditMode && (
                     <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
-                        <IconButton onClick={onBack}>Cancel</IconButton>
+                        <Link href="/business-management">
+                            <IconButton onClick={onBack}>Cancel</IconButton>
+                        </Link>
                         <Button onClick={handleNext} disabled={!canNext}>
                             Next: Operations <ColorRight />
                         </Button>
