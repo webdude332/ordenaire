@@ -771,7 +771,7 @@ const EditUser = () => {
             isActive: false,
             href: '/usermanagement',
         },
-        { label: 'User Profiles', isActive: false, href: '/userprofiles' },
+        { label: 'User Profiles', isActive: false, href: '/usermanagement' },
         { label: 'Edit User', isActive: true, href: '#' },
     ];
 
@@ -925,6 +925,12 @@ const EditUser = () => {
                                         )}
                                     </div>
                                     <div>
+                                        <Label className="mb-2 text-sm font-medium">
+                                            Primary Role
+                                            <span className="text-primary">
+                                                *
+                                            </span>
+                                        </Label>
                                         <CustomDropdown
                                             label="Primary Role"
                                             options={[
@@ -1079,7 +1085,9 @@ const EditUser = () => {
 
                         {/* Footer Buttons */}
                         <div className="flex items-center justify-end gap-4 border-t border-borderColor pt-4">
-                            <IconButton type="button">Cancel</IconButton>
+                            <Link href="/usermanagement">
+                                <IconButton type="button">Cancel</IconButton>
+                            </Link>
                             <Button
                                 type="submit"
                                 className="bg-[#84cc16] hover:bg-[#76b614]"

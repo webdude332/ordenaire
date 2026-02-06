@@ -71,7 +71,11 @@ export default function BusinessRegistrationSuccessModal({
             {/* Two Buttons Footer */}
             <div className="relative z-10 border-t border-borderColor px-6 pb-6 sm:px-8 sm:pb-8">
                 <div className="grid grid-cols-2 gap-3 pt-6">
-                    <IconButton onClick={onClose}>Close</IconButton>
+                    <Link href="/business-management">
+                        <IconButton className="w-full" onClick={onClose}>
+                            Close
+                        </IconButton>
+                    </Link>
                     <Link href="/business/businessoverview">
                         <Button className="w-full" onClick={onViewProfile}>
                             View Business Profile

@@ -70,7 +70,7 @@ export const MultiTenancyTable = ({
                             Branch Admin
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                            Status
+                            Status <span><SelectorIcon className='w-3 h-3'/></span>
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                             Actions
@@ -217,7 +217,9 @@ export const BillingHistoryTable = ({
                             Invoice ID
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                            Date
+                                                        <div className="flex items-center gap-1">
+                                Date <span><SelectorIcon className='w-3 h-3'/></span>
+                            </div>
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 ">
                             <div className="flex items-center gap-1">

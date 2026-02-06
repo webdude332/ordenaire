@@ -210,13 +210,21 @@ const CompanyProfileStep = ({
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
-                            <CustomDropdown
-                                label="Business Type"
-                                required
-                                value={data.businessType}
-                                onChange={(val) => update('businessType', val)}
-                                options={typeOptions}
-                            />
+                            <div>
+                                <Label className="mb-2">
+                                    Business Type
+                                    <span className="text-primary">*</span>
+                                </Label>
+                                <CustomDropdown
+                                    label=""
+                                    required
+                                    value={data.businessType}
+                                    onChange={(val) =>
+                                        update('businessType', val)
+                                    }
+                                    options={typeOptions}
+                                />
+                            </div>
                         </div>
                         <div className="grid grid-cols-2 items-start gap-6">
                             <div className="space-y-2">
@@ -460,10 +468,6 @@ const CompanyProfileStep = ({
                                     onBlur={handleBlur('email')}
                                     error={errors.email}
                                 />
-                                <p className="text-xs text-gray-500">
-                                    This email will receive the initial invite
-                                    in Step 4.
-                                </p>
                             </div>
                         </div>
                     </div>

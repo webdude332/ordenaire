@@ -1085,13 +1085,13 @@ const TeamAccessStep = ({
                         <table className="w-full text-left text-sm text-gray-500">
                             <thead className="border-b border-borderColor bg-gray-50 text-xs text-gray-500">
                                 <tr>
-                                    <th className="px-6 py-4 font-medium">
+                                    <th className="px-6 py-4 font-semibold">
                                         User Details
                                     </th>
-                                    <th className="px-6 py-4 font-medium">
+                                    <th className="px-6 py-4 font-semibold">
                                         Role
                                     </th>
-                                    <th className="px-6 py-4 text-right font-medium">
+                                    <th className="px-6 py-4 text-right font-semibold">
                                         Actions
                                     </th>
                                 </tr>

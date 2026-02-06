@@ -1,11 +1,8 @@
+import DateRangeButton from '@/components/DateRangeButton';
+import Pagination from '@/components/ui/Pagination';
+import ExportIcon from '@/images/icons/exportIcon.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import {
-    Calendar,
-    ChevronLeft,
-    ChevronRight,
-    Download,
-    Search,
-} from 'lucide-react';
+import { Search } from 'lucide-react';
 
 // Add props interface to match what's being passed from EditBusiness
 interface ActivityLogStepProps {
@@ -116,7 +113,7 @@ const ActivityLogStep = ({
     };
 
     return (
-        <div className="space-y-6 border-t border-borderColor pt-12 pb-6">
+        <div className="space-y-6 border-t border-borderColor pt-6 pb-6">
             {/* --- Top Controls (OUTSIDE the table border) --- */}
             <div className="flex items-center justify-between">
                 {/* Search Bar */}
@@ -133,13 +130,17 @@ const ActivityLogStep = ({
 
                 {/* Right Buttons */}
                 <div className="flex items-center gap-3">
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+                    {/* <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
                         <Calendar className="h-4 w-4 text-gray-500" />
                         Date-range
                         <ChevronLeft className="h-4 w-4 -rotate-90 text-gray-400" />
-                    </button>
+                    </button> */}
+                    {/* <CustomDateRangePicker>
+                        <DateRangeButton></DateRangeButton>
+                    </CustomDateRangePicker> */}
+                    <DateRangeButton></DateRangeButton>
                     <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                        <Download className="h-4 w-4 text-gray-500" />
+                        <ExportIcon className="h-4 w-4 text-iconColor" />
                         Export Log
                     </button>
                 </div>
@@ -150,28 +151,28 @@ const ActivityLogStep = ({
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-[#F9FAFB]">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1 hover:text-gray-700">
                                     Timestamp
                                     <SelectorIcon className="h-3 w-3" />
                                 </div>
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1 hover:text-gray-700">
                                     User
                                     <SelectorIcon className="h-3 w-3" />
                                 </div>
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1 hover:text-gray-700">
                                     Event Type
                                     <SelectorIcon className="h-3 w-3" />
                                 </div>
                             </th>
-                            <th className="w-1/3 px-6 py-3 text-left text-xs font-medium text-gray-500">
+                            <th className="w-1/3 px-6 py-3 text-left text-xs font-semibold text-gray-500">
                                 Description
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500">
+                            <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500">
                                 IP Address
                             </th>
                         </tr>
@@ -252,29 +253,7 @@ const ActivityLogStep = ({
                 </table>
 
                 {/* --- Pagination Footer --- */}
-                <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-                    <button className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 transition-colors hover:bg-gray-50 disabled:opacity-50">
-                        <ChevronLeft className="h-5 w-5 text-gray-600" />
-                    </button>
-                    <div className="flex items-center gap-1">
-                        <button className="h-8 w-8 rounded-lg bg-[#F9FAFB] text-sm font-medium text-gray-800">
-                            1
-                        </button>
-                        <button className="h-8 w-8 rounded-lg bg-white text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50">
-                            2
-                        </button>
-                        <button className="h-8 w-8 rounded-lg bg-white text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50">
-                            3
-                        </button>
-                        <span className="px-2 text-sm text-gray-500">...</span>
-                        <button className="h-8 w-8 rounded-lg bg-white text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50">
-                            6
-                        </button>
-                    </div>
-                    <button className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 transition-colors hover:bg-gray-50">
-                        <ChevronRight className="h-5 w-5 text-gray-600" />
-                    </button>
-                </div>
+                <Pagination />
             </div>
         </div>
     );

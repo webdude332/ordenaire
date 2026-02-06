@@ -792,6 +792,7 @@
 
 // gemini
 import AddDocModal from '@/components/AddDocModal';
+import CustomDateRangePicker from '@/components/CustomDateRangePicker';
 import DeleteModal from '@/components/DeleteModal';
 import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
@@ -800,12 +801,13 @@ import { Input, Label } from '@/components/ui/FormElements';
 import IconButton from '@/components/ui/IconButton';
 import RadioGroup from '@/components/ui/RadioGroup';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
+import CalenderIconSVG from '@/images/icons/calendar.svg?react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
 import DelIcon from '@/images/icons/delIcon.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import Upload from '@/images/icons/upload.svg?react';
 import { PlusIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // NEW: Import validation system
 import { useFormValidation } from '@/utils/useFormValidation';
@@ -845,6 +847,8 @@ const SubscriptionStep = ({
     const [selectedDocTitle, setSelectedDocTitle] = useState('');
     const [isAddDocModalOpen, setIsAddDocModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [showPicker, setShowPicker] = useState(false);
+    const pickerRef = useRef<HTMLDivElement>(null);
 
     const openDeleteModal = (title: string) => {
         setSelectedDocTitle(title);
@@ -917,7 +921,20 @@ const SubscriptionStep = ({
             isUploaded: false,
         },
     ];
-
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                pickerRef.current &&
+                !pickerRef.current.contains(event.target as Node)
+            ) {
+                setShowPicker(false);
+            }
+        };
+        if (showPicker)
+            document.addEventListener('mousedown', handleClickOutside);
+        return () =>
+            document.removeEventListener('mousedown', handleClickOutside);
+    }, [showPicker]);
     return (
         <div>
             <div className="space-y-6 pt-6">
@@ -931,7 +948,7 @@ const SubscriptionStep = ({
                     <div className="col-span-9 space-y-6 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-xs">
                         <div className="grid grid-cols-2 gap-6">
                             <div>
-                                <Label className="mb-2">
+                                <Label className="mb-2 text-sm font-medium">
                                     Subscription Tier
                                     <span className="text-primary">*</span>
                                 </Label>
@@ -972,7 +989,7 @@ const SubscriptionStep = ({
                                     Start Date
                                     <span className="text-[#8CDD05]">*</span>
                                 </Label>
-                                <input
+                                {/* <input
                                     type="text"
                                     value={values.startDate}
                                     onChange={handleValidatedChange(
@@ -984,11 +1001,18 @@ const SubscriptionStep = ({
                                             ? 'border-red-500 text-gray-900 focus:border-red-500 focus:ring-red-500'
                                             : 'border-gray-300 text-gray-500 focus:border-[#8CDD05] focus:ring-[#8CDD05]'
                                     }`}
-                                />
-                                {errors.startDate && (
-                                    <p className="mt-1.5 text-xs font-medium text-red-600">
-                                        {errors.startDate}
-                                    </p>
+                                /> */}
+                                <div onClick={() => setShowPicker(true)}>
+                                    <Input
+                                        placeholder="Jan 10, 2025 - Jul 10, 2025"
+                                        icon={CalenderIconSVG}
+                                        iconClassName="text-[#B5B0BA]"
+                                    />
+                                </div>
+                                {showPicker && (
+                                    <div className="absolute z-50 mt-2 rounded-lg bg-white shadow-lg">
+                                        <CustomDateRangePicker />
+                                    </div>
                                 )}
                             </div>
                             <div className="space-y-1.5">
@@ -1096,19 +1120,19 @@ const SubscriptionStep = ({
                         <table className="w-full text-left text-sm text-gray-500">
                             <thead className="border-b border-borderColor bg-gray-50 text-xs text-gray-500">
                                 <tr>
-                                    <th className="px-6 py-4 font-medium">
+                                    <th className="px-6 py-4 font-semibold">
                                         File Name
                                     </th>
-                                    <th className="px-6 py-4 font-medium">
+                                    <th className="px-6 py-4 font-semibold">
                                         File Status
                                     </th>
-                                    <th className="flex items-center px-6 py-4 font-medium">
+                                    <th className="flex items-center px-6 py-4 font-semibold">
                                         Expiry{' '}
                                         <span className="text-gray-400">
                                             <SelectorIcon className="h-3 w-3" />
                                         </span>
                                     </th>
-                                    <th className="px-6 py-4 text-right font-medium">
+                                    <th className="px-6 py-4 text-right font-semibold">
                                         Action
                                     </th>
                                 </tr>
@@ -1150,9 +1174,7 @@ const SubscriptionStep = ({
                                             ) : (
                                                 <ActionButton
                                                     onClick={() =>
-                                                        handleOpenUpload(
-                                                            doc.name,
-                                                        )
+                                                        handleOpenAddDoc()
                                                     }
                                                     className="ml-auto"
                                                 >
@@ -1165,7 +1187,7 @@ const SubscriptionStep = ({
                             </tbody>
                         </table>
                         <div className="flex justify-end border-t border-gray-200 p-4">
-                            <IconButton onClick={handleOpenAddDoc}>
+                            <IconButton>
                                 <PlusIcon className="h-4 w-4 text-iconColor" />
                                 Add other document
                             </IconButton>
@@ -1178,7 +1200,7 @@ const SubscriptionStep = ({
                     <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
                         <IconButton onClick={onBack}>Back</IconButton>
                         <Button onClick={handleNext} disabled={!canNext}>
-                            Next: Operations <ColorRight />
+                            Next: Team Access <ColorRight />
                         </Button>
                     </div>
                 )}

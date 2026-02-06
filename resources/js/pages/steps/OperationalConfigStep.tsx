@@ -378,7 +378,7 @@ const OperationalConfigStep = ({
                 <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
                     <IconButton onClick={onBack}>Back</IconButton>
                     <Button onClick={handleNext} disabled={!canNext}>
-                        Next: Operations <ColorRight />
+                        Next: Subscription <ColorRight />
                     </Button>
                 </div>
             )}

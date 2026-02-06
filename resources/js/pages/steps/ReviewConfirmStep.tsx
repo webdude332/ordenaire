@@ -347,7 +347,7 @@ const ReviewConfirmStep = ({ data, onBack, onSubmit }: StepProps) => {
     }) => (
         <div className={`grid grid-cols-12 gap-4 ${className}`}>
             <div className="col-span-4 text-sm text-gray-500">{label}</div>
-            <div className="col-span-8 text-sm font-medium text-gray-900">
+            <div className="col-span-8 text-sm font-semibold text-gray-900">
                 {value || '-'}
             </div>
         </div>

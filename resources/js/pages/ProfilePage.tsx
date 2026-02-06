@@ -50,7 +50,7 @@ const ProfilePage = () => {
     };
     const breadcrumbs = [
         {
-            label: 'User Management',
+            label: 'Internal User Management',
             isActive: false,
             href: '/usermanagement',
         },

@@ -86,7 +86,11 @@ const EditBusiness = () => {
             href: '/business-management',
         },
         { label: '...', isActive: false },
-        { label: 'Business Overview', isActive: false, href: '#' },
+        {
+            label: 'Business Overview',
+            isActive: false,
+            href: '/business/businessoverview',
+        },
         { label: 'Edit', isActive: true },
     ];
 
@@ -195,17 +199,18 @@ const EditBusiness = () => {
                             />
                         )}
                     </div>
-                </div>
-
-                {/* --- FIXED STICKY FOOTER --- */}
-                <div className="fixed right-0 bottom-0 left-0 z-50 border-t border-gray-100 bg-white px-12 py-4 sm:ml-[16rem]">
-                    <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-3">
-                        <IconButton onClick={handleCancel} disabled={!isDirty}>
-                            Cancel
-                        </IconButton>
-                        <Button onClick={handleSave} disabled={!isDirty}>
-                            Save Changes
-                        </Button>
+                    <div className="border-t border-borderColor py-4">
+                        <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-3">
+                            <IconButton
+                                onClick={handleCancel}
+                                disabled={!isDirty}
+                            >
+                                Cancel
+                            </IconButton>
+                            <Button onClick={handleSave} disabled={!isDirty}>
+                                Save Changes
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </main>

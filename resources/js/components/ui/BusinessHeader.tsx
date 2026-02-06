@@ -1,10 +1,11 @@
 import Edit from '@/images/icons/editIcon.svg?react';
 import Eye from '@/images/icons/eyeIcon.svg?react';
 import Profile from '@/images/icons/teaProfile.svg?react';
+import { Link } from '@inertiajs/react';
 
 const BusinessHeader = () => {
     return (
-        <div className="mb-8 overflow-hidden">
+        <div className=" overflow-hidden">
             {/* 1. Green Banner */}
             <div
                 className="relative h-48 w-full rounded-xl"
@@ -40,13 +41,15 @@ const BusinessHeader = () => {
                                 BIZ-2049
                             </div>
                             <div className="flex gap-2">
-                                <button className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
+                                <button className="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
                                     <Eye className="w-4 h-4 text-iconColor" />
                                     Subscription Overview
                                 </button>
-                                <button className="flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
+                                <Link href="/business/editbusiness">
+                                                                <button className="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50">
                                     <Edit className="w-4 h-4 text-iconColor" /> Edit Business
                                 </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

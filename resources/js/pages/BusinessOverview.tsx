@@ -1,225 +1,26 @@
-import { Link } from '@inertiajs/react';
-import { useState } from 'react';
-
-// Layout Components
-import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar';
-import BusinessHeader from '@/components/ui/BusinessHeader';
-import IconButton from '@/components/ui/IconButton';
-
-// Icons (Using your existing imports where possible, added placeholders for new ones)
 import BusinessPlan from '@/components/BusinessPlan';
-import StatCard from '@/components/StatCard';
-import Button from '@/components/ui/Button';
-import BackArrow from '@/images/icons/backArrow.svg?react';
-import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
-import DelIcon from '@/images/icons/delIcon.svg?react';
-import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
-import Eye from '@/images/icons/eyeIcon.svg?react';
-import PlusIcon from '@/images/icons/plus.svg?react';
-import TrendGreen from '@/images/icons/trendGreen.svg?react';
-import UploadIcon from '@/images/icons/upload.svg?react';
-import HealthAlert from '../components/HealthAlert';
-// import IconButton from '@/components/ui/IconButton'
 import DeleteModal from '@/components/DeleteModal';
 import AddDocumentModal from '@/components/Modals/AddDocumentModal';
-import ActionButton from '@/components/ui/ActionButton';
-
-const AddonsTable = () => {
-    const data = [
-        {
-            name: 'Inventory Management',
-            status: 'Enabled',
-            pricing: 'Free',
-            installDate: '03 Sept 2025',
-            endSub: '03 Sept 2026',
-        },
-        {
-            name: 'WhatsApp Blast',
-            status: 'Enabled',
-            pricing: 'Free',
-            installDate: '03 Sept 2025',
-            endSub: '03 Sept 2026',
-        },
-        {
-            name: 'QuickBooks',
-            status: 'Trial',
-            pricing: '20 KWD',
-            installDate: '04 Sept 2025',
-            endSub: '04 Sept 2025',
-        },
-        {
-            name: 'Talabat',
-            status: 'Disabled',
-            pricing: 'Free',
-            installDate: '05 Sept 2025',
-            endSub: '05 Sept 2025',
-        },
-    ];
-
-    const getStatusStyle = (status: any) => {
-        switch (status) {
-            case 'Enabled':
-                return 'bg-[#ECFDF3] text-[#067647] ring-[#ABEFC6] rounded-xl';
-            case 'Trial':
-                return 'bg-blue-50 text-blue-700 ring-blue-600/20 rounded-xl';
-            case 'Disabled':
-                return 'bg-[#FEF3F2] text-[#B42318] ring-[#FECDCA] rounded-xl';
-            default:
-                return 'bg-gray-50 text-gray-700 ring-gray-600/20';
-        }
-    };
-
-    return (
-        <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
-            <div className="border-b border-gray-200 px-6 py-4">
-                <h3 className="text-xl font-semibold text-gray-900">
-                    Add-ons & Marketplace Apps
-                </h3>
-            </div>
-            <table className="min-w-full divide-y divide-gray-100">
-                <thead className="border-b border-[#E8E6EA] bg-[#F9F9FB]">
-                    <tr>
-                        {[
-                            'Add-on Name',
-                            'Status',
-                            'Pricing',
-                            'Install Date',
-                            'End of Subscription',
-                        ].map((head) => (
-                            <th
-                                key={head}
-                                className="px-6 py-3 text-left text-xs font-semibold text-gray-500"
-                            >
-                                {head}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 bg-white">
-                    {data.map((row, idx) => (
-                        <tr key={idx}>
-                            <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                                {row.name}
-                            </td>
-                            <td className="px-6 py-4 text-sm">
-                                <span
-                                    className={`inline-flex items-center rounded px-2 py-1 text-xs font-medium ring-1 ring-inset ${getStatusStyle(row.status)}`}
-                                >
-                                    {row.status === 'Enabled' && (
-                                        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                                    )}
-                                    {row.status}
-                                </span>
-                            </td>
-                            <td className="px-6 py-4 text-sm text-gray-500">
-                                {row.pricing}
-                            </td>
-                            <td className="px-6 py-4 text-sm text-gray-900">
-                                {row.installDate} <br />
-                                <span className="text-xs text-gray-400">
-                                    11:30 AM
-                                </span>
-                            </td>
-                            <td className="px-6 py-4 text-sm text-gray-900">
-                                {row.endSub} <br />
-                                <span className="text-xs text-gray-400">
-                                    11:30 AM
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
-
-const BillingTable = () => {
-    return (
-        <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
-            <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                <h3 className="text-xl font-semibold text-gray-900">
-                    Billing History
-                </h3>
-                <Link>
-                    <Button>View payment overview</Button>
-                </Link>
-            </div>
-            <table className="min-w-full divide-y divide-gray-100">
-                <thead className="bg-[#F9F9FB]">
-                    <tr>
-                        {[
-                            'Invoice ID',
-                            'Date',
-                            'Amount',
-                            'Status',
-                            'Type of Charges',
-                            'Discount (KWD)',
-                        ].map((head) => (
-                            <th
-                                key={head}
-                                className="px-6 py-3 text-left text-xs font-semibold text-gray-500"
-                            >
-                                {head}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 bg-white">
-                    <tr>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                            INV-2025-002
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-900">
-                            03 Sept 2025 <br />
-                            <span className="text-xs text-gray-500">
-                                11:30 AM
-                            </span>
-                        </td>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                            450
-                        </td>
-                        <td className="px-6 py-4 text-sm">
-                            <span className="rounded-full border border-green-200 bg-green-100 px-2 py-1 text-xs font-medium text-green-600">
-                                ● Paid
-                            </span>
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
-                            Subscription
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">0</td>
-                    </tr>
-                    <tr>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                            INV-2025-003
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-900">
-                            04 Sept 2025 <br />
-                            <span className="text-xs text-gray-500">
-                                01:15 PM
-                            </span>
-                        </td>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                            30
-                        </td>
-                        <td className="px-6 py-4 text-sm">
-                            <span className="rounded-full border border-red-200 bg-red-50 px-2 py-1 text-xs font-medium text-red-600">
-                                ● Failed
-                            </span>
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
-                            Overage
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">950</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    );
-};
-
-/* --- MAIN PAGE COMPONENT --- */
+import Notes from '@/components/Notes';
+import SidePannel from '@/components/SidePannel';
+import StatCard from '@/components/StatCard';
+import TopBar from '@/components/TopBar';
+import BusinessHeader from '@/components/ui/BusinessHeader';
+import {
+    AddonsTable,
+    BillingHistoryTable,
+    DocumentsTable,
+} from '@/components/ui/DataTable';
+import IconButton from '@/components/ui/IconButton';
+import BackArrow from '@/images/icons/backArrow.svg?react';
+import UsersIcon from '@/images/icons/dashBaordSvg.svg?react';
+import Eye from '@/images/icons/eyeIcon.svg?react';
+import PlusIcon from '@/images/icons/plus.svg?react';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
+import TrendGreen from '@/images/icons/trendGreen.svg?react';
+import { Link } from '@inertiajs/react';
+import { useState } from 'react';
+import HealthAlert from '../components/HealthAlert';
 
 const BusinessOverviewPage = () => {
     // TopBar State
@@ -267,6 +68,98 @@ const BusinessOverviewPage = () => {
         },
     ];
 
+    const addOnData = [
+        {
+            name: 'Inventory Management',
+            status: 'Enabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+        {
+            name: 'Inventory Management',
+            status: 'Enabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+        {
+            name: 'Inventory Management',
+            status: 'Disabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+        {
+            name: 'Inventory Management',
+            status: 'Trial' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+        {
+            name: 'Inventory Management',
+            status: 'Enabled' as const,
+            pricing: 'Free',
+            installDate: '03 Sept 2025',
+            installTime: '11:30 AM',
+            endSub: '03 Sept 2026',
+            endSubTime: '11:30 AM',
+        },
+    ];
+    const billingRecords = [
+        {
+            invoiceId: 'INV-2025-002',
+            date: '03 Sept 2025',
+            time: '11:30 AM',
+            amount: 450,
+            status: 'Paid' as const,
+            typeOfCharge: 'Subscription',
+            discount: 0,
+        },
+        {
+            invoiceId: 'INV-2025-003',
+            date: '04 Sept 2025',
+            time: '01:15 PM',
+            amount: 30,
+            status: 'Failed' as const,
+            typeOfCharge: 'Overage',
+            discount: 750,
+        },
+        {
+            invoiceId: 'INV-2025-004',
+            date: '05 Sept 2025',
+            time: '09:45 AM',
+            amount: 45,
+            status: 'Paid' as const,
+            typeOfCharge: 'Marketplace App',
+            discount: 0,
+        },
+    ];
+    const documentsData = [
+        {
+            documentName: 'Trade License',
+            fileStatus: 'Not Uploaded' as const,
+        },
+        {
+            documentName: 'Tax/VAT Certificate',
+            fileStatus: 'Uploaded' as const,
+            fileName: 'TRN_Cert_2025.pdf',
+            expiryDate: '20 Nov 2028',
+        },
+        {
+            documentName: 'Service Agreement',
+            fileStatus: 'Not Uploaded' as const,
+        },
+    ];
     return (
         <div className="flex min-h-screen">
             {/* Sidebar */}
@@ -278,7 +171,7 @@ const BusinessOverviewPage = () => {
                     title="Business Overview"
                     icon={UsersIcon} // Reusing UsersIcon as placeholder for Business Icon
                     breadcrumbs={breadcrumbs}
-                    tabs={tabs}
+                    // tabs={tabs}
                 />
 
                 <div className="flex-1 overflow-y-auto px-8 py-6">
@@ -286,7 +179,7 @@ const BusinessOverviewPage = () => {
                     <div className="mb-6">
                         <Link
                             href="/business-management"
-                            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
+                            className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm transition-colors hover:bg-gray-50"
                         >
                             <BackArrow className="h-4 w-4 text-iconColor" />
                             Back to Business overview
@@ -358,10 +251,20 @@ const BusinessOverviewPage = () => {
                     </div>
 
                     {/* --- ADD-ONS TABLE --- */}
-                    <AddonsTable />
+                    <AddonsTable
+                        addons={addOnData}
+                        // headerButton={
+                        //     <IconButton>Add New Add-on</IconButton>
+                        // }
+                    />
 
                     {/* --- BILLING HISTORY TABLE --- */}
-                    <BillingTable />
+                    <BillingHistoryTable
+                        billingRecords={billingRecords}
+                        // headerButton={
+                        //     <Button>View Payment Overview</Button>
+                        // }
+                    />
 
                     {/* --- MULTI-TENANCY TABLE --- */}
                     <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
@@ -391,7 +294,17 @@ const BusinessOverviewPage = () => {
                                             key={h}
                                             className="px-6 py-3 text-left text-xs font-semibold text-gray-500"
                                         >
-                                            {h}
+                                            {/* CONDITIONAL LOGIC STARTS HERE */}
+                                            {h === 'Status' ? (
+                                                <div className="flex items-center gap-1">
+                                                    {h}
+                                                    <span>
+                                                        <SelectorIcon className="h-3 w-3" />
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                h
+                                            )}
                                         </th>
                                     ))}
                                 </tr>
@@ -477,128 +390,20 @@ const BusinessOverviewPage = () => {
                         </table>
                     </div>
 
-                    {/* --- DOCUMENTS SECTION (Reused from your code) --- */}
-                    <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
-                        <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                            <h3 className="text-xl font-semibold text-gray-900">
-                                Documents
-                            </h3>
+                    <DocumentsTable
+                        documents={documentsData}
+                        headerButton={
                             <IconButton
                                 onClick={() => setIsUploadModalOpen(true)}
                             >
-                                <PlusIcon className="h-4 w-4 text-iconColor" />
-                                Add other document
+                                <PlusIcon className="h-4 w-4" /> Add other
+                                document
                             </IconButton>
-                        </div>
-                        <table className="min-w-full divide-y divide-gray-100">
-                            <thead className="bg-[#F9F9FB]">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                                        Document Name
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                                        File Status
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                                        Expiry Date
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-100 bg-white">
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                                        Trade License
-                                    </td>
-                                    <td className="px-6 py-4 text-sm">
-                                        <span className="rounded-lg border border-borderColor bg-gray-100 px-2 py-1 text-xs text-gray-500">
-                                            ● Not Uploaded
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">
-                                        -
-                                    </td>
-                                    <td className="px-6 py-4 text-sm">
-                                        <ActionButton
-                                            onClick={() =>
-                                                setIsUploadModalOpen(true)
-                                            }
-                                        >
-                                            <UploadIcon className="h-4 w-4 text-iconColor" />
-                                            Upload
-                                        </ActionButton>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                                        Trade License
-                                    </td>
-                                    <td className="px-6 py-4 text-sm">
-                                        <span className="rounded-lg border border-borderColor bg-gray-100 px-2 py-1 text-xs text-gray-500">
-                                            ● Not Uploaded
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">
-                                        -
-                                    </td>
-                                    <td className="px-6 py-4 text-sm">
-                                        <ActionButton
-                                            onClick={() =>
-                                                setIsUploadModalOpen(true)
-                                            }
-                                        >
-                                            <UploadIcon className="h-4 w-4 text-iconColor" />
-                                            Upload
-                                        </ActionButton>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                                        Tax/VAT Certificate
-                                    </td>
-                                    <td className="px-6 py-4 text-sm">
-                                        <span className="rounded-lg border border-green-200 bg-green-50 px-2 py-1 text-xs text-green-600">
-                                            ● Tax_Cert_2025.pdf
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">
-                                        30 Nov 2028
-                                    </td>
-                                    <td className="flex gap-2 px-6 py-4">
-                                        <ActionButton>
-                                            <DownloadIcon className="h-4 w-4 text-iconColor" />{' '}
-                                            Download
-                                        </ActionButton>
-                                        <ActionButton
-                                            onClick={() =>
-                                                setIsDeleteModalOpen(true)
-                                            }
-                                        >
-                                            <DelIcon className="h-4 w-4 text-iconColor" />{' '}
-                                            Delete{' '}
-                                        </ActionButton>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        }
+                    />
 
                     {/* --- NOTES SECTION (Reused from your code) --- */}
-                    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                        <h3 className="mb-4 text-sm text-xl font-semibold text-gray-900">
-                            Notes
-                        </h3>
-                        <div className="mb-4">
-                            <textarea
-                                className="w-full rounded-lg border border-gray-300 p-3 text-sm outline-none focus:border-[#7AB621] focus:ring-[#7AB621]"
-                                rows={3}
-                                placeholder="The Business needs review"
-                            ></textarea>
-                        </div>
-                        <IconButton>Update Note</IconButton>
-                    </div>
+                    <Notes />
                 </div>
             </main>
             <AddDocumentModal
