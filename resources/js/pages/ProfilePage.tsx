@@ -1,16 +1,14 @@
-import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar';
-import Profile from '@/images/icons/profile.svg?react';
-import { Link } from '@inertiajs/react';
-import { useState } from 'react';
-
-// Images
 import DeleteModal from '@/components/DeleteModal';
 import AddDocumentModal from '@/components/Modals/AddDocumentModal';
 import PasswordConfirmModal from '@/components/Modals/PasswordConfirmModal';
+import SidePannel from '@/components/SidePannel';
+import TopBar from '@/components/TopBar';
 import ActionButton from '@/components/ui/ActionButton';
 import IconButton from '@/components/ui/IconButton';
 import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
+import Profile from '@/images/icons/profile.svg?react';
+import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 import BackArrow from '../images/icons/backArrow.svg?react';
 import UsersIcon from '../images/icons/dashBaordSvg.svg?react';
 import DelIcon from '../images/icons/delIcon.svg?react';
