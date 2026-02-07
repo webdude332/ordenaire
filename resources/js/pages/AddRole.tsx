@@ -11,8 +11,10 @@ import BackArrow from '../images/icons/backArrow.svg?react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
 
 // NEW: Import validation system
+import SuccessToast from '@/components/toasts/SuccessToast';
 import { useFormValidation } from '@/utils/useFormValidation';
 import { validationRules } from '@/utils/validationRules';
+import { useState } from 'react';
 
 // --- Types ---
 interface PermissionRowProps {
@@ -21,6 +23,7 @@ interface PermissionRowProps {
 }
 
 const AddRole = () => {
+    const [showSuccessToast, setShowSuccessToast] = useState(false);
     // NEW: Form Validation Setup
     const { values, errors, handleChange, handleBlur, validateAll, resetForm } =
         useFormValidation({
@@ -245,11 +248,27 @@ const AddRole = () => {
                             <Link href="/usermanagement">
                                 <IconButton type="button">Cancel</IconButton>
                             </Link>
-                            <Button type="submit">Add Role</Button>
+                            <Button
+                                onClick={() => setShowSuccessToast(true)}
+                                type="submit"
+                            >
+                                Add Role
+                            </Button>
                         </div>
                     </form>
                 </div>
             </main>
+            {showSuccessToast && (
+                <SuccessToast
+                    title="Role edited successfully"
+                    message="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    onClose={() => setShowSuccessToast(false)}
+                    onAction={() => setShowSuccessToast(false)}
+                    actionText="View Changes"
+                    autoCloseDuration={2000}
+                    redirectTo="/usermanagement"
+                />
+            )}
         </div>
     );
 };

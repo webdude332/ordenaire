@@ -72,7 +72,7 @@ const ProfilePage = () => {
             <main className="flex flex-1 flex-col">
                 <div className="sticky top-0 z-10 bg-white">
                     <TopBar
-                        title="User Management"
+                        title="User Profiles"
                         icon={UsersIcon}
                         breadcrumbs={breadcrumbs}
                         // tabs={tabs}
