@@ -126,23 +126,23 @@ const RegisterWizard = () => {
                         title="Business Management"
                         icon={Dashboard}
                         breadcrumbs={breadcrumbs}
-                        tabs={[
-                            {
-                                label: 'Business Profiles',
-                                isActive: true,
-                                onClick: () => {},
-                            },
-                            {
-                                label: 'Multi-Tenancy & Franchise',
-                                isActive: false,
-                                onClick: () => {},
-                            },
-                            {
-                                label: 'Feature Access & Beta',
-                                isActive: false,
-                                onClick: () => {},
-                            },
-                        ]}
+                        // tabs={[
+                        //     {
+                        //         label: 'Business Profiles',
+                        //         isActive: true,
+                        //         onClick: () => {},
+                        //     },
+                        //     {
+                        //         label: 'Multi-Tenancy & Franchise',
+                        //         isActive: false,
+                        //         onClick: () => {},
+                        //     },
+                        //     {
+                        //         label: 'Feature Access & Beta',
+                        //         isActive: false,
+                        //         onClick: () => {},
+                        //     },
+                        // ]}
                     />
                 </div>
 

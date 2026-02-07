@@ -341,7 +341,7 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <Link href="/business/businessoverviewchild">
+                                        <Link href="/business/businessoverviewchildparent">
                                             <button className="cursor-pointer rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
                                                 <Eye className="h-4 w-4 text-iconColor" />
                                             </button>

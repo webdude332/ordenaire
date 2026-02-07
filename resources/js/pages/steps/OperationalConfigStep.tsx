@@ -251,7 +251,7 @@ const OperationalConfigStep = ({
                                         className={`w-full rounded-lg border px-3 py-2.5 text-sm outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 ${
                                             errors.whatsappNumber
                                                 ? 'border-red-500 bg-white focus:border-red-500 focus:ring-red-500'
-                                                : 'border-gray-300 bg-gray-50 focus:border-[#8CDD05] focus:ring-[#8CDD05]'
+                                                : 'border-gray-300 bg-white focus:border-[#8CDD05] focus:ring-[#8CDD05]'
                                         }`}
                                     />
                                     {errors.whatsappNumber && (
@@ -302,7 +302,7 @@ const OperationalConfigStep = ({
                                         className={`w-full rounded-lg border px-3 py-2.5 text-sm outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 ${
                                             errors.websiteUrl
                                                 ? 'border-red-500 bg-white focus:border-red-500 focus:ring-red-500'
-                                                : 'border-gray-300 bg-gray-50 focus:border-[#8CDD05] focus:ring-[#8CDD05]'
+                                                : 'border-gray-300 bg-white focus:border-[#8CDD05] focus:ring-[#8CDD05]'
                                         }`}
                                     />
                                     {errors.websiteUrl && (

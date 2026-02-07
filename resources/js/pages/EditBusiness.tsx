@@ -121,7 +121,7 @@ const EditBusiness = () => {
                     title="Edit Businesses Details"
                     icon={Dashboard}
                     breadcrumbs={breadcrumbs}
-                    tabs={topBarTabs}
+                    // tabs={topBarTabs}
                 />
 
                 <div className="flex-1 px-12 pt-12">
@@ -199,8 +199,8 @@ const EditBusiness = () => {
                             />
                         )}
                     </div>
-                    <div className="border-t border-borderColor py-4">
-                        <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-3">
+                    <div className="border-t border-borderColor py-8">
+                        <div className="mx-auto flex items-center justify-end gap-3">
                             <IconButton
                                 onClick={handleCancel}
                                 disabled={!isDirty}

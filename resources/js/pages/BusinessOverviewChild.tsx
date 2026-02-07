@@ -180,7 +180,14 @@ const BusinessOverviewChild = () => {
                             businessId="BIZ-2049"
                             serviceType="Quick Service (Takeaway)"
                             businessEmail="hello@coffeecorner.com"
-                            parentBusinessName="Tea Time HQ (BIZ-2050)"
+                            parentBusinessName={
+                                <a
+                                    href="/business/businessoverview"
+                                    className="text-primary underline"
+                                >
+                                    Tea Time HQ (BIZ-2050)
+                                </a>
+                            }
                             phoneNumber="+1 555-0123"
                             preferredLanguage="English"
                             country="USA"

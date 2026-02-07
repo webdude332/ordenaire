@@ -25,7 +25,8 @@ interface BusinessProfileHeaderProps {
     status: 'Active' | 'Inactive' | 'Pending';
 
     // Optional: Parent Business (if this is a branch)
-    parentBusinessName?: string;
+    // parentBusinessName?: string;
+    parentBusinessName: React.ReactNode;
     parentBusinessId?: string;
 
     // Optional: Custom profile image
