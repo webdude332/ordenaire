@@ -1,29 +1,20 @@
 // Icons
-import BetaIcon from '@/images/icons/betaIcon.svg?react';
+import Eye from '@/images/icons/eyeIcon.svg?react';
 import patternBg from '@/images/icons/patternBg.svg';
 import Modal from './Modal';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from './ui/Table';
 
 // Placeholder Eye Icon
 const EyeIconPlaceholder = ({ className }: { className?: string }) => (
-    // <svg
-    //     viewBox="0 0 24 24"
-    //     fill="none"
-    //     stroke="currentColor"
-    //     strokeWidth="1.5"
-    //     className={className}
-    // >
-    //     <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-    //     />
-    //     <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    //     />
-    // </svg>
-    <BetaIcon className="h-8 w-8" />
+    <Eye className="h-7 w-7" />
 );
 
 interface ViewStatsProps {
@@ -73,162 +64,158 @@ export default function ViewBetaStatsModal({
                             </div>
                             <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
                                 <div className="rounded-lg border-2 border-gray-200 bg-white p-2.5">
-                                    <EyeIconPlaceholder className="h-6 w-6 text-gray-600" />
+                                    <Eye className="h-6 w-6 text-gray-700" />
                                 </div>
                             </div>
                         </div>
                         <div className="relative z-10">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-md font-medium text-gray-900">
                                 View Beta Stats
                             </h3>
                         </div>
                     </div>
 
                     {/* Key Stats Card */}
-                    <div className="mb-6 rounded-xl border border-gray-200 bg-[#FAFCF5] p-5">
-                        <h4 className="mb-4 text-sm font-bold text-gray-900">
-                            Key Stats
-                        </h4>
-
-                        <div className="grid grid-cols-3 gap-x-4 gap-y-6">
-                            <div>
-                                <div className="text-xs text-gray-500">
-                                    Feature
-                                </div>
-                                <div className="mt-1 font-semibold text-gray-900">
-                                    Smart Menu Recommender (v2.4.1)
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-xs text-gray-500">
-                                    Status
-                                </div>
-                                <div className="mt-1">
-                                    <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-red-600/10 ring-inset">
-                                        • Critical
-                                    </span>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-xs text-gray-500">
-                                    Time Frame
-                                </div>
-                                <div className="mt-1 font-medium text-gray-900">
-                                    Last 7 Days
-                                </div>
-                            </div>
-
-                            {/* Divider Line */}
-                            <div className="col-span-3 border-t border-gray-200/60"></div>
-
-                            <div>
-                                <div className="text-xs text-gray-500">
-                                    Total Usage
-                                </div>
-                                <div className="mt-1 text-lg font-semibold text-gray-900">
-                                    8,450 Sessions
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-xs text-gray-500">
-                                    Error Rate (last 7 days)
-                                </div>
-                                <div className="mt-1 text-lg font-semibold text-orange-600">
-                                    3.2% errors
-                                </div>
-                            </div>
-                            <div>
-                                <div className="text-xs text-gray-500">
-                                    Crash Count
-                                </div>
-                                <div className="mt-1 text-lg font-semibold text-gray-900">
-                                    275 Crashes
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Recent Errors Table */}
-                    <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
-                        <div className="border-b border-gray-100 px-5 py-4">
-                            <h4 className="text-sm font-bold text-gray-900">
-                                Recent Errors
+                    <div className="">
+                        <div className="mb-8 rounded-xl border border-borderColor bg-white p-4 shadow-sm">
+                            <h4 className="mb-4 text-sm font-semibold text-gray-900">
+                                Key Stats
                             </h4>
+                            <div className="mb-6 flex flex-col gap-4 rounded-xl border border-borderColor bg-[#F8FFEB] p-5">
+                                <div className="pt-3">
+                                    <div className="grid grid-cols-[2fr_1fr_1fr]">
+                                        <div>
+                                            <h3 className="mb-3 text-xs font-medium text-gray-500">
+                                                Feature
+                                            </h3>
+                                            <h1 className="text-sm font-medium text-gray-700">
+                                                Smart Menu Recommender (v2.4.1)
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <h3 className="mb-3 text-xs font-medium text-gray-500">
+                                                Status
+                                            </h3>
+                                            <button className="flex items-center justify-center gap-2 rounded-md border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-0.5 text-xs text-[#B42318]">
+                                                <span className="h-1 w-1 rounded-full bg-[#F04438]"></span>
+                                                Critical
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <h3 className="mb-3 text-xs font-medium text-gray-500">
+                                                Time Frame
+                                            </h3>
+                                            <h1 className="text-sm font-medium text-gray-700">
+                                                Last 7 Days
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="grid grid-cols-[2fr_1fr_1fr] border-t border-[#8CDD05] pt-6">
+                                        <div>
+                                            <h3 className="mb-3 text-xs font-medium text-gray-500">
+                                                Total usage
+                                            </h3>
+                                            <h1 className="text-sm font-medium text-gray-700">
+                                                8,450 Sessions
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <h3 className="mb-3 text-xs font-medium text-gray-500">
+                                                Error Rate (last 7 days)
+                                            </h3>
+                                            <h3 className="mb-3 text-sm font-medium text-[#B45309]">
+                                                3.2% errors
+                                            </h3>
+                                        </div>
+                                        <div>
+                                            <h3 className="mb-3 text-xs font-medium text-gray-500">
+                                                Crash Count
+                                            </h3>
+                                            <h1 className="text-sm font-medium text-gray-700">
+                                                275 Crashes
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead>
-                                <tr className="bg-gray-50/50">
-                                    <th className="px-5 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
-                                        Time
-                                    </th>
-                                    <th className="px-5 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
-                                        Error Type
-                                    </th>
-                                    <th className="px-5 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
-                                        Business
-                                    </th>
-                                    <th className="px-5 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
-                                        Device
-                                    </th>
-                                    <th className="px-5 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
-                                        Error Log
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-200 bg-white">
-                                <tr>
-                                    <td className="px-5 py-4 text-xs font-medium whitespace-nowrap text-gray-900">
-                                        10:45 AM
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-900">
-                                        500 Server Error
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-500">
-                                        StarBites
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-500">
-                                        iPad POS
-                                    </td>
-                                    <td className="px-5 py-4 text-xs text-gray-500">
-                                        Timeout: Menu Sync Failed
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-5 py-4 text-xs font-medium whitespace-nowrap text-gray-900">
-                                        11:00 AM
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-900">
-                                        JS Exception
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-500">
-                                        BurgerHub
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-500">
-                                        Web-App
-                                    </td>
-                                    <td className="px-5 py-4 text-xs text-gray-500">
-                                        Null pointer in Checkout.js
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-5 py-4 text-xs font-medium whitespace-nowrap text-gray-900">
-                                        11:15 AM
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-900">
-                                        Latency Warning
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-500">
-                                        StarBites
-                                    </td>
-                                    <td className="px-5 py-4 text-xs whitespace-nowrap text-gray-500">
-                                        Kiosk
-                                    </td>
-                                    <td className="px-5 py-4 text-xs text-gray-500">
-                                        Page load took 8.2s
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        {/* Recent Errors Table */}
+                        <div>
+                            <TableContainer>
+                                {/* Header Section */}
+                                <div className="border-b border-gray-100 px-5 py-4">
+                                    <h4 className="text-sm font-semibold text-gray-900">
+                                        Recent Errors
+                                    </h4>
+                                </div>
+
+                                {/* Table Section */}
+                                <Table>
+                                    <TableHeader className="border-t border-borderColor bg-[#F9F7FA]">
+                                        <TableHead className="bg-[#F9F7FA] text-xs font-semibold">
+                                            Time
+                                        </TableHead>
+                                        <TableHead className="bg-[#F9F7FA] text-xs font-semibold">
+                                            Error Type
+                                        </TableHead>
+                                        <TableHead className="bg-[#F9F7FA] text-xs font-semibold">
+                                            Business
+                                        </TableHead>
+                                        <TableHead className="bg-[#F9F7FA] text-xs font-semibold">
+                                            Device
+                                        </TableHead>
+                                        <TableHead className="bg-[#F9F7FA] text-xs font-semibold">
+                                            Error Log
+                                        </TableHead>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell className="font-medium text-gray-900">
+                                                10:45 AM
+                                            </TableCell>
+                                            <TableCell className="font-medium text-gray-900">
+                                                500 Server Error
+                                            </TableCell>
+                                            <TableCell>StarBites</TableCell>
+                                            <TableCell>iPad POS</TableCell>
+                                            <TableCell>
+                                                Timeout: Menu Sync Failed
+                                            </TableCell>
+                                        </TableRow>
+
+                                        <TableRow>
+                                            <TableCell className="font-medium text-gray-900">
+                                                11:00 AM
+                                            </TableCell>
+                                            <TableCell className="font-medium text-gray-900">
+                                                JS Exception
+                                            </TableCell>
+                                            <TableCell>BurgerHub</TableCell>
+                                            <TableCell>Web-App</TableCell>
+                                            <TableCell>
+                                                Null pointer in Checkout.js
+                                            </TableCell>
+                                        </TableRow>
+
+                                        <TableRow>
+                                            <TableCell className="font-medium text-gray-900">
+                                                11:15 AM
+                                            </TableCell>
+                                            <TableCell className="font-medium text-gray-900">
+                                                Latency Warning
+                                            </TableCell>
+                                            <TableCell>StarBites</TableCell>
+                                            <TableCell>Kiosk</TableCell>
+                                            <TableCell>
+                                                Page load took 8.2s
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </div>
                     </div>
                 </div>
             </div>

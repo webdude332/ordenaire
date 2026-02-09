@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import Tick from '../images/icons/checkIcon.svg?react';
 import patternBg from '../images/icons/patternBg.svg'; // Ensure this path is correct
-// If you don't have this sparkle icon, use the SVG provided in the previous response or replace with your own
-import SparkleIcon from '@/images/icons/sparkle.svg?react';
+import SparkleIcon from '../images/icons/stars.svg?react';
 import Modal from './Modal';
 import Button from './ui/Button';
 import CustomDropdown from './ui/CustomDropdown';
 import { Input, Label } from './ui/FormElements';
 import IconButton from './ui/IconButton';
+import ToggleSwitch from './ui/ToggleSwitch';
+
 interface AddNewFeatureModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -22,6 +24,7 @@ export default function AddNewFeatureModal({
     const [feature, setFeature] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
+    const [isActive, setIsActive] = useState(false);
     const [isEnabled, setIsEnabled] = useState(true);
     const [regions, setRegions] = useState(['UAE', 'Saudi Arabia', 'Qatar']);
     const [plans, setPlans] = useState({
@@ -33,6 +36,13 @@ export default function AddNewFeatureModal({
         email: false,
         inApp: true,
     });
+
+    //rich text
+    const [content, setContent] = useState(`
+    <p>Dear Clients,</p>
+    <p>Our system will undergo scheduled maintenance on Sept 15, 2025, from 2:00 AM to 4:00 AM KSA time.</p>
+    <p>During this period, services may be temporarily unavailable.</p>
+  `);
 
     // --- Mock Data ---
     const featureOptions = [
@@ -80,49 +90,28 @@ export default function AddNewFeatureModal({
                 {/* Content Padding Wrapper */}
                 <div className="relative z-0 p-8 pb-4">
                     {/* Header Section */}
-                    <div className="mb-8 flex flex-col items-start gap-4">
-                        <div className="relative z-10 flex h-12 w-12 items-center justify-center">
-                            {/* Pattern Background (Exact Reference Logic) */}
-                            <div className="pointer-events-none absolute inset-0 top-22 left-22 flex items-center justify-center">
-                                <img
-                                    src={patternBg}
-                                    alt=""
-                                    className="max-w-none"
-                                    style={{
-                                        transform: 'scale(1.1)',
-                                        opacity: 1,
-                                    }}
-                                />
-                            </div>
-
-                            {/* Icon Wrapper */}
-                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-gray-100 bg-white p-3">
-                                    {/* Fallback SVG if SparkleIcon import fails */}
-                                    {/* <svg
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"
-                                            stroke="#4B5563"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg> */}
-                                    <SparkleIcon className="h-5 w-5" />
-                                </div>
-                            </div>
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 2,
+                                }}
+                            />
                         </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <SparkleIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
+                            </div>
 
-                        <div className="relative z-10">
-                            <h3 className="text-md font-medium text-gray-900">
-                                Add a New Feature
-                            </h3>
+                            <div className="relative z-10 pt-4">
+                                <h3 className="text-md font-medium text-gray-900">
+                                    Add a new feature
+                                </h3>
+                            </div>
                         </div>
                     </div>
 
@@ -136,6 +125,9 @@ export default function AddNewFeatureModal({
 
                             <div className="mb-5 grid grid-cols-2 gap-5">
                                 <div>
+                                    <Label className="mb-2 text-sm font-medium text-gray-700">
+                                        Select Feature
+                                    </Label>
                                     <CustomDropdown
                                         label="Select Feature"
                                         options={featureOptions}
@@ -155,7 +147,10 @@ export default function AddNewFeatureModal({
                                 </div>
                             </div>
 
-                            <div className="mb-5">
+                            <div className="mb-5 w-1/2">
+                                <Label className="mb-2 text-sm font-medium text-gray-700">
+                                    Category
+                                </Label>
                                 <CustomDropdown
                                     label="Category"
                                     options={categoryOptions}
@@ -189,7 +184,7 @@ export default function AddNewFeatureModal({
 
                             {/* Regions */}
                             <div className="mb-6">
-                                <Label className="mb-2 block text-sm font-medium text-gray-700">
+                                <Label className="mb-5 block text-sm font-semibold text-gray-700">
                                     Applicable Regions
                                 </Label>
                                 {/* Tag Input Container */}
@@ -263,7 +258,7 @@ export default function AddNewFeatureModal({
 
                             {/* Subscription Plans */}
                             <div className="mb-6">
-                                <Label className="mb-3 block text-sm font-medium text-gray-700">
+                                <Label className="mb-4 block text-sm font-semibold text-gray-700">
                                     Applicable Subscription plan
                                 </Label>
                                 <div className="flex items-center gap-8">
@@ -275,19 +270,7 @@ export default function AddNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${plans.standard ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {plans.standard && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -302,19 +285,7 @@ export default function AddNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${plans.pro ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {plans.pro && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -329,19 +300,7 @@ export default function AddNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${plans.enterprise ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {plans.enterprise && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -353,21 +312,19 @@ export default function AddNewFeatureModal({
 
                             {/* Toggle Switch */}
                             <div>
-                                <Label className="mb-2 block text-sm font-medium text-gray-700">
+                                <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                     Enable/Disable Immediately
                                 </Label>
                                 <div className="mt-3 flex items-center gap-3">
-                                    <button
-                                        onClick={() => setIsEnabled(!isEnabled)}
-                                        className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${isEnabled ? 'bg-[#8AC926]' : 'bg-gray-200'}`}
-                                    >
-                                        <span
-                                            className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${isEnabled ? 'translate-x-5' : 'translate-x-0'}`}
-                                        />
-                                    </button>
-                                    <span className="text-sm text-gray-700">
-                                        {isEnabled ? 'Enable' : 'Disable'}
-                                    </span>
+                                    <ToggleSwitch
+                                        checked={isActive}
+                                        statusLabel={
+                                            isActive ? 'Enable' : 'Disable'
+                                        }
+                                        onChange={(e) =>
+                                            setIsActive(e.target.checked)
+                                        }
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -379,7 +336,7 @@ export default function AddNewFeatureModal({
                             </h4>
 
                             <div className="mb-6">
-                                <Label className="mb-3 block text-sm font-medium text-gray-700">
+                                <Label className="mb-3 block text-sm font-semibold text-gray-700">
                                     Notification Channels
                                 </Label>
                                 <div className="flex items-center gap-8">
@@ -393,19 +350,7 @@ export default function AddNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${notifications.email ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {notifications.email && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -422,19 +367,7 @@ export default function AddNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${notifications.inApp ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {notifications.inApp && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -446,7 +379,7 @@ export default function AddNewFeatureModal({
 
                             {/* Rich Text Editor Mock */}
                             <div>
-                                <Label className="mb-2 block text-sm font-medium text-gray-700">
+                                <Label className="mb-4 block text-sm font-semibold text-gray-700">
                                     Message to Participants
                                 </Label>
                                 <div className="overflow-hidden rounded-lg border border-gray-300">

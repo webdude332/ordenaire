@@ -1,11 +1,13 @@
+import PencilIcon from '@/images/icons/pencilIcon.svg?react';
 import { useState } from 'react';
-import EditIcon from '../images/icons/boldPencilModal.svg?react';
+import Tick from '../images/icons/checkIcon.svg?react';
 import patternBg from '../images/icons/patternBg.svg';
 import Modal from './Modal';
 import Button from './ui/Button';
 import CustomDropdown from './ui/CustomDropdown';
 import { Input, Label } from './ui/FormElements';
 import IconButton from './ui/IconButton';
+import ToggleSwitch from './ui/ToggleSwitch';
 
 interface EditNewFeatureModalProps {
     isOpen: boolean;
@@ -20,6 +22,8 @@ export default function EditNewFeatureModal({
 }: EditNewFeatureModalProps) {
     // --- State (Pre-filled for Edit) ---
     const [feature, setFeature] = useState('biz0051');
+    const [isActive, setIsActive] = useState(false);
+
     const [category, setCategory] = useState('operations');
     const [description, setDescription] = useState(
         'Live Chat support for assistance',
@@ -79,33 +83,28 @@ export default function EditNewFeatureModal({
                 {/* Content Wrapper */}
                 <div className="relative z-0 p-8 pb-4">
                     {/* Header */}
-                    <div className="mb-8 flex flex-col items-start gap-4">
-                        <div className="relative z-10 flex h-12 w-12 items-center justify-center">
-                            {/* Pattern */}
-                            <div className="pointer-events-none absolute inset-0 top-22 left-22 flex items-center justify-center">
-                                <img
-                                    src={patternBg}
-                                    alt=""
-                                    className="max-w-none"
-                                    style={{
-                                        transform: 'scale(1.1)',
-                                        opacity: 1,
-                                    }}
-                                />
-                            </div>
-
-                            {/* Icon */}
-                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-gray-100 bg-white p-3">
-                                    <EditIcon className="h-6 w-6 text-gray-700" />
-                                </div>
-                            </div>
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 2,
+                                }}
+                            />
                         </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <PencilIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
+                            </div>
 
-                        <div className="relative z-10">
-                            <h3 className="text-md font-medium text-gray-900">
-                                Edit Feature
-                            </h3>
+                            <div className="relative z-10 pt-4">
+                                <h3 className="text-md font-medium text-gray-900">
+                                    Edit feature
+                                </h3>
+                            </div>
                         </div>
                     </div>
 
@@ -138,7 +137,7 @@ export default function EditNewFeatureModal({
                                             *
                                         </span>
                                     </Label>
-                                    <Input defaultValue="Live Chat Support" />
+                                    <Input placeholder="Live Chat Support" />
                                 </div>
                             </div>
                             <div className="mb-5">
@@ -175,7 +174,7 @@ export default function EditNewFeatureModal({
                             </h4>
 
                             <div className="mb-6">
-                                <Label className="mb-2 block text-sm font-medium text-gray-700">
+                                <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                     Applicable Regions
                                 </Label>
                                 <div className="flex items-center justify-between rounded-lg border border-gray-300 bg-white px-3 py-2.5 shadow-sm">
@@ -246,7 +245,7 @@ export default function EditNewFeatureModal({
                             </div>
 
                             <div className="mb-6">
-                                <Label className="mb-3 block text-sm font-medium text-gray-700">
+                                <Label className="mb-3 block text-sm font-semibold text-gray-700">
                                     Applicable Subscription plan
                                 </Label>
                                 <div className="flex items-center gap-8">
@@ -259,19 +258,20 @@ export default function EditNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${plans.standard ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {plans.standard && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                // <svg
+                                                //     className="h-3.5 w-3.5 text-white"
+                                                //     fill="none"
+                                                //     stroke="currentColor"
+                                                //     viewBox="0 0 24 24"
+                                                // >
+                                                //     <path
+                                                //         strokeLinecap="round"
+                                                //         strokeLinejoin="round"
+                                                //         strokeWidth={3}
+                                                //         d="M5 13l4 4L19 7"
+                                                //     />
+                                                // </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -287,19 +287,20 @@ export default function EditNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${plans.pro ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {plans.pro && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                // <svg
+                                                //     className="h-3.5 w-3.5 text-white"
+                                                //     fill="none"
+                                                //     stroke="currentColor"
+                                                //     viewBox="0 0 24 24"
+                                                // >
+                                                //     <path
+                                                //         strokeLinecap="round"
+                                                //         strokeLinejoin="round"
+                                                //         strokeWidth={3}
+                                                //         d="M5 13l4 4L19 7"
+                                                //     />
+                                                // </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -315,19 +316,20 @@ export default function EditNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${plans.enterprise ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {plans.enterprise && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                // <svg
+                                                //     className="h-3.5 w-3.5 text-white"
+                                                //     fill="none"
+                                                //     stroke="currentColor"
+                                                //     viewBox="0 0 24 24"
+                                                // >
+                                                //     <path
+                                                //         strokeLinecap="round"
+                                                //         strokeLinejoin="round"
+                                                //         strokeWidth={3}
+                                                //         d="M5 13l4 4L19 7"
+                                                //     />
+                                                // </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -338,10 +340,10 @@ export default function EditNewFeatureModal({
                             </div>
 
                             <div>
-                                <Label className="mb-2 block text-sm font-medium text-gray-700">
+                                <Label className="mb-2 block text-sm font-semibold text-gray-700">
                                     Enable/Disable Immediately
                                 </Label>
-                                <div className="mt-3 flex items-center gap-3">
+                                {/* <div className="mt-3 flex items-center gap-3">
                                     <button
                                         onClick={() => setIsEnabled(!isEnabled)}
                                         className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${isEnabled ? 'bg-[#8AC926]' : 'bg-gray-200'}`}
@@ -353,6 +355,17 @@ export default function EditNewFeatureModal({
                                     <span className="text-sm text-gray-700">
                                         {isEnabled ? 'Enable' : 'Disable'}
                                     </span>
+                                </div> */}
+                                <div className="mt-3 flex items-center gap-3">
+                                    <ToggleSwitch
+                                        checked={isActive}
+                                        statusLabel={
+                                            isActive ? 'Enable' : 'Disable'
+                                        }
+                                        onChange={(e) =>
+                                            setIsActive(e.target.checked)
+                                        }
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -363,7 +376,7 @@ export default function EditNewFeatureModal({
                                 Notification
                             </h4>
                             <div className="mb-6">
-                                <Label className="mb-3 block text-sm font-medium text-gray-700">
+                                <Label className="mb-3 block text-sm font-semibold text-gray-700">
                                     Notification Channels
                                 </Label>
                                 <div className="flex items-center gap-8">
@@ -377,19 +390,7 @@ export default function EditNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${notifications.email ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {notifications.email && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">
@@ -406,19 +407,7 @@ export default function EditNewFeatureModal({
                                             className={`flex h-5 w-5 items-center justify-center rounded border ${notifications.inApp ? 'border-[#8AC926] bg-[#8AC926]' : 'border-gray-300 bg-white'}`}
                                         >
                                             {notifications.inApp && (
-                                                <svg
-                                                    className="h-3.5 w-3.5 text-white"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                                                <Tick className="h-3 w-3" />
                                             )}
                                         </div>
                                         <span className="text-sm text-gray-700">

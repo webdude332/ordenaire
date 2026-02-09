@@ -5,6 +5,11 @@ export const TableContainer = ({ children, className = '' }: { children: React.R
         {children}
     </div>
 );
+export const TableContainerOne = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
+    <div className={`overflow-hidden rounded-t-xl border border-gray-200 bg-white shadow-sm ${className}`}>
+        {children}
+    </div>
+);
 
 export const Table = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
     <table className={`w-full text-left text-sm text-gray-500 ${className}`}>
@@ -12,8 +17,14 @@ export const Table = ({ children, className = '' }: { children: React.ReactNode;
     </table>
 );
 
-export const TableHeader = ({ children }: { children: React.ReactNode }) => (
-    <thead className="bg-gray-50 text-xs text-gray-500 border-b border-borderColor">
+// export const TableHeader = ({ children }: { children: React.ReactNode }) => (
+//     <thead className="bg-gray-50 text-xs text-gray-500 border-b border-borderColor">
+//         <tr>{children}</tr>
+//     </thead>
+// );
+// Inside your ui/Table file
+export const TableHeader = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
+    <thead className={`bg-gray-50 text-xs text-gray-500 border-b border-borderColor ${className}`}>
         <tr>{children}</tr>
     </thead>
 );

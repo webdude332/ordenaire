@@ -56,7 +56,7 @@ export default function UploadDocumentModal({
                             Accepted: PDF, JPG, PNG (MAX 5MD)
                         </p>
                         <div className="flex flex-col items-center justify-center space-y-3 rounded-lg border border-[#E8E6EA] p-4 shadow-xs">
-                            <div className="bg-whit rounded-lg border border-borderColor p-4 shadow-xs">
+                            <div className="rounded-lg border border-borderColor bg-white p-4 shadow-xs">
                                 <CloudIcon className="h-5 w-5" />
                             </div>
                             <div>
