@@ -5,26 +5,8 @@ import patternBg from '@/images/icons/patternBg.svg'; // Use your pattern path
 import Modal from './Modal';
 import Button from './ui/Button'; // Assuming your Button component
 import CustomDropdown from './ui/CustomDropdown'; // Assuming your Dropdown
-import { Input } from './ui/FormElements'; // Assuming your Input
+import { Checkbox, Input, Label } from './ui/FormElements'; // Assuming your Input
 import IconButton from './ui/IconButton'; // Assuming your IconButton
-
-// Placeholder SVG if you don't have the Beaker icon yet
-const BeakerIconPlaceholder = ({ className }: { className?: string }) => (
-    <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className={className}
-    >
-        <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 21a1.5 1.5 0 001.5-1.5v-6.75a4.5 4.5 0 00-2.25-3.906l-2.025-1.171A4.5 4.5 0 0014.25 6h-4.5a4.5 4.5 0 00-2.475 1.673L5.25 8.844a4.5 4.5 0 00-2.25 3.906v6.75a1.5 1.5 0 001.5 1.5h15zM10.5 2.25h3m-3.75 3.75h4.5"
-        />
-    </svg>
-);
-
 interface AssignBetaModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -70,7 +52,7 @@ export default function AssignBetaModal({
 
                 {/* Modal Header & Icon */}
                 <div className="relative z-0 p-8 pb-4">
-                    <div className="mb-6 flex flex-col items-start gap-4">
+                    <div className="mb-4 flex flex-col items-start gap-4">
                         <div className="relative z-10 flex h-12 w-12 items-center justify-center">
                             {/* Pattern Background */}
                             <div className="pointer-events-none absolute inset-0 top-22 left-22 flex items-center justify-center">
@@ -88,19 +70,20 @@ export default function AssignBetaModal({
                             <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
                                 <div className="rounded-lg border-2 border-gray-200 bg-white p-2.5">
                                     {/* Use BeakerIconPlaceholder or your imported BeakerIcon */}
-                                    <BetaIcon className="h-8 w-8" />
+                                    <BetaIcon className="h-7 w-7" />
                                 </div>
                             </div>
                         </div>
                         <div className="relative z-10">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-md font-medium text-gray-900">
                                 Beta Assignment
                             </h3>
                         </div>
                     </div>
 
                     {/* Form Container */}
-                    <div className="relative z-10 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-sm">
+
+                    <div className="relative z-10 mb-8 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-sm">
                         {/* Section: Basic Info */}
                         <div className="mb-6">
                             <h4 className="mb-4 text-sm font-semibold text-gray-900">
@@ -108,6 +91,9 @@ export default function AssignBetaModal({
                             </h4>
                             <div className="grid grid-cols-2 gap-5">
                                 <div>
+                                    <Label className="mb-2 text-sm font-medium text-gray-800">
+                                        Select Feature
+                                    </Label>
                                     <CustomDropdown
                                         label="Select Feature"
                                         options={featureOptions}
@@ -119,11 +105,14 @@ export default function AssignBetaModal({
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-gray-700">
                                         Display Name{' '}
-                                        <span className="text-red-500">*</span>
+                                        <span className="text-primary">*</span>
                                     </label>
                                     <Input placeholder="e.g., Live Chat Support" />
                                 </div>
                                 <div>
+                                    <Label className="mb-2 text-sm font-medium text-gray-800">
+                                        Rollout Stage
+                                    </Label>
                                     <CustomDropdown
                                         label="Rollout Stage"
                                         options={stageOptions}
@@ -135,21 +124,22 @@ export default function AssignBetaModal({
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-gray-700">
                                         Version Tag{' '}
-                                        <span className="text-red-500">*</span>
+                                        <span className="text-primary">*</span>
                                     </label>
                                     <Input placeholder="e.g., v2.1.0" />
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div className="relative z-10 mb-8 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-sm">
                         {/* Section: Targeting */}
-                        <div className="mb-6 border-t border-gray-100 pt-6">
+                        <div className="mb-6 pt-6">
                             <h4 className="mb-4 text-sm font-semibold text-gray-900">
                                 Targeting & Availability
                             </h4>
-                            <label className="mb-2 block text-sm font-medium text-gray-700">
+                            <Label className="mb-4 text-sm font-medium text-gray-800">
                                 Add Business Tags
-                            </label>
+                            </Label>
 
                             {/* Simulated Tag Input */}
                             <div className="flex w-full items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm focus-within:border-[#7AB621] focus-within:ring-1 focus-within:ring-[#7AB621]">
@@ -187,21 +177,14 @@ export default function AssignBetaModal({
                                 </button>
                             </div>
                         </div>
-
+                    </div>
+                    <div className="relative z-10 mb-4 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-sm">
                         {/* Checkbox */}
-                        <div className="flex items-center gap-2 rounded-lg border border-gray-200 p-3">
-                            <input
-                                id="notify"
-                                type="checkbox"
-                                defaultChecked
-                                className="h-4 w-4 rounded border-gray-300 text-[#7AB621] focus:ring-[#7AB621]"
+                        <div className="flex items-center gap-2">
+                            <Checkbox
+                                label="Notify selected users via Email/Push?"
+                                defaultChecked={true}
                             />
-                            <label
-                                htmlFor="notify"
-                                className="text-sm font-medium text-gray-700"
-                            >
-                                Notify selected users via Email/Push?
-                            </label>
                         </div>
                     </div>
                 </div>
