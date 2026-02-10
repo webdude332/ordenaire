@@ -17,12 +17,6 @@ export const Table = ({ children, className = '' }: { children: React.ReactNode;
     </table>
 );
 
-// export const TableHeader = ({ children }: { children: React.ReactNode }) => (
-//     <thead className="bg-gray-50 text-xs text-gray-500 border-b border-borderColor">
-//         <tr>{children}</tr>
-//     </thead>
-// );
-// Inside your ui/Table file
 export const TableHeader = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
     <thead className={`bg-gray-50 text-xs text-gray-500 border-b border-borderColor ${className}`}>
         <tr>{children}</tr>
