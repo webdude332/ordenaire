@@ -33,7 +33,7 @@ export default function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
                         <h3 className="mb-3 text-2xl font-bold text-gray-900">
                             Report Generated Successfully
                         </h3>
-                        <p className="text-base text-gray-600">
+                        <p className="text-md font-semibold text-gray-800">
                             The 'Monthly Summary' has been emailed to 2
                             recipients.
                         </p>

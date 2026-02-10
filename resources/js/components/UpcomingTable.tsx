@@ -56,19 +56,25 @@ export default function UpcomingTable({
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-[#F9F7FA]">
                         <tr>
-                            <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
+                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
                                 Report Title
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
+                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
                                 Tenant
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
+                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
                                 Frequency
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
-                                Next Run
+                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
+                                <div className="flex cursor-pointer items-center gap-1">
+                                    Next Run{' '}
+                                    <RenderIcon
+                                        icon={SelectorIcon}
+                                        className="h-4 w-4 text-[#B5B0BA]"
+                                    />
+                                </div>
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
+                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
                                 <div className="flex cursor-pointer items-center gap-1">
                                     Status{' '}
                                     <RenderIcon
@@ -77,7 +83,7 @@ export default function UpcomingTable({
                                     />
                                 </div>
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-semibold tracking-wider text-gray-500">
+                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
                                 Actions
                             </th>
                         </tr>

@@ -158,7 +158,7 @@ export default function AddDocumentModal({
                                         <CloudIcon className="h-5 w-5 text-gray-400" />
                                     </div>
                                     <p className="text-sm">
-                                        <span className="font-bold text-[#84cc16]">
+                                        <span className="font-bold text-textGreen">
                                             Click to upload
                                         </span>{' '}
                                         or drag and drop

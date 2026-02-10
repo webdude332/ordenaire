@@ -4,6 +4,7 @@ import TopBar from '@/components/TopBar';
 import ActionButton from '@/components/ui/ActionButton';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import Pagination from '@/components/ui/Pagination';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
 import Button from '../components/ui/Button';
@@ -256,14 +257,28 @@ export default function UserManagement() {
                                                     'Roles',
                                                     'Last Active',
                                                     'Actions',
-                                                ].map((header) => (
-                                                    <th
-                                                        key={header}
-                                                        className={`px-6 py-3 text-sm font-medium tracking-wider text-[#9C94A3] ${header === 'Actions' ? 'text-right' : 'text-left'}`}
-                                                    >
-                                                        {header}
-                                                    </th>
-                                                ))}
+                                                ].map((header) => {
+                                                    const hasIcon = [
+                                                        'Name',
+                                                        'Status',
+                                                        'Roles',
+                                                        'Last Active',
+                                                    ].includes(header);
+
+                                                    return (
+                                                        <th
+                                                            key={header}
+                                                            className={`px-6 py-3 text-sm font-medium text-[#9C94A3] ${header === 'Actions' ? 'text-right' : 'text-left'}`}
+                                                        >
+                                                            <div className="flex items-center gap-2">
+                                                                {header}
+                                                                {hasIcon && (
+                                                                    <SelectorIcon />
+                                                                )}
+                                                            </div>
+                                                        </th>
+                                                    );
+                                                })}
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-200 bg-white">
@@ -295,7 +310,7 @@ export default function UserManagement() {
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <span
-                                                            className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-1 text-xs leading-5 font-semibold ${user.status === 'Active' ? 'border-[#ABEFC6] bg-[#ECFDF3] text-green-700' : 'border-[#E8E6EA] bg-[#F9F7FA] text-gray-600'}`}
+                                                            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs leading-5 font-semibold ${user.status === 'Active' ? 'border-[#ABEFC6] bg-[#ECFDF3] text-green-700' : 'border-[#E8E6EA] bg-[#F9F7FA] text-gray-600'}`}
                                                         >
                                                             <span
                                                                 className={`h-1.5 w-1.5 rounded-full ${user.status === 'Active' ? 'bg-green-500' : 'bg-gray-500'}`}

@@ -23,6 +23,7 @@ import DownloadIcon from '@/images/icons/downloadIcon.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
 import Profile from '@/images/icons/profile.svg?react';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
@@ -226,9 +227,6 @@ const EditUser = () => {
                                     <div>
                                         <Label className="mb-2 text-sm font-medium">
                                             Email Address
-                                            <span className="text-primary">
-                                                *
-                                            </span>
                                         </Label>
                                         <Input
                                             placeholder="Noah@ordemark.com"
@@ -293,9 +291,6 @@ const EditUser = () => {
                                     <div>
                                         <Label className="mb-2 text-sm font-medium">
                                             Primary Role
-                                            <span className="text-primary">
-                                                *
-                                            </span>
                                         </Label>
                                         <CustomDropdown
                                             label="Primary Role"
@@ -352,10 +347,19 @@ const EditUser = () => {
                                 <TableContainer>
                                     <Table>
                                         <TableHeader>
-                                            <TableHead>File Name</TableHead>
-                                            <TableHead>Document Type</TableHead>
-                                            <TableHead>Expiry</TableHead>
-                                            <TableHead className="px-6 text-right">
+                                            <TableHead className="text-xs font-semibold">
+                                                File Name
+                                            </TableHead>
+                                            <TableHead className="text-xs font-semibold">
+                                                Document Type
+                                            </TableHead>
+                                            <TableHead className="text-xs font-semibold">
+                                                <div className="flex items-center gap-1">
+                                                    Expiry
+                                                    <SelectorIcon className="h-3 w-3 text-iconColor" />
+                                                </div>
+                                            </TableHead>
+                                            <TableHead className="px-6 text-right text-xs font-semibold">
                                                 Action
                                             </TableHead>
                                         </TableHeader>

@@ -143,6 +143,9 @@ export default function EditReportModal({
                                 <div>
                                     <div className="relative">
                                         {/* CHANGED: Removed labelClassName to use the default style */}
+                                        <Label className="mb-2 text-sm font-medium text-gray-700">
+                                            Report Template
+                                        </Label>
                                         <CustomDropdown
                                             label="Report Template"
                                             options={templateOptions}
