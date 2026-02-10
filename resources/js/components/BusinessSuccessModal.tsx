@@ -56,9 +56,9 @@ export default function BusinessRegistrationSuccessModal({
                             <h3 className="mb-3 text-2xl font-bold text-gray-900">
                                 Registration Successful!
                             </h3>
-                            <p className="text-base text-gray-600">
+                            <p className="text-base font-semibold text-gray-600">
                                 The business{' '}
-                                <span className="font-semibold">
+                                <span className="font-bold">
                                     {businessName}
                                 </span>{' '}
                                 has been successfully created.

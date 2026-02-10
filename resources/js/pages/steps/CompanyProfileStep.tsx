@@ -489,6 +489,9 @@ const CompanyProfileStep = ({
 
             {/* Modal */}
             <UploadDocumentModal
+                title={
+                    isEditMode ? 'Update Business Logo' : 'Upload Business Logo'
+                }
                 isOpen={isUploadModalOpen}
                 onClose={() => setIsUploadModalOpen(false)}
                 onUpload={() => setIsUploadModalOpen(false)}

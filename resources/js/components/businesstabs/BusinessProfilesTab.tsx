@@ -167,12 +167,12 @@ const BusinessProfilesTab = () => {
                                     value: 'all',
                                 },
                                 {
-                                    label: 'Admin',
-                                    value: 'admin',
+                                    label: 'Active',
+                                    value: 'active',
                                 },
                                 {
-                                    label: 'Accounts',
-                                    value: 'accounts',
+                                    label: 'Archived',
+                                    value: 'archived',
                                 },
                             ]}
                             value={selectedStatus}

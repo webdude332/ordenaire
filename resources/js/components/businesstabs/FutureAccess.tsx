@@ -215,7 +215,7 @@ const FeatureAccessTab = () => {
             {/* --- TOP CONTROLS: Tabs & Search --- */}
             <div className="flex items-center justify-between">
                 {/* Tab Switcher */}
-                <div className="flex rounded-lg border border-gray-200 bg-[#F3F4F6] px-1.5 py-1">
+                {/* <div className="flex rounded-lg border border-gray-200 bg-[#F3F4F6] px-1.5 py-1">
                     <button
                         onClick={() => setActiveTab('features')}
                         className={`cursor-pointer rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${activeTab === 'features' ? 'border border-[#CFCBD2] bg-white text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
@@ -225,6 +225,28 @@ const FeatureAccessTab = () => {
                     <button
                         onClick={() => setActiveTab('beta')}
                         className={`cursor-pointer rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${activeTab === 'beta' ? 'border border-[#CFCBD2] bg-white text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                        Beta Rollouts
+                    </button>
+                </div> */}
+                <div className="flex gap-1 rounded-lg bg-gray-50 p-1">
+                    <button
+                        onClick={() => setActiveTab('features')}
+                        className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            activeTab === 'features'
+                                ? 'bg-white text-gray-900 shadow-sm'
+                                : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                    >
+                        Features
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('beta')}
+                        className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            activeTab === 'beta'
+                                ? 'bg-white text-gray-900 shadow-sm'
+                                : 'text-gray-600 hover:text-gray-900'
+                        }`}
                     >
                         Beta Rollouts
                     </button>
@@ -276,7 +298,7 @@ const FeatureAccessTab = () => {
                                     <TableHead className="py-4 text-xs font-semibold">
                                         Status
                                     </TableHead>
-                                    <TableHead className="py-4 pr-6 text-xs font-semibold">
+                                    <TableHead className="py-4 pr-6 text-right text-xs font-semibold">
                                         Actions
                                     </TableHead>
                                 </TableHeader>
@@ -305,7 +327,7 @@ const FeatureAccessTab = () => {
                                                     status={item.status}
                                                 />
                                             </TableCell>
-                                            <TableCell className="py-4 pr-6 text-right">
+                                            <TableCell className="flex justify-end py-4 pr-6">
                                                 <ActionButton
                                                     onClick={() =>
                                                         setIsEditModalOpen(true)

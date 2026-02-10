@@ -13,6 +13,8 @@ interface AddDocumentModalProps {
     isOpen: boolean;
     onClose: () => void;
     onUpload: () => void;
+    title: string;
+    // title1: string;
 }
 
 type UploadStatus = 'initial' | 'uploading' | 'success' | 'error';
@@ -21,6 +23,8 @@ export default function UploadDocumentModal({
     isOpen,
     onClose,
     onUpload,
+    title,
+    // title1,
 }: AddDocumentModalProps) {
     // --- State Management ---
     const [uploadStatus, setUploadStatus] = useState<UploadStatus>('initial');
@@ -99,7 +103,9 @@ export default function UploadDocumentModal({
                         </div>
                         <div className="relative z-10 pt-4">
                             <h3 className="text-md font-semibold text-gray-900">
-                                Update Business Logo
+                                {/* Upload Business Logo */}
+                                {title}
+                                {/* {title1} */}
                             </h3>
                         </div>
                     </div>
@@ -164,8 +170,8 @@ export default function UploadDocumentModal({
                         {uploadStatus === 'uploading'
                             ? 'Uploading...'
                             : uploadStatus === 'success'
-                              ? 'Save Document'
-                              : 'Add Document'}
+                              ? 'Save Logo'
+                              : 'Add Logo'}
                     </Button>
                 </div>
             </div>
