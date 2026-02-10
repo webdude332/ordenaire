@@ -7,6 +7,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/OuterTable';
+import InputSearch from '@/images/icons/inputSearch.svg?react';
 import Menu from '@/images/icons/menuVertical.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import TrendGreen from '@/images/icons/trendGreen.svg?react';
@@ -15,10 +16,11 @@ import ActionButton from '../ui/ActionButton';
 import { Input } from '../ui/FormElements';
 import Pagination from '../ui/Pagination';
 import TableButton from '../ui/TableButton';
+
 const SubscriptionOverview = () => {
     return (
         <div>
-            <div className="mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-3 mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
                 <StatCardAlt
                     title="Monthly Recurring Revenue"
                     value="$120,000"
@@ -53,12 +55,18 @@ const SubscriptionOverview = () => {
                     trendIcon={TrendGreen}
                 />
             </div>
-            <div>
+            <div className="mt-8 border-t border-borderColor pt-8">
                 <div>
-                    <Input className="w-[300px]" placeholder="Search" />
+                    <div className="w-[300px]">
+                        <Input
+                            className="placeholder:text-md"
+                            placeholder="Search by business name"
+                            icon={InputSearch}
+                        />
+                    </div>
                     <div className="mt-8 rounded-xl border border-gray-200 shadow-sm">
                         <div className="flex items-center px-4 py-5">
-                            <h2 className="text-base font-semibold text-gray-900">
+                            <h2 className="text-xl font-semibold text-gray-900">
                                 Attention Required (Recent Alerts)
                             </h2>
                         </div>
@@ -95,7 +103,7 @@ const SubscriptionOverview = () => {
                                         </TableCell>
                                         <TableCell>
                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-                                                <span className="h-1 w-1 rounded-full bg-[#F04438]"></span>
+                                                <span className="h-1.5 w-1.5 rounded-full bg-[#F04438]"></span>
                                                 Payment Failed
                                             </button>
                                             <p className="mt-0.5">
@@ -154,8 +162,8 @@ const SubscriptionOverview = () => {
                                             <p className="mt-0.5">Kuwait</p>
                                         </TableCell>
                                         <TableCell>
-                                            <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-                                                <span className="h-1 w-1 rounded-full bg-[#F04438]"></span>
+                                            <button className="flex items-center justify-center gap-2 rounded-full border border-[#F9DBAF] bg-[#FEF6EE] px-1.5 py-1 text-xs font-medium text-[#B93815]">
+                                                <span className="h-1.5 w-1.5 rounded-full bg-[#EF6820]"></span>
                                                 Expiring Soon
                                             </button>
                                             <p className="mt-0.5">
@@ -185,7 +193,7 @@ const SubscriptionOverview = () => {
                                         </TableCell>
                                         <TableCell>
                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-                                                <span className="h-1 w-1 rounded-full bg-[#F04438]"></span>
+                                                <span className="h-1.5 w-1.5 rounded-full bg-[#F04438]"></span>
                                                 Payment Failed
                                             </button>
                                             <p className="mt-0.5">
@@ -215,11 +223,11 @@ const SubscriptionOverview = () => {
                                         </TableCell>
                                         <TableCell>
                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-                                                <span className="h-1 w-1 rounded-full bg-[#F04438]"></span>
-                                                Payment Failed
+                                                <span className="h-1.5 w-1.5 rounded-full bg-[#F04438]"></span>
+                                                Expired
                                             </button>
                                             <p className="mt-0.5">
-                                                Card Declined
+                                                60+ Days Overdue
                                             </p>
                                         </TableCell>
                                         <TableCell>
