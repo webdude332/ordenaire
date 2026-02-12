@@ -6,7 +6,11 @@ export const TableContainer = ({
 }: {
     children: React.ReactNode;
     className?: string;
-}) => <div className={`overflow-hidden bg-white ${className}`}>{children}</div>;
+}) => (
+    <div className={`overflow-hidden bg-white shadow-sm ${className}`}>
+        {children}
+    </div>
+);
 export const TableContainerOne = ({
     children,
     className = '',
@@ -35,7 +39,7 @@ export const TableHeader = ({
     className?: string;
 }) => (
     <thead
-        className={`border-t border-b border-borderColor bg-gray-50 text-xs text-gray-500 ${className}`}
+        className={`border-t border-b border-borderColor bg-[#F9F7FA] text-xs text-gray-500 ${className}`}
     >
         <tr>{children}</tr>
     </thead>

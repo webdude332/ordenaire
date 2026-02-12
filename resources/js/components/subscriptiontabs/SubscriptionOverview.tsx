@@ -7,6 +7,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/OuterTable';
+import Pagination from '@/components/Pagination';
 import InputSearch from '@/images/icons/inputSearch.svg?react';
 import Menu from '@/images/icons/menuVertical.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
@@ -14,7 +15,6 @@ import TrendGreen from '@/images/icons/trendGreen.svg?react';
 import StatCardAlt from '../cards/StatCardAlt';
 import ActionButton from '../ui/ActionButton';
 import { Input } from '../ui/FormElements';
-import Pagination from '../ui/Pagination';
 import TableButton from '../ui/TableButton';
 
 const SubscriptionOverview = () => {
