@@ -214,21 +214,6 @@ const FeatureAccessTab = () => {
         <div className="w-full space-y-6">
             {/* --- TOP CONTROLS: Tabs & Search --- */}
             <div className="flex items-center justify-between">
-                {/* Tab Switcher */}
-                {/* <div className="flex rounded-lg border border-gray-200 bg-[#F3F4F6] px-1.5 py-1">
-                    <button
-                        onClick={() => setActiveTab('features')}
-                        className={`cursor-pointer rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${activeTab === 'features' ? 'border border-[#CFCBD2] bg-white text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
-                    >
-                        Features
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('beta')}
-                        className={`cursor-pointer rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${activeTab === 'beta' ? 'border border-[#CFCBD2] bg-white text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
-                    >
-                        Beta Rollouts
-                    </button>
-                </div> */}
                 <div className="flex gap-1 rounded-lg bg-gray-50 p-1">
                     <button
                         onClick={() => setActiveTab('features')}
