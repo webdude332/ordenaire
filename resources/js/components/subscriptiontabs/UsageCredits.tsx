@@ -1,26 +1,23 @@
-// const UsageCredits = () => {
-//     return <div>UsageCredits</div>;
-// };
-
-// export default UsageCredits;
-
 import { useState } from 'react';
 
 // --- ICONS ---
 // Ensure these paths match your project structure
 import BellIcon from '@/images/icons/bell.svg?react'; // Assuming you have a bell icon
-import ArrowDown from '@/images/icons/chevron-down.svg?react';
 import EyeIcon from '@/images/icons/eyeIcon.svg?react'; // Assuming you have an eye icon, or replace with SVG
 import Search from '@/images/icons/inputSearch.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import XIcon from '@/images/icons/x.svg?react'; // Close icon
 
 // --- UI COMPONENTS ---
 import Badge from '../Badge'; // Using your perfected Badge component
+import Pagination from '../Pagination';
 import ActionButton from '../ui/ActionButton';
 import Button from '../ui/Button'; // Assuming you have a Button component
+import CustomDropdown from '../ui/CustomDropdown';
 import { Input } from '../ui/FormElements'; // Assuming you have an Input component
+import IconButton from '../ui/IconButton';
 import {
     Table,
     TableBody,
@@ -45,11 +42,14 @@ const FlagIcon = ({ code }: { code: string }) => {
     );
 };
 
-const UsageAndCredits = () => {
+const UsageCredits = () => {
     // --- STATE MANAGEMENT ---
     const [activeTab, setActiveTab] = useState<
         'chargeQueue' | 'creditBalances' | 'configurations'
     >('chargeQueue');
+    const [status, setStatus] = useState('');
+    const [healthyStatus, setHealthyStatus] = useState('');
+    const [config, setConfig] = useState('');
 
     // --- DATA: CHARGE QUEUE ---
     const chargeQueueData = [
@@ -267,17 +267,13 @@ const UsageAndCredits = () => {
         <div className="w-full space-y-6">
             {/* --- TOP HEADER & TABS --- */}
             <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                    Usage & Credits
-                </h1>
-
                 {/* Navigation Row */}
-                <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     {/* Pill Tabs */}
                     <div className="flex w-fit gap-1 rounded-lg bg-gray-50 p-1">
                         <button
                             onClick={() => setActiveTab('chargeQueue')}
-                            className={`flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                 activeTab === 'chargeQueue'
                                     ? 'bg-white text-gray-900 shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -290,7 +286,7 @@ const UsageAndCredits = () => {
                         </button>
                         <button
                             onClick={() => setActiveTab('creditBalances')}
-                            className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                 activeTab === 'creditBalances'
                                     ? 'bg-white text-gray-900 shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -300,7 +296,7 @@ const UsageAndCredits = () => {
                         </button>
                         <button
                             onClick={() => setActiveTab('configurations')}
-                            className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                 activeTab === 'configurations'
                                     ? 'bg-white text-gray-900 shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -330,11 +326,19 @@ const UsageAndCredits = () => {
                             Usage Metrics Table
                         </h2>
                         <div className="flex gap-2">
-                            {/* Mock Dropdown */}
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                Status: All{' '}
-                                <ArrowDown className="h-4 w-4 text-gray-500" />
-                            </button>
+                            <CustomDropdown
+                                label=""
+                                options={[
+                                    { label: 'Active', value: 'active' },
+                                    { label: 'Resolved', value: 'resolved' },
+                                    { label: 'One-Time', value: 'one-time' },
+                                    { label: 'Waived', value: 'waived' },
+                                    { label: 'Invoiced', value: 'invoiced' },
+                                ]}
+                                value={status}
+                                onChange={setStatus}
+                                placeholder="Status: All"
+                            />
                             <Button className="bg-[#7AB621] hover:bg-[#6ba31b]">
                                 <PlusIcon className="mr-2 h-4 w-4" /> Add Manual
                                 Charge
@@ -345,7 +349,10 @@ const UsageAndCredits = () => {
                         <Table>
                             <TableHeader>
                                 <TableHead className="py-4 pl-6 text-xs font-semibold">
-                                    Business Name
+                                    <div className="flex items-center gap-1">
+                                        Business Name
+                                        <SelectorIcon className="h-3 w-3" />
+                                    </div>
                                 </TableHead>
                                 <TableHead className="py-4 text-xs font-semibold">
                                     Charge Rule / SKU
@@ -354,7 +361,10 @@ const UsageAndCredits = () => {
                                     Charge Justification
                                 </TableHead>
                                 <TableHead className="py-4 text-xs font-semibold">
-                                    Status
+                                    <div className="flex items-center gap-1">
+                                        Status
+                                        <SelectorIcon className="h-3 w-3" />
+                                    </div>
                                 </TableHead>
                                 <TableHead className="py-4 text-xs font-semibold">
                                     Overage Rate
@@ -370,7 +380,7 @@ const UsageAndCredits = () => {
                                         className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50"
                                     >
                                         <TableCell className="py-4 pl-6">
-                                            <div className="font-semibold text-gray-900">
+                                            <div className="font-medium text-gray-900">
                                                 {item.businessName}
                                             </div>
                                             <div className="text-xs text-gray-500">
@@ -394,7 +404,6 @@ const UsageAndCredits = () => {
                                                     item.status,
                                                 )}
                                                 withDot={true}
-                                                rounded="md"
                                             >
                                                 {item.status}
                                             </Badge>
@@ -410,12 +419,12 @@ const UsageAndCredits = () => {
                                         <TableCell className="py-4 pr-6 text-right">
                                             {item.actions.length > 0 && (
                                                 <div className="flex justify-end gap-2">
-                                                    <button className="rounded-md border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">
+                                                    <ActionButton>
                                                         Bill
-                                                    </button>
-                                                    <button className="rounded-md border border-gray-300 p-1 text-gray-500 hover:bg-gray-50">
-                                                        <XIcon className="h-4 w-4" />
-                                                    </button>
+                                                    </ActionButton>
+                                                    <ActionButton>
+                                                        <XIcon className="h-3 w-3" />
+                                                    </ActionButton>
                                                 </div>
                                             )}
                                         </TableCell>
@@ -424,6 +433,7 @@ const UsageAndCredits = () => {
                             </TableBody>
                         </Table>
                     </TableContainerOne>
+                    <Pagination />
                 </div>
             )}
 
@@ -435,33 +445,85 @@ const UsageAndCredits = () => {
                             Credit Balances Table
                         </h2>
                         <div className="flex gap-2">
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                Status: All{' '}
-                                <ArrowDown className="h-4 w-4 text-gray-500" />
-                            </button>
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                All Configs{' '}
-                                <ArrowDown className="h-4 w-4 text-gray-500" />
-                            </button>
+                            <div className="w-[150px]">
+                                <CustomDropdown
+                                    label=""
+                                    options={[
+                                        {
+                                            label: 'All',
+                                            value: 'all',
+                                        },
+                                        {
+                                            label: 'Healthy',
+                                            value: 'healthy',
+                                        },
+                                        {
+                                            label: 'Low',
+                                            value: 'low',
+                                        },
+                                        {
+                                            label: 'Empty',
+                                            value: 'empty',
+                                        },
+                                    ]}
+                                    value={healthyStatus}
+                                    onChange={setHealthyStatus}
+                                    placeholder="Status: All"
+                                />
+                            </div>
+                            <div className="w-[150px]">
+                                <CustomDropdown
+                                    label=""
+                                    options={[
+                                        {
+                                            label: 'All Configs',
+                                            value: 'all configs',
+                                        },
+                                        {
+                                            label: 'Auto-Recharge ON',
+                                            value: 'auto-recharge on',
+                                        },
+                                        {
+                                            label: 'Auto-Recharge OFF',
+                                            value: 'auto-recharge off',
+                                        },
+                                    ]}
+                                    value={healthyStatus}
+                                    onChange={setHealthyStatus}
+                                    placeholder="All Configs"
+                                />
+                            </div>
                         </div>
                     </div>
                     <TableContainerOne className="border-none shadow-none">
                         <Table>
                             <TableHeader>
                                 <TableHead className="py-4 pl-6 text-xs font-semibold">
-                                    Business Name
+                                    <div className="flex items-center gap-1">
+                                        Business Name
+                                        <SelectorIcon className="h-3 w-3" />
+                                    </div>
                                 </TableHead>
                                 <TableHead className="py-4 text-center text-xs font-semibold">
                                     Current Balance
                                 </TableHead>
                                 <TableHead className="py-4 text-xs font-semibold">
-                                    Status
+                                    <div className="flex items-center gap-1">
+                                        Status
+                                        <SelectorIcon className="h-3 w-3" />
+                                    </div>
                                 </TableHead>
                                 <TableHead className="py-4 text-center text-xs font-semibold">
-                                    Auto-Recharge
+                                    <div className="flex items-center gap-1">
+                                        Auto-Charge
+                                        <SelectorIcon className="h-3 w-3" />
+                                    </div>
                                 </TableHead>
                                 <TableHead className="py-4 text-xs font-semibold">
-                                    Last Top-up
+                                    <div className="flex items-center gap-1">
+                                        Last-Top-up
+                                        <SelectorIcon className="h-3 w-3" />
+                                    </div>
                                 </TableHead>
                                 <TableHead className="py-4 pr-6 text-right text-xs font-semibold">
                                     Actions
@@ -474,7 +536,7 @@ const UsageAndCredits = () => {
                                         className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50"
                                     >
                                         <TableCell className="py-4 pl-6">
-                                            <div className="font-semibold text-gray-900">
+                                            <div className="font-medium text-gray-900">
                                                 {item.businessName}
                                             </div>
                                             <div className="text-xs text-gray-500">
@@ -525,15 +587,15 @@ const UsageAndCredits = () => {
                                                     '0.000 KWD' ||
                                                 item.currentBalance ===
                                                     '5.000 KWD' ? (
-                                                    <button className="flex items-center gap-1 rounded-md border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">
-                                                        <BellIcon className="h-3 w-3" />{' '}
+                                                    <ActionButton>
+                                                        <BellIcon className="h-4 w-4" />
                                                         Remind
-                                                    </button>
+                                                    </ActionButton>
                                                 ) : null}
-                                                <button className="flex items-center gap-1 rounded-md border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">
-                                                    <EyeIcon className="h-3 w-3" />{' '}
+                                                <ActionButton>
+                                                    <EyeIcon className="h-4 w-4 text-iconColor" />
                                                     History
-                                                </button>
+                                                </ActionButton>
                                             </div>
                                         </TableCell>
                                     </TableRow>
@@ -541,6 +603,7 @@ const UsageAndCredits = () => {
                             </TableBody>
                         </Table>
                     </TableContainerOne>
+                    <Pagination></Pagination>
                 </div>
             )}
 
@@ -606,7 +669,7 @@ const UsageAndCredits = () => {
                                                     {item.overage.split(' ')[1]}
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="py-4 text-xs text-gray-600">
+                                            <TableCell className="py-4 text-xs font-medium text-gray-600">
                                                 {item.freq
                                                     .split(' / ')
                                                     .map((line, i) => (
@@ -630,8 +693,8 @@ const UsageAndCredits = () => {
                                                     {item.status}
                                                 </Badge>
                                             </TableCell>
-                                            <TableCell className="py-4 pr-6 text-right">
-                                                <ActionButton>
+                                            <TableCell className="flex justify-end py-4 pr-6">
+                                                <ActionButton className="">
                                                     <PencilIcon className="h-4 w-4 text-gray-400" />
                                                 </ActionButton>
                                             </TableCell>
@@ -640,6 +703,7 @@ const UsageAndCredits = () => {
                                 </TableBody>
                             </Table>
                         </TableContainerOne>
+                        <Pagination />
                     </div>
 
                     {/* 2. Currency Conversion Rules */}
@@ -654,9 +718,9 @@ const UsageAndCredits = () => {
                                     overage pricing (Base Currency: KWD).
                                 </p>
                             </div>
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <IconButton>
                                 <PlusIcon className="h-4 w-4" /> Add Currency
-                            </button>
+                            </IconButton>
                         </div>
                         <div className="space-y-4 p-6">
                             {currencyData.map((item, idx) => (
@@ -736,4 +800,4 @@ const UsageAndCredits = () => {
     );
 };
 
-export default UsageAndCredits;
+export default UsageCredits;

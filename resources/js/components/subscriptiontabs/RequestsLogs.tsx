@@ -1,9 +1,3 @@
-// const RequestsLogs = () => {
-//     return <div>RequestsLogs</div>;
-// };
-
-// export default RequestsLogs;
-
 import { useState } from 'react';
 
 // --- ICONS ---
@@ -13,7 +7,11 @@ import Search from '@/images/icons/inputSearch.svg?react';
 
 // --- UI COMPONENTS ---
 import Badge from '../Badge'; // Using your perfected Badge component
+import Pagination from '../Pagination';
+import Button from '../ui/Button';
+import CustomDropdown from '../ui/CustomDropdown';
 import { Input } from '../ui/FormElements';
+import IconButton from '../ui/IconButton';
 import {
     Table,
     TableBody,
@@ -44,6 +42,7 @@ const getStatusVariant = (status: string): any => {
 const RequestsLogs = () => {
     // --- STATE ---
     const [activeTab, setActiveTab] = useState<TabType>('cancellations');
+    const [status, setStatus] = useState<string>('');
 
     // --- DATA: CANCELLATIONS ---
     const cancellationsData = [
@@ -196,16 +195,12 @@ const RequestsLogs = () => {
         <div className="w-full space-y-6">
             {/* --- TOP HEADER & TABS --- */}
             <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                    Requests & Logs
-                </h1>
-
                 {/* Tabs Row */}
-                <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div className="flex w-fit gap-1 rounded-lg bg-gray-50 p-1">
                         <button
                             onClick={() => setActiveTab('cancellations')}
-                            className={`flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            className={`flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                 activeTab === 'cancellations'
                                     ? 'bg-white text-gray-900 shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -218,7 +213,7 @@ const RequestsLogs = () => {
                         </button>
                         <button
                             onClick={() => setActiveTab('refunds')}
-                            className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                 activeTab === 'refunds'
                                     ? 'bg-white text-gray-900 shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -228,7 +223,7 @@ const RequestsLogs = () => {
                         </button>
                         <button
                             onClick={() => setActiveTab('discounts')}
-                            className={`rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                            className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                 activeTab === 'discounts'
                                     ? 'bg-white text-gray-900 shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -252,14 +247,29 @@ const RequestsLogs = () => {
                         />
                     </div>
                     <div className="flex gap-3">
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        {/* <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
                             Status: All{' '}
                             <ArrowDown className="h-4 w-4 text-gray-500" />
-                        </button>
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            Date: This Month{' '}
-                            <ArrowDown className="h-4 w-4 text-gray-500" />
-                        </button>
+                        </button> */}
+                        <div className="w-[150px]">
+                            <CustomDropdown
+                                label=""
+                                options={[
+                                    { label: 'All', value: 'all' },
+                                    { label: 'Approved', value: 'approved' },
+                                    { label: 'Pending', value: 'pending' },
+                                ]}
+                                value={status}
+                                onChange={setStatus}
+                                placeholder="Status: All"
+                            />
+                        </div>
+                        <div className="">
+                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                Date: This Month{' '}
+                                <ArrowDown className="h-4 w-4 text-gray-500" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -333,12 +343,11 @@ const RequestsLogs = () => {
                                         <TableCell className="py-4 pr-6 text-right">
                                             {item.status === 'Pending' ? (
                                                 <div className="flex justify-end gap-2">
-                                                    <button className="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50">
+                                                    <IconButton>
                                                         Uninstall
-                                                    </button>
-                                                    <button className="rounded-md bg-[#7AB621] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#6ba31b]">
-                                                        Contact
-                                                    </button>
+                                                    </IconButton>
+
+                                                    <Button>Contact</Button>
                                                 </div>
                                             ) : (
                                                 <span className="text-sm font-medium text-gray-900">
@@ -517,6 +526,7 @@ const RequestsLogs = () => {
                         </Table>
                     </TableContainerOne>
                 )}
+                <Pagination />
             </div>
         </div>
     );

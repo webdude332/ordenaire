@@ -11,6 +11,7 @@ import { Plus } from 'lucide-react';
 import Badge from '../Badge'; // Using the Badge we perfected earlier
 import ActionButton from '../ui/ActionButton';
 import Button from '../ui/Button';
+import CustomDropdown from '../ui/CustomDropdown';
 import {
     Table,
     TableBody,
@@ -70,6 +71,8 @@ const FilterButton = ({ label }: { label: string }) => (
 const PlansPricing = () => {
     // --- STATE ---
     const [activeTab, setActiveTab] = useState<'base' | 'regional'>('base');
+    const [selectedRegion, setSelectedRegion] = useState<string>('all');
+    const [selectedPlan, setSelectedPlan] = useState<string>('all');
 
     // --- DATA ---
     const basePlansData: BasePlan[] = [
@@ -150,7 +153,7 @@ const PlansPricing = () => {
         <div className="w-full space-y-6">
             {/* --- TOP HEADER --- */}
             <div>
-                <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     {/* Tab Switcher (Styled like your code) */}
                     <div className="flex w-fit gap-1 rounded-lg bg-gray-50 p-1">
                         <button
@@ -179,11 +182,59 @@ const PlansPricing = () => {
                     <div className="flex items-center gap-3">
                         {activeTab === 'regional' && (
                             <>
-                                <FilterButton label="Region: All" />
-                                <FilterButton label="Plan: All" />
+                                <div className="flex items-center gap-2">
+                                    <div>
+                                        <CustomDropdown
+                                            label=""
+                                            options={[
+                                                {
+                                                    label: 'Saudi Arabia',
+                                                    value: 'saudiarabia',
+                                                },
+                                                {
+                                                    label: 'Qatar',
+                                                    value: 'qatar',
+                                                },
+                                                {
+                                                    label: 'Bahrain',
+                                                    value: 'bahrain',
+                                                },
+                                                {
+                                                    label: 'Kuwait',
+                                                    value: 'kuwait',
+                                                },
+                                            ]}
+                                            value={selectedRegion}
+                                            onChange={setSelectedRegion}
+                                            placeholder="Region: All"
+                                        />
+                                    </div>
+                                    <div>
+                                        <CustomDropdown
+                                            label=""
+                                            options={[
+                                                {
+                                                    label: 'Super Admin',
+                                                    value: 'super admin',
+                                                },
+                                                {
+                                                    label: 'Admin',
+                                                    value: 'admin',
+                                                },
+                                                {
+                                                    label: 'Collaborator',
+                                                    value: 'Collaborator',
+                                                },
+                                            ]}
+                                            value={selectedPlan}
+                                            onChange={setSelectedPlan}
+                                            placeholder="Plan: All"
+                                        />
+                                    </div>
+                                </div>
                             </>
                         )}
-                        <Button>
+                        <Button className="py-2.5">
                             <Plus className="h-4 w-4" />
                             {activeTab === 'base'
                                 ? 'Add New Plan'

@@ -330,9 +330,6 @@ export default function UserManagement() {
                                                                 href="/users/profile"
                                                                 className=""
                                                             >
-                                                                {/* <EyeIcon
-                                                                className='w-4 h-4 text-[#B5B0BA]'
-                                                                /> */}
                                                                 <ActionButton>
                                                                     <EyeIcon className="h-4 w-4 text-iconColor" />
                                                                 </ActionButton>

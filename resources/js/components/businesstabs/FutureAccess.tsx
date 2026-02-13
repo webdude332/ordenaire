@@ -1,13 +1,8 @@
-import { useState } from 'react';
-
-// --- ICONS ---
-// Ensure these paths match your project structure
 import ArrowDown from '@/images/icons/chevron-down.svg?react';
 import Search from '@/images/icons/inputSearch.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
 import PlusIcon from '@/images/icons/plus.svg?react';
-
-// Inline Eye Icon Component (or import your own if you have it)
+import { useState } from 'react';
 const EyeIcon = ({ className }: { className?: string }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +71,7 @@ const FeatureAccessTab = () => {
             });
         }
     }, [isAuditLogOpen]);
-    // --- DATA ---
+
     const featuresData = [
         {
             name: 'Live Chat Support',
