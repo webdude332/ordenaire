@@ -1,263 +1,4 @@
-// import {
-//     Table,
-//     TableBody,
-//     TableCell,
-//     TableContainerOne,
-//     TableHead,
-//     TableHeader,
-//     TableRow,
-// } from '@/components/OuterTable';
-// import Pagination from '@/components/Pagination';
-// import InputSearch from '@/images/icons/inputSearch.svg?react';
-// import Menu from '@/images/icons/menuVertical.svg?react';
-// import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-// import TrendGreen from '@/images/icons/trendGreen.svg?react';
-// import StatCardAlt from '../cards/StatCardAlt';
-// import ActionButton from '../ui/ActionButton';
-// import { Input } from '../ui/FormElements';
-// import TableButton from '../ui/TableButton';
-
-// const SubscriptionOverview = () => {
-//     return (
-//         <div>
-//             <div className="mt-3 mb-6 grid grid-cols-1 gap-6 divide-x divide-gray-200 rounded-lg border border-gray-200 pt-6 pb-6 shadow-xs md:grid-cols-2 lg:grid-cols-4">
-//                 <StatCardAlt
-//                     title="Monthly Recurring Revenue"
-//                     value="$120,000"
-//                     trend="12%"
-//                     trendText="vs last month"
-//                     trendType="positive"
-//                     trendIcon={TrendGreen}
-//                 />
-//                 <StatCardAlt
-//                     title="Active Subscribers"
-//                     value="1,240"
-//                     trend="4"
-//                     trendText="New this month"
-//                     trendType="positive"
-//                     trendIcon={TrendGreen}
-//                 />
-//                 <StatCardAlt
-//                     title="Action Required"
-//                     value="6 Failed Payments"
-//                     trend=""
-//                     trendText="vs last month"
-//                     trendType="negative"
-//                     trendIcon={TrendGreen}
-//                     coloredValue={true}
-//                 />
-//                 <StatCardAlt
-//                     title="Churn Risk"
-//                     value="91% Renewal Rate"
-//                     trend=""
-//                     trendText="vs last month"
-//                     trendType="negative"
-//                     trendIcon={TrendGreen}
-//                 />
-//             </div>
-//             <div className="mt-8 border-t border-borderColor pt-8">
-//                 <div>
-//                     <div className="w-[300px]">
-//                         <Input
-//                             className="placeholder:text-md"
-//                             placeholder="Search by business name"
-//                             icon={InputSearch}
-//                         />
-//                     </div>
-//                     <div className="mt-8 rounded-xl border border-gray-200 shadow-sm">
-//                         <div className="flex items-center px-4 py-5">
-//                             <h2 className="text-xl font-semibold text-gray-900">
-//                                 Attention Required (Recent Alerts)
-//                             </h2>
-//                         </div>
-//                         <TableContainerOne>
-//                             <Table>
-//                                 <TableHeader className="text-lg">
-//                                     <TableHead className="font-semibold">
-//                                         Business Name
-//                                     </TableHead>
-//                                     <TableHead className="font-semibold">
-//                                         <div className="flex items-center gap-1">
-//                                             Issue/Alert
-//                                             <SelectorIcon />
-//                                         </div>
-//                                     </TableHead>
-//                                     <TableHead className="font-semibold">
-//                                         <div className="flex items-center gap-1">
-//                                             Amount Pending
-//                                             <SelectorIcon />
-//                                         </div>
-//                                     </TableHead>
-//                                     <TableHead className="text-right font-semibold">
-//                                         Actions
-//                                     </TableHead>
-//                                 </TableHeader>
-
-//                                 <TableBody>
-//                                     <TableRow>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 Burger Town
-//                                             </p>
-//                                             <p className="mt-0.5">UAE</p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-//                                                 <span className="h-1.5 w-1.5 rounded-full bg-[#F04438]"></span>
-//                                                 Payment Failed
-//                                             </button>
-//                                             <p className="mt-0.5">
-//                                                 Card Declined
-//                                             </p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 50.000
-//                                             </p>
-//                                             <p className="mt-0.5"> KWD</p>
-//                                         </TableCell>
-//                                         <TableCell className="flex justify-end gap-2">
-//                                             <TableButton>Retry</TableButton>
-//                                             <ActionButton>
-//                                                 <Menu />
-//                                             </ActionButton>
-//                                         </TableCell>
-//                                     </TableRow>
-//                                     {/**Row 2 */}
-//                                     <TableRow>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 PizzaPalace
-//                                             </p>
-//                                             <p className="mt-0.5">KSA</p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-//                                                 <span className="h-1 w-1 rounded-full bg-[#F04438]"></span>
-//                                                 Payment Failed
-//                                             </button>
-//                                             <p className="mt-0.5">
-//                                                 Card Declined
-//                                             </p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 20.000
-//                                             </p>
-//                                             <p className="mt-0.5"> KWD</p>
-//                                         </TableCell>
-//                                         <TableCell className="flex justify-end gap-2">
-//                                             <TableButton>Retry</TableButton>
-//                                             <ActionButton>
-//                                                 <Menu />
-//                                             </ActionButton>
-//                                         </TableCell>
-//                                     </TableRow>
-//                                     {/**Row 3 */}
-//                                     <TableRow>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 SushiSpot
-//                                             </p>
-//                                             <p className="mt-0.5">Kuwait</p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#F9DBAF] bg-[#FEF6EE] px-1.5 py-1 text-xs font-medium text-[#B93815]">
-//                                                 <span className="h-1.5 w-1.5 rounded-full bg-[#EF6820]"></span>
-//                                                 Expiring Soon
-//                                             </button>
-//                                             <p className="mt-0.5">
-//                                                 Ends in 2 days
-//                                             </p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 950.000
-//                                             </p>
-//                                             <p className="mt-0.5"> KWD</p>
-//                                         </TableCell>
-//                                         <TableCell className="flex justify-end gap-2">
-//                                             <TableButton>Extend +7</TableButton>
-//                                             <ActionButton>
-//                                                 <Menu />
-//                                             </ActionButton>
-//                                         </TableCell>
-//                                     </TableRow>
-//                                     {/**Row 4 */}
-//                                     <TableRow>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 Taco Haven
-//                                             </p>
-//                                             <p className="mt-0.5">Kuwait</p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-//                                                 <span className="h-1.5 w-1.5 rounded-full bg-[#F04438]"></span>
-//                                                 Payment Failed
-//                                             </button>
-//                                             <p className="mt-0.5">
-//                                                 Card Declined
-//                                             </p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 1000.000
-//                                             </p>
-//                                             <p className="mt-0.5"> KWD</p>
-//                                         </TableCell>
-//                                         <TableCell className="flex justify-end gap-2">
-//                                             <TableButton>Retry</TableButton>
-//                                             <ActionButton>
-//                                                 <Menu />
-//                                             </ActionButton>
-//                                         </TableCell>
-//                                     </TableRow>
-//                                     {/**Row 5 */}
-//                                     <TableRow>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 PastPalace
-//                                             </p>
-//                                             <p className="mt-0.5">Kuwait</p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <button className="flex items-center justify-center gap-2 rounded-full border border-[#FECDCA] bg-[#FEF3F2] px-1.5 py-1 text-xs font-medium text-[#B42318]">
-//                                                 <span className="h-1.5 w-1.5 rounded-full bg-[#F04438]"></span>
-//                                                 Expired
-//                                             </button>
-//                                             <p className="mt-0.5">
-//                                                 60+ Days Overdue
-//                                             </p>
-//                                         </TableCell>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-800">
-//                                                 1050.000
-//                                             </p>
-//                                             <p className="mt-0.5"> KWD</p>
-//                                         </TableCell>
-//                                         <TableCell className="flex justify-end gap-2">
-//                                             <TableButton>
-//                                                 Reactivate
-//                                             </TableButton>
-//                                             <ActionButton>
-//                                                 <Menu />
-//                                             </ActionButton>
-//                                         </TableCell>
-//                                     </TableRow>
-//                                 </TableBody>
-//                             </Table>
-//                         </TableContainerOne>
-//                         <Pagination />
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default SubscriptionOverview;
-
+import ContactModal from '@/components/Modals/ContactModal';
 import {
     Table,
     TableBody,
@@ -268,17 +9,19 @@ import {
     TableRow,
 } from '@/components/OuterTable';
 import Pagination from '@/components/Pagination';
+import SuccessToast from '@/components/toasts/SuccessToast';
 import InputSearch from '@/images/icons/inputSearch.svg?react';
 import Menu from '@/images/icons/menuVertical.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import TrendGreen from '@/images/icons/trendGreen.svg?react';
-import Badge, { BadgeVariant } from '../Badge'; // Import your Badge
+import { useState } from 'react';
+import Badge, { BadgeVariant } from '../Badge';
 import StatCardAlt from '../cards/StatCardAlt';
 import ActionButton from '../ui/ActionButton';
 import { Input } from '../ui/FormElements';
+import SubMenu from '../ui/SubMenu';
 import TableButton from '../ui/TableButton';
 
-// --- TYPES ---
 interface AlertItem {
     id: number;
     businessName: string;
@@ -286,8 +29,9 @@ interface AlertItem {
     alert: {
         label: string;
         subText: string;
-        variant: BadgeVariant; // Maps to your Badge colors
+        variant: BadgeVariant;
     };
+    originalAlertLabel: string;
     amount: {
         value: string;
         currency: string;
@@ -295,9 +39,37 @@ interface AlertItem {
     actionLabel: string;
 }
 
+interface MenuItem {
+    label: string;
+    onClick?: () => void;
+}
+
+interface ToastState {
+    show: boolean;
+    title: string;
+    message: string;
+    actionText: string;
+    onAction: () => void;
+}
+
 const SubscriptionOverview = () => {
-    // --- DYNAMIC DATA ---
-    const tableData: AlertItem[] = [
+    const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+    const [toast, setToast] = useState<ToastState>({
+        show: false,
+        title: '',
+        message: '',
+        actionText: '',
+        onAction: () => {},
+    });
+    const [modalState, setModalState] = useState<{
+        show: boolean;
+        businessName: string;
+    }>({
+        show: false,
+        businessName: '',
+    });
+
+    const [tableData, setTableData] = useState<AlertItem[]>([
         {
             id: 1,
             businessName: 'Burger Town',
@@ -305,8 +77,9 @@ const SubscriptionOverview = () => {
             alert: {
                 label: 'Payment Failed',
                 subText: 'Card Declined',
-                variant: 'error', // Red
+                variant: 'error',
             },
+            originalAlertLabel: 'Payment Failed',
             amount: { value: '50.000', currency: 'KWD' },
             actionLabel: 'Retry',
         },
@@ -317,8 +90,9 @@ const SubscriptionOverview = () => {
             alert: {
                 label: 'Payment Failed',
                 subText: 'Card Declined',
-                variant: 'error', // Red
+                variant: 'error',
             },
+            originalAlertLabel: 'Payment Failed',
             amount: { value: '20.000', currency: 'KWD' },
             actionLabel: 'Retry',
         },
@@ -329,8 +103,9 @@ const SubscriptionOverview = () => {
             alert: {
                 label: 'Expiring Soon',
                 subText: 'Ends in 2 days',
-                variant: 'warning', // Orange
+                variant: 'warning',
             },
+            originalAlertLabel: 'Expiring Soon',
             amount: { value: '950.000', currency: 'KWD' },
             actionLabel: 'Extend +7',
         },
@@ -341,24 +116,234 @@ const SubscriptionOverview = () => {
             alert: {
                 label: 'Payment Failed',
                 subText: 'Card Declined',
-                variant: 'error', // Red
+                variant: 'error',
             },
+            originalAlertLabel: 'Payment Failed',
             amount: { value: '1000.000', currency: 'KWD' },
             actionLabel: 'Retry',
         },
         {
             id: 5,
-            businessName: 'PastPalace',
+            businessName: 'PastaPalace',
             location: 'Kuwait',
             alert: {
                 label: 'Expired',
                 subText: '60+ Days Overdue',
-                variant: 'error', // Red
+                variant: 'error',
             },
+            originalAlertLabel: 'Expired',
             amount: { value: '1050.000', currency: 'KWD' },
             actionLabel: 'Reactivate',
         },
-    ];
+    ]);
+
+    const showToast = (
+        title: string,
+        message: string,
+        actionText: string = 'View Details',
+        onAction: () => void = () => {},
+    ) => {
+        setToast({
+            show: true,
+            title,
+            message,
+            actionText,
+            onAction,
+        });
+    };
+
+    const closeToast = () => {
+        setToast((prev) => ({ ...prev, show: false }));
+    };
+
+    const openContactModal = (businessName: string) => {
+        setModalState({ show: true, businessName });
+        setOpenMenuId(null);
+    };
+
+    const closeContactModal = () => {
+        setModalState({ show: false, businessName: '' });
+    };
+
+    const updateTableItem = (
+        id: number,
+        updates: Partial<AlertItem['alert']>,
+    ) => {
+        setTableData((prev) =>
+            prev.map((item) =>
+                item.id === id
+                    ? {
+                          ...item,
+                          alert: { ...item.alert, ...updates },
+                      }
+                    : item,
+            ),
+        );
+    };
+
+    // Handle main action button clicks
+    const handleActionButton = (item: AlertItem) => {
+        switch (item.originalAlertLabel) {
+            case 'Payment Failed':
+                // Retry payment
+                showToast(
+                    'Payment Retry Initiated',
+                    `Attempting to process payment for ${item.businessName}`,
+                    'View Status',
+                    () => console.log('View payment status'),
+                );
+                // Update the badge and subtext
+                setTimeout(() => {
+                    updateTableItem(item.id, {
+                        label: 'Processing',
+                        subText: 'Payment in progress',
+                        variant: 'blue',
+                    });
+                }, 2000);
+                break;
+
+            case 'Expiring Soon':
+                // Extend +7 days
+                showToast(
+                    'Grace Period Extended',
+                    `${item.businessName}'s subscription extended by 7 days`,
+                    'View Details',
+                );
+                // Update badge and subtext
+                setTimeout(() => {
+                    updateTableItem(item.id, {
+                        label: 'Extended',
+                        subText: 'Grace period active',
+                        variant: 'success',
+                    });
+                }, 2000);
+                break;
+
+            case 'Expired':
+                // Reactivate
+                showToast(
+                    'Reactivation Initiated',
+                    `Processing reactivation for ${item.businessName}`,
+                    'View Details',
+                );
+                setTimeout(() => {
+                    updateTableItem(item.id, {
+                        label: 'Reactivating',
+                        subText: 'Pending confirmation',
+                        variant: 'blue',
+                    });
+                }, 2000);
+                break;
+        }
+    };
+
+    // Function to get menu items based on alert status
+    const getMenuItemsForAlert = (
+        alertLabel: string,
+        item: AlertItem,
+    ): MenuItem[] => {
+        switch (alertLabel) {
+            case 'Payment Failed':
+                return [
+                    {
+                        label: 'Extend Grace Period (+7 Days)',
+                        onClick: () => {
+                            showToast(
+                                'Grace Period Extended',
+                                `${item.businessName} now has 7 additional days`,
+                                'View Details',
+                            );
+                            setTimeout(() => {
+                                updateTableItem(item.id, {
+                                    label: 'Grace Period',
+                                    subText: 'Ends in 7 days',
+                                    variant: 'warning',
+                                });
+                            }, 2000);
+                        },
+                    },
+                    {
+                        label: 'Contact',
+                        onClick: () => openContactModal(item.businessName),
+                    },
+                    {
+                        label: 'Email Invoice',
+                        onClick: () => {
+                            showToast(
+                                'Invoice Sent',
+                                `Invoice emailed to ${item.businessName}`,
+                                'View Email',
+                            );
+                        },
+                    },
+                ];
+
+            case 'Expiring Soon':
+                return [
+                    {
+                        label: 'Send Reminder',
+                        onClick: () => {
+                            showToast(
+                                'Reminder Sent',
+                                `Renewal reminder sent to ${item.businessName}`,
+                                'View Message',
+                            );
+                        },
+                    },
+                    {
+                        label: 'Contact',
+                        onClick: () => openContactModal(item.businessName),
+                    },
+                ];
+
+            case 'Expired':
+                return [
+                    {
+                        label: 'Send Reminder',
+                        onClick: () => {
+                            showToast(
+                                'Reminder Sent',
+                                `Urgent reminder sent to ${item.businessName}`,
+                                'View Message',
+                            );
+                        },
+                    },
+                    {
+                        label: 'Contact',
+                        onClick: () => openContactModal(item.businessName),
+                    },
+                    {
+                        label: 'Archive',
+                        onClick: () => {
+                            showToast(
+                                'Account Archived',
+                                `${item.businessName} has been moved to archive`,
+                                'Undo',
+                                () => {
+                                    // Undo archive action
+                                    console.log('Undo archive');
+                                },
+                            );
+                            setTimeout(() => {
+                                updateTableItem(item.id, {
+                                    label: 'Archived',
+                                    subText: 'Account inactive',
+                                    variant: 'gray',
+                                });
+                            }, 2000);
+                        },
+                    },
+                ];
+
+            default:
+                return [
+                    {
+                        label: 'View Details',
+                        onClick: () => console.log('View Details'),
+                    },
+                ];
+        }
+    };
 
     return (
         <div>
@@ -456,7 +441,7 @@ const SubscriptionOverview = () => {
                                                 <Badge
                                                     variant={item.alert.variant}
                                                     withDot={true}
-                                                    rounded="full" // The screenshot shows pill shape here
+                                                    rounded="full"
                                                 >
                                                     {item.alert.label}
                                                 </Badge>
@@ -478,12 +463,49 @@ const SubscriptionOverview = () => {
 
                                             {/* Column 4: Actions */}
                                             <TableCell className="flex justify-end gap-2">
-                                                <TableButton>
+                                                <TableButton
+                                                    onClick={() =>
+                                                        handleActionButton(item)
+                                                    }
+                                                >
                                                     {item.actionLabel}
                                                 </TableButton>
-                                                <ActionButton>
-                                                    <Menu />
-                                                </ActionButton>
+                                                <div className="relative">
+                                                    <ActionButton
+                                                        onClick={() =>
+                                                            setOpenMenuId(
+                                                                openMenuId ===
+                                                                    item.id
+                                                                    ? null
+                                                                    : item.id,
+                                                            )
+                                                        }
+                                                    >
+                                                        <Menu />
+                                                    </ActionButton>
+                                                    {openMenuId === item.id && (
+                                                        <SubMenu
+                                                            items={getMenuItemsForAlert(
+                                                                item.originalAlertLabel,
+                                                                item,
+                                                            )}
+                                                            onClose={() =>
+                                                                setOpenMenuId(
+                                                                    null,
+                                                                )
+                                                            }
+                                                            positionAbove={
+                                                                tableData.findIndex(
+                                                                    (d) =>
+                                                                        d.id ===
+                                                                        item.id,
+                                                                ) >=
+                                                                tableData.length -
+                                                                    2
+                                                            }
+                                                        />
+                                                    )}
+                                                </div>
                                             </TableCell>
                                         </TableRow>
                                     ))}
@@ -494,6 +516,25 @@ const SubscriptionOverview = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Toast Notification */}
+            {toast.show && (
+                <SuccessToast
+                    title={toast.title}
+                    message={toast.message}
+                    actionText={toast.actionText}
+                    onAction={toast.onAction}
+                    onClose={closeToast}
+                />
+            )}
+
+            {/* Contact Modal */}
+            {modalState.show && (
+                <ContactModal
+                    businessName={modalState.businessName}
+                    onClose={closeContactModal}
+                />
+            )}
         </div>
     );
 };

@@ -55,14 +55,14 @@ const SuccessToast = ({
                             Dismiss
                         </button>
 
-                        {actionText && onAction && (
+                        {/* {actionText && onAction && (
                             <button
                                 onClick={onAction}
                                 className="cursor-pointer font-semibold text-[#578500]"
                             >
                                 {actionText}
                             </button>
-                        )}
+                        )} */}
                     </div>
                 </div>
 
