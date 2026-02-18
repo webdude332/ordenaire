@@ -2,6 +2,7 @@ import SearchIcon from '@/images/icons/inputSearch.svg?react';
 import Menu from '@/images/icons/menuVertical.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import Badge, { BadgeVariant } from '../Badge'; // Ensure this path matches where you saved Badge.tsx
 import {
@@ -287,10 +288,12 @@ const Subscribers = () => {
                                     {/* Column 5: Actions */}
                                     <TableCell className="text-right">
                                         <div className="flex justify-end gap-2">
-                                            <ActionButton className="font-bold">
-                                                <PencilIcon />
-                                                Manage
-                                            </ActionButton>
+                                            <Link href="/subscription-and-billing/subscriptiondetail">
+                                                <ActionButton className="font-bold">
+                                                    <PencilIcon />
+                                                    Manage
+                                                </ActionButton>
+                                            </Link>
                                             <ActionButton>
                                                 <Menu />
                                             </ActionButton>
