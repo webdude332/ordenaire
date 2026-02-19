@@ -111,9 +111,83 @@ export default function SubscriptionDetail() {
             discount: '0.000 AED',
         },
     ];
+    const breakdownData = [
+        {
+            id: 1,
+            resource: {
+                title: 'Active Staff',
+                limit: 'Limit: 5 Users',
+            },
+            usage: '7',
+            justification: {
+                main: '7 Users (Limit: 5)',
+                date: 'Detected: 05 Jan',
+            },
+            status: 'Invoiced',
+            currency: {
+                main: '4.000 KWD',
+                sub: '50.000 AED',
+            },
+        },
+        {
+            id: 2,
+            resource: {
+                title: 'Menu Items',
+                limit: 'Limit: 150 Items',
+            },
+            usage: '112',
+            justification: {
+                main: '+3 Extra Items',
+                date: 'Detected: 01 Jan',
+            },
+            status: 'Resolved',
+            currency: {
+                main: '0.000 KWD',
+                sub: '0.000 AED',
+            },
+        },
+        {
+            id: 3,
+            resource: {
+                title: 'Kiosk Machines',
+                limit: 'Limit: 0 (Add-on)',
+            },
+            usage: '2',
+            justification: {
+                main: '1 Device',
+                date: 'Purchased: 02 Jan',
+            },
+            status: 'One-Time',
+            currency: {
+                main: '100.000 KWD',
+                sub: '950.000 AED',
+            },
+        },
+        {
+            id: 4,
+            resource: {
+                title: 'Storage',
+                limit: 'Limit: 10 GB',
+            },
+            usage: '2.1',
+            justification: {
+                main: '12 GB (Limit: 10)',
+                date: 'Detected: 01 Jan',
+            },
+            status: 'Waived',
+            currency: {
+                main: '0.000 KWD',
+                sub: '0.000 AED',
+            },
+        },
+    ];
     const statusMap: Record<string, BadgeVariant> = {
         Paid: 'active',
         Failed: 'error',
+        Invoiced: 'purple',
+        Resolved: 'active',
+        'One-Time': 'blue',
+        Waived: 'gray',
     };
     return (
         <div className="flex min-h-screen">
@@ -133,7 +207,7 @@ export default function SubscriptionDetail() {
                             </IconButton>
                         </Link>
                     </div>
-                    <div className="rounded-xl border border-borderColor bg-[#F8FFEB] px-6 py-8 shadow-xs">
+                    <div className="pt-3shadow-xs rounded-xl border border-borderColor bg-[#F8FFEB] px-6 pb-8">
                         {/**other stuff */}
                         <div className="mt-2 grid grid-cols-[1.5fr_1fr_1fr_1fr] p-4">
                             <div className="flex items-center gap-3">
@@ -163,10 +237,6 @@ export default function SubscriptionDetail() {
                                         Subscription Status
                                     </h1>
                                     <h1 className="font-semibold text-gray-900">
-                                        {/* <button className="flex items-center justify-center gap-2 rounded-xl bg-green-100 px-1.5 py-0.5 text-green-600">
-                                            <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                                            Active
-                                        </button> */}
                                         <Badge variant="success" withDot={true}>
                                             Active
                                         </Badge>
@@ -233,7 +303,7 @@ export default function SubscriptionDetail() {
                                 Installed Apps & Add-ons
                             </h2>
                         </div>
-                        <TableContainerOne>
+                        <TableContainerOne className="rounded-b-xl border-none shadow-none">
                             <Table>
                                 <TableHeader>
                                     <TableHead className="text-md font-medium text-gray-700">
@@ -253,7 +323,7 @@ export default function SubscriptionDetail() {
                                             Status <SelectorIcon />
                                         </div>
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Actions
                                     </TableHead>
                                 </TableHeader>
@@ -286,11 +356,12 @@ export default function SubscriptionDetail() {
                                                 <Badge
                                                     variant="success"
                                                     withDot={true}
+                                                    rounded="md"
                                                 >
                                                     {item.status}
                                                 </Badge>{' '}
                                             </TableCell>
-                                            <TableCell>
+                                            <TableCell className="flex justify-end">
                                                 <ActionButton>
                                                     <Menu className="" />
                                                 </ActionButton>
@@ -334,7 +405,7 @@ export default function SubscriptionDetail() {
                                 Billing History
                             </h2>
                         </div>
-                        <TableContainerOne>
+                        <TableContainerOne className="rounded-b-xl border-none shadow-none">
                             <Table>
                                 <TableHeader>
                                     <TableHead className="text-md font-medium text-gray-700">
@@ -360,7 +431,7 @@ export default function SubscriptionDetail() {
                                     <TableHead className="text-md font-medium text-gray-700">
                                         Discount
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Actions
                                     </TableHead>
                                 </TableHeader>
@@ -407,7 +478,7 @@ export default function SubscriptionDetail() {
                                             <TableCell>
                                                 {item.discount}
                                             </TableCell>
-                                            <TableCell>
+                                            <TableCell className="flex justify-end">
                                                 <ActionButton>
                                                     <Menu className="" />
                                                 </ActionButton>
@@ -425,20 +496,17 @@ export default function SubscriptionDetail() {
                                 Current Consuption Breakdown
                             </h2>
                         </div>
-                        <TableContainerOne>
+                        <TableContainerOne className="rounded-b-xl border-none shadow-none">
                             <Table>
                                 <TableHeader>
                                     <TableHead className="text-md font-medium text-gray-700">
-                                        Invoice ID
+                                        Resources / Limit
                                     </TableHead>
                                     <TableHead className="text-md font-medium text-gray-700">
-                                        <div className="flex items-center gap-1">
-                                            Date
-                                            <SelectorIcon />
-                                        </div>
+                                        Usage
                                     </TableHead>
                                     <TableHead className="text-md font-medium text-gray-700">
-                                        Amount
+                                        Charge Justification
                                     </TableHead>
                                     <TableHead className="text-md font-medium text-gray-700">
                                         <div className="flex items-center gap-1">
@@ -446,40 +514,37 @@ export default function SubscriptionDetail() {
                                         </div>
                                     </TableHead>
                                     <TableHead className="text-md font-medium text-gray-700">
-                                        Type of Charges
+                                        Month-to-Date Cost
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
-                                        Discount
-                                    </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Actions
                                     </TableHead>
                                 </TableHeader>
                                 <TableBody>
-                                    {billingData.map((item) => (
+                                    {breakdownData.map((item) => (
                                         <TableRow key={item.id}>
                                             <TableCell>
                                                 <p className="font-medium text-gray-900">
-                                                    {item.bussinessId}
+                                                    {item.resource.title}
+                                                </p>
+                                                <p className="text-sm text-gray-500">
+                                                    {item.resource.limit}
                                                 </p>
                                             </TableCell>
                                             <TableCell>
                                                 <p className="font-medium text-gray-900">
-                                                    {item.date}
+                                                    {item.usage}
                                                 </p>
                                             </TableCell>
                                             <TableCell>
                                                 <p className="font-medium text-gray-900">
-                                                    {item.billing.currency}
+                                                    {item.justification.main}
                                                 </p>
-                                                <p>
-                                                    {item.billing.subCurrency}
+                                                <p className="text-sm text-gray-500">
+                                                    {item.justification.date}
                                                 </p>
                                             </TableCell>
                                             <TableCell>
-                                                {/* <p className="">
-                                                    {item.status}
-                                                </p> */}
                                                 <Badge
                                                     variant={
                                                         statusMap[
@@ -493,14 +558,16 @@ export default function SubscriptionDetail() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell>
-                                                {item.typeOfCharges}
+                                                <p className="font-medium text-gray-900">
+                                                    {item.currency.main}
+                                                </p>
+                                                <p className="text-sm text-gray-500">
+                                                    {item.currency.sub}
+                                                </p>
                                             </TableCell>
-                                            <TableCell>
-                                                {item.discount}
-                                            </TableCell>
-                                            <TableCell>
+                                            <TableCell className="flex justify-end">
                                                 <ActionButton>
-                                                    <Menu className="" />
+                                                    <Menu />
                                                 </ActionButton>
                                             </TableCell>
                                         </TableRow>
