@@ -1,10 +1,6 @@
 import Badge from '@/components/Badge';
 import Modal from '@/components/Modal';
 import User from '@/images/icons/admin.svg?react';
-// import {
-//     default as Phone,
-//     default as PhoneIcon,
-// } from '@/images/icons/phoneBold.svg?react';
 import Amount from '@/images/icons/amount.svg?react';
 import Phone from '@/images/icons/call.svg?react';
 import Email from '@/images/icons/email.svg?react';
@@ -71,14 +67,6 @@ export default function ContactModal({
             <div className="relative overflow-hidden p-6 sm:p-8">
                 {/* Header Icon with pattern bg */}
                 <div className="relative mb-6 flex items-start gap-4">
-                    {/* <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
-                        <img
-                            src={patternBg}
-                            alt=""
-                            className="max-w-none"
-                            style={{ transform: 'scale(1.1)', opacity: 0.7 }}
-                        />
-                    </div> */}
                     <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
                         <PhoneBold className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                     </div>
@@ -104,51 +92,6 @@ export default function ContactModal({
                     </div>
 
                     <div className="space-y-6 p-6">
-                        {/* Who to Call */}
-                        {/* <div>
-                            <p className="mb-3 text-sm font-semibold text-gray-700">
-                                Who to Call
-                            </p>
-                            <div className="rounded-lg border border-[#e8f5d0] bg-[#F8FFEB] p-4">
-                                <div className="grid grid-cols-2 space-y-3">
-                                    <div className="">
-                                        <div className="flex items-center gap-3">
-                                            <User className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                            <span className="w-36 text-sm text-gray-500">
-                                                Admin
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <Phone className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                            <span className="w-36 text-sm text-gray-500">
-                                                Phone Number
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <Mail className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                            <span className="w-36 text-sm text-gray-500">
-                                                Email Address
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span className="text-sm font-medium text-gray-800">
-                                                {contact.adminName}
-                                            </span>
-
-                                            <span className="text-sm font-medium text-gray-800">
-                                                {contact.phoneNumber}
-                                            </span>
-                                            <span className="w-36 text-sm text-gray-500">
-                                                Phone Number
-                                            </span>
-                                            <span className="text-sm font-medium text-gray-800">
-                                                {contact.emailAddress}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                         <div>
                             <p className="mb-2 text-lg font-medium">
                                 Who to call
@@ -252,53 +195,6 @@ export default function ContactModal({
                                 </div>
                             </div>
                         </div>
-
-                        {/* Context */}
-                        {/* <div>
-                            <p className="mb-3 text-sm font-semibold text-gray-700">
-                                Context
-                            </p>
-                            <div className="rounded-lg border border-gray-200 bg-white p-4">
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-3">
-                                        <AlertTriangle className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                        <span className="w-44 text-sm text-gray-500">
-                                            Current Issue
-                                        </span>
-                                        <span className="text-sm font-medium text-gray-800">
-                                            {context.currentIssue}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <Money className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                        <span className="w-44 text-sm text-gray-500">
-                                            Amount Due
-                                        </span>
-                                        <span className="text-sm font-medium text-gray-800">
-                                            {context.amountDue}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <Wallet className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                        <span className="w-44 text-sm text-gray-500">
-                                            Current Wallet Balance
-                                        </span>
-                                        <span className="text-sm font-medium text-gray-800">
-                                            {context.walletBalance}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <CheckCircle className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                                        <span className="w-44 text-sm text-gray-500">
-                                            Last Successful Payment
-                                        </span>
-                                        <span className="text-sm font-medium text-gray-800">
-                                            {context.lastSuccessfulPayment}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

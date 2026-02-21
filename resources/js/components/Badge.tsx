@@ -9,7 +9,8 @@ export type BadgeVariant =
     | 'gray'
     | 'active'
     | 'inactive'
-    | 'archived';
+    | 'archived'
+    | 'failed';
 
 interface BadgeProps {
     children: React.ReactNode;
@@ -43,6 +44,7 @@ export default function Badge({
         active: 'bg-white border-[#CFCBD2] text-gray-500', // active
         inactive: 'bg-white borde-[#CFCBD2] text-gray-500', // inactive
         archived: 'bg-white border-[#CFCBD2] text-gray-500', // archive
+        failed: 'bg-white border-[#CFCBD2] text-gray-500', // failed
     };
 
     // Dot Colors
@@ -56,6 +58,7 @@ export default function Badge({
         active: 'bg-[#17B26A]',
         inactive: 'bg-red-800',
         archived: 'bg-[#F04438]',
+        failed: 'bg-[#F04438]',
     };
 
     return (
