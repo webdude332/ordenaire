@@ -26,10 +26,11 @@ import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import TrendGreen from '@/images/icons/trendGreen.svg?react';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
-
 export default function SubscriptionDetail() {
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
     const [isEditPlanModalOpen, setIsEditPlanModalOpen] = useState(false);
+    const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+    const [isUninstallModalOpen, setIsUninstallModalOpen] = useState(false);
     const breadcrumbs = [
         {
             label: 'Subscription & Billing',
@@ -59,7 +60,7 @@ export default function SubscriptionDetail() {
             },
             cycle: 'Monthly',
             installDate: '12 Aug 2025',
-            status: 'Active',
+            status: 'Cancellation Requested',
         },
         {
             id: 2,
@@ -188,9 +189,11 @@ export default function SubscriptionDetail() {
         Paid: 'active',
         Failed: 'failed',
         Invoiced: 'purple',
-        Resolved: 'active',
+        Resolved: 'success',
         'One-Time': 'blue',
         Waived: 'gray',
+        'Cancellation Requested': 'warning',
+        // paid: 'paid',
         // failed: 'failed',
     };
     return (
@@ -362,7 +365,12 @@ export default function SubscriptionDetail() {
                                             </TableCell>
                                             <TableCell>
                                                 <Badge
-                                                    variant="success"
+                                                    // variant="success"
+                                                    variant={
+                                                        item.status === 'Active'
+                                                            ? 'success'
+                                                            : 'warning'
+                                                    }
                                                     withDot={true}
                                                     rounded="md"
                                                 >
@@ -370,9 +378,15 @@ export default function SubscriptionDetail() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell className="flex justify-end">
-                                                <ActionButton>
-                                                    <Menu className="" />
-                                                </ActionButton>
+                                                {item.status === 'Active' ? (
+                                                    <ActionButton>
+                                                        <Menu />
+                                                    </ActionButton>
+                                                ) : (
+                                                    <IconButton>
+                                                        Process Cancel
+                                                    </IconButton>
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     ))}
