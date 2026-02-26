@@ -556,12 +556,16 @@
 // export default Invoices;
 
 // credit note modal.
-
+import ContactModal from '@/components/Modals/ContactModal';
+import DownloadModal from '@/components/Modals/DownloadModal';
+import SuccessToast from '@/components/toasts/SuccessToast';
 import SearchIcon from '@/images/icons/inputSearch.svg?react';
 import Menu from '@/images/icons/menuVertical.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
+import { router } from '@inertiajs/react';
 import { useState } from 'react';
 import Badge, { BadgeVariant } from '../Badge';
+import CreditNoteModal from '../Modals/CreditNoteModal';
 import {
     Table,
     TableBody,
@@ -576,14 +580,6 @@ import ActionButton from '../ui/ActionButton';
 import CustomDropdown from '../ui/CustomDropdown';
 import { Input } from '../ui/FormElements';
 import SubMenu from '../ui/SubMenu';
-// import SuccessToast from '../ui/SuccessToast';
-// import ContactModal from '../modals/ContactModal';
-// import DownloadInvoiceModal from '../modals/DownloadInvoiceModal';
-// import CreditNoteModal from '../modals/CreditNoteModal';
-import ContactModal from '@/components/Modals/ContactModal';
-import DownloadModal from '@/components/Modals/DownloadModal';
-import SuccessToast from '@/components/toasts/SuccessToast';
-import CreditNoteModal from '../Modals/CreditNoteModal';
 // --- Types & Interfaces ---
 interface Invoice {
     id: string;
@@ -822,9 +818,12 @@ const Invoices = () => {
                 label: 'View Subscription Details',
                 onClick: () => {
                     // Wire to subscription details navigation
-                    console.log(
-                        'View subscription details for',
-                        invoice.invoiceNumber,
+                    // console.log(
+                    //     'View subscription details for',
+                    //     invoice.invoiceNumber,
+                    // );
+                    router.visit(
+                        '/subscription-and-billing/subscriptiondetail',
                     );
                 },
             },
