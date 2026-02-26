@@ -649,34 +649,34 @@ export default function DownloadInvoiceModal({
                                 <div className="mb-5">
                                     <div className="mb-3 flex items-center gap-2">
                                         <Send className="h-6 w-6 text-gray-500" />
-                                        <span className="font-semibold text-gray-900">
+                                        <span className="text-lg font-semibold text-gray-900">
                                             Bill To
                                         </span>
                                     </div>
                                     <div className="space-y-0.5 pl-1 text-sm">
-                                        <p className="font-medium text-gray-900">
+                                        <p className="text-gray-900">
                                             {invoice.billedTo.name}
                                         </p>
-                                        <p className="text-gray-500">
+                                        <p className="text-gray-900">
                                             {invoice.billedTo.busId}
                                         </p>
-                                        <p className="text-gray-500">
+                                        <p className="text-gray-900">
                                             {d.billToAddress}
                                         </p>
-                                        <p className="text-gray-500">
+                                        <p className="text-gray-900">
                                             {d.billToEmail}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Divider */}
-                                <div className="mb-5 h-px bg-gray-200" />
+                                <div className="mb-5 h-px bg-gray-900" />
 
                                 {/* Details */}
                                 <div>
                                     <div className="mb-3 flex items-center gap-2">
                                         <ClipboardList className="h-6 w-6 text-gray-500" />
-                                        <span className="font-semibold text-gray-900">
+                                        <span className="text-lg font-semibold text-gray-900">
                                             Details
                                         </span>
                                     </div>
@@ -704,12 +704,12 @@ export default function DownloadInvoiceModal({
                                         ].map((row) => (
                                             <div
                                                 key={row.label}
-                                                className="flex justify-between gap-4"
+                                                className="grid grid-cols-2"
                                             >
-                                                <span className="flex-shrink-0 text-gray-500">
+                                                <span className="flex-shrink-0 text-gray-900">
                                                     {row.label}
                                                 </span>
-                                                <span className="text-right font-medium text-gray-900">
+                                                <span className="text-left text-gray-900">
                                                     {row.value}
                                                 </span>
                                             </div>
@@ -725,13 +725,13 @@ export default function DownloadInvoiceModal({
                                         <p className="text-[15px] font-bold text-gray-900">
                                             {event.time}
                                         </p>
-                                        <p className="mt-0.5 text-sm text-gray-500">
+                                        <p className="mt-0.5 text-sm text-gray-900">
                                             {event.label}
                                         </p>
                                         {event.subLines?.map((line, i) => (
                                             <p
                                                 key={i}
-                                                className="text-xs text-gray-400"
+                                                className="text-xs text-gray-900"
                                             >
                                                 {line}
                                             </p>
