@@ -41,7 +41,7 @@ export default function SubscriptionDetail() {
             id: 1,
             app: {
                 appname: 'Employee Scheduling',
-                appby: 'by Global Tech Solutions',
+                appby: 'Global Tech Solutions',
             },
             billing: {
                 currency: '5.000 KWD',
@@ -56,7 +56,7 @@ export default function SubscriptionDetail() {
             id: 2,
             app: {
                 appname: 'Employee status',
-                appby: 'by Ordenaire',
+                appby: 'Ordenaire',
             },
             billing: {
                 currency: '5.000 KWD',

@@ -1,9 +1,11 @@
 import Modal from '@/components/Modal';
+import ClipboardIcon from '@/images/icons/clipboard1.svg?react';
 import Trash from '@/images/icons/delBold.svg?react';
 import MailIcon from '@/images/icons/email.svg?react';
 import ExternalLink from '@/images/icons/employeeScheduling.svg?react';
-import ClipboardIcon from '@/images/icons/issue.svg?react';
 import { ComponentType, useState } from 'react';
+import Button from '../ui/Button';
+import IconButton from '../ui/IconButton';
 
 interface UninstallModalProps {
     isOpen: boolean;
@@ -94,7 +96,7 @@ export default function UninstallModal({
                         {/* Request Details */}
                         <div className="rounded-xl border border-gray-200 p-6">
                             {/* Header */}
-                            <div className="flex items-center gap-3 text-lg font-bold text-gray-900">
+                            <div className="flex items-center gap-3 text-lg font-semibold text-gray-900">
                                 <MailIcon className="h-6 w-6" />
                                 Request Details
                             </div>
@@ -105,7 +107,7 @@ export default function UninstallModal({
                                     <p className="text-sm font-medium text-gray-500">
                                         Request Source
                                     </p>
-                                    <p className="mt-1 text-xl font-bold text-gray-900">
+                                    <p className="mt-1 text-xl font-semibold text-gray-900">
                                         {requestSource}
                                     </p>
                                     <p className="mt-1 text-sm text-gray-400">
@@ -117,7 +119,7 @@ export default function UninstallModal({
                                     <p className="text-sm font-medium text-gray-500">
                                         Request Date
                                     </p>
-                                    <p className="mt-1 text-xl font-bold text-gray-900">
+                                    <p className="mt-1 text-xl font-semibold text-gray-900">
                                         {requestDate}
                                     </p>
                                 </div>
@@ -127,7 +129,7 @@ export default function UninstallModal({
                         {/* Reason for Cancellation */}
                         <div className="rounded-xl border border-gray-200 p-6">
                             {/* Header */}
-                            <div className="flex items-center gap-3 text-lg font-bold text-gray-900">
+                            <div className="flex items-center gap-3 text-lg font-semibold text-gray-900">
                                 <ClipboardIcon className="h-6 w-6" />
                                 Reason for Cancellation
                             </div>
@@ -135,7 +137,7 @@ export default function UninstallModal({
                             {/* Content */}
                             <div className="mt-4 pl-9">
                                 <p className="text-base leading-relaxed text-gray-600">
-                                    <span className="font-bold text-gray-800">
+                                    <span className="font-medium text-gray-800">
                                         {cancellationReason}:
                                     </span>{' '}
                                     "{cancellationNote}"
@@ -159,13 +161,13 @@ export default function UninstallModal({
                                 }
                                 className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded transition-colors ${
                                     terminateChecked
-                                        ? 'bg-green-500'
+                                        ? 'bg-[#79B800]'
                                         : 'border-2 border-gray-300 bg-white'
                                 }`}
                             >
                                 {terminateChecked && (
                                     <svg
-                                        className="h-3 w-3 text-white"
+                                        className="h-4 w-4 text-white"
                                         viewBox="0 0 12 12"
                                         fill="none"
                                     >
@@ -196,13 +198,13 @@ export default function UninstallModal({
                                 onClick={() => setRevokeChecked(!revokeChecked)}
                                 className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded transition-colors ${
                                     revokeChecked
-                                        ? 'bg-green-500'
+                                        ? 'bg-[#79B800]'
                                         : 'border-2 border-gray-300 bg-white'
                                 }`}
                             >
                                 {revokeChecked && (
                                     <svg
-                                        className="h-3 w-3 text-white"
+                                        className="h-4 w-4 text-white"
                                         viewBox="0 0 12 12"
                                         fill="none"
                                     >
@@ -231,18 +233,25 @@ export default function UninstallModal({
             <div className="border-t border-borderColor px-6 py-4">
                 {/* Footer Buttons */}
                 <div className="grid grid-cols-2 gap-3">
-                    <button
+                    {/* <button
                         onClick={onClose}
                         className="rounded-xl border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
                     >
                         Cancel
-                    </button>
-                    <button
+                    </button> */}
+                    <IconButton onClick={onClose}>Cancel</IconButton>
+                    {/* <button
                         onClick={onConfirm}
                         className="rounded-xl bg-red-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-600"
                     >
                         Confirm Uninstallation
-                    </button>
+                    </button> */}
+                    <Button
+                        onClick={onConfirm}
+                        className="bg-[#FF0019] hover:bg-[#D00015]"
+                    >
+                        Confirm Uninstallation
+                    </Button>
                 </div>
             </div>
         </Modal>
