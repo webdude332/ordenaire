@@ -1,4 +1,5 @@
 import ContactModal from '@/components/Modals/ContactModal';
+import GeneralContactModal from '@/components/Modals/GeneralContactModal';
 import {
     Table,
     TableBody,
@@ -61,12 +62,22 @@ const SubscriptionOverview = () => {
         actionText: '',
         onAction: () => {},
     });
+    // const [modalState, setModalState] = useState<{
+    //     show: boolean;
+    //     businessName: string;
+    // }>({
+    //     show: false,
+    //     businessName: '',
+    // });
+
     const [modalState, setModalState] = useState<{
         show: boolean;
-        businessName: string;
+        type: 'payment' | 'expiring' | null;
+        selectedItem: AlertItem | null;
     }>({
         show: false,
-        businessName: '',
+        type: null,
+        selectedItem: null,
     });
 
     const [tableData, setTableData] = useState<AlertItem[]>([
@@ -156,15 +167,27 @@ const SubscriptionOverview = () => {
         setToast((prev) => ({ ...prev, show: false }));
     };
 
-    const openContactModal = (businessName: string) => {
-        setModalState({ show: true, businessName });
+    // const openContactModal = (businessName: string) => {
+    //     setModalState({ show: true, businessName });
+    //     setOpenMenuId(null);
+    // };
+
+    // const closeContactModal = () => {
+    //     setModalState({ show: false, businessName: '' });
+    // };
+    const openContactModal = (item: AlertItem) => {
+        // Decide which modal to open based on the alert
+        const type =
+            item.originalAlertLabel === 'Expiring Soon'
+                ? 'expiring'
+                : 'payment';
+        setModalState({ show: true, type, selectedItem: item });
         setOpenMenuId(null);
     };
 
     const closeContactModal = () => {
-        setModalState({ show: false, businessName: '' });
+        setModalState({ show: false, type: null, selectedItem: null });
     };
-
     const updateTableItem = (
         id: number,
         updates: Partial<AlertItem['alert']>,
@@ -264,7 +287,8 @@ const SubscriptionOverview = () => {
                     },
                     {
                         label: 'Contact',
-                        onClick: () => openContactModal(item.businessName),
+                        // onClick: () => openContactModal(item.businessName),
+                        onClick: () => openContactModal(item),
                     },
                     {
                         label: 'Email Invoice',
@@ -292,7 +316,8 @@ const SubscriptionOverview = () => {
                     },
                     {
                         label: 'Contact',
-                        onClick: () => openContactModal(item.businessName),
+                        // onClick: () => openContactModal(item.businessName),
+                        onClick: () => openContactModal(item),
                     },
                 ];
 
@@ -310,7 +335,8 @@ const SubscriptionOverview = () => {
                     },
                     {
                         label: 'Contact',
-                        onClick: () => openContactModal(item.businessName),
+                        // onClick: () => openContactModal(item.businessName),
+                        onClick: () => openContactModal(item),
                     },
                     {
                         label: 'Archive',
@@ -528,13 +554,30 @@ const SubscriptionOverview = () => {
                 />
             )}
 
-            {/* Contact Modal */}
-            {modalState.show && (
-                <ContactModal
-                    businessName={modalState.businessName}
-                    onClose={closeContactModal}
-                />
-            )}
+            {/* Contact Modals */}
+            {modalState.show &&
+                modalState.type === 'payment' &&
+                modalState.selectedItem && (
+                    <ContactModal
+                        businessName={modalState.selectedItem.businessName}
+                        location={modalState.selectedItem.location}
+                        alertLabel={modalState.selectedItem.alert.label}
+                        // alertVariant={modalState.selectedItem.alert.variant}
+                        onClose={closeContactModal}
+                    />
+                )}
+
+            {modalState.show &&
+                modalState.type === 'expiring' &&
+                modalState.selectedItem && (
+                    <GeneralContactModal
+                        businessName={modalState.selectedItem.businessName}
+                        location={modalState.selectedItem.location}
+                        alertLabel={modalState.selectedItem.alert.label}
+                        // alertVariant={modalState.selectedItem.alert.variant}
+                        onClose={closeContactModal}
+                    />
+                )}
         </div>
     );
 };

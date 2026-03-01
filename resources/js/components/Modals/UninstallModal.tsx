@@ -102,7 +102,7 @@ export default function UninstallModal({
                             </div>
 
                             {/* Content (Indented to align with the text, not the icon) */}
-                            <div className="mt-5 space-y-5 pl-9">
+                            <div className="mt-2 space-y-3 pl-9">
                                 <div>
                                     <p className="text-sm font-medium text-gray-500">
                                         Request Source
@@ -110,7 +110,7 @@ export default function UninstallModal({
                                     <p className="mt-1 text-xl font-semibold text-gray-900">
                                         {requestSource}
                                     </p>
-                                    <p className="mt-1 text-sm text-gray-400">
+                                    <p className="text-sm text-gray-400">
                                         {requestType}
                                     </p>
                                 </div>
@@ -119,7 +119,7 @@ export default function UninstallModal({
                                     <p className="text-sm font-medium text-gray-500">
                                         Request Date
                                     </p>
-                                    <p className="mt-1 text-xl font-semibold text-gray-900">
+                                    <p className="text-xl font-semibold text-gray-900">
                                         {requestDate}
                                     </p>
                                 </div>
@@ -135,7 +135,7 @@ export default function UninstallModal({
                             </div>
 
                             {/* Content */}
-                            <div className="mt-4 pl-9">
+                            <div className="mt-2 pl-9">
                                 <p className="text-base leading-relaxed text-gray-600">
                                     <span className="font-medium text-gray-800">
                                         {cancellationReason}:
@@ -233,19 +233,8 @@ export default function UninstallModal({
             <div className="border-t border-borderColor px-6 py-4">
                 {/* Footer Buttons */}
                 <div className="grid grid-cols-2 gap-3">
-                    {/* <button
-                        onClick={onClose}
-                        className="rounded-xl border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
-                    >
-                        Cancel
-                    </button> */}
                     <IconButton onClick={onClose}>Cancel</IconButton>
-                    {/* <button
-                        onClick={onConfirm}
-                        className="rounded-xl bg-red-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-600"
-                    >
-                        Confirm Uninstallation
-                    </button> */}
+
                     <Button
                         onClick={onConfirm}
                         className="bg-[#FF0019] hover:bg-[#D00015]"

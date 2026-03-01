@@ -134,4 +134,8 @@ Route::get('subscription-and-billing/subscriptiondetail', function () {
     return Inertia::render('SubscriptionDetail');
 })->name('subscription-and-billing.subscriptiondetail');
 
+Route::get('subscription-and-billing/subscriptionprofile', function () {
+    return Inertia::render('SubscriptionProfile');
+})->name('subscription-and-billing.subscriptionprofile');
+
 require __DIR__.'/settings.php';
