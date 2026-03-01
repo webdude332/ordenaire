@@ -1,17 +1,29 @@
 import Modal from '@/components/Modal';
 import { Checkbox, Input, Label } from '@/components/ui/FormElements';
 import RadioGroup from '@/components/ui/RadioGroup';
-import { Plus } from 'lucide-react';
+import PencilIcon from '@/images/icons/pencilIcon.svg?react';
+import { Info } from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-interface AddNewPlanModalProps {
+interface EditPlanModalProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: (data: PlanFormData) => void;
+    plan?: {
+        name: string;
+        monthlyPrice: string;
+        yearlyPrice: string;
+        features?: Record<string, boolean>;
+        maxBranches?: string;
+        storageLimit?: string;
+        menuItems?: string;
+        staffSeats?: string;
+        status?: 'active' | 'archived';
+    };
 }
 
 interface PlanFormData {
@@ -84,29 +96,53 @@ const featureGroups = [
     },
 ];
 
-// Build initial feature state (all unchecked)
-const initialFeatures: Record<string, boolean> = {};
-featureGroups.forEach((group) =>
-    group.features.forEach((f) => (initialFeatures[f.key] = false)),
-);
+// Default features for "Pro" plan pre-checked state (matching the design)
+const defaultProFeatures: Record<string, boolean> = {
+    pos_access: true,
+    kds: true,
+    front_counter: false,
+    multi_branch: true,
+    reporting: true,
+    table_reservation: true,
+    staff_mgmt: true,
+    approval_workflows: true,
+    audit_logs: true,
+    ordering_website: true,
+    kiosk: true,
+    marketplace: true,
+    basic_inventory: true,
+    advanced_inventory: true,
+    whatsapp: true,
+    account_manager: true,
+};
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function AddNewPlanModal({
+export default function EditPlanModal({
     isOpen,
     onClose,
     onConfirm,
-}: AddNewPlanModalProps) {
-    const [planName, setPlanName] = useState('');
-    const [monthlyPrice, setMonthlyPrice] = useState('');
-    const [yearlyPrice, setYearlyPrice] = useState('');
-    const [features, setFeatures] =
-        useState<Record<string, boolean>>(initialFeatures);
-    const [maxBranches, setMaxBranches] = useState('10');
-    const [storageLimit, setStorageLimit] = useState('10');
-    const [menuItems, setMenuItems] = useState('150');
-    const [staffSeats, setStaffSeats] = useState('10');
-    const [status, setStatus] = useState<'active' | 'archived'>('active');
+    plan,
+}: EditPlanModalProps) {
+    const [planName, setPlanName] = useState(plan?.name ?? 'Pro');
+    const [monthlyPrice, setMonthlyPrice] = useState(
+        plan?.monthlyPrice ?? '49.000',
+    );
+    const [yearlyPrice, setYearlyPrice] = useState(
+        plan?.yearlyPrice ?? '490.000',
+    );
+    const [features, setFeatures] = useState<Record<string, boolean>>(
+        plan?.features ?? defaultProFeatures,
+    );
+    const [maxBranches, setMaxBranches] = useState(plan?.maxBranches ?? '10');
+    const [storageLimit, setStorageLimit] = useState(
+        plan?.storageLimit ?? '10',
+    );
+    const [menuItems, setMenuItems] = useState(plan?.menuItems ?? '150');
+    const [staffSeats, setStaffSeats] = useState(plan?.staffSeats ?? '10');
+    const [status, setStatus] = useState<'active' | 'archived'>(
+        plan?.status ?? 'active',
+    );
 
     const toggleFeature = (key: string) => {
         setFeatures((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -127,7 +163,6 @@ export default function AddNewPlanModal({
         onClose();
     };
 
-    // Split feature groups into left (index 0, 2, 4) and right (index 1, 3)
     const leftGroups = [featureGroups[0], featureGroups[2], featureGroups[4]];
     const rightGroups = [featureGroups[1], featureGroups[3]];
 
@@ -137,10 +172,10 @@ export default function AddNewPlanModal({
                 {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
-                        <Plus className="h-5 w-5 text-gray-700" />
+                        <PencilIcon className="h-5 w-5 text-gray-700" />
                     </div>
                     <h2 className="text-base font-semibold text-gray-900">
-                        Add new plan
+                        Edit plan
                     </h2>
                 </div>
 
@@ -165,7 +200,7 @@ export default function AddNewPlanModal({
                         </div>
 
                         {/* Pricing row */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="mb-4 grid grid-cols-2 gap-4">
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Monthly Price (KWD)
@@ -192,6 +227,17 @@ export default function AddNewPlanModal({
                                     }
                                 />
                             </div>
+                        </div>
+
+                        {/* Price change warning */}
+                        <div className="flex items-start gap-2.5 rounded-lg border border-gray-200 px-4 py-3 text-sm text-gray-600">
+                            <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+                            <span>
+                                Changing the price will affect existing
+                                subscribers from their next subscription cycle
+                                onward. Current billing periods will remain
+                                unchanged unless manually updated.
+                            </span>
                         </div>
                     </div>
 
@@ -333,8 +379,9 @@ export default function AddNewPlanModal({
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Status and Availability
                         </h3>
+
                         <RadioGroup
-                            name="plan_status_add"
+                            name="plan_status_edit"
                             label="Status"
                             value={status}
                             onChange={(val) =>
@@ -349,6 +396,15 @@ export default function AddNewPlanModal({
                             ]}
                             gap="gap-6"
                         />
+
+                        {/* Archiving notice */}
+                        <div className="mt-4 flex items-start gap-2.5 rounded-lg border border-gray-200 px-4 py-3 text-sm text-gray-600">
+                            <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+                            <span>
+                                Archiving a plan prevents new signups but keeps
+                                it active for current users.
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -359,7 +415,7 @@ export default function AddNewPlanModal({
                     Cancel
                 </IconButton>
                 <Button className="w-full" onClick={handleSubmit}>
-                    Create Plan
+                    Save Changes
                 </Button>
             </div>
         </Modal>
