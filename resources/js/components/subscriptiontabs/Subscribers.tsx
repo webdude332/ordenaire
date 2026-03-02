@@ -1005,7 +1005,7 @@ const Subscribers = () => {
         const viewProfile = {
             label: 'View Profile',
             onClick: () => {
-                router.visit('/subscription-and-billing/subscriptiondetail');
+                router.visit('/business/businessoverview');
             },
         };
 
@@ -1250,7 +1250,7 @@ const Subscribers = () => {
                                     {/* Column 5: Actions */}
                                     <TableCell className="text-right">
                                         <div className="relative flex justify-end gap-2">
-                                            <Link href="/subscription-and-billing/subscriptionprofile">
+                                            <Link href="/subscription-and-billing/subscriptiondetail">
                                                 <ActionButton className="font-bold">
                                                     <PencilIcon />
                                                     Manage

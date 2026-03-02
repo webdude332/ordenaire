@@ -88,7 +88,7 @@ const SubscriptionsAndBilling = () => {
             onClick: () => setActiveTab('plans'),
         },
         {
-            label: 'Usage & Credits',
+            label: 'Charge Management',
             isActive: activeTab === 'usage',
             onClick: () => setActiveTab('usage'),
         },

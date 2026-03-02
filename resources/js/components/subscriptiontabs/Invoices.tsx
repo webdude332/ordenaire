@@ -566,6 +566,7 @@ import { router } from '@inertiajs/react';
 import { useState } from 'react';
 import Badge, { BadgeVariant } from '../Badge';
 import CreditNoteModal from '../Modals/CreditNoteModal';
+import RefundModal from '../Modals/RefundModal';
 import {
     Table,
     TableBody,
@@ -638,6 +639,8 @@ const Invoices = () => {
     const [dateRange, setDateRange] = useState('last30');
     const [type, setType] = useState('wallet');
     const [status, setStatus] = useState('all');
+    const [refundModalSubscriber, setRefundModalSubscriber] =
+        useState<Invoice | null>(null);
 
     // --- Table Data (in state so Retry can mutate status) ---
     const [tableData, setTableData] = useState<Invoice[]>([
@@ -841,11 +844,14 @@ const Invoices = () => {
                     return [
                         {
                             label: 'Issue Refund',
+                            // onClick: () => {
+                            //     console.log(
+                            //         'Issue refund for',
+                            //         invoice.invoiceNumber,
+                            //     );
+                            // },
                             onClick: () => {
-                                console.log(
-                                    'Issue refund for',
-                                    invoice.invoiceNumber,
-                                );
+                                setRefundModalSubscriber(invoice);
                             },
                         },
                         {
@@ -1119,6 +1125,32 @@ const Invoices = () => {
                     onClose={closeToast}
                     onAction={closeToast}
                     autoCloseDuration={3000}
+                />
+            )}
+            {refundModalSubscriber && (
+                <RefundModal
+                    isOpen={true}
+                    onClose={() => setRefundModalSubscriber(null)}
+                    subscriber={{
+                        name: refundModalSubscriber.billedTo.name, // <-- Changed from business.name
+                        busId: refundModalSubscriber.billedTo.busId, // <-- Changed from business.id
+                        location: refundModalSubscriber.billedTo.location, // <-- Changed from business.location
+                    }}
+                    invoice={{
+                        id: 'INV-025-002',
+                        dateTime: '11:30 AM - 03 Sep 2025',
+                        typeOfCharge: 'Subscription',
+                        amount: `AED 450.00`,
+                        amountRaw: 450,
+                        currency: 'AED',
+                    }}
+                    onConfirm={() => {
+                        showToast(
+                            'Refund Submitted',
+                            `Refund for ${refundModalSubscriber.billedTo.name} submitted for approval.`, // <-- Changed from business.name
+                        );
+                        setRefundModalSubscriber(null);
+                    }}
                 />
             )}
         </div>
