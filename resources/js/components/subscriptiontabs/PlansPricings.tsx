@@ -432,7 +432,9 @@ import Badge from '../Badge';
 // import AddNewPlanModal from '../Modals/AddNewPlanModal';
 import AddNewPlanModal from '../Modals/AddNewPlan';
 // import EditPlanModal from '../Modals/EditPlanModal';
+import AddRegionalPricing from '../Modals/AddRegionalPricing';
 import EditPlanModal from '../Modals/EditNewPlanModal';
+import EditRegionalPricing from '../Modals/EditRegionalPricing';
 import ActionButton from '../ui/ActionButton';
 import Button from '../ui/Button';
 import CustomDropdown from '../ui/CustomDropdown';
@@ -495,7 +497,10 @@ const PlansPricing = () => {
     const [selectedEditPlan, setSelectedEditPlan] = useState<BasePlan | null>(
         null,
     );
-
+    const [isAddRegionalOpen, setIsAddRegionalOpen] = useState(false);
+    const [isEditRegionalOpen, setIsEditRegionalOpen] = useState(false);
+    const [selectedRegionalItem, setSelectedRegionalItem] =
+        useState<RegionalPricing | null>(null);
     // --- DATA ---
     const basePlansData: BasePlan[] = [
         {
@@ -645,7 +650,12 @@ const PlansPricing = () => {
                         )}
                         <Button
                             className="py-2.5"
-                            onClick={() => setIsAddModalOpen(true)}
+                            // onClick={() => setIsAddModalOpen(true)}
+                            onClick={() =>
+                                activeTab === 'base'
+                                    ? setIsAddModalOpen(true)
+                                    : setIsAddRegionalOpen(true)
+                            }
                         >
                             <Plus className="h-4 w-4" />
                             {activeTab === 'base'
@@ -819,7 +829,19 @@ const PlansPricing = () => {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell className="flex justify-end py-4 pr-6 text-right">
-                                                <ActionButton>
+                                                {/* <ActionButton>
+                                                    <PencilIcon className="h-4 w-4 text-gray-400" />
+                                                </ActionButton> */}
+                                                <ActionButton
+                                                    onClick={() => {
+                                                        setSelectedRegionalItem(
+                                                            item,
+                                                        );
+                                                        setIsEditRegionalOpen(
+                                                            true,
+                                                        );
+                                                    }}
+                                                >
                                                     <PencilIcon className="h-4 w-4 text-gray-400" />
                                                 </ActionButton>
                                             </TableCell>
@@ -869,6 +891,37 @@ const PlansPricing = () => {
                             selectedEditPlan.status === 'Active'
                                 ? 'active'
                                 : 'archived',
+                    }}
+                />
+            )}
+            <AddRegionalPricing
+                isOpen={isAddRegionalOpen}
+                onClose={() => setIsAddRegionalOpen(false)}
+                onConfirm={(data) => {
+                    console.log(data);
+                    setIsAddRegionalOpen(false);
+                }}
+            />
+
+            {isEditRegionalOpen && selectedRegionalItem && (
+                <EditRegionalPricing
+                    isOpen={isEditRegionalOpen}
+                    onClose={() => setIsEditRegionalOpen(false)}
+                    onConfirm={(data) => {
+                        console.log(data);
+                        setIsEditRegionalOpen(false);
+                    }}
+                    onDelete={() =>
+                        console.log('deleted', selectedRegionalItem)
+                    }
+                    pricing={{
+                        country: selectedRegionalItem.region.code.toLowerCase(),
+                        targetBasePlan:
+                            selectedRegionalItem.basePlan.toLowerCase(),
+                        monthlyPrice: selectedRegionalItem.pricing.monthly,
+                        annualPrice: selectedRegionalItem.pricing.yearly,
+                        regionLabel: selectedRegionalItem.region.name,
+                        planLabel: selectedRegionalItem.basePlan,
                     }}
                 />
             )}
