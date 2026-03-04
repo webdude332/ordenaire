@@ -22,6 +22,9 @@ import {
     TableRow,
 } from '../ui/Table';
 
+import ContactModal from '../Modals/ContactModal';
+import UninstallModal from '../Modals/UninstallModal';
+
 // --- TYPES ---
 type TabType = 'cancellations' | 'refunds' | 'discounts';
 
@@ -43,6 +46,11 @@ const RequestsLogs = () => {
     // --- STATE ---
     const [activeTab, setActiveTab] = useState<TabType>('cancellations');
     const [status, setStatus] = useState<string>('');
+    const [isUninstallModalOpen, setIsUninstallModalOpen] = useState(false);
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [selectedCancellationItem, setSelectedCancellationItem] = useState<
+        (typeof cancellationsData)[0] | null
+    >(null);
 
     // --- DATA: CANCELLATIONS ---
     const cancellationsData = [
@@ -343,11 +351,35 @@ const RequestsLogs = () => {
                                         <TableCell className="py-4 pr-6 text-right">
                                             {item.status === 'Pending' ? (
                                                 <div className="flex justify-end gap-2">
-                                                    <IconButton>
+                                                    {/* <IconButton>
                                                         Uninstall
                                                     </IconButton>
 
-                                                    <Button>Contact</Button>
+                                                    <Button>Contact</Button> */}
+                                                    <IconButton
+                                                        onClick={() => {
+                                                            setSelectedCancellationItem(
+                                                                item,
+                                                            );
+                                                            setIsUninstallModalOpen(
+                                                                true,
+                                                            );
+                                                        }}
+                                                    >
+                                                        Uninstall
+                                                    </IconButton>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSelectedCancellationItem(
+                                                                item,
+                                                            );
+                                                            setIsContactModalOpen(
+                                                                true,
+                                                            );
+                                                        }}
+                                                    >
+                                                        Contact
+                                                    </Button>
                                                 </div>
                                             ) : (
                                                 <span className="text-sm font-medium text-gray-900">
@@ -528,6 +560,21 @@ const RequestsLogs = () => {
                 )}
                 <Pagination />
             </div>
+            <UninstallModal
+                isOpen={isUninstallModalOpen}
+                onClose={() => setIsUninstallModalOpen(false)}
+                onConfirm={() => setIsUninstallModalOpen(false)}
+                businessName={selectedCancellationItem?.businessName}
+                businessId={selectedCancellationItem?.busId}
+                appName={selectedCancellationItem?.planService}
+            />
+
+            {isContactModalOpen && selectedCancellationItem && (
+                <ContactModal
+                    businessName={selectedCancellationItem.businessName}
+                    onClose={() => setIsContactModalOpen(false)}
+                />
+            )}
         </div>
     );
 };
