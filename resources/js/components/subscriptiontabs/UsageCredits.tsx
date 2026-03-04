@@ -13,10 +13,12 @@ import AddManualChargeModal from '../Modals/AddManualChargeModal';
 import AddNewRateModal from '../Modals/AddNewRateModal';
 import BillingActionsModal from '../Modals/BillingActionsModal';
 import EditRateModal from '../Modals/EditRateModal';
+import WarningToast from '../toasts/WarningToast';
 
 // --- UI COMPONENTS ---
 import Badge from '../Badge';
 import Pagination from '../Pagination';
+import SuccessToast from '../toasts/SuccessToast';
 import ActionButton from '../ui/ActionButton';
 import Button from '../ui/Button';
 import CustomDropdown from '../ui/CustomDropdown';
@@ -100,6 +102,25 @@ const UsageCredits = () => {
         useState<UsageRateItem | null>(null);
 
     const [isAddCurrencyOpen, setIsAddCurrencyOpen] = useState(false);
+    const [isWarningToastOpen, setIsWarningToastOpen] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+
+    // Stores the specific row data so we can access the businessName
+    const [itemToCancel, setItemToCancel] = useState(null);
+
+    const handleCancelClick = (item) => {
+        setItemToCancel(item); // Save the row data
+        setIsWarningToastOpen(true); // Show the toast
+    };
+
+    const handleConfirmCancel = () => {
+        // 1. Add your API logic here to actually cancel the charge
+        console.log('Cancelling charge for:', itemToCancel?.businessName);
+
+        // 2. Close the toast and clear the state
+        setIsWarningToastOpen(false);
+        setItemToCancel(null);
+    };
 
     const chargeQueueData: ChargeQueueItem[] = [
         {
@@ -340,7 +361,7 @@ const UsageCredits = () => {
                                         <SelectorIcon className="h-3 w-3" />
                                     </div>
                                 </TableHead>
-                                <TableHead className="py-4 text-xs font-semibold">
+                                <TableHead className="py-4 text-right text-xs font-semibold">
                                     Overage Rate
                                 </TableHead>
                                 <TableHead className="py-4 pr-6 text-right text-xs font-semibold">
@@ -382,7 +403,7 @@ const UsageCredits = () => {
                                                 {item.status}
                                             </Badge>
                                         </TableCell>
-                                        <TableCell className="py-4">
+                                        <TableCell className="py-4 text-right">
                                             <div className="font-medium text-gray-900">
                                                 {item.overageRate.split(' ')[0]}
                                             </div>
@@ -402,7 +423,16 @@ const UsageCredits = () => {
                                                     >
                                                         Bill
                                                     </ActionButton>
-                                                    <ActionButton>
+                                                    {/* <ActionButton>
+                                                        <XIcon className="h-3 w-3" />
+                                                    </ActionButton> */}
+                                                    <ActionButton
+                                                        onClick={() =>
+                                                            handleCancelClick(
+                                                                item,
+                                                            )
+                                                        }
+                                                    >
                                                         <XIcon className="h-3 w-3" />
                                                     </ActionButton>
                                                 </div>
@@ -444,7 +474,7 @@ const UsageCredits = () => {
                                     <TableHead className="py-4 text-xs font-semibold">
                                         Included Limit
                                     </TableHead>
-                                    <TableHead className="py-4 text-xs font-semibold">
+                                    <TableHead className="py-4 text-right text-xs font-semibold">
                                         Overage Rate
                                     </TableHead>
                                     <TableHead className="py-4 text-xs font-semibold">
@@ -472,7 +502,7 @@ const UsageCredits = () => {
                                             <TableCell className="py-4 text-gray-600">
                                                 {item.limit}
                                             </TableCell>
-                                            <TableCell className="py-4">
+                                            <TableCell className="py-4 text-right">
                                                 <div className="font-medium text-gray-900">
                                                     {item.overage.split(' ')[0]}
                                                 </div>
@@ -539,6 +569,20 @@ const UsageCredits = () => {
                                 <PlusIcon className="h-4 w-4" /> Add Currency
                             </IconButton>
                         </div>
+
+                        {/* Table Headers */}
+                        <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-6 py-3">
+                            <div className="w-1/3 text-xs font-semibold text-gray-500">
+                                Region
+                            </div>
+                            <div className="w-1/3 text-xs font-semibold text-gray-500">
+                                Rate (Multiplier)
+                            </div>
+                            <div className="w-1/3 text-right text-xs font-semibold text-gray-500">
+                                Preview (1 KWD =)
+                            </div>
+                        </div>
+
                         <div className="space-y-4 p-6">
                             {currencyData.map((item, idx) => (
                                 <div
@@ -555,7 +599,7 @@ const UsageCredits = () => {
                                         <input
                                             type="text"
                                             defaultValue={item.rate}
-                                            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621]"
+                                            className="w-[180px] rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
                                         />
                                     </div>
                                     <div className="w-1/3 text-right text-sm font-medium text-gray-900">
@@ -564,51 +608,27 @@ const UsageCredits = () => {
                                 </div>
                             ))}
                         </div>
-                        <div className="rounded-b-xl border-t border-gray-200 bg-gray-50 px-6 py-3 text-right">
-                            <Button className="bg-[#7AB621] hover:bg-[#6ba31b]">
+
+                        <div className="flex justify-end rounded-b-xl border-t border-gray-200 px-6 py-3 text-right">
+                            {/* Triggering the toast state */}
+                            <Button
+                                className="bg-[#7AB621] hover:bg-[#6ba31b]"
+                                onClick={() => setShowToast(true)}
+                            >
                                 Update Rates
                             </Button>
                         </div>
-                    </div>
 
-                    <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
-                        <div className="border-b border-gray-200 px-6 py-4">
-                            <h2 className="text-base font-semibold text-gray-900">
-                                Credit Rules
-                            </h2>
-                        </div>
-                        <div className="p-6">
-                            <label className="mb-1 block text-sm font-medium text-gray-700">
-                                Low Balance Threshold
-                            </label>
-                            <div className="relative max-w-sm">
-                                <input
-                                    type="text"
-                                    defaultValue="20.000"
-                                    className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621]"
-                                />
-                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <span className="text-sm text-gray-500">
-                                        KWD
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="mt-4 flex items-center gap-2">
-                                <input
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-[#7AB621] focus:ring-[#7AB621]"
-                                />
-                                <span className="text-sm text-gray-700">
-                                    Send email alert to customer when balance
-                                    hits this
-                                </span>
-                            </div>
-                        </div>
-                        <div className="rounded-b-xl border-t border-gray-200 bg-gray-50 px-6 py-3 text-right">
-                            <Button className="bg-[#7AB621] hover:bg-[#6ba31b]">
-                                Update Rules
-                            </Button>
-                        </div>
+                        {/* Your Custom Toast Component */}
+                        {showToast && (
+                            <SuccessToast
+                                title="Currency Conversion Rules Updated"
+                                message="Your currency conversion rules have been saved and are now in effect."
+                                actionText="" // Provided to satisfy TS interface
+                                onAction={() => {}} // Provided to satisfy TS interface
+                                onClose={() => setShowToast(false)}
+                            />
+                        )}
                     </div>
                 </div>
             )}
@@ -702,6 +722,19 @@ const UsageCredits = () => {
                     setIsAddCurrencyOpen(false);
                 }}
             />
+            {isWarningToastOpen && itemToCancel && (
+                <WarningToast
+                    title="Cancel pending charge?"
+                    message={`Are you sure you want to cancel the charge for ${itemToCancel.businessName}?`}
+                    actionText="Yes, cancel charge"
+                    cancelText="Keep charge"
+                    onAction={handleConfirmCancel}
+                    onClose={() => {
+                        setIsWarningToastOpen(false);
+                        setItemToCancel(null);
+                    }}
+                />
+            )}
         </div>
     );
 };

@@ -15,6 +15,7 @@ interface CustomDropdownProps {
     placeholder?: string;
     required?: boolean;
     disabled?: boolean;
+    containerClassName?: string;
     labelClassName?: string;
     renderOption?: (option: Option) => React.ReactNode;
 }
@@ -29,12 +30,13 @@ const CustomDropdown = ({
     disabled = false,
     renderOption,
     labelClassName = 'text-sm', 
+    containerClassName = ''
 }: CustomDropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const selectedOption = options.find((opt) => opt.value === value);
 
     return (
-        <div className="relative space-y-2">
+        <div className={`relative space-y-2 ${containerClassName}`}>
             {/* <label className={`block  ${labelClassName}`}>
                 {label}
                 {required && <span className="text-[#8CDD05]">*</span>}

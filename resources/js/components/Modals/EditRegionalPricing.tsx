@@ -121,6 +121,7 @@ export default function EditRegionalPricingModal({
                                         Country
                                     </Label>
                                     <CustomDropdown
+                                        disabled={true}
                                         label=""
                                         options={COUNTRY_OPTIONS}
                                         value={country}
@@ -130,10 +131,11 @@ export default function EditRegionalPricingModal({
                                 </div>
                                 <div>
                                     <Label className="mb-1.5 text-sm font-medium text-gray-700">
-                                        Target Base Plan
+                                        Target Plan
                                     </Label>
                                     <CustomDropdown
                                         label=""
+                                        disabled={true}
                                         options={BASE_PLAN_OPTIONS}
                                         value={targetBasePlan}
                                         onChange={setTargetBasePlan}

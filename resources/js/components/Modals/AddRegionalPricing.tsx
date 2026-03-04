@@ -96,7 +96,7 @@ export default function AddRegionalPricingModal({
                             </div>
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
-                                    Target Base Plan
+                                    Target Plan
                                 </Label>
                                 <CustomDropdown
                                     label=""

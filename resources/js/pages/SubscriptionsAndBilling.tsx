@@ -58,7 +58,7 @@ const SubscriptionsAndBilling = () => {
         {
             label: 'Subscription & Billing',
             isActive: false,
-            href: '/subscriptionsandbilling',
+            href: '/subscription-and-billing',
         },
         {
             label: getTabLabel(activeTab),

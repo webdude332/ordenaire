@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 // --- ICONS ---
-import ArrowDown from '@/images/icons/chevron-down.svg?react';
 import Search from '@/images/icons/inputSearch.svg?react';
 // Assuming arrow left/right icons for pagination
 
 // --- UI COMPONENTS ---
 import Badge from '../Badge'; // Using your perfected Badge component
+import GeneralContactModal from '../Modals/GeneralContactModal';
 import Pagination from '../Pagination';
 import Button from '../ui/Button';
 import CustomDropdown from '../ui/CustomDropdown';
@@ -22,7 +22,6 @@ import {
     TableRow,
 } from '../ui/Table';
 
-import ContactModal from '../Modals/ContactModal';
 import UninstallModal from '../Modals/UninstallModal';
 
 // --- TYPES ---
@@ -273,10 +272,22 @@ const RequestsLogs = () => {
                             />
                         </div>
                         <div className="">
-                            <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            {/* <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
                                 Date: This Month{' '}
                                 <ArrowDown className="h-4 w-4 text-gray-500" />
-                            </button>
+                            </button> */}
+                            <CustomDropdown
+                                label=""
+                                options={[
+                                    {
+                                        label: 'Date: This Month',
+                                        value: 'datethismonth',
+                                    },
+                                ]}
+                                value={status}
+                                onChange={setStatus}
+                                placeholder="Date: This Month"
+                            />
                         </div>
                     </div>
                 </div>
@@ -569,9 +580,20 @@ const RequestsLogs = () => {
                 appName={selectedCancellationItem?.planService}
             />
 
-            {isContactModalOpen && selectedCancellationItem && (
+            {/* {isContactModalOpen && selectedCancellationItem && (
                 <ContactModal
                     businessName={selectedCancellationItem.businessName}
+                    onClose={() => setIsContactModalOpen(false)}
+                />
+            )} */}
+            {isContactModalOpen && selectedCancellationItem && (
+                <GeneralContactModal
+                    businessName={selectedCancellationItem.businessName}
+                    // Optional: You can pass dynamic data if your selectedCancellationItem has it,
+                    // or just hardcode these based on the context of this specific modal trigger.
+                    location={selectedCancellationItem.location || 'UAE'}
+                    alertLabel="Cancellation Request" // Customizing the badge text for this context
+                    alertVariant="error" // Changing the badge color to red for cancellation
                     onClose={() => setIsContactModalOpen(false)}
                 />
             )}

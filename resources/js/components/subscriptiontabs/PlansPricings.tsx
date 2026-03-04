@@ -615,6 +615,7 @@ const PlansPricing = () => {
                         {activeTab === 'regional' && (
                             <div className="flex items-center gap-2">
                                 <CustomDropdown
+                                    containerClassName="w-40"
                                     label=""
                                     options={[
                                         {
@@ -631,6 +632,7 @@ const PlansPricing = () => {
                                 />
                                 <CustomDropdown
                                     label=""
+                                    containerClassName="w-40"
                                     options={[
                                         {
                                             label: 'Super Admin',
@@ -682,7 +684,7 @@ const PlansPricing = () => {
                                     <TableHead className="py-4 pl-6 text-xs font-semibold">
                                         Plan Name
                                     </TableHead>
-                                    <TableHead className="py-4 text-xs font-semibold">
+                                    <TableHead className="py-4 text-right text-xs font-semibold">
                                         Base Pricing (KWD)
                                     </TableHead>
                                     <TableHead className="py-4 text-xs font-semibold">
@@ -712,7 +714,7 @@ const PlansPricing = () => {
                                                     {plan.name}
                                                 </span>
                                             </TableCell>
-                                            <TableCell className="py-4">
+                                            <TableCell className="py-4 text-right">
                                                 <div className="text-sm font-medium text-gray-900">
                                                     {plan.pricing.monthly}
                                                 </div>
@@ -773,10 +775,10 @@ const PlansPricing = () => {
                                     <TableHead className="py-4 text-xs font-semibold">
                                         Base Plan
                                     </TableHead>
-                                    <TableHead className="py-4 text-xs font-semibold">
+                                    <TableHead className="py-4 text-right text-xs font-semibold">
                                         Local Pricing
                                     </TableHead>
-                                    <TableHead className="py-4 text-center text-xs font-semibold">
+                                    <TableHead className="py-4 text-center text-right text-xs font-semibold">
                                         Subscribers
                                     </TableHead>
                                     <TableHead className="py-4 text-xs font-semibold">
@@ -808,7 +810,7 @@ const PlansPricing = () => {
                                             <TableCell className="py-4 font-medium text-gray-700">
                                                 {item.basePlan}
                                             </TableCell>
-                                            <TableCell className="py-4">
+                                            <TableCell className="py-4 text-right">
                                                 <div className="text-sm font-medium text-gray-900">
                                                     {item.pricing.monthly}
                                                 </div>
@@ -816,7 +818,7 @@ const PlansPricing = () => {
                                                     {item.pricing.yearly}
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="py-4 text-center font-medium text-gray-700">
+                                            <TableCell className="py-4 text-right font-medium text-gray-700">
                                                 {item.subscribers}
                                             </TableCell>
                                             <TableCell className="py-4">

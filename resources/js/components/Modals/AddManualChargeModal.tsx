@@ -101,7 +101,7 @@ export default function AddManualChargeModal({
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Select Business
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-primary">*</span>
                                 </Label>
                                 <CustomDropdown
                                     label=""
@@ -114,7 +114,7 @@ export default function AddManualChargeModal({
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Charge Rule / SKU
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-primary">*</span>
                                 </Label>
                                 <CustomDropdown
                                     label=""
@@ -145,7 +145,7 @@ export default function AddManualChargeModal({
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Start Date
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-primary">*</span>
                                 </Label>
                                 <div className="relative">
                                     <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
@@ -165,7 +165,7 @@ export default function AddManualChargeModal({
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Charge Frequency
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-primary">*</span>
                                 </Label>
                                 <CustomDropdown
                                     label=""

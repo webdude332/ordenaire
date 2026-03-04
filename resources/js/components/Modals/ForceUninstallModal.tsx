@@ -122,14 +122,23 @@ export default function ForceUninstallModal({
                         </p>
 
                         {/* Terminate Subscription */}
-                        <Checkbox
-                            checked={terminateChecked}
+                        {/* <Checkbox
+                            // checked={terminateChecked}
+                            checked={true}
                             onChange={() =>
                                 setTerminateChecked(!terminateChecked)
                             }
                             label="Terminate Subscription"
                             description="Stops  monthly charge immediately."
-                        />
+                        /> */}
+                        <div style={{ pointerEvents: 'none', opacity: 0.5 }}>
+                            <Checkbox
+                                checked={true}
+                                onChange={() => {}}
+                                label="Terminate Subscription"
+                                description="Stops monthly charge immediately."
+                            />
+                        </div>
 
                         {/* Revoke Access */}
                         <Checkbox
@@ -163,8 +172,6 @@ export default function ForceUninstallModal({
         </Modal>
     );
 }
-
-// ─── Reusable Checkbox ────────────────────────────────────────────────────────
 
 function Checkbox({
     checked,

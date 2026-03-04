@@ -190,7 +190,7 @@ export default function EditPlanModal({
                         <div className="mb-4">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Plan Name
-                                <span className="text-red-500">*</span>
+                                <span className="text-primary">*</span>
                             </Label>
                             <Input
                                 placeholder="Name of the plan"
@@ -204,7 +204,7 @@ export default function EditPlanModal({
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Monthly Price (KWD)
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-primary">*</span>
                                 </Label>
                                 <Input
                                     placeholder="Price per month"
@@ -217,7 +217,7 @@ export default function EditPlanModal({
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Yearly Price (KWD)
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-primary">*</span>
                                 </Label>
                                 <Input
                                     placeholder="Price per year"

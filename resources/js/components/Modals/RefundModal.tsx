@@ -29,7 +29,7 @@ interface RefundModalProps {
 
 const REFUND_METHODS = [
     'Original Payment Method',
-    'Wallet Credit',
+    // 'Wallet Credit',
     'Bank Transfer',
     'Manual Adjustment',
 ];

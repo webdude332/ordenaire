@@ -52,6 +52,7 @@ export default function BillingActionsModal({
     };
 
     const data = item ?? defaultItem;
+    const [isApplied, setIsApplied] = useState(false);
 
     const [discountType, setDiscountType] = useState<'percentage' | 'amount'>(
         'percentage',
@@ -104,54 +105,60 @@ export default function BillingActionsModal({
                         </h3>
 
                         <div className="rounded-xl border border-[#D1F0A2] bg-[#F4FFEB] p-4">
-                            {/* Row 1: Business Name + Current Plan */}
-                            <div className="mb-4 flex items-center gap-3">
+                            <div className="flex gap-3">
+                                {/* Left: Logo */}
                                 <Dp className="h-10 w-10 flex-shrink-0 rounded-full" />
-                                <div className="grid flex-1 grid-cols-2">
-                                    <div>
-                                        <p className="text-xs text-gray-500">
-                                            Business Name
-                                        </p>
-                                        <p className="text-sm font-semibold text-gray-900">
-                                            {data.businessName} • {data.busId}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-gray-500">
-                                            Current Plan
-                                        </p>
-                                        <p className="text-sm font-semibold text-gray-900">
-                                            {data.currentPlan}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            {/* Row 2: Charge Rule + Description + Date */}
-                            <div className="grid grid-cols-3">
-                                <div>
-                                    <p className="text-xs text-gray-500">
-                                        Charge Rule
-                                    </p>
-                                    <p className="text-sm font-semibold text-gray-900">
-                                        {data.chargeRule}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-500">
-                                        Description
-                                    </p>
-                                    <p className="text-sm font-semibold text-gray-900">
-                                        {data.description}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-500">
-                                        Date
-                                    </p>
-                                    <p className="text-sm font-semibold text-gray-900">
-                                        {data.date}
-                                    </p>
+                                {/* Right: Content Wrapper (Contains BOTH rows) */}
+                                <div className="flex w-full flex-col gap-4">
+                                    {/* Row 1: Business Name + Current Plan */}
+                                    <div className="grid grid-cols-3">
+                                        <div>
+                                            <p className="text-xs text-gray-500">
+                                                Business Name
+                                            </p>
+                                            <p className="text-sm font-semibold text-gray-900">
+                                                {data.businessName} •{' '}
+                                                {data.busId}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-500">
+                                                Current Plan
+                                            </p>
+                                            <p className="text-sm font-semibold text-gray-900">
+                                                {data.currentPlan}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Row 2: Charge Rule + Description + Date */}
+                                    <div className="grid grid-cols-3">
+                                        <div>
+                                            <p className="text-xs text-gray-500">
+                                                Charge Rule
+                                            </p>
+                                            <p className="text-sm font-semibold text-gray-900">
+                                                {data.chargeRule}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-500">
+                                                Description
+                                            </p>
+                                            <p className="text-sm font-semibold text-gray-900">
+                                                {data.description}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-500">
+                                                Date
+                                            </p>
+                                            <p className="text-sm font-semibold text-gray-900">
+                                                {data.date}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -205,15 +212,44 @@ export default function BillingActionsModal({
                                 <input
                                     type="text"
                                     value={discountValue}
-                                    onChange={(e) =>
-                                        setDiscountValue(e.target.value)
-                                    }
+                                    onChange={(e) => {
+                                        setDiscountValue(e.target.value);
+                                        setIsApplied(false); // Reset when user types
+                                    }}
                                     className="w-32 px-3 py-2.5 text-sm text-gray-900 focus:outline-none"
                                 />
                             </div>
-                            <button className="text-sm font-semibold text-[#7AB621] hover:underline">
-                                Apply
+
+                            {/* Updated Apply Button */}
+                            <button
+                                onClick={() => {
+                                    // Your apply calculation logic goes here
+                                    setIsApplied(true);
+                                }}
+                                disabled={isApplied}
+                                className={`flex items-center gap-1 text-sm font-semibold ${
+                                    isApplied
+                                        ? 'cursor-default text-[#7AB621]' // No underline, default cursor, keeps the green color for success
+                                        : 'cursor-pointer text-[#7AB621] hover:underline' // Original state
+                                }`}
+                            >
+                                {isApplied && (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                )}
+                                {isApplied ? 'Applied' : 'Apply'}
                             </button>
+
                             <span className="ml-auto text-sm font-semibold text-gray-900">
                                 -{discountAmount} {data.currency}
                             </span>
