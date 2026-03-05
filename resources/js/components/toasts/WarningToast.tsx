@@ -2,7 +2,7 @@ import { router } from '@inertiajs/react';
 
 import { X } from 'lucide-react';
 
-import SuccessIcon from '@/images/icons/toastSuccess.svg?react';
+import SuccessIcon from '@/images/icons/warrningToast.svg?react';
 import { useEffect } from 'react';
 
 interface WarningToastProps {
