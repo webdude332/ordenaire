@@ -10,7 +10,6 @@ import TopBar from '@/components/TopBar';
 import { useEffect, useState } from 'react';
 import Dashboard from '../images/icons/dashBaordSvg.svg';
 
-// 1. Define the specific tab keys
 type TabType =
     | 'overview'
     | 'subscribers'
@@ -29,12 +28,10 @@ const SubscriptionsAndBilling = () => {
         return 'overview';
     });
 
-    // 3. Persist state changes
     useEffect(() => {
         localStorage.setItem('subscription_active_tab', activeTab);
     }, [activeTab]);
 
-    // Helper to get readable label for breadcrumbs
     const getTabLabel = (tab: TabType) => {
         switch (tab) {
             case 'overview':
@@ -81,6 +78,7 @@ const SubscriptionsAndBilling = () => {
             label: 'Invoices',
             isActive: activeTab === 'invoices',
             onClick: () => setActiveTab('invoices'),
+            badge: 0o2,
         },
         {
             label: 'Plans & Pricing',
@@ -91,11 +89,13 @@ const SubscriptionsAndBilling = () => {
             label: 'Charge Management',
             isActive: activeTab === 'usage',
             onClick: () => setActiveTab('usage'),
+            badge: 0o2,
         },
         {
             label: 'Requests & Logs',
             isActive: activeTab === 'requests',
             onClick: () => setActiveTab('requests'),
+            badge: 0o2,
         },
     ];
 
@@ -104,28 +104,22 @@ const SubscriptionsAndBilling = () => {
             <SidePannel />
             <main className="flex flex-1 flex-col">
                 <TopBar
-                    title="Subscription & Billing" // Changed title to be generic for the page
+                    title="Subscription & Billing"
                     icon={Dashboard}
                     breadcrumbs={breadcrumbs}
                     tabs={tabs}
                 />
                 <div className="flex-1 px-8 py-6">
-                    {/* 4. Conditional Rendering */}
                     {activeTab === 'overview' && <SubscriptionOverview />}
 
-                    {/* Placeholder for Subscribers */}
                     {activeTab === 'subscribers' && <Subscribers />}
 
-                    {/* Placeholder for Invoices */}
                     {activeTab === 'invoices' && <Invoices />}
 
-                    {/* Placeholder for Plans */}
                     {activeTab === 'plans' && <PlansPricings />}
 
-                    {/* Placeholder for Usage */}
                     {activeTab === 'usage' && <UsageCredits />}
 
-                    {/* Placeholder for Requests */}
                     {activeTab === 'requests' && <RequestsLogs />}
                 </div>
             </main>

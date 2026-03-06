@@ -1,110 +1,150 @@
-import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 
 // --- IMPORTS ---
-import searchIcon from '../images/icons/inputSearch.svg';
-import businessIcon from '../images/icons/businessManagement.svg';
 import BlackLogo from '../images/icons/applogo.svg?react';
+import businessIcon from '../images/icons/businessManagement.svg';
+import chatIcon from '../images/icons/communicationManagement.svg';
 import chartIcon from '../images/icons/dashBaordSvg.svg';
-import userEditIcon from '../images/icons/usermgmt.svg';
+import searchIcon from '../images/icons/inputSearch.svg';
+import supportIcon from '../images/icons/maintinanceAndSupport.svg';
+import approvalIcon from '../images/icons/manageApprovals.svg';
+import linkIcon from '../images/icons/marketPlace.svg';
+import profileImg from '../images/icons/profile.svg';
+import settingIcon from '../images/icons/settings.svg';
 import repeatIcon from '../images/icons/subscriptionAndBilling.svg';
 import monitorIcon from '../images/icons/systemConfig.svg';
-import supportIcon from '../images/icons/maintinanceAndSupport.svg';
-import chatIcon from '../images/icons/communicationManagement.svg';
-import linkIcon from '../images/icons/marketPlace.svg';
-import approvalIcon from '../images/icons/manageApprovals.svg';
-import profileImg from '../images/icons/profile.svg';
-import settingIcon from '../images/icons/settings.svg'
-import tickets from '../images/icons/tickets.svg'
-
+import tickets from '../images/icons/tickets.svg';
+import userEditIcon from '../images/icons/usermgmt.svg';
 
 // --- DATA CONFIGURATION ---
 const MENU_ITEMS = [
-    { label: "Dashboard", icon: chartIcon, route: '/dashboard' }, 
-    { label: "Internal User Management", icon: userEditIcon, hasSubmenu: true, route: '/usermanagement' },
-    { label: "Business Management", icon: businessIcon, hasSubmenu: true, route: '/business-management' },
-    { label: "Subscription & Billing", icon: repeatIcon, hasSubmenu: true, route: '/subscription-and-billing' },
-    { label: "System config", icon: monitorIcon, hasSubmenu: true, route: '/system-config' },
-    { label: "Maintenance & Support", icon: supportIcon, hasSubmenu: true, route: '/maintinance-and-support' },
-    { label: "Communication Mgmt", icon: chatIcon, badge: 10, hasSubmenu: true, route: '/communication-management' },
-    { label: "Marketplace & Integrations", icon: linkIcon, hasSubmenu: true, route: '/marketplace-and-intigrations' },
-    { label: "Manage Approvals", icon: approvalIcon, badge: 10, hasSubmenu: true, route: '/manage-approvals' },
-    { label: "My Tickets", icon: tickets, badge: 10, hasSubmenu: true, route: '/my-tickets' },
+    { label: 'Dashboard', icon: chartIcon, route: '/dashboard' },
+    {
+        label: 'Internal User Management',
+        icon: userEditIcon,
+        hasSubmenu: true,
+        route: '/usermanagement',
+    },
+    {
+        label: 'Business Management',
+        icon: businessIcon,
+        hasSubmenu: true,
+        route: '/business-management',
+    },
+    {
+        label: 'Subscription & Billing',
+        icon: repeatIcon,
+        badge: 8,
+        hasSubmenu: true,
+        route: '/subscription-and-billing',
+    },
+    {
+        label: 'System config',
+        icon: monitorIcon,
+        hasSubmenu: true,
+        route: '/system-config',
+    },
+    {
+        label: 'Maintenance & Support',
+        icon: supportIcon,
+        hasSubmenu: true,
+        route: '/maintinance-and-support',
+    },
+    {
+        label: 'Communication Mgmt',
+        icon: chatIcon,
+        badge: 10,
+        hasSubmenu: true,
+        route: '/communication-management',
+    },
+    {
+        label: 'Marketplace & Integrations',
+        icon: linkIcon,
+        hasSubmenu: true,
+        route: '/marketplace-and-intigrations',
+    },
+    {
+        label: 'Manage Approvals',
+        icon: approvalIcon,
+        badge: 10,
+        hasSubmenu: true,
+        route: '/manage-approvals',
+    },
+    {
+        label: 'My Tickets',
+        icon: tickets,
+        badge: 10,
+        hasSubmenu: true,
+        route: '/my-tickets',
+    },
 ];
 
 export default function SidePannel() {
     const { url } = usePage();
 
     return (
-        <aside className="w-[320px] h-screen bg-white border-r border-gray-200 flex flex-col sticky top-0 font-sans z-20 flex-shrink-0 hidden lg:flex">
-            
+        <aside className="sticky top-0 z-20 flex hidden h-screen w-[320px] flex-shrink-0 flex-col border-r border-gray-200 bg-white font-sans lg:flex">
             {/* --- 1. HEADER LOGO --- */}
             <div className="px-6 pt-8 pb-4">
-                <div className="flex items-center mb-4">
+                <div className="mb-4 flex items-center">
                     <Link href="/dashboard">
-                    {/* <img  src={blackLogo} alt="Orderaire" className="h-6 w-auto object-contain" /> */}
-                    <BlackLogo className="h-10 w-48 object-contain" />
+                        {/* <img  src={blackLogo} alt="Orderaire" className="h-6 w-auto object-contain" /> */}
+                        <BlackLogo className="h-10 w-48 object-contain" />
                     </Link>
                 </div>
 
                 {/* --- 2. SEARCH BAR --- */}
-<div className="relative group w-full">
-    {/* Left Icon Wrapper */}
-    <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-        <div 
-            className="w-4 h-4 bg-[#9C94A3]"
-            style={{
-                maskImage: `url(${searchIcon})`,
-                WebkitMaskImage: `url(${searchIcon})`,
-                maskSize: 'contain',
-                WebkitMaskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                maskPosition: 'center',
-            }}
-        />
-    </span>
+                <div className="group relative w-full">
+                    {/* Left Icon Wrapper */}
+                    <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                        <div
+                            className="h-4 w-4 bg-[#9C94A3]"
+                            style={{
+                                maskImage: `url(${searchIcon})`,
+                                WebkitMaskImage: `url(${searchIcon})`,
+                                maskSize: 'contain',
+                                WebkitMaskSize: 'contain',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskPosition: 'center',
+                            }}
+                        />
+                    </span>
 
-    {/* The Input Field */}
-    <input 
-        type="text" 
-        placeholder="Search" 
-        className="w-full py-2.5 pl-10 pr-14 text-[14px] text-gray-700 bg-white border border-[#CFCBD2] rounded-lg placeholder-[#9C94A3] placeholder-medium focus:outline-none focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] transition-all shadow-sm"
-    />
+                    {/* The Input Field */}
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="placeholder-medium w-full rounded-lg border border-[#CFCBD2] bg-white py-2.5 pr-14 pl-10 text-[14px] text-gray-700 placeholder-[#9C94A3] shadow-sm transition-all focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+                    />
 
-    {/* Right Shortcut Badge */}
-    <span className="absolute inset-y-0 right-0 flex items-center pr-4">
-
-    </span>
-</div>
+                    {/* Right Shortcut Badge */}
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-4"></span>
+                </div>
             </div>
 
             {/* --- 3. NAVIGATION --- */}
-            <div className="flex-1 overflow-y-auto px-4 space-y-1 no-scrollbar pb-4">
+            <div className="no-scrollbar flex-1 space-y-1 overflow-y-auto px-4 pb-4">
                 {MENU_ITEMS.map((item, index) => {
                     const isActive = url.startsWith(item.route);
 
                     return (
-                        <Link 
-                            key={index} 
+                        <Link
+                            key={index}
                             href={item.route || '#'}
-                            className={`
-                                group flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200
-                                ${isActive 
-                                    ? 'bg-[#F8FFEB] text-gray-900 border border-lime-100' 
-                                    : 'text-gray-600 border border-transparent hover:bg-gray-50 hover:text-gray-900' 
-                                }
-                            `}
+                            className={`group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                                isActive
+                                    ? 'border border-lime-100 bg-[#F8FFEB] text-gray-900'
+                                    : 'border border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                            } `}
                         >
                             <div className="flex items-center gap-3">
-                                <div 
-                                    className={`
-                                        w-5 h-5 transition-colors duration-200
-                                        ${isActive 
-                                            ? 'bg-[#8CDD05]'  
-                                            : 'bg-gray-400 group-hover:bg-gray-600' 
-                                        }
-                                    `}
+                                <div
+                                    className={`h-5 w-5 transition-colors duration-200 ${
+                                        isActive
+                                            ? 'bg-[#8CDD05]'
+                                            : 'bg-gray-400 group-hover:bg-gray-600'
+                                    } `}
                                     style={{
                                         maskImage: `url(${item.icon})`,
                                         WebkitMaskImage: `url(${item.icon})`,
@@ -113,7 +153,7 @@ export default function SidePannel() {
                                         maskRepeat: 'no-repeat',
                                         WebkitMaskRepeat: 'no-repeat',
                                         maskPosition: 'center',
-                                        WebkitMaskPosition: 'center'
+                                        WebkitMaskPosition: 'center',
                                     }}
                                 />
                                 <span>{item.label}</span>
@@ -121,13 +161,23 @@ export default function SidePannel() {
 
                             <div className="flex items-center gap-2">
                                 {item.badge && (
-                                    <span className="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-gray-200">
+                                    <span className="rounded-full border border-gray-200 bg-gray-100 px-2 py-0.5 text-[10px] font-bold text-gray-600">
                                         {item.badge}
                                     </span>
                                 )}
                                 {item.hasSubmenu && (
-                                    <svg className="w-3.5 h-3.5 text-gray-400 transition-transform group-hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    <svg
+                                        className="h-3.5 w-3.5 text-gray-400 transition-transform group-hover:text-gray-600"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M19 9l-7 7-7-7"
+                                        />
                                     </svg>
                                 )}
                             </div>
@@ -137,35 +187,38 @@ export default function SidePannel() {
             </div>
 
             {/* --- 4. FOOTER --- */}
-            <div className="p-4 border-gray-200 bg-white">
-                <a href="#" className="flex gap-2 items-center px-3 py-2.5 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition-colors mb-1">
+            <div className="border-gray-200 bg-white p-4">
+                <a
+                    href="#"
+                    className="mb-1 flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+                >
                     <img src={settingIcon} alt="" />
                     Settings
                 </a>
-<div className="mt-2 flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-2 shadow-sm transition-colors hover:bg-gray-50 group">
-    <div className="flex items-center">
-        {/* 1. Image Container with Relative Positioning */}
-        <div className="relative">
-            <img
-                src={profileImg}
-                alt="User"
-                className="h-10 w-10 rounded-full object-cover"
-            />
-            {/* 2. Green Status Dot */}
-            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white" />
-        </div>
+                <div className="group mt-2 flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-2 shadow-sm transition-colors hover:bg-gray-50">
+                    <div className="flex items-center">
+                        {/* 1. Image Container with Relative Positioning */}
+                        <div className="relative">
+                            <img
+                                src={profileImg}
+                                alt="User"
+                                className="h-10 w-10 rounded-full object-cover"
+                            />
+                            {/* 2. Green Status Dot */}
+                            <span className="absolute right-0 bottom-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white" />
+                        </div>
 
-        {/* 3. Text Details */}
-        <div className="ml-3">
-            <p className="text-sm font-semibold text-gray-700">
-                Olivia Rhye
-            </p>
-            <p className="text-xs text-gray-500">
-                olivia@untitledui.com
-            </p>
-        </div>
-    </div>
-</div>
+                        {/* 3. Text Details */}
+                        <div className="ml-3">
+                            <p className="text-sm font-semibold text-gray-700">
+                                Olivia Rhye
+                            </p>
+                            <p className="text-xs text-gray-500">
+                                olivia@untitledui.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </aside>
     );

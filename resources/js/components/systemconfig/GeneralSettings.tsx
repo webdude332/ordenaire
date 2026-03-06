@@ -164,11 +164,13 @@ const GeneralSettings = () => {
                 <div className="mb-5 flex items-center gap-6">
                     <Checkbox
                         label="English"
+                        disabled={true}
                         checked={langEnglish}
                         onChange={(e) => setLangEnglish(e.target.checked)}
                     />
                     <Checkbox
                         label="Arabic"
+                        disabled={true}
                         checked={langArabic}
                         onChange={(e) => setLangArabic(e.target.checked)}
                     />
@@ -185,6 +187,7 @@ const GeneralSettings = () => {
                             value={defaultLang}
                             onChange={setDefaultLang}
                             placeholder="Select language"
+                            disabled={true}
                         />
                     </div>
                 </div>

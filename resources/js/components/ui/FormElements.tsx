@@ -131,11 +131,47 @@ export const Select = ({ placeholder, options, icon = DownArrow }: { placeholder
 );
 
 // --- 5. Checkbox Component ---
-export const Checkbox = ({ label, defaultChecked, checked, onChange, icon = checkIcon }: { label: string; defaultChecked?: boolean; icon?: any; checked?: boolean; onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
+// export const Checkbox = ({ label, defaultChecked, checked, onChange, icon = checkIcon }: { label: string; defaultChecked?: boolean; icon?: any; checked?: boolean; onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
+//     return (
+//         <label className="group flex cursor-pointer items-center gap-2 text-sm text-gray-700">
+//             <input type="checkbox" defaultChecked={defaultChecked} className="peer sr-only" />
+//             <div className="flex h-5 w-5 items-center justify-center rounded border border-gray-300 bg-white transition-all peer-checked:border-[#79B800] peer-checked:bg-[#79B800] [&_img]:hidden peer-checked:[&_img]:block [&_svg]:hidden peer-checked:[&_svg]:block">
+//                 <RenderIcon icon={icon} className="h-3 w-3 text-white" />
+//             </div>
+//             {label}
+//         </label>
+//     );
+// };
+export const Checkbox = ({ 
+    label, 
+    defaultChecked, 
+    checked, 
+    onChange, 
+    icon = checkIcon,
+    disabled = false 
+}: { 
+    label: string; 
+    defaultChecked?: boolean; 
+    icon?: any; 
+    checked?: boolean; 
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+}) => {
     return (
-        <label className="group flex cursor-pointer items-center gap-2 text-sm text-gray-700">
-            <input type="checkbox" defaultChecked={defaultChecked} className="peer sr-only" />
-            <div className="flex h-5 w-5 items-center justify-center rounded border border-gray-300 bg-white transition-all peer-checked:border-[#79B800] peer-checked:bg-[#79B800] [&_img]:hidden peer-checked:[&_img]:block [&_svg]:hidden peer-checked:[&_svg]:block">
+        <label className={`group flex cursor-pointer items-center gap-2 text-sm ${disabled ? 'cursor-not-allowed opacity-50' : 'text-gray-700'}`}>
+            <input 
+                type="checkbox" 
+                defaultChecked={defaultChecked} 
+                checked={checked}
+                onChange={onChange}
+                disabled={disabled}
+                className="peer sr-only" 
+            />
+            <div className={`flex h-5 w-5 items-center justify-center rounded border transition-all peer-checked:border-[#79B800] peer-checked:bg-[#79B800] [&_img]:hidden peer-checked:[&_img]:block [&_svg]:hidden peer-checked:[&_svg]:block ${
+                disabled 
+                    ? 'border-gray-200 bg-gray-100 peer-checked:border-gray-400 peer-checked:bg-gray-400' 
+                    : 'border-gray-300 bg-white'
+            }`}>
                 <RenderIcon icon={icon} className="h-3 w-3 text-white" />
             </div>
             {label}
