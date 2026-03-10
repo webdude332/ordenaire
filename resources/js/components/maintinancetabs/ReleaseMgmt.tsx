@@ -198,7 +198,7 @@ const ReleaseMgmt = () => {
                                         {item.link ? (
                                             <a
                                                 href={item.link}
-                                                className="text-sm text-blue-600 underline"
+                                                className="text-sm"
                                             >
                                                 Open
                                             </a>
