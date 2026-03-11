@@ -44,7 +44,7 @@ export default function MaintinanceAndSupport() {
     const breadcrumbs = [
         {
             label: 'Maintenance & Support',
-            href: '/maintenance-support',
+            href: '/maintinance-and-support',
         },
         {
             label: getTabLabel(activeTab),

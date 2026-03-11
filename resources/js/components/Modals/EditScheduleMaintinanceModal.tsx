@@ -1,6 +1,6 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
-import { Input, Label } from '@/components/ui/FormElements';
+import { Checkbox, Input, Label } from '@/components/ui/FormElements';
 import RadioGroup from '@/components/ui/RadioGroup';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
 import {
@@ -182,7 +182,7 @@ export default function EditScheduleMaintenanceModal({
                             </div>
                         </div>
 
-                        <div className="w-1/2">
+                        <div className="w-1/2 pr-2">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Region / Zone
                             </Label>
@@ -272,41 +272,20 @@ export default function EditScheduleMaintenanceModal({
                     </div>
 
                     {/* ── Channel ──────────────────────────────────────── */}
-                    <div className="rounded-xl border border-gray-200 p-5">
-                        <h3 className="mb-4 text-sm font-semibold text-gray-900">
+
+                    {/* 1. Channel Section */}
+                    <div className="rounded-xl border border-gray-200 px-5 py-4">
+                        <h3 className="mb-4 text-base font-semibold text-slate-800">
                             Channel
                         </h3>
                         <div className="flex flex-wrap items-center gap-6">
                             {CHANNEL_LIST.map(({ key, label }) => (
-                                <label
+                                <Checkbox
                                     key={key}
-                                    className="flex cursor-pointer items-center gap-2"
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => toggleChannel(key)}
-                                        className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded transition-colors ${channels[key] ? 'bg-[#79B800]' : 'border-2 border-gray-300 bg-white'}`}
-                                    >
-                                        {channels[key] && (
-                                            <svg
-                                                className="h-4 w-4 text-white"
-                                                viewBox="0 0 12 12"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    d="M2 6l3 3 5-5"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                        )}
-                                    </button>
-                                    <span className="text-sm text-gray-700">
-                                        {label}
-                                    </span>
-                                </label>
+                                    label={label}
+                                    checked={channels[key]}
+                                    onChange={() => toggleChannel(key)}
+                                />
                             ))}
                         </div>
                     </div>
@@ -338,34 +317,13 @@ export default function EditScheduleMaintenanceModal({
                     </div>
 
                     {/* ── Resend notification ───────────────────────────── */}
+
                     <div className="rounded-xl border border-gray-200 px-5 py-4">
-                        <label className="flex cursor-pointer items-center gap-3">
-                            <button
-                                type="button"
-                                onClick={() => setResend(!resendNotification)}
-                                className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded transition-colors ${resendNotification ? 'bg-[#79B800]' : 'border-2 border-gray-300 bg-white'}`}
-                            >
-                                {resendNotification && (
-                                    <svg
-                                        className="h-4 w-4 text-white"
-                                        viewBox="0 0 12 12"
-                                        fill="none"
-                                    >
-                                        <path
-                                            d="M2 6l3 3 5-5"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                )}
-                            </button>
-                            <span className="text-sm text-gray-700">
-                                Resend notification to users with updated
-                                details
-                            </span>
-                        </label>
+                        <Checkbox
+                            label="Resend notification to users with updated details"
+                            checked={resendNotification}
+                            onChange={() => setResend(!resendNotification)}
+                        />
                     </div>
                 </div>
             </div>

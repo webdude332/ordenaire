@@ -162,7 +162,7 @@ const DataBackup = () => {
             {/* ── System Backups Table ─────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         System Backups
                     </h2>
                     <div className="flex items-center gap-3">

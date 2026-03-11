@@ -120,7 +120,7 @@ export default function ReportIncidentModal({
                         </div>
 
                         {/* Affected Platform */}
-                        <div className="w-1/2">
+                        <div className="w-1/2 pr-2">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Affected Platform
                             </Label>

@@ -92,11 +92,12 @@ export default function ManualBackupModal({
                                 successful.
                             </span>
                         </label> */}
-
                         <Checkbox
-                            label="Display this alert on the Merchant Login Screen?"
-                            checked={true}
-                            // onChange={(e) => setDisplayOnLoginScreen(e.target.checked)}
+                            label="Notify me via email when completion is successful."
+                            checked={notifyOnCompletion}
+                            onChange={(e) =>
+                                setNotifyOnCompletion(e.target.checked)
+                            }
                         />
                     </div>
                 </div>

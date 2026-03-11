@@ -1,6 +1,6 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
-import { Input, Label } from '@/components/ui/FormElements';
+import { Checkbox, Input, Label } from '@/components/ui/FormElements';
 import RadioGroup from '@/components/ui/RadioGroup';
 import {
     AlignCenter,
@@ -181,7 +181,7 @@ export default function ScheduleMaintenanceModal({
                             </div>
                         </div>
 
-                        <div className="w-1/2">
+                        <div className="w-1/2 pr-2">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Region / Zone
                             </Label>
@@ -251,7 +251,8 @@ export default function ScheduleMaintenanceModal({
                             </Label>
                             <textarea
                                 rows={4}
-                                value={englishMsg}
+                                // value={englishMsg}
+                                placeholder={englishMsg}
                                 onChange={(e) => setEnglishMsg(e.target.value)}
                                 className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-700 outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
                             />
@@ -263,7 +264,8 @@ export default function ScheduleMaintenanceModal({
                             <textarea
                                 rows={4}
                                 dir="rtl"
-                                value={arabicMsg}
+                                // value={arabicMsg}
+                                placeholder={arabicMsg}
                                 onChange={(e) => setArabicMsg(e.target.value)}
                                 className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-700 outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
                             />
@@ -277,35 +279,12 @@ export default function ScheduleMaintenanceModal({
                         </h3>
                         <div className="flex flex-wrap items-center gap-6">
                             {CHANNEL_LIST.map(({ key, label }) => (
-                                <label
+                                <Checkbox
                                     key={key}
-                                    className="flex cursor-pointer items-center gap-2"
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => toggleChannel(key)}
-                                        className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded transition-colors ${channels[key] ? 'bg-[#79B800]' : 'border-2 border-gray-300 bg-white'}`}
-                                    >
-                                        {channels[key] && (
-                                            <svg
-                                                className="h-4 w-4 text-white"
-                                                viewBox="0 0 12 12"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    d="M2 6l3 3 5-5"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                        )}
-                                    </button>
-                                    <span className="text-sm text-gray-700">
-                                        {label}
-                                    </span>
-                                </label>
+                                    label={label}
+                                    checked={channels[key]}
+                                    onChange={() => toggleChannel(key)}
+                                />
                             ))}
                         </div>
                     </div>

@@ -1,6 +1,6 @@
-import Badge from '@/components/Badge';
 import DeliveryReportModal from '@/components/Modals/DeliveryReportModal';
 import ActionButton from '@/components/ui/ActionButton';
+import Badges from '@/components/ui/Badges';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -104,7 +104,7 @@ const getStatusVariant = (status: DeliveryLogItem['status']) => {
         case 'Failed':
             return 'error';
         case 'Sending':
-            return 'active';
+            return 'blue';
     }
 };
 
@@ -137,7 +137,7 @@ export default function DeliveryTab() {
         <div>
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         Delivery logs
                     </h2>
                     <div className="flex items-center gap-3">
@@ -159,7 +159,7 @@ export default function DeliveryTab() {
                                 placeholder="Channel: All"
                             />
                         </div>
-                        <div className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-600">
                             <Calendar className="h-4 w-4 text-gray-400" />
                             <span>Date: Last 30 Days</span>
                         </div>
@@ -242,7 +242,7 @@ export default function DeliveryTab() {
                                             ))}
                                     </TableCell>
                                     <TableCell>
-                                        <Badge
+                                        <Badges
                                             variant={getStatusVariant(
                                                 item.status,
                                             )}
@@ -250,7 +250,7 @@ export default function DeliveryTab() {
                                             rounded="full"
                                         >
                                             {item.status}
-                                        </Badge>
+                                        </Badges>
                                     </TableCell>
                                     <TableCell className="text-gray-500">
                                         {item.engagement}

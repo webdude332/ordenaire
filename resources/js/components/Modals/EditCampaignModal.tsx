@@ -233,7 +233,7 @@ export default function EditCampaignModal({
                             />
                         </div>
                         {/* Toolbar */}
-                        <div className="mb-2 flex items-center gap-1 rounded-t-lg border border-b-0 border-gray-200 px-2 py-1.5">
+                        <div className="roundedt-t-lg mb-2 flex items-center gap-1 border border-b-0 border-gray-200 px-2 py-1.5">
                             <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
                                 <Bold className="h-3.5 w-3.5" />
                             </button>
@@ -266,7 +266,7 @@ export default function EditCampaignModal({
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
                             placeholder='e.g., "Dear Partners, we are scheduling a brief maintenance window..."'
-                            className="w-full resize-none rounded-b-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
+                            className="-mt-2 w-full resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
                         />
                     </div>
 
@@ -390,7 +390,7 @@ export default function EditCampaignModal({
                                 }
                             />
                             {deliveryTiming === 'scheduled' && (
-                                <div className="flex-1">
+                                <div className="flex-1 pl-10">
                                     <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                         Date/Time
                                     </Label>

@@ -1,6 +1,6 @@
-import Badge from '@/components/Badge';
 import TicketsModal from '@/components/Modals/TicketsModal';
 import ActionButton from '@/components/ui/ActionButton';
+import Badges from '@/components/ui/Badges';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import {
@@ -104,26 +104,30 @@ const STATUS_OPTIONS = [
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const getPriorityVariant = (priority: TicketItem['priority']) => {
-    switch (priority) {
-        case 'Low':
-            return 'active';
-        case 'Medium':
-            return 'warning';
-        case 'High':
-            return 'error';
+    switch (priority?.toLocaleLowerCase()) {
+        case 'low':
+            return 'low';
+        case 'medium':
+            return 'medium';
+        case 'high':
+            return 'high';
+        default:
+            return 'gray'; // Fallback
     }
 };
 
 const getStatusVariant = (status: TicketItem['status']) => {
-    switch (status) {
-        case 'Open':
-            return 'warning';
-        case 'In Progress':
-            return 'active';
-        case 'Resolved':
-            return 'success';
-        case 'Closed':
+    switch (status?.toLocaleLowerCase()) {
+        case 'open':
+            return 'status-open';
+        case 'in progress':
+            return 'status-progress';
+        case 'resolved':
+            return 'status-resolved';
+        case 'closed':
             return 'gray';
+        default:
+            return 'gray'; // Fallback
     }
 };
 
@@ -211,7 +215,7 @@ const TicketCenter = () => {
             {/* ── Tickets Table ─────────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         Tickets Table
                     </h2>
                 </div>
@@ -261,51 +265,51 @@ const TicketCenter = () => {
                                         {item.time}
                                     </TableCell>
                                     <TableCell>
-                                        <Badge
+                                        <Badges
                                             variant={getPriorityVariant(
                                                 item.priority,
                                             )}
                                             withDot={true}
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {item.priority}
-                                        </Badge>
+                                        </Badges>
                                     </TableCell>
                                     <TableCell>
-                                        <Badge
+                                        <Badges
                                             variant={getStatusVariant(
                                                 item.status,
                                             )}
                                             withDot={true}
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {item.status}
-                                        </Badge>
+                                        </Badges>
                                     </TableCell>
                                     <TableCell className="text-right">
                                         <div className="flex items-center justify-end gap-2">
                                             {/* Assign dropdown inline */}
-                                            <div className="flex min-w-[120px] cursor-pointer items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50">
+                                            <div className="flex w-[140px] cursor-pointer items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50">
                                                 {item.assignedTo ? (
                                                     <>
-                                                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-amber-100 text-xs font-semibold text-amber-700">
+                                                        <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-semibold text-amber-700">
                                                             {item.assignedTo.charAt(
                                                                 0,
                                                             )}
                                                         </span>
-                                                        <span className="ml-1 flex-1">
+                                                        <span className="ml-1 flex-1 truncate text-left">
                                                             {item.assignedTo}
                                                         </span>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <UserCircle className="h-4 w-4 text-gray-400" />
-                                                        <span className="ml-1 flex-1 text-gray-400">
+                                                        <UserCircle className="h-4 w-4 flex-shrink-0 text-gray-400" />
+                                                        <span className="ml-1 flex-1 truncate text-left text-gray-400">
                                                             Assign...
                                                         </span>
                                                     </>
                                                 )}
-                                                <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
+                                                <ChevronDown className="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
                                             </div>
 
                                             {/* View icon */}

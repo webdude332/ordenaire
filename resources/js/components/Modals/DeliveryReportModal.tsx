@@ -123,14 +123,16 @@ export default function DeliveryReportModal({
                         {/* Channel Breakdown */}
                         <div className="mb-5">
                             <div className="mb-3 flex items-center gap-2">
-                                <Link2 className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
+                                <Link2 className="h-5 w-5 text-gray-700" />
+                                <h3 className="text-md font-semibold text-gray-900">
                                     Channel Breakdown
                                 </h3>
                             </div>
                             <div className="space-y-1.5">
                                 <div className="grid grid-cols-3 text-sm">
-                                    <span className="text-gray-700">Email</span>
+                                    <span className="text-md font-medium text-gray-700">
+                                        Email
+                                    </span>
                                     <span className="text-gray-500">
                                         800 Sent
                                     </span>
@@ -139,7 +141,7 @@ export default function DeliveryReportModal({
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-3 text-sm">
-                                    <span className="text-gray-700">
+                                    <span className="text-md font-medium text-gray-700">
                                         Mobile Push
                                     </span>
                                     <span className="text-gray-500">
@@ -150,7 +152,7 @@ export default function DeliveryReportModal({
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-3 text-sm">
-                                    <span className="text-gray-700">
+                                    <span className="text-md font-medium text-gray-700">
                                         Failures
                                     </span>
                                     <span className="text-gray-500">
@@ -166,8 +168,8 @@ export default function DeliveryReportModal({
                         {/* Message Preview */}
                         <div className="mt-5">
                             <div className="mb-2 flex items-center gap-2">
-                                <Clipboard className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
+                                <Clipboard className="h-5 w-5 text-gray-700" />
+                                <h3 className="text-md font-semibold text-gray-900">
                                     Message Preview
                                 </h3>
                             </div>

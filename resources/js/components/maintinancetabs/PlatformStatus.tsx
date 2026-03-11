@@ -240,12 +240,12 @@ const PlatformStatus = () => {
             {/* ── 3rd Party Integrations ───────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         3rd Party Integrations
                     </h2>
                 </div>
 
-                <TableContainerOne>
+                <TableContainerOne className="rounded-b-xl">
                     <Table>
                         <TableHeader>
                             <TableHead className="font-semibold text-gray-600">
@@ -296,7 +296,7 @@ const PlatformStatus = () => {
             {/* ── Incident History ─────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         Incident History
                     </h2>
                     <div className="flex items-center gap-3">

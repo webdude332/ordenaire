@@ -113,7 +113,7 @@ export default function ReleaseDetailsModal({
                     </div>
 
                     {/* ── Release Notes ───────────────────────────────────── */}
-                    <div className="rounded-xl border border-gray-200 p-5">
+                    <div className="rounded-xl border border-gray-200 bg-gray-100 p-5">
                         {/* Changelog */}
                         <div className="mb-5">
                             <div className="mb-2 flex items-center gap-2">

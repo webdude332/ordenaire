@@ -1,7 +1,15 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
-import Paperclip from '@/images/icons/clipboard1.svg?react';
-import { Bold, Image, Italic, Link, Settings2, Underline } from 'lucide-react';
+import Paperclipp from '@/images/icons/clipboard1.svg?react';
+import {
+    Bold,
+    Image,
+    Italic,
+    Link,
+    Paperclip,
+    Settings2,
+    Underline,
+} from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
@@ -114,15 +122,15 @@ export default function TicketsModal({
                     </p>
                 </div>
 
-                <div className="border border-borderColor p-4">
+                <div className="rounded-xl border border-borderColor p-4">
                     <div className="mb-4 grid grid-cols-5 gap-4">
                         {/* Description + Attachments — left col (3/5) */}
                         <div className="col-span-3 rounded-xl border border-gray-200 bg-gray-50 p-5">
                             {/* Description */}
                             <div className="mb-5">
                                 <div className="mb-2 flex items-center gap-2">
-                                    <Paperclip className="h-4 w-4 text-gray-700" />
-                                    <h3 className="text-sm font-semibold text-gray-900">
+                                    <Paperclipp className="h-5 w-5 text-gray-700" />
+                                    <h3 className="text-md font-semibold text-gray-900">
                                         Description
                                     </h3>
                                 </div>
@@ -133,10 +141,10 @@ export default function TicketsModal({
                             </div>
 
                             {/* Attachments */}
-                            <div>
+                            <div className="mt-10">
                                 <div className="mb-2 flex items-center gap-2">
-                                    <Paperclip className="h-4 w-4 text-gray-700" />
-                                    <h3 className="text-sm font-semibold text-gray-900">
+                                    <Paperclip className="h-5 w-5 text-gray-700" />
+                                    <h3 className="text-md font-semibold text-gray-900">
                                         Attachments
                                     </h3>
                                 </div>
@@ -157,8 +165,8 @@ export default function TicketsModal({
                         {/* Controls — right col (2/5) */}
                         <div className="col-span-2 rounded-xl border border-gray-200 bg-gray-50 p-5">
                             <div className="mb-3 flex items-center gap-2">
-                                <Settings2 className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
+                                <Settings2 className="h-5 w-5 text-gray-700" />
+                                <h3 className="text-md font-semibold text-gray-900">
                                     Controls
                                 </h3>
                             </div>
@@ -247,7 +255,7 @@ export default function TicketsModal({
                             Internal Note
                         </h3>
                         {/* Toolbar */}
-                        <div className="mb-2 flex items-center gap-1 border-b border-gray-200 pb-2">
+                        <div className="mb-2 flex items-center gap-1 border-gray-200 pb-2">
                             <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
                                 <Bold className="h-4 w-4" />
                             </button>
