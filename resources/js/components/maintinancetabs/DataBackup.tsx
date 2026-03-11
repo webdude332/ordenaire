@@ -3,14 +3,11 @@ import ManualBackupModal from '@/components/Modals/ManualBackupModal';
 import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
+import Upload from '@/images/icons/cloud.svg?react';
+import Reverse from '@/images/icons/reverse.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import {
-    ChevronLeft,
-    ChevronRight,
-    HardDrive,
-    Plus,
-    Upload,
-} from 'lucide-react';
+import HardDrive from '@/images/icons/server.svg?react';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { useState } from 'react';
 import {
     Table,
@@ -117,7 +114,7 @@ const DataBackup = () => {
             {/* ── Summary Cards ────────────────────────────────────────── */}
             <div className="grid grid-cols-2 gap-4">
                 {/* Last Successful Backup */}
-                <div className="rounded-xl border border-borderColor p-6">
+                {/* <div className="rounded-xl border border-borderColor p-6">
                     <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white">
                         <Upload className="h-5 w-5 text-gray-600" />
                     </div>
@@ -127,15 +124,36 @@ const DataBackup = () => {
                     <p className="text-2xl font-semibold text-gray-900">
                         2 hrs ago
                     </p>
+                </div> */}
+                <div className="rounded-xl border border-borderColor p-6">
+                    <div className="flex items-center gap-3">
+                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white">
+                            <Upload className="h-5 w-5 text-gray-600" />
+                        </div>
+                        <div>
+                            <p className="mb-2 text-sm font-semibold">
+                                Last Successful Backup
+                            </p>
+                        </div>
+                    </div>
+                    <p className="mt-4 text-2xl font-semibold text-gray-900">
+                        2 hours ago
+                    </p>
                 </div>
 
                 {/* Storage Used */}
                 <div className="rounded-xl border border-borderColor p-6">
-                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white">
-                        <HardDrive className="h-5 w-5 text-gray-600" />
+                    <div className="flex items-center gap-3">
+                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white">
+                            <HardDrive className="h-5 w-5 text-gray-600" />
+                        </div>
+                        <div>
+                            <p className="mb-2 text-sm font-semibold">
+                                Storage Used
+                            </p>
+                        </div>
                     </div>
-                    <p className="mb-1 text-sm text-gray-500">Storage Used</p>
-                    <p className="text-2xl font-semibold text-gray-900">
+                    <p className="mt-4 text-2xl font-semibold text-gray-900">
                         1.2 TB / 5 TB
                     </p>
                 </div>
@@ -240,27 +258,14 @@ const DataBackup = () => {
                                             {item.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell className="flex justify-end">
                                         {item.status === 'Failed' && (
                                             <ActionButton
                                                 onClick={() =>
                                                     setIsBackupModalOpen(true)
                                                 }
                                             >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-4 w-4 text-gray-400"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                    strokeWidth={2}
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                                    />
-                                                </svg>
+                                                <Reverse className="h-4 w-4" />
                                             </ActionButton>
                                         )}
                                     </TableCell>

@@ -1,6 +1,7 @@
 import Badge from '@/components/Badge';
 import Modal from '@/components/Modal';
-import { ClipboardList, Globe } from 'lucide-react';
+import ClipboardList from '@/images/icons/clipboard1.svg?react';
+import Globe from '@/images/icons/globe.svg?react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -78,90 +79,93 @@ export default function ReleaseDetailsModal({
                         Release Details: {release.version}
                     </h2>
                 </div>
-
-                {/* ── Info Cards ──────────────────────────────────────── */}
-                <div className="mb-4 grid grid-cols-3 gap-4">
-                    <div className="rounded-xl border border-gray-200 p-4">
-                        <p className="mb-1 text-sm text-gray-500">Platform</p>
-                        <p className="text-sm font-semibold text-gray-900">
-                            {release.platform}
-                        </p>
-                    </div>
-                    <div className="rounded-xl border border-gray-200 p-4">
-                        <p className="mb-1 text-sm text-gray-500">
-                            Release Date
-                        </p>
-                        <p className="text-sm font-semibold text-gray-900">
-                            {release.releaseDate}
-                        </p>
-                    </div>
-                    <div className="rounded-xl border border-gray-200 p-4">
-                        <p className="mb-1 text-sm text-gray-500">
-                            Current Status
-                        </p>
-                        <Badge
-                            variant={getStatusVariant(release.status)}
-                            withDot={true}
-                            rounded="full"
-                        >
-                            {release.status}
-                        </Badge>
-                    </div>
-                </div>
-
-                {/* ── Release Notes ───────────────────────────────────── */}
-                <div className="rounded-xl border border-gray-200 p-5">
-                    {/* Changelog */}
-                    <div className="mb-5">
-                        <div className="mb-2 flex items-center gap-2">
-                            <ClipboardList className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
-                                Release Notes / Changelog
-                            </h3>
+                <div className="rounded-xl border border-borderColor p-4">
+                    {/* ── Info Cards ──────────────────────────────────────── */}
+                    <div className="mb-4 grid grid-cols-3 gap-4">
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <p className="mb-1 text-sm text-gray-500">
+                                Platform
+                            </p>
+                            <p className="text-sm font-semibold text-gray-900">
+                                {release.platform}
+                            </p>
                         </div>
-                        <p className="text-sm text-gray-600">
-                            {release.changelog ||
-                                'No changelog provided for this release.'}
-                        </p>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <p className="mb-1 text-sm text-gray-500">
+                                Release Date
+                            </p>
+                            <p className="text-sm font-semibold text-gray-900">
+                                {release.releaseDate}
+                            </p>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <p className="mb-1 text-sm text-gray-500">
+                                Current Status
+                            </p>
+                            <Badge
+                                variant={getStatusVariant(release.status)}
+                                withDot={true}
+                                rounded="full"
+                            >
+                                {release.status}
+                            </Badge>
+                        </div>
                     </div>
 
-                    <hr className="border-gray-200" />
-
-                    {/* Technical Details */}
-                    <div className="mt-5">
-                        <div className="mb-3 flex items-center gap-2">
-                            <Globe className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
-                                Technical Details
-                            </h3>
+                    {/* ── Release Notes ───────────────────────────────────── */}
+                    <div className="rounded-xl border border-gray-200 p-5">
+                        {/* Changelog */}
+                        <div className="mb-5">
+                            <div className="mb-2 flex items-center gap-2">
+                                <ClipboardList className="h-5 w-5" />
+                                <h3 className="text-sm font-semibold text-gray-900">
+                                    Release Notes / Changelog
+                                </h3>
+                            </div>
+                            <p className="text-sm text-gray-600">
+                                {release.changelog ||
+                                    'No changelog provided for this release.'}
+                            </p>
                         </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-6">
-                                <span className="w-36 text-sm text-gray-500">
-                                    Issued
-                                </span>
-                                <span className="text-sm text-gray-900">
-                                    {release.platform}
-                                </span>
+
+                        <hr className="h-3 border-gray-900" />
+
+                        {/* Technical Details */}
+                        <div className="mt-5">
+                            <div className="mb-3 flex items-center gap-2">
+                                <Globe className="h-5 w-5 text-gray-700" />
+                                <h3 className="text-sm font-semibold text-gray-900">
+                                    Technical Details
+                                </h3>
                             </div>
-                            <div className="flex items-center gap-6">
-                                <span className="w-36 text-sm text-gray-500">
-                                    Distribution Link
-                                </span>
-                                <a
-                                    href={release.link}
-                                    className="text-sm text-blue-600 underline"
-                                >
-                                    {release.link || '—'}
-                                </a>
-                            </div>
-                            <div className="flex items-center gap-6">
-                                <span className="w-36 text-sm text-gray-500">
-                                    Logged By
-                                </span>
-                                <span className="text-sm text-gray-900">
-                                    {release.loggedBy}
-                                </span>
+                            <div className="space-y-2">
+                                <div className="flex items-center gap-6">
+                                    <span className="w-36 text-sm text-gray-500">
+                                        Issued
+                                    </span>
+                                    <span className="text-sm text-gray-900">
+                                        {release.platform}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-6">
+                                    <span className="w-36 text-sm text-gray-500">
+                                        Distribution Link
+                                    </span>
+                                    <a
+                                        href={release.link}
+                                        className="text-sm text-blue-600 underline"
+                                    >
+                                        {release.link || '—'}
+                                    </a>
+                                </div>
+                                <div className="flex items-center gap-6">
+                                    <span className="w-36 text-sm text-gray-500">
+                                        Logged By
+                                    </span>
+                                    <span className="text-sm text-gray-900">
+                                        {release.loggedBy}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

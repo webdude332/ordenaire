@@ -229,22 +229,32 @@ export default function ComposeTab() {
 
             {/* ── Delivery Timing ──────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor p-6">
-                <h3 className="mb-4 text-sm font-semibold text-gray-900">
-                    Delivery Timing
-                </h3>
-                <div className="flex items-start gap-8">
-                    <RadioGroup
-                        name="deliveryTiming"
-                        options={[
-                            { value: 'immediately', label: 'Send Immediately' },
-                            { value: 'scheduled', label: 'Schedule for Later' },
-                        ]}
-                        value={deliveryTiming}
-                        onChange={(v) =>
-                            setDeliveryTiming(v as 'immediately' | 'scheduled')
-                        }
-                    />
-                    <div className="flex-1">
+                <div className="flex gap-4">
+                    <div className="flex w-1/2 flex-col items-start gap-8">
+                        <h3 className="mb-4 text-sm font-semibold text-gray-900">
+                            Delivery Timing
+                        </h3>
+                        <RadioGroup
+                            name="deliveryTiming"
+                            options={[
+                                {
+                                    value: 'immediately',
+                                    label: 'Send Immediately',
+                                },
+                                {
+                                    value: 'scheduled',
+                                    label: 'Schedule for Later',
+                                },
+                            ]}
+                            value={deliveryTiming}
+                            onChange={(v) =>
+                                setDeliveryTiming(
+                                    v as 'immediately' | 'scheduled',
+                                )
+                            }
+                        />
+                    </div>
+                    <div className="w-1/2 flex-1 pt-8">
                         <Label className="mb-1.5 text-sm font-medium text-gray-700">
                             Date/Time
                         </Label>

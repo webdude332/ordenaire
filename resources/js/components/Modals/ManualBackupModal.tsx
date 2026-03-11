@@ -3,6 +3,9 @@ import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
+import RadioGroup from '../ui/RadioGroup';
+
+import { Checkbox } from '../ui/FormElements';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -55,39 +58,27 @@ export default function ManualBackupModal({
 
                     {/* Radio options */}
                     <div className="mb-4 space-y-3">
-                        <label className="flex cursor-pointer items-center gap-3">
-                            <input
-                                type="radio"
-                                name="backupType"
-                                value="full"
-                                checked={backupType === 'full'}
-                                onChange={() => setBackupType('full')}
-                                className="h-4 w-4 border-gray-300 accent-[#84cc16]"
-                            />
-                            <span className="text-sm text-gray-700">
-                                Full System Backup
-                            </span>
-                        </label>
-                        <label className="flex cursor-pointer items-center gap-3">
-                            <input
-                                type="radio"
-                                name="backupType"
-                                value="incremental"
-                                checked={backupType === 'incremental'}
-                                onChange={() => setBackupType('incremental')}
-                                className="h-4 w-4 border-gray-300 accent-[#84cc16]"
-                            />
-                            <span className="text-sm text-gray-700">
-                                Incremental Backup
-                            </span>
-                        </label>
+                        <RadioGroup
+                            name="backupType"
+                            value={backupType}
+                            onChange={(val) => setBackupType(val)}
+                            className="mb-4"
+                            gap="flex-col gap-3"
+                            options={[
+                                { value: 'full', label: 'Full System Backup' },
+                                {
+                                    value: 'incremental',
+                                    label: 'Incremental Backup',
+                                },
+                            ]}
+                        />
                     </div>
 
                     <hr className="border-gray-200" />
 
                     {/* Notify checkbox */}
                     <div className="mt-4">
-                        <label className="flex cursor-pointer items-center gap-3">
+                        {/* <label className="flex cursor-pointer items-center gap-3">
                             <input
                                 type="checkbox"
                                 checked={notifyOnCompletion}
@@ -100,7 +91,13 @@ export default function ManualBackupModal({
                                 Notify me via email when completion is
                                 successful.
                             </span>
-                        </label>
+                        </label> */}
+
+                        <Checkbox
+                            label="Display this alert on the Merchant Login Screen?"
+                            checked={true}
+                            // onChange={(e) => setDisplayOnLoginScreen(e.target.checked)}
+                        />
                     </div>
                 </div>
             </div>

@@ -1,14 +1,7 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
-import {
-    Bold,
-    Image,
-    Italic,
-    Link,
-    Paperclip,
-    Settings2,
-    Underline,
-} from 'lucide-react';
+import Paperclip from '@/images/icons/clipboard1.svg?react';
+import { Bold, Image, Italic, Link, Settings2, Underline } from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
@@ -121,34 +114,35 @@ export default function TicketsModal({
                     </p>
                 </div>
 
-                {/* ── Main Grid ───────────────────────────────────────── */}
-                <div className="mb-4 grid grid-cols-5 gap-4">
-                    {/* Description + Attachments — left col (3/5) */}
-                    <div className="col-span-3 rounded-xl border border-gray-200 p-5">
-                        {/* Description */}
-                        <div className="mb-5">
-                            <div className="mb-2 flex items-center gap-2">
-                                <Paperclip className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
-                                    Description
-                                </h3>
+                <div className="border border-borderColor p-4">
+                    <div className="mb-4 grid grid-cols-5 gap-4">
+                        {/* Description + Attachments — left col (3/5) */}
+                        <div className="col-span-3 rounded-xl border border-gray-200 bg-gray-50 p-5">
+                            {/* Description */}
+                            <div className="mb-5">
+                                <div className="mb-2 flex items-center gap-2">
+                                    <Paperclip className="h-4 w-4 text-gray-700" />
+                                    <h3 className="text-sm font-semibold text-gray-900">
+                                        Description
+                                    </h3>
+                                </div>
+                                <p className="text-sm text-gray-600">
+                                    {ticket.description ||
+                                        "We are trying to punch in orders but the screen keeps showing 'Network Error 503'. Our internet is working fine on other devices. Please help, we have a queue of customers!"}
+                                </p>
                             </div>
-                            <p className="text-sm text-gray-600">
-                                {ticket.description ||
-                                    "We are trying to punch in orders but the screen keeps showing 'Network Error 503'. Our internet is working fine on other devices. Please help, we have a queue of customers!"}
-                            </p>
-                        </div>
 
-                        {/* Attachments */}
-                        <div>
-                            <div className="mb-2 flex items-center gap-2">
-                                <Paperclip className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
-                                    Attachments
-                                </h3>
-                            </div>
-                            {(ticket.attachments ?? ['Invoice_#0025.pdf']).map(
-                                (file) => (
+                            {/* Attachments */}
+                            <div>
+                                <div className="mb-2 flex items-center gap-2">
+                                    <Paperclip className="h-4 w-4 text-gray-700" />
+                                    <h3 className="text-sm font-semibold text-gray-900">
+                                        Attachments
+                                    </h3>
+                                </div>
+                                {(
+                                    ticket.attachments ?? ['Invoice_#0025.pdf']
+                                ).map((file) => (
                                     <a
                                         key={file}
                                         href="#"
@@ -156,127 +150,129 @@ export default function TicketsModal({
                                     >
                                         {file}
                                     </a>
-                                ),
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Controls — right col (2/5) */}
-                    <div className="col-span-2 rounded-xl border border-gray-200 p-5">
-                        <div className="mb-3 flex items-center gap-2">
-                            <Settings2 className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
-                                Controls
-                            </h3>
-                        </div>
-
-                        {/* Status */}
-                        <div className="mb-3">
-                            <p className="mb-1.5 text-sm font-medium text-gray-700">
-                                Status
-                            </p>
-                            <CustomDropdown
-                                label=""
-                                options={STATUS_OPTIONS}
-                                value={status}
-                                onChange={setStatus}
-                                placeholder="Select status"
-                            />
-                        </div>
-
-                        {/* Assigned To */}
-                        <div className="mb-3">
-                            <p className="mb-1.5 text-sm font-medium text-gray-700">
-                                Assigned To
-                            </p>
-                            <CustomDropdown
-                                label=""
-                                options={ASSIGN_OPTIONS}
-                                value={assignedTo}
-                                onChange={setAssignedTo}
-                                placeholder="Assign..."
-                            />
-                        </div>
-
-                        {/* Mentions (CC) */}
-                        <div>
-                            <p className="mb-1.5 text-sm font-medium text-gray-700">
-                                Mentions (CC)
-                            </p>
-                            <div className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-4 w-4 text-gray-400"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                    />
-                                </svg>
-                                <span className="flex-1 text-sm text-gray-400">
-                                    Add Person
-                                </span>
-                                <button className="text-gray-400 hover:text-gray-600">
-                                    +
-                                </button>
-                            </div>
-                            {/* Tags */}
-                            <div className="mt-2 flex flex-wrap gap-1.5">
-                                {mentions.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-700"
-                                    >
-                                        {tag}
-                                        <button
-                                            onClick={() => removeMention(tag)}
-                                            className="text-gray-400 hover:text-gray-600"
-                                        >
-                                            ×
-                                        </button>
-                                    </span>
                                 ))}
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* ── Internal Note ────────────────────────────────────── */}
-                <div className="rounded-xl border border-gray-200 p-5">
-                    <h3 className="mb-3 text-sm font-semibold text-gray-900">
-                        Internal Note
-                    </h3>
-                    {/* Toolbar */}
-                    <div className="mb-2 flex items-center gap-1 border-b border-gray-200 pb-2">
-                        <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
-                            <Bold className="h-4 w-4" />
-                        </button>
-                        <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
-                            <Italic className="h-4 w-4" />
-                        </button>
-                        <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
-                            <Underline className="h-4 w-4" />
-                        </button>
-                        <div className="mx-1 h-4 w-px bg-gray-200" />
-                        <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
-                            <Link className="h-4 w-4" />
-                        </button>
-                        <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
-                            <Image className="h-4 w-4" />
-                        </button>
+                        {/* Controls — right col (2/5) */}
+                        <div className="col-span-2 rounded-xl border border-gray-200 bg-gray-50 p-5">
+                            <div className="mb-3 flex items-center gap-2">
+                                <Settings2 className="h-4 w-4 text-gray-700" />
+                                <h3 className="text-sm font-semibold text-gray-900">
+                                    Controls
+                                </h3>
+                            </div>
+
+                            {/* Status */}
+                            <div className="mb-3">
+                                <p className="mb-1.5 text-sm font-medium text-gray-700">
+                                    Status
+                                </p>
+                                <CustomDropdown
+                                    label=""
+                                    options={STATUS_OPTIONS}
+                                    value={status}
+                                    onChange={setStatus}
+                                    placeholder="Select status"
+                                />
+                            </div>
+
+                            {/* Assigned To */}
+                            <div className="mb-3">
+                                <p className="mb-1.5 text-sm font-medium text-gray-700">
+                                    Assigned To
+                                </p>
+                                <CustomDropdown
+                                    label=""
+                                    options={ASSIGN_OPTIONS}
+                                    value={assignedTo}
+                                    onChange={setAssignedTo}
+                                    placeholder="Assign..."
+                                />
+                            </div>
+
+                            {/* Mentions (CC) */}
+                            <div>
+                                <p className="mb-1.5 text-sm font-medium text-gray-700">
+                                    Mentions (CC)
+                                </p>
+                                <div className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                        />
+                                    </svg>
+                                    <span className="flex-1 text-sm text-gray-400">
+                                        Add Person
+                                    </span>
+                                    <button className="text-gray-400 hover:text-gray-600">
+                                        +
+                                    </button>
+                                </div>
+                                {/* Tags */}
+                                <div className="mt-2 flex flex-wrap gap-1.5">
+                                    {mentions.map((tag) => (
+                                        <span
+                                            key={tag}
+                                            className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-700"
+                                        >
+                                            {tag}
+                                            <button
+                                                onClick={() =>
+                                                    removeMention(tag)
+                                                }
+                                                className="text-gray-400 hover:text-gray-600"
+                                            >
+                                                ×
+                                            </button>
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <textarea
-                        rows={4}
-                        value={internalNote}
-                        onChange={(e) => setInternalNote(e.target.value)}
-                        placeholder="e.g., Pre-deployment safety snapshot for v5.4 Release."
-                        className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
-                    />
+
+                    {/* ── Internal Note ────────────────────────────────────── */}
+                    <div className="rounded-xl border border-gray-200 p-5">
+                        <h3 className="mb-3 text-sm font-semibold text-gray-900">
+                            Internal Note
+                        </h3>
+                        {/* Toolbar */}
+                        <div className="mb-2 flex items-center gap-1 border-b border-gray-200 pb-2">
+                            <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
+                                <Bold className="h-4 w-4" />
+                            </button>
+                            <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
+                                <Italic className="h-4 w-4" />
+                            </button>
+                            <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
+                                <Underline className="h-4 w-4" />
+                            </button>
+                            <div className="mx-1 h-4 w-px bg-gray-200" />
+                            <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
+                                <Link className="h-4 w-4" />
+                            </button>
+                            <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
+                                <Image className="h-4 w-4" />
+                            </button>
+                        </div>
+                        <textarea
+                            rows={4}
+                            value={internalNote}
+                            onChange={(e) => setInternalNote(e.target.value)}
+                            placeholder="e.g., Pre-deployment safety snapshot for v5.4 Release."
+                            className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
+                        />
+                    </div>
                 </div>
             </div>
 

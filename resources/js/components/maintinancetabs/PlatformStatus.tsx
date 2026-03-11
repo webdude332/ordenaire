@@ -394,7 +394,7 @@ const PlatformStatus = () => {
                                                 item.status,
                                             )}
                                             withDot={true}
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {item.status}
                                         </Badge>
@@ -402,7 +402,7 @@ const PlatformStatus = () => {
                                     <TableCell className="text-gray-500">
                                         {item.duration}
                                     </TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell className="flex justify-end">
                                         <ActionButton
                                             onClick={() => {
                                                 setSelectedIncident(item);

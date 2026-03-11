@@ -76,92 +76,106 @@ export default function DeliveryReportModal({
                     </h2>
                 </div>
 
-                {/* ── Stats Cards ─────────────────────────────────────── */}
-                <div className="mb-4 grid grid-cols-3 gap-4">
-                    <div className="rounded-xl border border-gray-200 p-4">
-                        <p className="mb-1 text-sm text-gray-500">
-                            Total Audience
-                        </p>
-                        <p className="text-2xl font-semibold text-gray-900">
-                            {totalAudience.toLocaleString()}
-                        </p>
-                        <p className="mt-1 text-xs text-gray-400">Recipients</p>
-                    </div>
-                    <div className="rounded-xl border border-gray-200 p-4">
-                        <p className="mb-2 text-sm text-gray-500">
-                            Success Rate
-                        </p>
-                        <Badge
-                            variant={getSuccessRateVariant(successRate)}
-                            withDot={true}
-                            rounded="full"
-                        >
-                            {successRate}
-                        </Badge>
-                        <p className="mt-2 text-xs text-gray-400">
-                            Delivered Successfully
-                        </p>
-                    </div>
-                    <div className="rounded-xl border border-gray-200 p-4">
-                        <p className="mb-1 text-sm text-gray-500">Engagement</p>
-                        <p className="text-2xl font-semibold text-gray-900">
-                            {engagementPct}%
-                        </p>
-                        <p className="mt-1 text-xs text-gray-400">
-                            Opened Message
-                        </p>
-                    </div>
-                </div>
-
-                {/* ── Channel Breakdown + Message Preview ─────────────── */}
-                <div className="rounded-xl border border-gray-200 p-5">
-                    {/* Channel Breakdown */}
-                    <div className="mb-5">
-                        <div className="mb-3 flex items-center gap-2">
-                            <Link2 className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
-                                Channel Breakdown
-                            </h3>
+                <div className="rounded-xl border border-borderColor p-4">
+                    {/* ── Stats Cards ─────────────────────────────────────── */}
+                    <div className="mb-4 grid grid-cols-3 gap-4">
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <p className="mb-1 text-sm text-gray-500">
+                                Total Audience
+                            </p>
+                            <p className="text-2xl font-semibold text-gray-900">
+                                {totalAudience.toLocaleString()}
+                            </p>
+                            <p className="mt-1 text-xs text-gray-400">
+                                Recipients
+                            </p>
                         </div>
-                        <div className="space-y-1.5">
-                            <div className="grid grid-cols-3 text-sm">
-                                <span className="text-gray-700">Email</span>
-                                <span className="text-gray-500">800 Sent</span>
-                                <span className="text-gray-500">
-                                    42% Opened
-                                </span>
-                            </div>
-                            <div className="grid grid-cols-3 text-sm">
-                                <span className="text-gray-700">
-                                    Mobile Push
-                                </span>
-                                <span className="text-gray-500">450 Sent</span>
-                                <span className="text-gray-500">
-                                    12% Clicked
-                                </span>
-                            </div>
-                            <div className="grid grid-cols-3 text-sm">
-                                <span className="text-gray-700">Failures</span>
-                                <span className="text-gray-500">20 Users</span>
-                                <span />
-                            </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <p className="mb-2 text-sm text-gray-500">
+                                Success Rate
+                            </p>
+                            <Badge
+                                variant={getSuccessRateVariant(successRate)}
+                                withDot={true}
+                                rounded="full"
+                            >
+                                {successRate}
+                            </Badge>
+                            <p className="mt-2 text-xs text-gray-400">
+                                Delivered Successfully
+                            </p>
+                        </div>
+                        <div className="rounded-xl border border-gray-200 p-4">
+                            <p className="mb-1 text-sm text-gray-500">
+                                Engagement
+                            </p>
+                            <p className="text-2xl font-semibold text-gray-900">
+                                {engagementPct}%
+                            </p>
+                            <p className="mt-1 text-xs text-gray-400">
+                                Opened Message
+                            </p>
                         </div>
                     </div>
 
-                    <hr className="border-gray-200" />
-
-                    {/* Message Preview */}
-                    <div className="mt-5">
-                        <div className="mb-2 flex items-center gap-2">
-                            <Clipboard className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
-                                Message Preview
-                            </h3>
+                    {/* ── Channel Breakdown + Message Preview ─────────────── */}
+                    <div className="rounded-xl border border-borderColor bg-gray-100 p-5">
+                        {/* Channel Breakdown */}
+                        <div className="mb-5">
+                            <div className="mb-3 flex items-center gap-2">
+                                <Link2 className="h-4 w-4 text-gray-700" />
+                                <h3 className="text-sm font-semibold text-gray-900">
+                                    Channel Breakdown
+                                </h3>
+                            </div>
+                            <div className="space-y-1.5">
+                                <div className="grid grid-cols-3 text-sm">
+                                    <span className="text-gray-700">Email</span>
+                                    <span className="text-gray-500">
+                                        800 Sent
+                                    </span>
+                                    <span className="text-gray-500">
+                                        42% Opened
+                                    </span>
+                                </div>
+                                <div className="grid grid-cols-3 text-sm">
+                                    <span className="text-gray-700">
+                                        Mobile Push
+                                    </span>
+                                    <span className="text-gray-500">
+                                        450 Sent
+                                    </span>
+                                    <span className="text-gray-500">
+                                        12% Clicked
+                                    </span>
+                                </div>
+                                <div className="grid grid-cols-3 text-sm">
+                                    <span className="text-gray-700">
+                                        Failures
+                                    </span>
+                                    <span className="text-gray-500">
+                                        20 Users
+                                    </span>
+                                    <span />
+                                </div>
+                            </div>
                         </div>
-                        <p className="text-sm text-gray-600">
-                            {log.messagePreview ??
-                                'Hey! The new Split Bill feature is live. Update your app now...'}
-                        </p>
+
+                        <hr className="h-3 border-gray-900" />
+
+                        {/* Message Preview */}
+                        <div className="mt-5">
+                            <div className="mb-2 flex items-center gap-2">
+                                <Clipboard className="h-4 w-4 text-gray-700" />
+                                <h3 className="text-sm font-semibold text-gray-900">
+                                    Message Preview
+                                </h3>
+                            </div>
+                            <p className="text-sm text-gray-600">
+                                {log.messagePreview ??
+                                    'Hey! The new Split Bill feature is live. Update your app now...'}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

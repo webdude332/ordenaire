@@ -150,6 +150,7 @@ export default function EditScheduleMaintenanceModal({
                                     value={totalDuration}
                                     placeholder="Auto-calculated"
                                     className="bg-gray-50 text-gray-500"
+                                    disabled={true}
                                 />
                             </div>
                         </div>
@@ -181,7 +182,7 @@ export default function EditScheduleMaintenanceModal({
                             </div>
                         </div>
 
-                        <div>
+                        <div className="w-1/2">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Region / Zone
                             </Label>

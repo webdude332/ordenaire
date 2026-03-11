@@ -19,8 +19,6 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface MaintenanceItem {
     id: number;
     date: string;
@@ -30,8 +28,6 @@ interface MaintenanceItem {
     version: string;
     status: 'In Progress' | 'Scheduled' | 'Completed' | 'Cancelled';
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 const MaintenanceScheduling = () => {
     const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
@@ -99,7 +95,7 @@ const MaintenanceScheduling = () => {
                     </Button>
                 </div>
 
-                <TableContainerOne>
+                <TableContainerOne className="rounded-b-xl">
                     <Table>
                         <TableHeader>
                             <TableHead className="font-semibold text-gray-600">

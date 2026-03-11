@@ -1,6 +1,6 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
-import { Input, Label } from '@/components/ui/FormElements';
+import { Checkbox, Input, Label } from '@/components/ui/FormElements';
 import { Calendar, Plus } from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
@@ -120,7 +120,7 @@ export default function ReportIncidentModal({
                         </div>
 
                         {/* Affected Platform */}
-                        <div>
+                        <div className="w-1/2">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Affected Platform
                             </Label>
@@ -176,19 +176,13 @@ export default function ReportIncidentModal({
 
                     {/* ── Display on Login Screen ──────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-4">
-                        <label className="flex cursor-pointer items-center gap-3">
-                            <input
-                                type="checkbox"
-                                checked={displayOnLoginScreen}
-                                onChange={(e) =>
-                                    setDisplayOnLoginScreen(e.target.checked)
-                                }
-                                className="h-4 w-4 rounded border-gray-300 accent-[#84cc16]"
-                            />
-                            <span className="text-sm text-gray-700">
-                                Display this alert on the Merchant Login Screen?
-                            </span>
-                        </label>
+                        <Checkbox
+                            label="Display this alert on the Merchant Login Screen?"
+                            checked={displayOnLoginScreen}
+                            onChange={(e) =>
+                                setDisplayOnLoginScreen(e.target.checked)
+                            }
+                        />
                     </div>
                 </div>
             </div>
