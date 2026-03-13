@@ -1,6 +1,11 @@
 import Badge from '@/components/Badge';
+import Download from '@/images/icons/donwloadgreen.svg?react';
+import SearchIcon from '@/images/icons/inputSearch.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import { ChevronDown, Download, Search, Sparkles, Trophy } from 'lucide-react';
+import Sparkles from '@/images/icons/sparkles.svg?react';
+import TrendIcon from '@/images/icons/trendGreen.svg?react';
+import Trophy from '@/images/icons/trophy.svg?react';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import {
     Table,
@@ -12,6 +17,8 @@ import {
     TableRow,
 } from '../OuterTable';
 import Pagination from '../Pagination';
+import { Input } from '../ui/FormElements';
+import { IconCard } from '../ui/IconCard';
 
 type AppStatus = 'Active' | 'Maintenance' | 'Inactive';
 
@@ -90,72 +97,42 @@ export default function AnalyticsGrowth() {
                     Analytics Panel
                 </h2>
                 <div className="grid grid-cols-3 gap-4">
-                    <div className="flex items-start gap-4 rounded-xl border border-gray-200 p-5">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                            <Download className="h-5 w-5 text-gray-600" />
-                        </div>
-                        <div>
-                            <p className="text-sm text-gray-500">
-                                Active Installations
-                            </p>
-                            <p className="mt-0.5 text-2xl font-bold text-gray-900">
-                                12,540
-                            </p>
-                            <p className="mt-0.5 flex items-center gap-1 text-xs text-green-600">
-                                <span>↗ 8.2%</span>
-                                <span className="text-gray-400">
-                                    vs last month
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-4 rounded-xl border border-gray-200 p-5">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                            <Trophy className="h-5 w-5 text-gray-600" />
-                        </div>
-                        <div>
-                            <p className="text-sm text-gray-500">
-                                Top Performing App
-                            </p>
-                            <p className="mt-0.5 text-2xl font-bold text-gray-900">
-                                QuickPay
-                            </p>
-                            <p className="mt-0.5 text-xs text-gray-400">
-                                35% of total installs
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-4 rounded-xl border border-gray-200 p-5">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                            <Sparkles className="h-5 w-5 text-gray-600" />
-                        </div>
-                        <div>
-                            <p className="text-sm text-gray-500">
-                                New Installs (Last 30 Days)
-                            </p>
-                            <p className="mt-0.5 text-2xl font-bold text-gray-900">
-                                850
-                            </p>
-                            <p className="mt-0.5 flex items-center gap-1 text-xs text-green-600">
-                                <span>↗ 12%</span>
-                                <span className="text-gray-400">
-                                    vs last month
-                                </span>
-                            </p>
-                        </div>
-                    </div>
+                    <IconCard
+                        icon={Download}
+                        title="Active Installations"
+                        value="12,540"
+                        trendIcon={TrendIcon}
+                        trendValue="8.2 %"
+                        description="vs last month"
+                    />
+                    <IconCard
+                        icon={Trophy}
+                        title="Top performing App"
+                        value="Quick Pay"
+                        // trendIcon={TrendIcon}
+                        trendValue=""
+                        description="35% of total installs"
+                    />
+                    <IconCard
+                        icon={Sparkles}
+                        title="New Installs "
+                        value="850"
+                        trendIcon={TrendIcon}
+                        trendValue="12 %"
+                        description="vs last month"
+                    />
                 </div>
             </div>
 
             {/* ── Filters ───────────────────────────────────────────── */}
             <div className="flex items-center justify-between">
                 <div className="relative">
-                    <Search className="pointer-events-none absolute inset-y-0 left-3 my-auto h-4 w-4 text-gray-400" />
-                    <input
+                    <Input
+                        className=""
+                        placeholder="Search"
+                        icon={SearchIcon}
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Search apps..."
-                        className="w-60 rounded-lg border border-gray-300 py-2 pr-3 pl-9 text-sm outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
                     />
                 </div>
                 <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
@@ -167,7 +144,7 @@ export default function AnalyticsGrowth() {
             {/* ── App Performance Report ────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
-                    <h2 className="text-base font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         App Performance Report
                     </h2>
                 </div>
@@ -223,7 +200,7 @@ export default function AnalyticsGrowth() {
                                         <Badge
                                             variant={statusVariant(app.status)}
                                             withDot
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {app.status}
                                         </Badge>

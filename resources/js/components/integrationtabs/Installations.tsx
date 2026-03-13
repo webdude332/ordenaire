@@ -1,7 +1,7 @@
 import Badge from '@/components/Badge';
-import Button from '@/components/ui/Button';
+import Menu from '@/images/icons/menuVertical.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import { MoreVertical, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useState } from 'react';
 import {
     Table,
@@ -13,6 +13,8 @@ import {
     TableRow,
 } from '../OuterTable';
 import Pagination from '../Pagination';
+import ActionButton from '../ui/ActionButton';
+import IconButton from '../ui/IconButton';
 
 type InstallStatus = 'Pending' | 'Active' | 'Cancelled';
 
@@ -98,7 +100,7 @@ export default function Installations() {
                                     Status <SelectorIcon />
                                 </div>
                             </TableHead>
-                            <TableHead className="font-semibold text-gray-600">
+                            <TableHead className="text-right font-semibold text-gray-600">
                                 Actions
                             </TableHead>
                         </TableHeader>
@@ -123,20 +125,20 @@ export default function Installations() {
                                         <Badge
                                             variant={statusVariant(item.status)}
                                             withDot
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {item.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className="flex justify-end">
                                         {item.status === 'Pending' && (
                                             <div className="flex items-center gap-2">
-                                                <Button className="!px-3 !py-1.5 text-xs">
-                                                    Mark as Done
-                                                </Button>
-                                                <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-gray-50">
-                                                    <MoreVertical className="h-4 w-4" />
-                                                </button>
+                                                <IconButton>
+                                                    Mark as done
+                                                </IconButton>
+                                                <ActionButton>
+                                                    <Menu />
+                                                </ActionButton>
                                             </div>
                                         )}
                                     </TableCell>

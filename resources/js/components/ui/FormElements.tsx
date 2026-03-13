@@ -31,7 +31,7 @@ export const Input = ({
     placeholder, 
     value,
     onChange,
-    onBlur, // NEW: Added onBlur support
+    onBlur,
     disabled,
     icon, 
     iconClassName = 'text-gray-400',

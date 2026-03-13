@@ -1,9 +1,16 @@
 import Badge from '@/components/Badge';
+import AddAppModal from '@/components/Modals/AddAppModal';
+import EditAppModal from '@/components/Modals/EditAppModal';
 import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
+import Download from '@/images/icons/donwloadgreen.svg?react';
+import SearchIcon from '@/images/icons/inputSearch.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
+import Publish from '@/images/icons/publish.svg?react';
+import Revenue from '@/images/icons/revenuegreen.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import { Download, Plus, Search, ShoppingBag, Wallet } from 'lucide-react';
+import TrendIcon from '@/images/icons/trendGreen.svg?react';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import {
     Table,
@@ -15,6 +22,8 @@ import {
     TableRow,
 } from '../OuterTable';
 import Pagination from '../Pagination';
+import { Input } from '../ui/FormElements';
+import { IconCard } from '../ui/IconCard';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -103,6 +112,9 @@ const statusVariant = (s: AppStatus) =>
 
 export default function Overview() {
     const [search, setSearch] = useState('');
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedApp, setSelectedApp] = useState<AppItem | null>(null);
 
     const filtered = CATALOGUE.filter((a) =>
         a.name.toLowerCase().includes(search.toLowerCase()),
@@ -112,71 +124,45 @@ export default function Overview() {
         <div className="space-y-6">
             {/* ── Stat Cards ───────────────────────────────────────── */}
             <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-start gap-4 rounded-xl border border-gray-200 p-5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                        <ShoppingBag className="h-5 w-5 text-gray-600" />
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-500">
-                            Total Published Apps
-                        </p>
-                        <p className="mt-0.5 text-2xl font-bold text-gray-900">
-                            145
-                        </p>
-                        <p className="mt-0.5 text-xs text-gray-400">
-                            12 New this month
-                        </p>
-                    </div>
-                </div>
-                <div className="flex items-start gap-4 rounded-xl border border-gray-200 p-5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                        <Download className="h-5 w-5 text-gray-600" />
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-500">
-                            Active Installations
-                        </p>
-                        <p className="mt-0.5 text-2xl font-bold text-gray-900">
-                            142,540
-                        </p>
-                        <p className="mt-0.5 flex items-center gap-1 text-xs text-green-600">
-                            <span>↗ 8.2%</span>
-                            <span className="text-gray-400">vs last month</span>
-                        </p>
-                    </div>
-                </div>
-                <div className="flex items-start gap-4 rounded-xl border border-gray-200 p-5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
-                        <Wallet className="h-5 w-5 text-gray-600" />
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-500">
-                            Marketplace Revenue (MTD)
-                        </p>
-                        <p className="mt-0.5 text-2xl font-bold text-gray-900">
-                            KWD 42,000
-                        </p>
-                        <p className="mt-0.5 flex items-center gap-1 text-xs text-green-600">
-                            <span>↗ 12%</span>
-                            <span className="text-gray-400">vs last month</span>
-                        </p>
-                    </div>
-                </div>
+                <IconCard
+                    icon={Publish}
+                    title="Total Subscribers"
+                    value="71,897"
+                    description="12 New This Month"
+                />
+                <IconCard
+                    icon={Download}
+                    title="Active Installations"
+                    value="142,540"
+                    trendIcon={TrendIcon}
+                    trendValue="8.2 %"
+                    description=" vs last Month"
+                />
+                <IconCard
+                    icon={Revenue}
+                    title="Market Place Revenew (MTD)"
+                    value="KWD 42,000"
+                    trendIcon={TrendIcon}
+                    trendValue="12 %"
+                    description="VS Last Month"
+                />
             </div>
 
             {/* ── Top Performing Apps ───────────────────────────────── */}
             <div>
-                <h2 className="mb-3 text-base font-semibold text-gray-900">
+                <h2 className="mb-3 text-lg font-semibold text-gray-900">
                     Top Performing Apps
                 </h2>
                 <div className="grid grid-cols-4 gap-4">
                     {TOP_APPS.map((app) => (
                         <div
                             key={app.name}
-                            className="rounded-xl border border-gray-200 p-4"
+                            className="rounded-xl border border-gray-200 p-5"
                         >
-                            <p className="text-sm text-gray-500">{app.name}</p>
-                            <p className="mt-1 text-xl font-bold text-gray-900">
+                            <p className="text-sm font-medium text-gray-500">
+                                {app.name}
+                            </p>
+                            <p className="mt-1 text-xl font-semibold text-gray-900">
                                 {app.installs} Installs
                             </p>
                         </div>
@@ -184,23 +170,23 @@ export default function Overview() {
                 </div>
             </div>
 
-            {/* ── App Catalogue ─────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-base font-semibold text-gray-900">
+                    <h2 className="shrink-0 text-lg font-semibold text-gray-900">
                         App Catalogue
                     </h2>
                     <div className="flex items-center gap-3">
-                        <div className="relative">
-                            <Search className="pointer-events-none absolute inset-y-0 left-3 my-auto h-4 w-4 text-gray-400" />
-                            <input
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                placeholder="Search"
-                                className="rounded-lg border border-gray-300 py-2 pr-3 pl-9 text-sm outline-none focus:border-[#84cc16] focus:ring-1 focus:ring-[#84cc16]"
-                            />
-                        </div>
-                        <Button>
+                        <Input
+                            className=""
+                            placeholder="Search"
+                            icon={SearchIcon}
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <Button
+                            className="flex shrink-0 items-center py-2.5 whitespace-nowrap"
+                            onClick={() => setIsAddModalOpen(true)}
+                        >
                             <Plus className="mr-1.5 h-4 w-4" />
                             Add New App
                         </Button>
@@ -265,7 +251,12 @@ export default function Overview() {
                                         {app.lastUpdated}
                                     </TableCell>
                                     <TableCell>
-                                        <ActionButton>
+                                        <ActionButton
+                                            onClick={() => {
+                                                setSelectedApp(app);
+                                                setIsEditModalOpen(true);
+                                            }}
+                                        >
                                             <PencilIcon className="h-4 w-4 text-gray-400" />
                                         </ActionButton>
                                     </TableCell>
@@ -276,6 +267,26 @@ export default function Overview() {
                 </TableContainerOne>
                 <Pagination />
             </div>
+
+            {/* ── Modals ─────────────────────────────────────────────── */}
+            <AddAppModal
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
+                onConfirm={() => setIsAddModalOpen(false)}
+            />
+
+            <EditAppModal
+                isOpen={isEditModalOpen}
+                onClose={() => {
+                    setIsEditModalOpen(false);
+                    setSelectedApp(null);
+                }}
+                onConfirm={() => {
+                    setIsEditModalOpen(false);
+                    setSelectedApp(null);
+                }}
+                app={selectedApp}
+            />
         </div>
     );
 }

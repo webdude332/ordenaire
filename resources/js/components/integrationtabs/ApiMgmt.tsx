@@ -15,6 +15,7 @@ import {
     TableRow,
 } from '../OuterTable';
 import Pagination from '../Pagination';
+import IconButton from '../ui/IconButton';
 
 // ─── Token data ───────────────────────────────────────────────────────────────
 
@@ -127,7 +128,7 @@ export default function ApiMgmt() {
                                     Status <SelectorIcon />
                                 </div>
                             </TableHead>
-                            <TableHead className="font-semibold text-gray-600">
+                            <TableHead className="text-right font-semibold text-gray-600">
                                 Actions
                             </TableHead>
                         </TableHeader>
@@ -154,21 +155,17 @@ export default function ApiMgmt() {
                                                     : 'error'
                                             }
                                             withDot
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {token.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className="flex justify-end">
                                         {token.status === 'Active' ? (
-                                            <Button className="!px-3 !py-1.5 text-xs">
-                                                Revoke
-                                            </Button>
+                                            <IconButton>Revoke</IconButton>
                                         ) : (
                                             <div className="flex items-center gap-2">
-                                                <Button className="!px-3 !py-1.5 text-xs">
-                                                    Restore
-                                                </Button>
+                                                <IconButton>Restore</IconButton>
                                                 <ActionButton>
                                                     <DelIcon className="h-4 w-4 text-gray-400" />
                                                 </ActionButton>
@@ -213,7 +210,7 @@ export default function ApiMgmt() {
                                     Last Ping <SelectorIcon />
                                 </div>
                             </TableHead>
-                            <TableHead className="font-semibold text-gray-600">
+                            <TableHead className="text-right font-semibold text-gray-600">
                                 Actions
                             </TableHead>
                         </TableHeader>
@@ -239,7 +236,7 @@ export default function ApiMgmt() {
                                                     : 'error'
                                             }
                                             withDot
-                                            rounded="full"
+                                            rounded="md"
                                         >
                                             {wh.statusLabel}
                                         </Badge>
@@ -248,10 +245,8 @@ export default function ApiMgmt() {
                                         {wh.lastPing}
                                     </TableCell>
                                     <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Button className="!px-3 !py-1.5 text-xs">
-                                                Test
-                                            </Button>
+                                        <div className="flex items-center justify-end gap-2">
+                                            <IconButton>Test</IconButton>
                                             <ActionButton>
                                                 <PencilIcon className="h-4 w-4 text-gray-400" />
                                             </ActionButton>
