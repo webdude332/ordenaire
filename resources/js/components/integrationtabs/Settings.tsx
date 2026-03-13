@@ -2,8 +2,9 @@ import ActionButton from '@/components/ui/ActionButton';
 import Button from '@/components/ui/Button';
 import IconButton from '@/components/ui/IconButton';
 import DelIcon from '@/images/icons/delIcon.svg?react';
+import GripVertical from '@/images/icons/dots-grid.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
-import { GripVertical, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
 
 interface Category {
@@ -50,11 +51,11 @@ export default function Settings() {
                 {/* Right card */}
                 <div className="flex-1 rounded-xl border border-gray-200">
                     {/* Table header */}
-                    <div className="grid grid-cols-[1fr_auto] border-b border-gray-100 px-4 py-3">
-                        <span className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
+                    <div className="grid grid-cols-[1fr_auto] rounded-t-xl border-b border-gray-100 bg-gray-100 px-4 py-3">
+                        <span className="text-xs font-semibold text-gray-500">
                             Category Name
                         </span>
-                        <span className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
+                        <span className="text-xs font-semibold text-gray-500">
                             Actions
                         </span>
                     </div>
