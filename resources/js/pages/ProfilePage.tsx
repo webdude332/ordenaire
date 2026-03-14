@@ -88,10 +88,6 @@ const ProfilePage = () => {
                             <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
                             Back to User Profiles
                         </Link>
-                        {/* <IconButton className='flex gap-3'>
-                            <BackArrow className="h-4 w-4 text-[#B5B0BA]" />
-                            Back to User Profiles
-                        </IconButton> */}
                     </div>
 
                     {/* --- PROFILE CARD SECTION --- */}
@@ -398,7 +394,6 @@ const ProfilePage = () => {
             <PasswordConfirmModal
                 isOpen={isSuccessModalOpen}
                 onClose={() => setIsSuccessModalOpen(false)}
-                // onAdd={handleAddNewDocument}
             />
         </div>
     );

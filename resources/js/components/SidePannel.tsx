@@ -188,37 +188,46 @@ export default function SidePannel() {
 
             {/* --- 4. FOOTER --- */}
             <div className="border-gray-200 bg-white p-4">
-                <a
-                    href="#"
+                {/* <a
+                    href=""
                     className="mb-1 flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
                 >
                     <img src={settingIcon} alt="" />
                     Settings
-                </a>
-                <div className="group mt-2 flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-2 shadow-sm transition-colors hover:bg-gray-50">
-                    <div className="flex items-center">
-                        {/* 1. Image Container with Relative Positioning */}
-                        <div className="relative">
-                            <img
-                                src={profileImg}
-                                alt="User"
-                                className="h-10 w-10 rounded-full object-cover"
-                            />
-                            {/* 2. Green Status Dot */}
-                            <span className="absolute right-0 bottom-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white" />
-                        </div>
+                </a> */}
+                <Link
+                    href="/settings"
+                    className="mb-1 flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+                >
+                    <img src={settingIcon} alt="" />
+                    Settings
+                </Link>
+                <Link href="/myprofile">
+                    <div className="group mt-2 flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-2 shadow-sm transition-colors hover:bg-gray-50">
+                        <div className="flex items-center">
+                            {/* 1. Image Container with Relative Positioning */}
+                            <div className="relative">
+                                <img
+                                    src={profileImg}
+                                    alt="User"
+                                    className="h-10 w-10 rounded-full object-cover"
+                                />
+                                {/* 2. Green Status Dot */}
+                                <span className="absolute right-0 bottom-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white" />
+                            </div>
 
-                        {/* 3. Text Details */}
-                        <div className="ml-3">
-                            <p className="text-sm font-semibold text-gray-700">
-                                Olivia Rhye
-                            </p>
-                            <p className="text-xs text-gray-500">
-                                olivia@untitledui.com
-                            </p>
+                            {/* 3. Text Details */}
+                            <div className="ml-3">
+                                <p className="text-sm font-semibold text-gray-700">
+                                    Olivia Rhye
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                    olivia@untitledui.com
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Link>
             </div>
         </aside>
     );

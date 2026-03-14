@@ -62,9 +62,7 @@ Route::get('my-tickets', function () {
     return Inertia::render('MyTickets');
 })->name('my.tickets');
 
-Route::get('settings', function () {
-    return Inertia::render('SettingsPage');
-})->name('settings');
+
 
 Route::get('reportspage', function () {
     return Inertia::render('ReportsPage');
@@ -139,3 +137,12 @@ Route::get('subscription-and-billing/subscriptionprofile', function () {
 })->name('subscription-and-billing.subscriptionprofile');
 
 require __DIR__.'/settings.php';
+
+// unprotected for the time beign, 
+Route::get('settings', function () {
+    return Inertia::render('SettingsPage');
+})->name('settings');
+
+Route::get('myprofile', function () {
+    return Inertia::render('MyProfile');
+})->name('myprofile');
