@@ -139,6 +139,7 @@ export default function AllRequests() {
         {
             key: 'all' as const,
             label: 'All Requests',
+
             count: ALL_REQUESTS.length,
         },
         { key: 'subscriptions' as const, label: 'New Subscriptions' },

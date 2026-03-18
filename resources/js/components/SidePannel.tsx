@@ -58,10 +58,11 @@ const MENU_ITEMS = [
         route: '/communication-management',
     },
     {
-        label: 'Marketplace & Integrations',
+        label: 'Marketplace & Apps',
         icon: linkIcon,
         hasSubmenu: true,
-        route: '/marketplace-and-intigrations',
+        badge: 10,
+        route: '/marketplace-and-apps',
     },
     {
         label: 'Manage Approvals',

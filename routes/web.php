@@ -50,9 +50,9 @@ Route::get('communication-management', function () {
     return Inertia::render('CommunicationManagement');
 })->name('communication.management');
 
-Route::get('marketplace-and-intigrations', function () {
+Route::get('marketplace-and-apps', function () {
     return Inertia::render('MarketplaceAndIntigrations');
-})->name('marketplace.and.intigrations');
+})->name('marketplace.and.apps');
 
 Route::get('manage-approvals', function () {
     return Inertia::render('ManageApprovals');

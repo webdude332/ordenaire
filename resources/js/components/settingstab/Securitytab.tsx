@@ -4,7 +4,8 @@ import CustomDropdown from '@/components/ui/CustomDropdown';
 import IconButton from '@/components/ui/IconButton';
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import { Info } from 'lucide-react';
+// import { Info } from 'lucide-react';
+import Info from '@/images/icons/infoRing.svg?react';
 import { useState } from 'react';
 import {
     Table,
@@ -137,8 +138,8 @@ export default function SecurityTab() {
                             from a new device.
                         </p>
                     </div>
-                    <div className="flex items-start gap-2.5 rounded-lg border border-gray-200 px-4 py-3">
-                        <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-gray-400" />
+                    <div className="flex items-center gap-2.5 rounded-lg border border-gray-200 px-4 py-3">
+                        <Info className="mt-0.5 h-8 w-8 flex-shrink-0 text-gray-400" />
                         <p className="text-sm text-gray-600">
                             <span className="font-semibold">Note:</span> Ensure
                             you have access to your registered email before
@@ -184,7 +185,7 @@ export default function SecurityTab() {
                         <IconButton>Sign out of all other devices</IconButton>
                     </div>
                     <div className="rounded-xl border border-borderColor">
-                        <TableContainerOne>
+                        <TableContainerOne className="rounded-xl">
                             <Table>
                                 <TableHeader>
                                     <TableHead className="font-semibold text-gray-600">

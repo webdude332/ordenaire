@@ -219,7 +219,7 @@ export default function Overview() {
                                     Last Updated <SelectorIcon />
                                 </div>
                             </TableHead>
-                            <TableHead className="font-semibold text-gray-600">
+                            <TableHead className="text-right font-semibold text-gray-600">
                                 Actions
                             </TableHead>
                         </TableHeader>
@@ -250,7 +250,7 @@ export default function Overview() {
                                     <TableCell className="text-gray-500">
                                         {app.lastUpdated}
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className="flex justify-end">
                                         <ActionButton
                                             onClick={() => {
                                                 setSelectedApp(app);

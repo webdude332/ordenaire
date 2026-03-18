@@ -422,7 +422,7 @@ export default function ApiMgmt() {
             {/* ── External Access Tokens ────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-base font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         External Access Tokens
                     </h2>
                     <Button onClick={() => setIsGenerateOpen(true)}>
@@ -523,7 +523,7 @@ export default function ApiMgmt() {
             {/* ── Event Subscriptions (Webhooks) ────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-base font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         Event Subscriptions (Webhooks)
                     </h2>
                     <Button onClick={() => setIsAddWebhookOpen(true)}>

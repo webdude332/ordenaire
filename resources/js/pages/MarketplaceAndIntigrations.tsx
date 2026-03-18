@@ -58,8 +58,8 @@ export default function MarketplaceAndIntegrations() {
 
     const breadcrumbs = [
         {
-            label: 'Marketplace & Integrations',
-            href: '/marketplace-and-integrations',
+            label: 'Marketplace & Apps',
+            href: '/marketplace-and-apps',
         },
         {
             label: getTabLabel(activeTab),
@@ -82,6 +82,7 @@ export default function MarketplaceAndIntegrations() {
             label: 'Installations',
             isActive: activeTab === 'installations',
             onClick: () => setActiveTab('installations'),
+            badge: 0o2,
         },
         {
             label: 'Monetization & Pricing',

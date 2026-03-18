@@ -221,7 +221,7 @@ import AppPrice from '@/images/icons/appprice.svg?react';
 import Card from '@/images/icons/cardgreen.svg?react';
 import Grid from '@/images/icons/gridgreen.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
-import { ChevronDown, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useState } from 'react';
 import {
     Table,
@@ -233,6 +233,7 @@ import {
     TableRow,
 } from '../OuterTable';
 import Pagination from '../Pagination';
+import CustomDropdown from '../ui/CustomDropdown';
 import { IconCard } from '../ui/IconCard';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -309,6 +310,20 @@ export default function Monitizations() {
         d.name.toLowerCase().includes(search.toLowerCase()),
     );
 
+    const [selectedPricing, setSelectedPricing] = useState<string>('all');
+    const [selectedStatus, setSelectedStatus] = useState<string>('live_apps');
+
+    const pricingOptions = [
+        { label: 'Pricing: All', value: 'all' },
+        { label: 'Free Tier', value: 'free_tier' },
+        { label: 'Recurring (Subscription)', value: 'recurring' },
+        { label: 'One-Time License', value: 'one_time' },
+    ];
+    const statusOptions = [
+        { label: 'Status: Live apps', value: 'live_apps' },
+        { label: 'Hidden apps', value: 'hidden_apps' },
+    ];
+
     return (
         <div className="space-y-6">
             {/* ── Stat Cards ───────────────────────────────────────── */}
@@ -339,14 +354,20 @@ export default function Monitizations() {
                     />
                 </div>
                 <div className="flex items-center gap-2">
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                        Pricing: All{' '}
-                        <ChevronDown className="h-4 w-4 text-gray-400" />
-                    </button>
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                        Status: Live Apps{' '}
-                        <ChevronDown className="h-4 w-4 text-gray-400" />
-                    </button>
+                    <CustomDropdown
+                        label=""
+                        options={pricingOptions}
+                        value={selectedPricing}
+                        onChange={(newValue) => setSelectedPricing(newValue)}
+                        placeholder=""
+                    />
+                    <CustomDropdown
+                        label=""
+                        options={statusOptions}
+                        value={selectedStatus}
+                        onChange={(newValue) => setSelectedStatus(newValue)}
+                        placeholder=""
+                    />
                 </div>
             </div>
 
@@ -412,7 +433,7 @@ export default function Monitizations() {
                                                 ).map((o, i) => (
                                                     <span
                                                         key={i}
-                                                        className="flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700"
+                                                        className="flex items-center gap-1 px-2.5 py-2 text-xs font-medium text-gray-700"
                                                     >
                                                         <span>{o.flag}</span>
                                                         <span>

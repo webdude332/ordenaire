@@ -1,8 +1,10 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
+import patternBg from '@/images/icons/patternBg.svg';
 import {
     Bold,
     Clipboard,
+    Eye,
     Image,
     Italic,
     Link,
@@ -93,7 +95,7 @@ export default function TicketsDetailModal({
             <div className="p-6 sm:p-8">
                 {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
-                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
+                    {/* <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5 text-gray-700"
@@ -113,6 +115,29 @@ export default function TicketsDetailModal({
                                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                             />
                         </svg>
+                    </div> */}
+                    <div className="mb-5">
+                        <div className="relative mb-6 flex items-start gap-4">
+                            <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                                <img
+                                    src={patternBg}
+                                    alt=""
+                                    className="max-w-none"
+                                    style={{
+                                        transform: 'scale(1.1)',
+                                        opacity: 0.7,
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                    <Eye className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        {/* <h2 className="text-base font-semibold text-gray-900">
+                        Add App to Marketplace
+                    </h2> */}
                     </div>
                     <h2 className="text-base font-semibold text-gray-900">
                         Ticket #{ticket.ticketId}: {ticket.subject}
@@ -125,35 +150,35 @@ export default function TicketsDetailModal({
                 {/* ── Top section: Description + Controls ─────────────── */}
                 <div className="mb-4 grid grid-cols-5 gap-4">
                     {/* Description (3/5) */}
-                    <div className="col-span-3 rounded-xl border border-gray-200 p-5">
+                    <div className="col-span-3 rounded-xl border border-gray-200 bg-gray-100 p-5">
                         <div className="mb-3 flex items-center gap-2">
-                            <Clipboard className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
+                            <Clipboard className="h-6 w-6 text-gray-700" />
+                            <h3 className="text-lg font-semibold text-gray-900">
                                 Description
                             </h3>
                         </div>
-                        <p className="mb-5 text-sm text-gray-600">
+                        <p className="mb-5 pl-8 text-sm text-gray-600">
                             We are trying to punch in orders but the screen
                             keeps showing 'Network Error 503'. Our internet is
                             working fine on other devices. Please help, we have
                             a queue of customers!
                         </p>
                         <div className="flex items-center gap-2">
-                            <Paperclip className="h-4 w-4 text-gray-700" />
-                            <h3 className="text-sm font-semibold text-gray-900">
+                            <Paperclip className="h-6 w-6 text-gray-700" />
+                            <h3 className="text-lg font-semibold text-gray-900">
                                 Attachments
                             </h3>
                         </div>
                         <a
                             href="#"
-                            className="mt-1 block text-xs text-gray-500 underline"
+                            className="mt-1 block pl-8 text-xs text-gray-500 underline"
                         >
                             Invoice_#0025.pdf
                         </a>
                     </div>
 
                     {/* Controls (2/5) */}
-                    <div className="col-span-2 rounded-xl border border-gray-200 p-5">
+                    <div className="col-span-2 rounded-xl border border-gray-200 bg-gray-100 p-5">
                         <div className="mb-4 flex items-center gap-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

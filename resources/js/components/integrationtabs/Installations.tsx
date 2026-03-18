@@ -68,7 +68,7 @@ export default function Installations() {
         <div>
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
-                    <h2 className="text-base font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900">
                         Installation Requests
                     </h2>
                     <div className="relative">

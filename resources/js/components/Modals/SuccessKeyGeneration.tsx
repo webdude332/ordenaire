@@ -1,6 +1,8 @@
 import Modal from '@/components/Modal';
+import Key from '@/images/icons/key.svg?react';
+import patternBg from '@/images/icons/patternBg.svg';
 import SuccessIcon from '@/images/icons/successIcon.svg?react';
-import { Copy, Eye, EyeOff, Key } from 'lucide-react';
+import { Copy, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
 
@@ -38,9 +40,32 @@ export default function SuccessKeyGeneration({
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
                 {/* Header */}
-                <div className="mb-5">
+                {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Key className="h-4 w-4 text-gray-700" />
+                    </div>
+                    <h2 className="text-base font-semibold text-gray-900">
+                        API Key Generated
+                    </h2>
+                </div> */}
+                <div className="mb-5">
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 0.7,
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <Key className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
+                            </div>
+                        </div>
                     </div>
                     <h2 className="text-base font-semibold text-gray-900">
                         API Key Generated

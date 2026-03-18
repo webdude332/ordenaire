@@ -1,4 +1,7 @@
 import Modal from '@/components/Modal';
+import Eye from '@/images/icons/eyeIcon.svg?react';
+import Meta from '@/images/icons/meta.svg?react';
+import patternBg from '@/images/icons/patternBg.svg';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
@@ -115,7 +118,7 @@ export default function LogDetailModal({
             <div className="p-6 sm:p-8">
                 {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
-                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
+                    {/* <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5 text-gray-700"
@@ -138,7 +141,30 @@ export default function LogDetailModal({
                     </div>
                     <h2 className="mb-1.5 text-base font-semibold text-gray-900">
                         Request Details
-                    </h2>
+                    </h2> */}
+                    <div className="mb-5">
+                        <div className="relative mb-6 flex items-start gap-4">
+                            <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                                <img
+                                    src={patternBg}
+                                    alt=""
+                                    className="max-w-none"
+                                    style={{
+                                        transform: 'scale(1.1)',
+                                        opacity: 0.7,
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                    <Eye className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 text-iconColor shadow-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <h2 className="text-base font-semibold text-gray-900">
+                            Request Details
+                        </h2>
+                    </div>
                     {/* ID + Method + Status row */}
                     <div className="flex items-center gap-2">
                         <span className="text-sm text-gray-500">
@@ -166,7 +192,7 @@ export default function LogDetailModal({
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`pb-3 text-sm font-medium capitalize transition-colors ${
+                            className={`cursor-pointer pb-3 text-sm font-medium capitalize transition-colors ${
                                 activeTab === tab
                                     ? 'border-b-2 border-[#84cc16] text-[#84cc16]'
                                     : 'text-gray-500 hover:text-gray-700'
@@ -182,7 +208,7 @@ export default function LogDetailModal({
                     <div className="rounded-xl bg-gray-50 p-5">
                         <div className="mb-4 flex items-center gap-2">
                             {/* cpu/circuit icon */}
-                            <svg
+                            {/* <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5 text-gray-600"
                                 fill="none"
@@ -195,14 +221,15 @@ export default function LogDetailModal({
                                     strokeLinejoin="round"
                                     d="M9 3H7a2 2 0 00-2 2v2M9 3h6M9 3v2m6-2h2a2 2 0 012 2v2m0 0V7m0 0h-2M3 9v6m0 0v2a2 2 0 002 2h2m-4-4h2m14-8v6m0 0v2a2 2 0 01-2 2h-2m4-4h-2M9 21h6m-6 0v-2m6 2v-2m-6 0H7a2 2 0 01-2-2v-2m14 4h-2a2 2 0 01-2-2v-2"
                                 />
-                            </svg>
-                            <span className="text-base font-semibold text-gray-900">
+                            </svg> */}
+                            <Meta className="h-5 w-5" />
+                            <span className="text-lg font-semibold text-gray-900">
                                 Metadata
                             </span>
                         </div>
 
                         {activeTab === 'request' ? (
-                            <div className="space-y-4">
+                            <div className="space-y-4 pl-6">
                                 <div>
                                     <p className="text-xs text-gray-400">
                                         Timestamp
@@ -237,7 +264,7 @@ export default function LogDetailModal({
                                 </div>
                             </div>
                         ) : (
-                            <div className="space-y-4">
+                            <div className="space-y-4 pl-6">
                                 <div>
                                     <p className="text-xs text-gray-400">
                                         Timestamp

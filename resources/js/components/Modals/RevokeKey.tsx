@@ -1,4 +1,5 @@
 import Modal from '@/components/Modal';
+import patternBg from '@/images/icons/patternBg.svg';
 import { AlertTriangle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
@@ -27,11 +28,34 @@ export default function RevokeKey({
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
                 {/* Header */}
-                <div className="mb-6">
+                {/* <div className="mb-6">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-orange-200 bg-orange-50">
                         <AlertTriangle className="h-5 w-5 text-orange-500" />
                     </div>
                     <h2 className="text-sm font-semibold text-gray-900">
+                        Revoke Access
+                    </h2>
+                </div> */}
+                <div className="mb-5">
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 0.7,
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <AlertTriangle className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 text-[#B45309] shadow-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <h2 className="text-base font-semibold text-gray-900">
                         Revoke Access
                     </h2>
                 </div>

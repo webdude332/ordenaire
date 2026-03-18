@@ -4,6 +4,7 @@ import patternBg from '@/images/icons/patternBg.svg';
 import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
+// import patternBg from '@/images/icons/patternBg.svg';
 
 interface DeleteAccessKeyProps {
     isOpen: boolean;
@@ -29,7 +30,7 @@ export default function DeleteAccessKey({
                 <div className="relative mb-6">
                     <div className="flex flex-col items-start gap-4">
                         <div className="relative z-10 flex h-12 w-12 items-center justify-center">
-                            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                            <div className="pointer-events-none absolute inset-0 top-22 left-22 flex items-center justify-center">
                                 <img
                                     src={patternBg}
                                     alt=""

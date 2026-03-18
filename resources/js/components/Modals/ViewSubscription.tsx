@@ -1,6 +1,8 @@
 import Badge from '@/components/Badge';
 import Modal from '@/components/Modal';
-import { Building2, FileText, Layers, Percent, Rocket } from 'lucide-react';
+import patternBg from '@/images/icons/patternBg.svg';
+import Building2 from '@/images/icons/shopone.svg?react';
+import { Eye, FileText, Layers, Percent, Rocket } from 'lucide-react';
 import Button from '../ui/Button';
 
 interface ApprovalRequest {
@@ -39,7 +41,7 @@ export default function ViewSubscription({
             <div className="p-6 sm:p-8">
                 {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
-                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
+                    {/* <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5 text-gray-700"
@@ -59,6 +61,29 @@ export default function ViewSubscription({
                                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                             />
                         </svg>
+                    </div> */}
+                    <div className="mb-5">
+                        <div className="relative mb-6 flex items-start gap-4">
+                            <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                                <img
+                                    src={patternBg}
+                                    alt=""
+                                    className="max-w-none"
+                                    style={{
+                                        transform: 'scale(1.1)',
+                                        opacity: 0.7,
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                    <Eye className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        {/* <h2 className="text-base font-semibold text-gray-900">
+                        Add App to Marketplace
+                    </h2> */}
                     </div>
                     <div className="flex items-center gap-3">
                         <h2 className="text-base font-semibold text-gray-900">
@@ -79,69 +104,69 @@ export default function ViewSubscription({
                     {/* Left col */}
                     <div className="space-y-4">
                         {/* Business Profile */}
-                        <div className="rounded-xl border border-gray-200 p-5">
+                        <div className="rounded-xl border border-gray-200 bg-gray-100 p-5">
                             <div className="mb-3 flex items-center gap-2">
-                                <Building2 className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
+                                <Building2 className="h-6 w-6 text-gray-700" />
+                                <h3 className="text-lg font-semibold text-gray-900">
                                     Business Profile
                                 </h3>
                             </div>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-8 text-xs font-medium text-gray-500">
                                 Business Name
                             </p>
-                            <p className="mb-1 text-base font-bold text-gray-900">
+                            <p className="mb-1 pl-8 text-base font-bold text-gray-900">
                                 {request.businessName} • {request.bizId}
                             </p>
                             <a
                                 href="#"
-                                className="mb-3 block text-xs text-gray-500 underline"
+                                className="mb-3 block pl-8 text-xs text-gray-500 underline"
                             >
                                 View Business Profile
                             </a>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-8 text-xs font-medium text-gray-500">
                                 Market
                             </p>
-                            <p className="mb-3 text-sm font-bold text-gray-900">
+                            <p className="mb-3 pl-8 text-sm font-bold text-gray-900">
                                 UAE (Base Currency: AED)
                             </p>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-8 text-xs font-medium text-gray-500">
                                 Contract Start
                             </p>
-                            <p className="text-sm font-bold text-gray-900">
+                            <p className="pl-8 text-sm font-bold text-gray-900">
                                 29 Aug 2025
                             </p>
                         </div>
                         {/* Plan Selection */}
-                        <div className="rounded-xl border border-gray-200 p-5">
+                        <div className="rounded-xl border border-gray-200 bg-gray-100 p-5">
                             <div className="mb-3 flex items-center gap-2">
-                                <Layers className="h-4 w-4 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
+                                <Layers className="h-6 w-6 text-gray-700" />
+                                <h3 className="text-lg font-semibold text-gray-900">
                                     Plan Selection
                                 </h3>
                             </div>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-8 text-xs font-medium text-gray-500">
                                 Subscription Tier
                             </p>
-                            <p className="mb-3 text-sm font-bold text-gray-900">
+                            <p className="mb-3 pl-8 text-sm font-bold text-gray-900">
                                 Pro Plan
                             </p>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-8 text-xs font-medium text-gray-500">
                                 Billing Frequency
                             </p>
-                            <p className="mb-3 text-sm font-bold text-gray-900">
+                            <p className="mb-3 pl-8 text-sm font-bold text-gray-900">
                                 Yearly
                             </p>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-8 text-xs font-medium text-gray-500">
                                 Trial Period
                             </p>
-                            <p className="text-sm font-bold text-gray-900">
+                            <p className="pl-8 text-sm font-bold text-gray-900">
                                 14 Days
                             </p>
                         </div>
                     </div>
 
                     {/* Right col */}
-                    <div className="rounded-xl border border-gray-200 p-5">
+                    <div className="rounded-xl border border-gray-200 bg-gray-100 p-5">
                         {/* Subscription Pricing */}
                         <div className="mb-4">
                             <div className="mb-3 flex items-center gap-2">
@@ -150,22 +175,22 @@ export default function ViewSubscription({
                                     Subscription Pricing
                                 </h3>
                             </div>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-6 text-xs font-medium text-gray-500">
                                 Standard Price
                             </p>
-                            <p className="mb-3 text-sm font-bold text-gray-900">
+                            <p className="mb-3 pl-6 text-sm font-bold text-gray-900">
                                 12,000.00 AED
                             </p>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-6 text-xs font-medium text-gray-500">
                                 Discount Applied (10%)
                             </p>
-                            <p className="mb-3 text-sm font-bold text-orange-500">
+                            <p className="mb-3 pl-6 text-sm font-bold text-orange-500">
                                 - 1,200.00 AED
                             </p>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-6 text-xs font-medium text-gray-500">
                                 Net Subscription
                             </p>
-                            <p className="text-sm font-bold text-gray-900">
+                            <p className="pl-6 text-sm font-bold text-gray-900">
                                 10,800.00 AED
                             </p>
                         </div>
@@ -178,10 +203,10 @@ export default function ViewSubscription({
                                     Onboarding / Setup Fee
                                 </h3>
                             </div>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-6 text-xs font-medium text-gray-500">
                                 Proposed Fee
                             </p>
-                            <p className="text-sm font-bold text-gray-900">
+                            <p className="pl-6 text-sm font-bold text-gray-900">
                                 0.000 AED
                             </p>
                         </div>
@@ -194,10 +219,10 @@ export default function ViewSubscription({
                                     Total Initial Invoice
                                 </h3>
                             </div>
-                            <p className="mb-0.5 text-xs font-medium text-gray-500">
+                            <p className="mb-0.5 pl-6 text-xs font-medium text-gray-500">
                                 Final Amount
                             </p>
-                            <p className="text-sm font-bold text-gray-900">
+                            <p className="pl-6 text-sm font-bold text-gray-900">
                                 10,800.00 AED
                             </p>
                         </div>
@@ -209,7 +234,7 @@ export default function ViewSubscription({
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <button
                     onClick={onReject}
-                    className="w-full rounded-lg border border-red-400 px-4 py-2.5 text-sm font-medium text-red-500 transition-colors hover:bg-red-50"
+                    className="w-full cursor-pointer rounded-lg border border-red-400 px-4 py-2.5 text-sm font-medium text-red-500 transition-colors hover:bg-red-50"
                 >
                     Reject Request
                 </button>

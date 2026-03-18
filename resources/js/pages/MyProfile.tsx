@@ -139,11 +139,11 @@ export default function MyProfile() {
                         </div>
 
                         {/* ── Quick Stats ───────────────────────────────────────── */}
-                        <div>
+                        <div className="">
                             <h2 className="mb-3 text-lg font-semibold text-gray-900">
                                 Quick Stats
                             </h2>
-                            <div className="grid grid-cols-3 divide-x divide-gray-200 rounded-xl border border-gray-200">
+                            <div className="grid grid-cols-3 divide-x divide-gray-200 rounded-xl border border-gray-200 py-6">
                                 <div className="px-6 py-5">
                                     <p className="mb-2 text-sm text-gray-500">
                                         Tickets Solved (This month)
