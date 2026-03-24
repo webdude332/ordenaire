@@ -187,28 +187,29 @@ export default function LogDetailModal({
                 </div>
 
                 {/* ── Tabs ────────────────────────────────────────────── */}
-                <div className="mb-5 flex items-center gap-6 border-b border-gray-200">
-                    {(['request', 'response'] as const).map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`cursor-pointer pb-3 text-sm font-medium capitalize transition-colors ${
-                                activeTab === tab
-                                    ? 'border-b-2 border-[#84cc16] text-[#84cc16]'
-                                    : 'text-gray-500 hover:text-gray-700'
-                            }`}
-                        >
-                            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                        </button>
-                    ))}
-                </div>
+                <div className="rounded rounded-xl border border-borderColor p-6">
+                    <div className="mb-5 flex items-center gap-6 border-b border-gray-200">
+                        {(['request', 'response'] as const).map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => setActiveTab(tab)}
+                                className={`cursor-pointer pb-3 text-sm font-medium capitalize transition-colors ${
+                                    activeTab === tab
+                                        ? 'border-b-2 border-[#84cc16] text-[#84cc16]'
+                                        : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                            >
+                                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                            </button>
+                        ))}
+                    </div>
 
-                <div className="space-y-4">
-                    {/* ── Metadata Card ───────────────────────────────── */}
-                    <div className="rounded-xl bg-gray-50 p-5">
-                        <div className="mb-4 flex items-center gap-2">
-                            {/* cpu/circuit icon */}
-                            {/* <svg
+                    <div className="space-y-4">
+                        {/* ── Metadata Card ───────────────────────────────── */}
+                        <div className="rounded-xl bg-gray-50 p-5">
+                            <div className="mb-4 flex items-center gap-2">
+                                {/* cpu/circuit icon */}
+                                {/* <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5 text-gray-600"
                                 fill="none"
@@ -222,93 +223,96 @@ export default function LogDetailModal({
                                     d="M9 3H7a2 2 0 00-2 2v2M9 3h6M9 3v2m6-2h2a2 2 0 012 2v2m0 0V7m0 0h-2M3 9v6m0 0v2a2 2 0 002 2h2m-4-4h2m14-8v6m0 0v2a2 2 0 01-2 2h-2m4-4h-2M9 21h6m-6 0v-2m6 2v-2m-6 0H7a2 2 0 01-2-2v-2m14 4h-2a2 2 0 01-2-2v-2"
                                 />
                             </svg> */}
-                            <Meta className="h-5 w-5" />
-                            <span className="text-lg font-semibold text-gray-900">
-                                Metadata
-                            </span>
+                                <Meta className="h-5 w-5" />
+                                <span className="text-lg font-semibold text-gray-900">
+                                    Metadata
+                                </span>
+                            </div>
+
+                            {activeTab === 'request' ? (
+                                <div className="space-y-4 pl-6">
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Timestamp
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            {log.date} • {log.time}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Client
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            {log.client} (Logistics_Connect_01)
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Endpoint
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            https://api.ordenarie.com
+                                            {log.endpoint}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            User Agent
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            {log.client}-Connector/v2.1
+                                        </p>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="space-y-4 pl-6">
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Timestamp
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            {log.date} • {log.time}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Client
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            {log.client} (Logistics_Connect_01)
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Endpoint
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            https://api.ordenarie.com
+                                            {log.endpoint}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-gray-400">
+                                            Server / Duration
+                                        </p>
+                                        <p className="mt-0.5 font-semibold text-gray-900">
+                                            nginx/1.18.0 ({log.latency})
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
-                        {activeTab === 'request' ? (
-                            <div className="space-y-4 pl-6">
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Timestamp
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        {log.date} • {log.time}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Client
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        {log.client} (Logistics_Connect_01)
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Endpoint
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        https://api.ordenarie.com{log.endpoint}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        User Agent
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        {log.client}-Connector/v2.1
-                                    </p>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="space-y-4 pl-6">
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Timestamp
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        {log.date} • {log.time}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Client
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        {log.client} (Logistics_Connect_01)
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Endpoint
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        https://api.ordenarie.com{log.endpoint}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Server / Duration
-                                    </p>
-                                    <p className="mt-0.5 font-semibold text-gray-900">
-                                        nginx/1.18.0 ({log.latency})
-                                    </p>
-                                </div>
-                            </div>
-                        )}
+                        {/* ── JSON Code Block ──────────────────────────────── */}
+                        <CodeBlock
+                            code={
+                                activeTab === 'request'
+                                    ? REQUEST_JSON
+                                    : RESPONSE_JSON
+                            }
+                        />
                     </div>
-
-                    {/* ── JSON Code Block ──────────────────────────────── */}
-                    <CodeBlock
-                        code={
-                            activeTab === 'request'
-                                ? REQUEST_JSON
-                                : RESPONSE_JSON
-                        }
-                    />
                 </div>
             </div>
 

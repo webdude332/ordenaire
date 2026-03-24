@@ -1,8 +1,10 @@
 import Modal from '@/components/Modal';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import Paperclipp from '@/images/icons/clipboard1.svg?react';
+import patternBg from '@/images/icons/patternBg.svg';
 import {
     Bold,
+    Eye,
     Image,
     Italic,
     Link,
@@ -92,7 +94,7 @@ export default function TicketsModal({
             <div className="p-6 sm:p-8">
                 {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
-                    <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
+                    {/* <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5 text-gray-700"
@@ -112,6 +114,26 @@ export default function TicketsModal({
                                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                             />
                         </svg>
+                    </div> */}
+                    <div className="mb-5">
+                        <div className="relative mb-6 flex items-start gap-4">
+                            <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                                <img
+                                    src={patternBg}
+                                    alt=""
+                                    className="max-w-none"
+                                    style={{
+                                        transform: 'scale(1.1)',
+                                        opacity: 0.7,
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                    <Eye className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     {/* Dynamic title */}
                     <h2 className="text-base font-semibold text-gray-900">
@@ -134,7 +156,7 @@ export default function TicketsModal({
                                         Description
                                     </h3>
                                 </div>
-                                <p className="text-sm text-gray-600">
+                                <p className="pl-7 text-sm text-gray-600">
                                     {ticket.description ||
                                         "We are trying to punch in orders but the screen keeps showing 'Network Error 503'. Our internet is working fine on other devices. Please help, we have a queue of customers!"}
                                 </p>
@@ -154,7 +176,7 @@ export default function TicketsModal({
                                     <a
                                         key={file}
                                         href="#"
-                                        className="text-sm text-blue-600 underline"
+                                        className="pl-7 text-sm text-blue-600 underline"
                                     >
                                         {file}
                                     </a>

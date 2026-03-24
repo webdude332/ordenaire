@@ -86,14 +86,14 @@ const ticketsData: TicketItem[] = [
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const PRIORITY_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: 'Prirority: All', value: 'all' },
     { label: 'Low', value: 'low' },
     { label: 'Medium', value: 'medium' },
     { label: 'High', value: 'high' },
 ];
 
 const STATUS_OPTIONS = [
-    { label: 'Unassigned', value: 'unassigned' },
+    { label: 'Status: Unassigned', value: 'unassigned' },
     { label: 'All', value: 'all' },
     { label: 'Open', value: 'open' },
     { label: 'In Progress', value: 'in_progress' },

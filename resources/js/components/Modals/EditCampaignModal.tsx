@@ -2,6 +2,7 @@ import Modal from '@/components/Modal';
 // import RadioGroup from '@/components/RadioGroup';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import { Input, Label } from '@/components/ui/FormElements';
+import patternBg from '@/images/icons/patternBg.svg';
 import {
     AlignCenter,
     AlignLeft,
@@ -10,7 +11,7 @@ import {
     Calendar,
     Italic,
     List,
-    Pencil,
+    PencilIcon,
     Underline,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -207,9 +208,32 @@ export default function EditCampaignModal({
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
                 {/* ── Header ──────────────────────────────────────────── */}
-                <div className="mb-5">
+                {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Pencil className="h-4 w-4 text-gray-700" />
+                    </div>
+                    <h2 className="text-base font-semibold text-gray-900">
+                        Edit Campaign
+                    </h2>
+                </div> */}
+                <div className="mb-5">
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 0.7,
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <PencilIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
+                            </div>
+                        </div>
                     </div>
                     <h2 className="text-base font-semibold text-gray-900">
                         Edit Campaign
@@ -233,7 +257,7 @@ export default function EditCampaignModal({
                             />
                         </div>
                         {/* Toolbar */}
-                        <div className="roundedt-t-lg mb-2 flex items-center gap-1 border border-b-0 border-gray-200 px-2 py-1.5">
+                        <div className="mb-2 flex items-center gap-1 rounded-t-lg border border-b-0 border-gray-200 px-2 py-1.5">
                             <button className="rounded p-1.5 text-gray-500 hover:bg-gray-100">
                                 <Bold className="h-3.5 w-3.5" />
                             </button>

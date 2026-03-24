@@ -2,6 +2,8 @@ import Badge from '@/components/Badge';
 import Modal from '@/components/Modal';
 import ClipboardList from '@/images/icons/clipboard1.svg?react';
 import Globe from '@/images/icons/globe.svg?react';
+import patternBg from '@/images/icons/patternBg.svg';
+import { Eye } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -53,7 +55,7 @@ export default function ReleaseDetailsModal({
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
                 {/* ── Header ──────────────────────────────────────────── */}
-                <div className="mb-5">
+                {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -74,6 +76,29 @@ export default function ReleaseDetailsModal({
                                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                             />
                         </svg>
+                    </div>
+                    <h2 className="text-base font-semibold text-gray-900">
+                        Release Details: {release.version}
+                    </h2>
+                </div> */}
+                <div className="mb-5">
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 0.7,
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <Eye className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 shadow-sm" />
+                            </div>
+                        </div>
                     </div>
                     <h2 className="text-base font-semibold text-gray-900">
                         Release Details: {release.version}
@@ -118,11 +143,11 @@ export default function ReleaseDetailsModal({
                         <div className="mb-5">
                             <div className="mb-2 flex items-center gap-2">
                                 <ClipboardList className="h-5 w-5" />
-                                <h3 className="text-sm font-semibold text-gray-900">
-                                    Release Notes / Changelog
+                                <h3 className="text-lg font-semibold text-gray-900">
+                                    Release Notes / Change log
                                 </h3>
                             </div>
-                            <p className="text-sm text-gray-600">
+                            <p className="pl-7 text-sm text-gray-600">
                                 {release.changelog ||
                                     'No changelog provided for this release.'}
                             </p>
@@ -134,11 +159,11 @@ export default function ReleaseDetailsModal({
                         <div className="mt-5">
                             <div className="mb-3 flex items-center gap-2">
                                 <Globe className="h-5 w-5 text-gray-700" />
-                                <h3 className="text-sm font-semibold text-gray-900">
+                                <h3 className="text-lg font-semibold text-gray-900">
                                     Technical Details
                                 </h3>
                             </div>
-                            <div className="space-y-2">
+                            <div className="space-y-2 pl-7">
                                 <div className="flex items-center gap-6">
                                     <span className="w-36 text-sm text-gray-500">
                                         Issued

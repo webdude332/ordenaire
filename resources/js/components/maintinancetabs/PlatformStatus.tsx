@@ -215,7 +215,7 @@ const PlatformStatus = () => {
     return (
         <div className="space-y-6">
             {/* ── Platform Status Cards ────────────────────────────────── */}
-            <div className="rounded-xl border border-borderColor p-6">
+            <div className="">
                 <div className="grid grid-cols-3 gap-4">
                     {platformCards.map((card) => (
                         <div

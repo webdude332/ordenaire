@@ -3,9 +3,8 @@ import Button from '@/components/ui/Button';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import IconButton from '@/components/ui/IconButton';
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
-import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-// import { Info } from 'lucide-react';
 import Info from '@/images/icons/infoRing.svg?react';
+import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { useState } from 'react';
 import {
     Table,
@@ -16,6 +15,7 @@ import {
     TableHeader,
     TableRow,
 } from '../OuterTable';
+import SuccessToast from '../toasts/SuccessToast';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -84,6 +84,7 @@ export default function SecurityTab() {
     const [twoFA, setTwoFA] = useState(true);
     const [alertTicket, setAlertTicket] = useState(true);
     const [alertUrgent, setAlertUrgent] = useState(true);
+    const [showToast, setShowToast] = useState(false);
 
     return (
         <div className="space-y-8">
@@ -255,8 +256,17 @@ export default function SecurityTab() {
             {/* ── Footer ────────────────────────────────────────────── */}
             <div className="flex justify-end gap-3 border-t border-gray-200 pt-6">
                 <IconButton>Cancel</IconButton>
-                <Button>Save Changes</Button>
+                <Button onClick={() => setShowToast(true)}>Save Changes</Button>
             </div>
+            {showToast && (
+                <SuccessToast
+                    title="Changes saved successfully"
+                    message="Your account settings have been updated and saved."
+                    actionText="Dismiss"
+                    onAction={() => console.log('Action clicked')}
+                    onClose={() => setShowToast(false)}
+                />
+            )}
         </div>
     );
 }
