@@ -40,7 +40,7 @@ export default function UploadDocumentModal({
                         </div>
 
                         <div className="relative z-10 pt-4">
-                            <h3 className="text-md font-medium text-gray-900">
+                            <h3 className="text-md font-semibold text-gray-900">
                                 Upload Trade License
                             </h3>
                         </div>

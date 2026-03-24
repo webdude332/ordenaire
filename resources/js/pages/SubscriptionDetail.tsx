@@ -1786,12 +1786,12 @@ export default function SubscriptionDetail() {
         {
             label: 'Subscription & Billing',
             isActive: false,
-            href: '/subscriptionsandbilling',
+            href: '/subscription-and-billing',
         },
         {
             label: 'Subscribers',
             isActive: false,
-            href: '/subscriptionsandbilling',
+            href: '/subscription-and-billing',
         },
         { label: 'Manage', isActive: true },
     ];
@@ -2011,19 +2011,19 @@ export default function SubscriptionDetail() {
                     </div>
 
                     {/* Installed Apps & Add-ons */}
-                    <div className="mt-8 rounded-xl border border-gray-200 shadow-sm">
+                    <div className="mt-8 rounded-xl border border-borderColor shadow-sm">
                         <div className="flex items-center px-4 py-5">
                             <h2 className="text-xl font-semibold text-gray-900">
                                 Installed Apps & Add-ons
                             </h2>
                         </div>
-                        <TableContainerOne className="overflow-visible rounded-b-xl border-none shadow-none">
+                        <TableContainerOne className="overflow-visible rounded-b-xl shadow-none">
                             <Table className="">
                                 <TableHeader>
                                     <TableHead className="text-md font-medium text-gray-700">
                                         App Details
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Billing Amount
                                     </TableHead>
                                     <TableHead className="text-md font-medium text-gray-700">
@@ -2065,10 +2065,10 @@ export default function SubscriptionDetail() {
                                                     <p>{item.app.appby}</p>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <p className="font-medium text-gray-900">
+                                                    <p className="flex justify-end font-medium text-gray-900">
                                                         {item.billing.currency}
                                                     </p>
-                                                    <p>
+                                                    <p className="flex justify-end">
                                                         {
                                                             item.billing
                                                                 .subCurrency
@@ -2189,7 +2189,7 @@ export default function SubscriptionDetail() {
                                             Date <SelectorIcon />
                                         </div>
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Amount
                                     </TableHead>
                                     <TableHead className="text-md font-medium text-gray-700">
@@ -2200,7 +2200,7 @@ export default function SubscriptionDetail() {
                                     <TableHead className="text-md font-medium text-gray-700">
                                         Type of Charges
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Discount
                                     </TableHead>
                                     <TableHead className="text-md text-right font-medium text-gray-700">
@@ -2308,10 +2308,10 @@ export default function SubscriptionDetail() {
                                                     </p>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <p className="font-medium text-gray-900">
+                                                    <p className="flex justify-end font-medium text-gray-900">
                                                         {item.billing.currency}
                                                     </p>
-                                                    <p>
+                                                    <p className="flex justify-end">
                                                         {
                                                             item.billing
                                                                 .subCurrency
@@ -2334,8 +2334,10 @@ export default function SubscriptionDetail() {
                                                 <TableCell>
                                                     {item.typeOfCharges}
                                                 </TableCell>
-                                                <TableCell>
-                                                    {item.discount}
+                                                <TableCell className="">
+                                                    <p className="text-right">
+                                                        {item.discount}
+                                                    </p>
                                                 </TableCell>
                                                 <TableCell className="flex justify-end overflow-visible">
                                                     <div className="relative inline-block">
@@ -2398,7 +2400,7 @@ export default function SubscriptionDetail() {
                                             Status <SelectorIcon />
                                         </div>
                                     </TableHead>
-                                    <TableHead className="text-md font-medium text-gray-700">
+                                    <TableHead className="text-md text-right font-medium text-gray-700">
                                         Month-to-Date Cost
                                     </TableHead>
                                     <TableHead className="text-md text-right font-medium text-gray-700">
@@ -2443,10 +2445,10 @@ export default function SubscriptionDetail() {
                                                 </Badge>
                                             </TableCell>
                                             <TableCell>
-                                                <p className="font-medium text-gray-900">
+                                                <p className="flex justify-end font-medium text-gray-900">
                                                     {item.currency.main}
                                                 </p>
-                                                <p className="text-sm text-gray-500">
+                                                <p className="flex justify-end text-sm text-gray-500">
                                                     {item.currency.sub}
                                                 </p>
                                             </TableCell>

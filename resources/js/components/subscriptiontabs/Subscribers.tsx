@@ -1123,7 +1123,7 @@ const Subscribers = () => {
         <div>
             {/** Page header */}
             <div className="flex items-center justify-between">
-                <div>
+                <div className="w-[300px]">
                     <Input
                         className="placeholder:text-md"
                         placeholder="Search by business name, ID..."
@@ -1157,7 +1157,7 @@ const Subscribers = () => {
             {/** Main Table Content */}
             <div className="mt-8 rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center px-6 pb-4">
-                    <h2 className="text-lg font-medium">
+                    <h2 className="text-lg font-semibold">
                         Subscribers Master List
                     </h2>
                 </div>
@@ -1314,7 +1314,7 @@ const Subscribers = () => {
                         );
                         showToast(
                             'Subscription Cancelled',
-                            `${cancelModalSubscriber.business.name}'s subscription will be cancelled at end of billing cycle.`,
+                            `${cancelModalSubscriber.business.name}'s Cancellation Request has sent to the admin for approval.`,
                         );
                         setCancelModalSubscriber(null);
                     }}

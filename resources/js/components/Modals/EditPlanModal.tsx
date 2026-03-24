@@ -311,7 +311,7 @@ export default function EditPlanModal({
                 <div className="mt-6 grid grid-cols-2 gap-4">
                     <IconButton onClick={onClose}>Cancel</IconButton>
 
-                    <Button onClick={handleSubmit}>Submit for Approval</Button>
+                    <Button onClick={onClose}>Submit for Approval</Button>
                 </div>
             </div>
         </Modal>

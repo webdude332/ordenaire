@@ -304,7 +304,12 @@ const AddUser = () => {
                                         )}
                                     </div>
                                     <div>
-                                        <Label>&nbsp;</Label>
+                                        <Label className="mb-2 text-sm font-medium">
+                                            Primary Role{' '}
+                                            <span className="text-primary">
+                                                *
+                                            </span>
+                                        </Label>
                                         <CustomDropdown
                                             label="Primary Role"
                                             options={templateOptions}

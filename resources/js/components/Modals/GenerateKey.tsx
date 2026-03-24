@@ -110,7 +110,7 @@ export default function GenerateKey({
                                 This name will appear in your security logs.
                             </p>
                         </div>
-                        <div>
+                        <div className="">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Connect to App
                             </Label>

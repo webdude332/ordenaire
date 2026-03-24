@@ -409,7 +409,7 @@ const Invoices = () => {
                     </h2>
                 </div>
 
-                <TableContainerOne>
+                <TableContainerOne className="overflow-visible">
                     <Table>
                         <TableHeader>
                             <TableHead className="font-semibold text-gray-600">

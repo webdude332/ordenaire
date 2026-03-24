@@ -156,18 +156,19 @@ export default function UninstallModal({
                         <div className="flex items-start gap-3">
                             <button
                                 type="button"
+                                disabled={true}
                                 onClick={() =>
                                     setTerminateChecked(!terminateChecked)
                                 }
                                 className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded transition-colors ${
                                     terminateChecked
-                                        ? 'bg-[#79B800]'
-                                        : 'border-2 border-gray-300 bg-white'
+                                        ? 'bg-[#79B800] disabled:cursor-not-allowed disabled:bg-gray-300'
+                                        : 'border-2 border-gray-300 bg-white disabled:cursor-not-allowed disabled:border-gray-200 disabled:bg-gray-100'
                                 }`}
                             >
                                 {terminateChecked && (
                                     <svg
-                                        className="h-4 w-4 text-white"
+                                        className="h-4 w-4 text-white disabled:text-gray-400"
                                         viewBox="0 0 12 12"
                                         fill="none"
                                     >
@@ -220,7 +221,7 @@ export default function UninstallModal({
                             </button>
                             <div>
                                 <p className="text-sm font-medium text-gray-800">
-                                    Revoke Access
+                                    Revoke Access Instantly
                                 </p>
                                 <p className="text-xs text-gray-500">
                                     User will lose access to the app instantly

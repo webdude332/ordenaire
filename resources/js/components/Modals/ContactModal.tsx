@@ -7,7 +7,6 @@ import Email from '@/images/icons/email.svg?react';
 import Issue from '@/images/icons/issue.svg?react';
 import PhoneBold from '@/images/icons/phoneBold.svg?react';
 import Success from '@/images/icons/success.svg?react';
-import Wallet from '@/images/icons/wallet.svg?react';
 
 interface ContactInfo {
     adminName: string;
@@ -156,12 +155,12 @@ export default function ContactModal({
                                                 Amount Due
                                             </span>
                                         </div>
-                                        <div className="flex items-center gap-3">
+                                        {/* <div className="flex items-center gap-3">
                                             <Wallet className="h-5 w-5" />
                                             <span className="font-medium text-gray-900">
                                                 Current Wallet Balance
                                             </span>
-                                        </div>
+                                        </div> */}
                                         <div className="flex items-center gap-3">
                                             <Success className="h-5 w-5" />
                                             <span className="font-medium text-gray-900">
@@ -182,11 +181,11 @@ export default function ContactModal({
                                             {context.amountDue}
                                         </span>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <span className="font-medium text-gray-900">
                                             {context.walletBalance}
                                         </span>
-                                    </div>
+                                    </div> */}
                                     <div>
                                         <span className="font-medium text-gray-900">
                                             {context.lastSuccessfulPayment}

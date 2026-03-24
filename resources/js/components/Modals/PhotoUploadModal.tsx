@@ -96,7 +96,7 @@ export default function UpdateProfilePhotoModal({
                             <GalleryIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                         </div>
                         <div className="relative z-10 pt-4">
-                            <h3 className="text-md font-medium text-gray-900">
+                            <h3 className="text-md font-semibold text-gray-900">
                                 Upload Profile Photo
                             </h3>
                         </div>

@@ -391,7 +391,10 @@ export default function DownloadInvoiceModal({
                                     <TableBody>
                                         {/* Line item rows */}
                                         {d.lineItems.map((item, index) => (
-                                            <TableRow key={index}>
+                                            <TableRow
+                                                key={index}
+                                                className="border-b border-borderColor"
+                                            >
                                                 <TableCell>
                                                     <p className="font-semibold text-gray-900">
                                                         {item.description}
@@ -428,65 +431,35 @@ export default function DownloadInvoiceModal({
                                                 </TableCell>
                                             </TableRow>
                                         ))}
-
-                                        {/* Subtotal */}
-                                        <TableRow className="!border-t border-gray-100 hover:bg-transparent">
-                                            {/* Using standard <td> here so colSpan is respected */}
-                                            <td
-                                                colSpan={3}
-                                                className="px-6 py-3"
-                                            />
-                                            <td className="px-6 py-3 text-left text-sm text-gray-600">
-                                                Subtotal
-                                            </td>
-                                            <td className="px-6 py-3 text-right text-sm font-medium text-gray-900">
-                                                {d.subtotal}
-                                            </td>
-                                        </TableRow>
-
-                                        {/* Tax */}
-                                        <TableRow className="!border-t-0 hover:bg-transparent">
-                                            <td
-                                                colSpan={3}
-                                                className="px-6 py-1.5"
-                                            />
-                                            <td className="px-6 py-1.5 text-left text-sm text-gray-600">
-                                                Tax (5% VAT)
-                                            </td>
-                                            <td className="px-6 py-1.5 text-right text-sm font-medium text-gray-900">
-                                                {d.tax}
-                                            </td>
-                                        </TableRow>
-
-                                        {/* Credits Used */}
-                                        <TableRow className="!border-t-0 hover:bg-transparent">
-                                            <td
-                                                colSpan={3}
-                                                className="px-6 py-1.5"
-                                            />
-                                            <td className="px-6 py-1.5 text-left text-sm text-gray-600">
-                                                Credits Used
-                                            </td>
-                                            <td className="px-6 py-1.5 text-right text-sm font-medium text-gray-900">
-                                                {d.creditsUsed}
-                                            </td>
-                                        </TableRow>
-
-                                        {/* TOTAL PAID */}
-                                        <TableRow className="!border-t-0 hover:bg-transparent">
-                                            <td
-                                                colSpan={3}
-                                                className="px-6 py-4"
-                                            />
-                                            <td className="border-t border-gray-900 px-6 py-4 text-left text-sm font-bold text-gray-900">
-                                                TOTAL PAID
-                                            </td>
-                                            <td className="border-t border-gray-900 px-6 py-4 text-right text-sm font-bold text-gray-900">
-                                                {d.totalPaid}
-                                            </td>
-                                        </TableRow>
                                     </TableBody>
                                 </Table>
+                                <div className="flex justify-end px-6 py-4">
+                                    <div className="w-64 space-y-1.5">
+                                        <div className="flex justify-between text-sm text-gray-600">
+                                            <span>Subtotal</span>
+                                            <span className="font-medium text-gray-900">
+                                                {d.subtotal}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between text-sm text-gray-600">
+                                            <span>Tax (5% VAT)</span>
+                                            <span className="font-medium text-gray-900">
+                                                {d.tax}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between text-sm text-gray-600">
+                                            <span>Credits Used</span>
+                                            <span className="font-medium text-gray-900">
+                                                {d.creditsUsed}
+                                            </span>
+                                        </div>
+                                        {/* Divider + Total */}
+                                        <div className="flex justify-between border-t border-gray-900 pt-3 text-sm font-bold text-gray-900">
+                                            <span>TOTAL PAID</span>
+                                            <span>{d.totalPaid}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </TableContainerOne>
                         </div>
                     </div>

@@ -28,53 +28,34 @@ export default function ViewBetaStatsModal({
 }: ViewStatsProps) {
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="4xl">
-            <div className="relative overflow-hidden rounded-xl bg-white pb-6">
-                <button
-                    onClick={onClose}
-                    className="absolute top-5 right-5 z-20 cursor-pointer text-gray-400 transition-colors hover:text-gray-600"
-                >
-                    <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
-
-                <div className="relative z-0 px-8 pt-8 pb-4">
-                    <div className="mb-6 flex flex-col items-start gap-4">
-                        <div className="relative z-10 flex h-12 w-12 items-center justify-center">
-                            <div className="pointer-events-none absolute inset-0 top-22 left-22 flex items-center justify-center">
-                                <img
-                                    src={patternBg}
-                                    alt=""
-                                    className="max-w-none"
-                                    style={{
-                                        transform: 'scale(1.1)',
-                                        opacity: 1,
-                                    }}
-                                />
-                            </div>
-                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                                <div className="rounded-lg border-2 border-gray-200 bg-white p-2.5">
-                                    <Eye className="h-6 w-6 text-gray-700" />
-                                </div>
-                            </div>
+            <div className="relative rounded-xl bg-white pb-6">
+                <div className="pt-8 pl-8">
+                    <div className="relative mb-6 flex items-start gap-4">
+                        <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
+                            <img
+                                src={patternBg}
+                                alt=""
+                                className="max-w-none"
+                                style={{
+                                    transform: 'scale(1.1)',
+                                    opacity: 2,
+                                }}
+                            />
                         </div>
-                        <div className="relative z-10">
-                            <h3 className="text-md font-medium text-gray-900">
-                                View Beta Stats
-                            </h3>
+                        <div>
+                            <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                                <Eye className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
+                            </div>
+
+                            <div className="relative z-10 pt-4">
+                                <h3 className="text-md font-semibold text-gray-900">
+                                    View Beta Stats
+                                </h3>
+                            </div>
                         </div>
                     </div>
-
+                </div>
+                <div className="relative z-0 px-8 pb-4">
                     {/* Key Stats Card */}
                     <div className="">
                         <div className="mb-8 rounded-xl border border-borderColor bg-white p-4 shadow-sm">

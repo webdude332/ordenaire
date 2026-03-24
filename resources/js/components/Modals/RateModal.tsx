@@ -3,7 +3,7 @@ import CustomDropdown from '@/components/ui/CustomDropdown';
 import { Input, Label } from '@/components/ui/FormElements';
 import RadioGroup from '@/components/ui/RadioGroup';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
-import { CheckCircle2, Info, Plus } from 'lucide-react';
+import { CheckCircle2, Info, Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
@@ -140,6 +140,7 @@ export default function RateModal({
                                     value={activitySku}
                                     onChange={setActivitySku}
                                     placeholder="Select activity"
+                                    disabled={true}
                                 />
                             </div>
                             <div>
@@ -324,14 +325,34 @@ export default function RateModal({
             </div>
 
             {/* ── Footer ─────────────────────────────────────────────── */}
-            <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
-                <IconButton className="w-full" onClick={onClose}>
-                    Cancel
-                </IconButton>
-                <Button className="w-full" onClick={handleConfirm}>
-                    {isEdit ? 'Save Changes' : 'Save Rule'}
-                </Button>
-            </div>
+            {isEdit ? (
+                <div className="flex items-center justify-between border-t border-gray-200 px-6">
+                    <div
+                        className="cursor-pointer font-medium text-gray-600 hover:text-gray-900"
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </div>
+                    <div className="flex gap-3 py-5">
+                        <IconButton className="w-full" onClick={onClose}>
+                            <Trash2 className="h-4 w-4 text-iconColor" />
+                            Delete
+                        </IconButton>
+                        <Button className="w-full" onClick={handleConfirm}>
+                            Confirm
+                        </Button>
+                    </div>
+                </div>
+            ) : (
+                <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
+                    <IconButton className="w-full" onClick={onClose}>
+                        Cancel
+                    </IconButton>
+                    <Button className="w-full" onClick={handleConfirm}>
+                        Save Rule
+                    </Button>
+                </div>
+            )}
         </Modal>
     );
 }
