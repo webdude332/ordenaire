@@ -146,3 +146,18 @@ Route::get('settings', function () {
 Route::get('myprofile', function () {
     return Inertia::render('MyProfile');
 })->name('myprofile');
+
+
+// password-reset
+Route::get('/reset-password', function () {
+    return Inertia::render('PasswordReset');
+})->name('reset.password');
+
+//sendotp
+Route::get('/password-otp', function () {
+    return Inertia::render('PasswordOTP');
+})->name('password.otp');
+//set new password
+Route::get('/setnewpassword', function () {
+    return Inertia::render('SendNewPassword');
+})->name('setnewpassword');
