@@ -325,6 +325,9 @@ export const DocumentsTable = ({
 }: DocumentsTableProps) => {
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+    // const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+// 1. Add this new state
+const [uploadModalTitle, setUploadModalTitle] = useState('Add Document');
     const handleAddDocument = (data: any)=>{
         setIsUploadModalOpen(true)
     }
@@ -405,10 +408,16 @@ export const DocumentsTable = ({
                                         </>
                                     ) : (
 
-                                        <ActionButton onClick={()=>setIsUploadModalOpen(true)}>
-                                            <Upload/>
-                                            Upload
-                                        </ActionButton>
+<ActionButton 
+    onClick={() => {
+        // 2. Set the title to include the row's document name
+        setUploadModalTitle(`Upload ${doc.documentName}`); 
+        setIsUploadModalOpen(true);
+    }}
+>
+    <Upload/>
+    Upload
+</ActionButton>
                                     )}
                                 </div>
                             </td>
@@ -423,11 +432,19 @@ export const DocumentsTable = ({
                     <p className="text-sm text-gray-500">No documents found</p>
                 </div>
             )}
-            <AddDocumentModal
+            {/* <AddDocumentModal
                 isOpen={isUploadModalOpen}
                 onClose={() => setIsUploadModalOpen(false)}
                 onAdd={handleAddDocument}
-            />
+            /> */}
+            <AddDocumentModal 
+    isOpen={isUploadModalOpen} 
+    onClose={() => setIsUploadModalOpen(false)} 
+    onAdd={(data) => console.log(data)} 
+    // 3. Pass the state variable here
+    title={uploadModalTitle} 
+    submitButtonText="Upload Document"
+/>
             <DeleteModal
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}
@@ -566,5 +583,6 @@ export const AddonsTable = ({
                 </div>
             )}
         </div>
+        
     );
 };
