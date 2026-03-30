@@ -1,18 +1,17 @@
 import TopBar from '@/components/TopBar';
 import { Head } from '@inertiajs/react';
-import Button from '../components/ui/Button';
+import DateRangeButton from '../components/DateRangeButton';
 import LineChart from '../components/LineChart';
 import PieChart from '../components/PieChart';
 import SidePannel from '../components/SidePannel';
 import SimpleBarChart from '../components/SimpleBarChart';
 import SimpleLineChart from '../components/SimpleLineChart';
 import StatCard from '../components/StatCard';
+import Button from '../components/ui/Button';
 import BtnLink from '../images/icons/colorLink.svg?react';
 import dashboardIcon from '../images/icons/dashBaordSvg.svg?react'; // Dashboard uses PNG
-import Calender from '../images/icons/date.svg?react';
 import TrendGreen from '../images/icons/trendGreen.svg?react';
 import TrendRed from '../images/icons/trendRed.svg?react';
-import DateRangeButton from '../components/DateRangeButton'
 
 export default function Dashboard() {
     return (
@@ -25,8 +24,20 @@ export default function Dashboard() {
                     title="Ordenaire Dashboard"
                     icon={dashboardIcon}
                     iconClassName="text-red-900"
-                    breadcrumbs={[{ label: 'Dashboard', isActive: true, href: '/dashboard'}]}
-                    tabs={[{ label: 'Dashboard', isActive: true, href: '/dashboard' }]}
+                    breadcrumbs={[
+                        {
+                            label: 'Dashboard',
+                            isActive: true,
+                            href: '/dashboard',
+                        },
+                    ]}
+                    tabs={[
+                        {
+                            label: 'Dashboard',
+                            isActive: true,
+                            href: '/dashboard',
+                        },
+                    ]}
                 >
                     {/* YOUR SPECIFIC DASHBOARD BUTTONS */}
                 </TopBar>

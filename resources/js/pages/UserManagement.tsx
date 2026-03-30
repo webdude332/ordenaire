@@ -6,7 +6,7 @@ import CustomDropdown from '@/components/ui/CustomDropdown';
 import Pagination from '@/components/ui/Pagination';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Head, Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../components/ui/Button';
 import BakerFinch from '../images/icons/BakerFinch.png';
 import DashBoardSvg from '../images/icons/dashBaordSvg.svg?react';
@@ -17,6 +17,7 @@ import PencilIcon from '../images/icons/pencilIcon.svg?react';
 import AddUser from '../images/icons/plus.svg?react';
 import SearchIcon from '../images/icons/searchIcon.svg?react';
 import RolesAndPermissionsTable from './RolesAndPermissions';
+
 // --- MOCK DATA ---
 const USERS = [
     {
@@ -101,6 +102,13 @@ export default function UserManagement() {
     const [activeTab, setActiveTab] = useState<'profiles' | 'roles'>(
         'profiles',
     );
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get('tab');
+        if (tab === 'roles') {
+            setActiveTab('roles');
+        }
+    }, []);
     const pageTitle =
         activeTab === 'profiles'
             ? 'Internal User Management'

@@ -1,3 +1,8 @@
+interface ToastConfig {
+    title: string;
+    message: string;
+    actionText: string;
+}
 import SidePannel from '@/components/SidePannel';
 import TopBar from '@/components/TopBar';
 import { Input, Label } from '@/components/ui/FormElements';
@@ -23,7 +28,26 @@ interface PermissionRowProps {
 }
 
 const EditRole = () => {
-    const [showSuccessToast, setShowSuccessToast] = useState(false);
+    // const [showSuccessToast, setShowSuccessToast] = useState(false);
+
+    const [toastConfig, setToastConfig] = useState<ToastConfig | null>(null);
+    const handleSaveClick = () => {
+        setToastConfig({
+            title: 'Role edited successfully',
+            message:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            actionText: 'View Changes',
+        });
+    };
+
+    const handleDeleteClick = () => {
+        setToastConfig({
+            title: 'Role deleted successfully',
+            message:
+                'The selected role has been permanently removed from the system.',
+            actionText: 'Close',
+        });
+    };
 
     // NEW: Form Validation Setup (Pre-filled with existing role data)
     const { values, errors, handleChange, handleBlur, validateAll } =
@@ -241,28 +265,30 @@ const EditRole = () => {
 
                         {/* 3. FOOTER BUTTONS */}
                         <div className="flex justify-end gap-3 border-t border-gray-200 pt-4">
-                            <IconButton type="button">Delete role</IconButton>
+                            <IconButton
+                                type="button"
+                                onClick={handleDeleteClick}
+                            >
+                                Delete role
+                            </IconButton>
 
                             <Link href="/usermanagement">
                                 <IconButton type="button">Cancel</IconButton>
                             </Link>
-                            <Button
-                                type="submit"
-                                onClick={() => setShowSuccessToast(true)}
-                            >
+                            <Button type="submit" onClick={handleSaveClick}>
                                 Save Changes
                             </Button>
                         </div>
                     </form>
                 </div>
             </main>
-            {showSuccessToast && (
+            {toastConfig && (
                 <SuccessToast
-                    title="Role edited successfully"
-                    message="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                    onClose={() => setShowSuccessToast(false)}
-                    onAction={() => setShowSuccessToast(false)}
-                    actionText="View Changes"
+                    title={toastConfig.title}
+                    message={toastConfig.message}
+                    onClose={() => setToastConfig(null)}
+                    onAction={() => setToastConfig(null)}
+                    actionText={toastConfig.actionText}
                     autoCloseDuration={2000}
                     redirectTo="/usermanagement"
                 />
