@@ -127,7 +127,7 @@ const incidentHistory: IncidentItem[] = [
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const STATUS_FILTER_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: <span className="font-medium">Status: All</span>, value: 'all' },
     { label: '🟠 Investigating', value: 'investigating' },
     { label: '🔵 Identified', value: 'identified' },
     { label: '🔵 Monitoring', value: 'monitoring' },
@@ -135,7 +135,10 @@ const STATUS_FILTER_OPTIONS = [
 ];
 
 const SEVERITY_FILTER_OPTIONS = [
-    { label: 'All', value: 'all' },
+    {
+        label: <span className="font-medium">Prirority: All</span>,
+        value: 'all',
+    },
     { label: 'Critical', value: 'critical' },
     { label: 'Major', value: 'major' },
     { label: 'Minor', value: 'minor' },

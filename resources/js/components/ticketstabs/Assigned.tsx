@@ -108,14 +108,17 @@ const statusVariant = (s: TicketStatus) => {
 };
 
 const PRIORITY_OPTIONS = [
-    { label: 'All', value: 'all' },
+    {
+        label: <span className="font-medium">Prirority: All</span>,
+        value: 'all',
+    },
     { label: 'Low', value: 'low' },
     { label: 'Medium', value: 'medium' },
     { label: 'High', value: 'high' },
 ];
 
 const STATUS_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: <span className="font-medium">Status: All</span>, value: 'all' },
     { label: 'Open', value: 'open' },
     { label: 'In Progress', value: 'in_progress' },
     { label: 'Pending', value: 'pending' },

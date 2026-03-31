@@ -232,7 +232,7 @@ export default function TicketsDetailModal({
                             <p className="mb-1.5 text-xs font-medium text-gray-500">
                                 Mentions (CC)
                             </p>
-                            <div className="relative flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2">
+                            <div className="relative flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-4 w-4 text-gray-400"

@@ -62,14 +62,14 @@ const backupData: BackupItem[] = [
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const STATUS_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: <span className="font-medium">Status: All</span>, value: 'all' },
     { label: '🟢 Success', value: 'success' },
     { label: '🔴 Failed', value: 'failed' },
     { label: '🔵 In Progress', value: 'in_progress' },
 ];
 
 const TYPE_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: <span className="font-medium">Type: All</span>, value: 'all' },
     { label: 'Full System', value: 'full_system' },
     { label: 'Incremental', value: 'incremental' },
     { label: 'Merchant Snapshot', value: 'merchant_snapshot' },

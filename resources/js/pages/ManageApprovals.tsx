@@ -59,7 +59,7 @@ export default function ManageApprovals() {
                     title="Manage Approvals"
                     icon={Dashboard}
                     breadcrumbs={breadcrumbs}
-                    tabs={tabs}
+                    // tabs={tabs}
                 />
                 <div className="flex-1 px-8 py-6">
                     {activeTab === 'approvalQueue' && <ApprovalQueue />}

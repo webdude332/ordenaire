@@ -411,7 +411,7 @@ const SubscriptionOverview = () => {
             </div>
 
             {/* --- TABLE SECTION --- */}
-            <div className="mt-8 border-t border-borderColor pt-8">
+            <div className="mt-8 pt-8">
                 <div>
                     <div className="w-[300px]">
                         <Input
@@ -439,7 +439,7 @@ const SubscriptionOverview = () => {
                                         </div>
                                     </TableHead>
                                     <TableHead className="font-semibold">
-                                        <div className="flex items-center gap-1">
+                                        <div className="flex items-center justify-end gap-1">
                                             Amount Pending
                                             <SelectorIcon />
                                         </div>
@@ -477,12 +477,11 @@ const SubscriptionOverview = () => {
                                             </TableCell>
 
                                             {/* Column 3: Amount */}
-                                            <TableCell>
-                                                <p className="font-medium text-gray-800">
+                                            <TableCell className="">
+                                                <p className="text-right font-medium text-gray-800">
                                                     {item.amount.value}
                                                 </p>
-                                                <p className="mt-0.5">
-                                                    {' '}
+                                                <p className="mt-0.5 text-right">
                                                     {item.amount.currency}
                                                 </p>
                                             </TableCell>

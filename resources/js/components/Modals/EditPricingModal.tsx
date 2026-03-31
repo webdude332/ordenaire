@@ -297,6 +297,7 @@ export default function EditPricingModal({
                                 options={FREE_TRIAL_OPTIONS}
                                 value={freeTrialDuration}
                                 onChange={setFreeTrialDuration}
+                                disabled={isFree}
                                 placeholder="No Trial"
                             />
                         </div>
