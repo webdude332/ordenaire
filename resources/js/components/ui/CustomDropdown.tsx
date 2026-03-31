@@ -128,7 +128,7 @@ import ArrowDown from '@/images/icons/chevron-down.svg?react'
 import { useState, useRef, useEffect } from 'react';
 
 interface Option {
-    label: string;
+    label: React.ReactNode;
     value: string;
     icon?: React.ReactNode; 
 }

@@ -76,14 +76,14 @@ const deliveryLogs: DeliveryLogItem[] = [
 // ─── Filter options ───────────────────────────────────────────────────────────
 
 const STATUS_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: <span className="font-medium">Status: All</span>, value: 'all' },
     { label: '🟢 Delivered', value: 'delivered' },
     { label: '🔴 Failed', value: 'failed' },
     { label: '🔵 Sending', value: 'sending' },
 ];
 
 const CHANNEL_OPTIONS = [
-    { label: 'All', value: 'all' },
+    { label: <span className="font-medium">Channel: All</span>, value: 'all' },
     { label: 'WhatsApp', value: 'whatsapp' },
     { label: 'Email', value: 'email' },
     { label: 'Dashboard Notification', value: 'dashboard_notification' },
@@ -147,7 +147,7 @@ export default function DeliveryTab() {
                                 options={STATUS_OPTIONS}
                                 value={statusFilter}
                                 onChange={setStatusFilter}
-                                placeholder="Status: All"
+                                placeholder=""
                             />
                         </div>
                         <div className="w-36">
