@@ -2,7 +2,7 @@ import Calender from '@/images/icons/calendar.svg?react';
 import { useEffect, useRef, useState } from 'react';
 import CustomDateRangePicker from './CustomDateRangePicker'; // Ensure path is correct
 
-const CalendarIcon = () => <Calender className="h-5 w-5" />;
+const CalendarIcon = () => <Calender className="h-5 w-5 text-iconColor" />;
 
 export default function DateRangeButton() {
     const [isOpen, setIsOpen] = useState(false);

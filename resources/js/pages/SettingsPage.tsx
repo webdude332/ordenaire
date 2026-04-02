@@ -37,10 +37,10 @@ export default function SettingsPage() {
             label: 'Settings',
             href: '/settings', // Make sure this matches your actual routing path
         },
-        {
-            label: getTabLabel(activeTab),
-            isActive: true,
-        },
+        // {
+        //     label: getTabLabel(activeTab),
+        //     isActive: true,
+        // },
     ];
 
     const tabs = [

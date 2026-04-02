@@ -425,7 +425,10 @@ const AddUser = () => {
                                         <Label className="mb-1 block text-sm font-medium">
                                             Account Expiry
                                         </Label>
-                                        <SingleDatePicker />
+                                        <SingleDatePicker
+                                            openUpward={true}
+                                            className="max-w-full"
+                                        />
                                     </div>
                                     <div>
                                         <Label className="mb-3 block text-sm font-medium">

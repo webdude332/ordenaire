@@ -82,17 +82,29 @@ const priorityLabel = (p: Priority) =>
     p === 'low' ? 'low' : p === 'medium' ? 'Medium' : 'High';
 
 const statusVariant = (s: TicketStatus) => {
+    // switch (s) {
+    //     case 'Open':
+    //         return 'gray';
+    //     case 'In Progress':
+    //         return 'blue';
+    //     case 'Pending':
+    //         return 'warning';
+    //     case 'Resolved':
+    //         return 'success';
+    //     case 'Closed':
+    //         return 'gray';
+    // }
     switch (s) {
         case 'Open':
-            return 'gray';
+            return 'status-gray';
         case 'In Progress':
-            return 'blue';
+            return 'status-blue';
         case 'Pending':
-            return 'warning';
+            return 'status-orange';
         case 'Resolved':
-            return 'success';
+            return 'status-success';
         case 'Closed':
-            return 'gray';
+            return 'status-gray';
     }
 };
 
@@ -279,6 +291,7 @@ export default function Mentioned() {
                     setSelectedTicket(null);
                 }}
                 ticket={selectedTicket}
+                isMentionedView={true}
             />
         </div>
     );

@@ -6,7 +6,6 @@ import StatusBadge from '@/components/ui/StatusBadge';
 import DownloadBtn from '@/images/icons/downloadIcon.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Search } from 'lucide-react';
-import CustomDateRangePicker from './CustomDateRangePicker';
 import DateRangeButton from './DateRangeButton';
 import { Input } from './ui/FormElements';
 import Pagination from './ui/Pagination';
@@ -29,16 +28,16 @@ export default function HistoryTable({ data, onErrorDetails }: Props) {
         <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
             <div className="flex items-center justify-between border-b border-gray-200 p-6">
                 <h2 className="text-lg font-bold text-gray-900">History</h2>
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                     <Input
                         icon={Search}
                         placeholder="Search by Tenant Name"
-                        className=""
+                        className="w-full md:w-72"
                     />
                     {/**error */}
-                    <DateRangeButton>
-                        <CustomDateRangePicker />
-                    </DateRangeButton>
+                    <div className="shrink-0 whitespace-nowrap">
+                        <DateRangeButton></DateRangeButton>
+                    </div>
                 </div>
             </div>
             <div className="overflow-x-auto">
@@ -72,7 +71,7 @@ export default function HistoryTable({ data, onErrorDetails }: Props) {
                                     />
                                 </div>
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
+                            <th className="px-6 py-4 text-left text-right text-sm font-medium text-gray-500">
                                 Actions
                             </th>
                         </tr>
@@ -105,7 +104,7 @@ export default function HistoryTable({ data, onErrorDetails }: Props) {
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <StatusBadge status={item.status} />
                                 </td>
-                                <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-500">
+                                <td className="flex justify-end px-6 py-4 text-sm whitespace-nowrap text-gray-500">
                                     {item.status === 'Failed' ? (
                                         <div className="flex items-center gap-2">
                                             <ActionButton

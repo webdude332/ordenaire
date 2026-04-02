@@ -3,8 +3,9 @@ import ActionButton from '@/components/ui/ActionButton';
 import Badges from '@/components/ui/Badges';
 import CustomDropdown from '@/components/ui/CustomDropdown';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
-import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
+import DateRangeButton from '../DateRangeButton';
 import {
     Table,
     TableBody,
@@ -159,10 +160,7 @@ export default function DeliveryTab() {
                                 placeholder="Channel: All"
                             />
                         </div>
-                        <div className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-600">
-                            <Calendar className="h-4 w-4 text-gray-400" />
-                            <span>Date: Last 30 Days</span>
-                        </div>
+                        <DateRangeButton></DateRangeButton>
                     </div>
                 </div>
 

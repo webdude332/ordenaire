@@ -1,9 +1,13 @@
+// import EditPricingModal from '@/components/Modals/EditPricingModal';
 // import ActionButton from '@/components/ui/ActionButton';
 // import AppPrice from '@/images/icons/appprice.svg?react';
 // import Card from '@/images/icons/cardgreen.svg?react';
 // import Grid from '@/images/icons/gridgreen.svg?react';
 // import PencilIcon from '@/images/icons/pencilIcon.svg?react';
-// import { ChevronDown, Search } from 'lucide-react';
+// import Sar from '@/images/icons/sar.svg?react'
+// import Qar from '@/images/icons/qar.svg?react'
+// import Bhd from '@/images/icons/bhd.svg?react'
+// import { Search } from 'lucide-react';
 // import { useState } from 'react';
 // import {
 //     Table,
@@ -15,10 +19,13 @@
 //     TableRow,
 // } from '../OuterTable';
 // import Pagination from '../Pagination';
+// import CustomDropdown from '../ui/CustomDropdown';
 // import { IconCard } from '../ui/IconCard';
 
+// // ─── Types ────────────────────────────────────────────────────────────────────
+
 // interface RegionalOverride {
-//     flag: string;
+//     flag: React.ElementType,
 //     price: string;
 //     currency: string;
 // }
@@ -32,6 +39,8 @@
 //     baseCurrency: string;
 //     overrides: RegionalOverride[] | 'Auto-Converted' | null;
 // }
+
+// // ─── Data ─────────────────────────────────────────────────────────────────────
 
 // const DATA: AppPricing[] = [
 //     {
@@ -76,12 +85,30 @@
 //     },
 // ];
 
+// // ─── Component ────────────────────────────────────────────────────────────────
+
 // export default function Monitizations() {
 //     const [search, setSearch] = useState('');
+//     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+//     const [selectedApp, setSelectedApp] = useState<AppPricing | null>(null);
 
 //     const filtered = DATA.filter((d) =>
 //         d.name.toLowerCase().includes(search.toLowerCase()),
 //     );
+
+//     const [selectedPricing, setSelectedPricing] = useState<string>('all');
+//     const [selectedStatus, setSelectedStatus] = useState<string>('live_apps');
+
+//     const pricingOptions = [
+//         { label: 'Pricing: All', value: 'all' },
+//         { label: 'Free Tier', value: 'free_tier' },
+//         { label: 'Recurring (Subscription)', value: 'recurring' },
+//         { label: 'One-Time License', value: 'one_time' },
+//     ];
+//     const statusOptions = [
+//         { label: 'Status: Live apps', value: 'live_apps' },
+//         { label: 'Hidden apps', value: 'hidden_apps' },
+//     ];
 
 //     return (
 //         <div className="space-y-6">
@@ -113,14 +140,20 @@
 //                     />
 //                 </div>
 //                 <div className="flex items-center gap-2">
-//                     <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-//                         Pricing: All{' '}
-//                         <ChevronDown className="h-4 w-4 text-gray-400" />
-//                     </button>
-//                     <button className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-//                         Status: Live Apps{' '}
-//                         <ChevronDown className="h-4 w-4 text-gray-400" />
-//                     </button>
+//                     <CustomDropdown
+//                         label=""
+//                         options={pricingOptions}
+//                         value={selectedPricing}
+//                         onChange={(newValue) => setSelectedPricing(newValue)}
+//                         placeholder=""
+//                     />
+//                     <CustomDropdown
+//                         label=""
+//                         options={statusOptions}
+//                         value={selectedStatus}
+//                         onChange={(newValue) => setSelectedStatus(newValue)}
+//                         placeholder=""
+//                     />
 //                 </div>
 //             </div>
 
@@ -158,7 +191,7 @@
 //                                     </TableCell>
 //                                     <TableCell className="text-gray-500">
 //                                         <p>{app.strategy}</p>
-//                                         <p> {app.type}</p>
+//                                         <p>{app.type}</p>
 //                                     </TableCell>
 //                                     <TableCell className="text-right">
 //                                         <p className="font-medium text-gray-900">
@@ -186,10 +219,9 @@
 //                                                 ).map((o, i) => (
 //                                                     <span
 //                                                         key={i}
-//                                                         className="flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700"
+//                                                         className="flex items-center gap-1 px-2.5 py-2 text-xs font-medium text-gray-700"
 //                                                     >
 //                                                         <span>{o.flag}</span>
-
 //                                                         <span>
 //                                                             {o.price}{' '}
 //                                                             {o.currency}
@@ -200,7 +232,12 @@
 //                                         )}
 //                                     </TableCell>
 //                                     <TableCell className="flex justify-end">
-//                                         <ActionButton>
+//                                         <ActionButton
+//                                             onClick={() => {
+//                                                 setSelectedApp(app);
+//                                                 setIsEditModalOpen(true);
+//                                             }}
+//                                         >
 //                                             <PencilIcon className="h-4 w-4 text-gray-400" />
 //                                         </ActionButton>
 //                                     </TableCell>
@@ -211,6 +248,20 @@
 //                 </TableContainerOne>
 //                 <Pagination />
 //             </div>
+
+//             {/* ── Modal ─────────────────────────────────────────────── */}
+//             <EditPricingModal
+//                 isOpen={isEditModalOpen}
+//                 onClose={() => {
+//                     setIsEditModalOpen(false);
+//                     setSelectedApp(null);
+//                 }}
+//                 onConfirm={() => {
+//                     setIsEditModalOpen(false);
+//                     setSelectedApp(null);
+//                 }}
+//                 app={selectedApp}
+//             />
 //         </div>
 //     );
 // }
@@ -218,11 +269,14 @@
 import EditPricingModal from '@/components/Modals/EditPricingModal';
 import ActionButton from '@/components/ui/ActionButton';
 import AppPrice from '@/images/icons/appprice.svg?react';
+import Bhd from '@/images/icons/bhd.svg?react';
 import Card from '@/images/icons/cardgreen.svg?react';
 import Grid from '@/images/icons/gridgreen.svg?react';
 import PencilIcon from '@/images/icons/pencilIcon.svg?react';
+import Qar from '@/images/icons/qar.svg?react';
+import Sar from '@/images/icons/sar.svg?react';
 import { Search } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
     Table,
     TableBody,
@@ -239,7 +293,7 @@ import { IconCard } from '../ui/IconCard';
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface RegionalOverride {
-    flag: string;
+    flag: React.ElementType; // Updated to accept React SVG components
     price: string;
     currency: string;
 }
@@ -265,9 +319,9 @@ const DATA: AppPricing[] = [
         basePrice: '10.000',
         baseCurrency: 'KWD',
         overrides: [
-            { flag: '🇸🇦', price: '125', currency: 'SAR' },
-            { flag: '🇶🇦', price: '125', currency: 'QAR' },
-            { flag: '🇧🇭', price: '125', currency: 'BHD' },
+            { flag: Sar, price: '125', currency: 'SAR' },
+            { flag: Qar, price: '125', currency: 'QAR' },
+            { flag: Bhd, price: '125', currency: 'BHD' },
         ],
     },
     {
@@ -295,7 +349,7 @@ const DATA: AppPricing[] = [
         type: '',
         basePrice: '100.000',
         baseCurrency: 'KWD',
-        overrides: [{ flag: '🇸🇦', price: '1,800', currency: 'SAR' }],
+        overrides: [{ flag: Sar, price: '1,800', currency: 'SAR' }],
     },
 ];
 
@@ -430,18 +484,22 @@ export default function Monitizations() {
                                             <div className="flex items-center gap-2">
                                                 {(
                                                     app.overrides as RegionalOverride[]
-                                                ).map((o, i) => (
-                                                    <span
-                                                        key={i}
-                                                        className="flex items-center gap-1 px-2.5 py-2 text-xs font-medium text-gray-700"
-                                                    >
-                                                        <span>{o.flag}</span>
-                                                        <span>
-                                                            {o.price}{' '}
-                                                            {o.currency}
+                                                ).map((o, i) => {
+                                                    const FlagIcon = o.flag; // Assign component to a capitalized variable
+                                                    return (
+                                                        <span
+                                                            key={i}
+                                                            className="flex items-center gap-1.5 px-2.5 py-2 text-xs font-medium text-gray-700"
+                                                        >
+                                                            {/* Render the custom SVG component */}
+                                                            <FlagIcon className="h-6 w-6 shrink-0 rounded-sm" />
+                                                            <span>
+                                                                {o.price}{' '}
+                                                                {o.currency}
+                                                            </span>
                                                         </span>
-                                                    </span>
-                                                ))}
+                                                    );
+                                                })}
                                             </div>
                                         )}
                                     </TableCell>

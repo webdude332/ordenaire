@@ -8,7 +8,6 @@ import CalenderIconSVG from '@/images/icons/calendar.svg?react';
 import SearchIcon from '@/images/icons/searchIcon.svg?react';
 import { useEffect, useRef, useState } from 'react';
 
-// Form validations
 import { useFormValidation } from '@/utils/useFormValidation';
 import { validationRules } from '@/utils/validationRules';
 
@@ -16,6 +15,7 @@ export default function SchedulingSection() {
     const [showPicker, setShowPicker] = useState(false);
     const [reportTemplate, setReportTemplate] = useState('');
     const pickerRef = useRef<HTMLDivElement>(null);
+    const today = new Date();
 
     const templateOptions = [
         { label: 'Sales', value: 'sales' },
@@ -38,7 +38,6 @@ export default function SchedulingSection() {
             document.removeEventListener('mousedown', handleClickOutside);
     }, [showPicker]);
 
-    // Form validation - FIXED: Changed field names to match actual inputs
     const { values, errors, handleChange, handleBlur, validateAll, resetForm } =
         useFormValidation({
             tenantSearch: {
@@ -57,12 +56,9 @@ export default function SchedulingSection() {
             },
         });
 
-    // Handle form submission
     const handleSchedule = () => {
         if (validateAll()) {
             console.log('Form is valid! Scheduling report...', values);
-            // Your schedule logic here
-            // Example: await scheduleReport(values);
         } else {
             console.log('Please fix validation errors');
         }
@@ -122,15 +118,14 @@ export default function SchedulingSection() {
                             />
                         </div>
                         {showPicker && (
-                            <div className="absolute z-50 mt-2 rounded-lg bg-white shadow-lg">
-                                <CustomDateRangePicker />
+                            <div className="absolute right-0 z-50 mt-2 rounded-lg bg-white shadow-lg">
+                                <CustomDateRangePicker maxDate={today} />
                             </div>
                         )}
                     </div>
                     <div>
                         <Label className="mb-2 text-sm font-medium">
                             &nbsp;
-                            {/* <span className="text-primary">*</span> */}
                         </Label>
                         <CustomDropdown
                             label="Report Template"

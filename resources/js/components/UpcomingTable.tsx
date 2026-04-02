@@ -6,7 +6,6 @@ import PencilBtn from '@/images/icons/pencilIcon.svg?react';
 import RunBtn from '@/images/icons/runNow.svg?react';
 import SelectorIcon from '@/images/icons/selectorIcon.svg?react';
 import { Search } from 'lucide-react';
-import CustomDateRangePicker from './CustomDateRangePicker';
 import DateRangeButton from './DateRangeButton';
 import { Input } from './ui/FormElements';
 import Pagination from './ui/Pagination';
@@ -38,17 +37,20 @@ export default function UpcomingTable({
                 <h2 className="text-lg font-bold text-gray-900">
                     Upcoming Scheduled Reports
                 </h2>
+
                 {/* Search Bar Logic Here... */}
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                     <Input
                         icon={Search}
                         placeholder="Search by Tenant Name"
-                        className=""
+                        // Added width constraints here so it doesn't stretch infinitely
+                        className="w-full md:w-72"
                     />
-                    {/**error */}
-                    <DateRangeButton>
-                        <CustomDateRangePicker />
-                    </DateRangeButton>
+
+                    {/* Wrapped the button to prevent shrinking and text wrapping */}
+                    <div className="shrink-0 whitespace-nowrap">
+                        <DateRangeButton></DateRangeButton>
+                    </div>
                 </div>
             </div>
 
@@ -83,7 +85,7 @@ export default function UpcomingTable({
                                     />
                                 </div>
                             </th>
-                            <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">
+                            <th className="px-6 py-4 text-left text-right text-sm font-medium text-gray-500">
                                 Actions
                             </th>
                         </tr>
@@ -118,7 +120,7 @@ export default function UpcomingTable({
                                     <StatusBadge status={item.status} />
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center justify-end gap-2">
                                         <ActionButton
                                             onClick={() => onRun(item.title)}
                                         >

@@ -292,14 +292,22 @@ export default function EditPricingModal({
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Free Trial Duration
                             </Label>
-                            <CustomDropdown
-                                label=""
-                                options={FREE_TRIAL_OPTIONS}
-                                value={freeTrialDuration}
-                                onChange={setFreeTrialDuration}
-                                disabled={isFree}
-                                placeholder="No Trial"
-                            />
+                            <div
+                                className={
+                                    isFree
+                                        ? 'pointer-events-none cursor-not-allowed opacity-50 grayscale'
+                                        : ''
+                                }
+                            >
+                                <CustomDropdown
+                                    label=""
+                                    options={FREE_TRIAL_OPTIONS}
+                                    value={freeTrialDuration}
+                                    onChange={setFreeTrialDuration}
+                                    disabled={isFree}
+                                    placeholder="No Trial"
+                                />
+                            </div>
                         </div>
                     </div>
 

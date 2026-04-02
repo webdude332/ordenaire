@@ -1,6 +1,6 @@
 import Modal from '@/components/Modal';
 import patternBg from '@/images/icons/patternBg.svg';
-import { Clipboard, Eye, Paperclip } from 'lucide-react';
+import { Clipboard, Eye, Paperclip, User } from 'lucide-react';
 import IconButton from '../ui/IconButton';
 
 // ─── Static mock data for the read-only panel ────────────────────────────────
@@ -156,7 +156,7 @@ export default function TicketsDetailReadOnlyModal({
                             <p className="mb-1.5 text-xs font-medium text-gray-500">
                                 Status
                             </p>
-                            <span className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700">
+                            <span className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700">
                                 <span className="h-2 w-2 rounded-full bg-green-500" />
                                 {MOCK_STATUS}
                             </span>
@@ -167,8 +167,8 @@ export default function TicketsDetailReadOnlyModal({
                             <p className="mb-1.5 text-xs font-medium text-gray-500">
                                 Assigned To
                             </p>
-                            <span className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700">
-                                <svg
+                            <span className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 bg-transparent px-3 py-1.5 text-sm font-medium text-gray-700">
+                                {/* <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-3.5 w-3.5 text-gray-400"
                                     fill="none"
@@ -181,7 +181,8 @@ export default function TicketsDetailReadOnlyModal({
                                         strokeLinejoin="round"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                                     />
-                                </svg>
+                                </svg> */}
+                                <User className="h-4 w-4 text-iconColor" />
                                 {MOCK_ASSIGNEE}
                             </span>
                         </div>
@@ -195,27 +196,15 @@ export default function TicketsDetailReadOnlyModal({
                                 {MOCK_MENTIONS.slice(0, 2).map((m) => (
                                     <span
                                         key={m.value}
-                                        className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700"
+                                        className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 bg-transparent px-3 py-1.5 text-sm font-medium text-gray-700"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-3.5 w-3.5 text-gray-400"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                            />
-                                        </svg>
+                                        <User className="h-4 w-4 text-iconColor" />
+
                                         {m.label}
                                     </span>
                                 ))}
                                 {MOCK_MENTIONS.length > 2 && (
-                                    <span className="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700">
+                                    <span className="inline-flex items-center rounded-md border border-gray-200 bg-transparent px-3 py-1.5 text-sm font-medium text-gray-700">
                                         +{MOCK_MENTIONS.length - 2}
                                     </span>
                                 )}
