@@ -75,7 +75,7 @@ export default function AssignBetaModal({
                             </div>
                         </div>
                         <div className="relative z-10">
-                            <h3 className="text-md font-medium text-gray-900">
+                            <h3 className="text-base font-semibold text-gray-900">
                                 Beta Assignment
                             </h3>
                         </div>

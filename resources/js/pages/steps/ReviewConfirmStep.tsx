@@ -523,7 +523,7 @@ const ReviewConfirmStep = ({ data, onBack, onSubmit }: StepProps) => {
                 </div>
 
                 {/* Footer Buttons */}
-                <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
+                <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white py-4">
                     <IconButton
                         onClick={onBack}
                         className="border border-gray-300 bg-white py-1 text-gray-700 hover:bg-gray-50"

@@ -1000,7 +1000,7 @@ const TeamAccessStep = ({
                     <div className="col-span-9 rounded-xl border border-[#E8E6EA] bg-white p-6 shadow-xs">
                         <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-1.5">
-                                <Label>
+                                <Label className="text-md font-medium">
                                     Full name{' '}
                                     <span className="text-[#8CDD05]">*</span>
                                 </Label>
@@ -1023,7 +1023,7 @@ const TeamAccessStep = ({
                                 )}
                             </div>
                             <div className="space-y-1.5">
-                                <Label>
+                                <Label className="text-md font-medium">
                                     Email address{' '}
                                     <span className="text-[#8CDD05]">*</span>
                                 </Label>
@@ -1048,7 +1048,7 @@ const TeamAccessStep = ({
                         </div>
                         <div className="mt-6 grid grid-cols-2 gap-6">
                             <div className="space-y-1.5">
-                                <Label>
+                                <Label className="text-md font-medium">
                                     User Role{' '}
                                     <span className="text-[#8CDD05]">*</span>
                                 </Label>
@@ -1064,7 +1064,7 @@ const TeamAccessStep = ({
                                 />
                             </div>
                         </div>
-                        <div className="mt-6 flex justify-end">
+                        <div className="mt-6 flex justify-end border-t border-borderColor pt-4">
                             <button
                                 onClick={handleAddToList}
                                 className="cursor-pointer rounded-lg border border-borderColor bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-xs hover:bg-gray-50"
@@ -1150,7 +1150,7 @@ const TeamAccessStep = ({
                 </div>
 
                 {!isEditMode && (
-                    <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
+                    <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white py-4">
                         <IconButton onClick={onBack}>Back</IconButton>
                         <Button onClick={handleNext} disabled={!canNext}>
                             Next: Review & Confirm <ColorRight />

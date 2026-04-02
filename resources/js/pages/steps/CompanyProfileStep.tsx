@@ -5,8 +5,10 @@ import IconButton from '@/components/ui/IconButton';
 import SearchableDropdown from '@/components/ui/SearchableDropdown';
 import ToggleSwitch from '@/components/ui/ToggleSwitch';
 import UploadDocumentModal from '@/components/UploadDocumentModal';
+import Uae from '@/images/icons/ae.svg?react';
 import BusinessProfileIcon from '@/images/icons/businessProfile.svg?react';
 import ColorRight from '@/images/icons/colorRight.svg?react';
+import Kwd from '@/images/icons/kw.svg?react';
 import MailIcon from '@/images/icons/mailIcon.svg?react';
 import { Link } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
@@ -24,6 +26,16 @@ interface StepProps {
     isEditMode?: boolean;
     canNext?: boolean;
 }
+
+// Icon mappings to bypass TypeScript strict type limits on dropdown options
+const countryIcons: Record<string, any> = {
+    Kuwait: Kwd,
+    UAE: Uae,
+};
+
+const langIcons: Record<string, any> = {
+    Arabic: Uae,
+};
 
 const CompanyProfileStep = ({
     data,
@@ -292,20 +304,19 @@ const CompanyProfileStep = ({
                                     value={data.country}
                                     onChange={(val) => update('country', val)}
                                     options={countryOptions}
-                                    renderOption={(option) => (
-                                        <div className="flex items-center gap-2">
-                                            {option.value === 'Kuwait' ? (
-                                                <div className="flex h-4 w-6 flex-col overflow-hidden rounded-sm border border-gray-200 bg-gray-100">
-                                                    <div className="h-1 bg-green-600"></div>
-                                                    <div className="h-1 bg-white"></div>
-                                                    <div className="h-1 bg-red-600"></div>
-                                                </div>
-                                            ) : (
-                                                <div className="h-4 w-6 overflow-hidden rounded-sm border border-gray-200 bg-green-600"></div>
-                                            )}
-                                            <span>{option.label}</span>
-                                        </div>
-                                    )}
+                                    renderOption={(option) => {
+                                        const Icon = countryIcons[option.value];
+                                        return (
+                                            <div className="flex items-center gap-2">
+                                                {Icon ? (
+                                                    <Icon className="h-5 w-5" />
+                                                ) : (
+                                                    <div className="h-5 w-5 rounded-full bg-gray-200"></div>
+                                                )}
+                                                <span>{option.label}</span>
+                                            </div>
+                                        );
+                                    }}
                                 />
                             </div>
                             <div className="space-y-2">
@@ -342,14 +353,21 @@ const CompanyProfileStep = ({
                                     value={data.language}
                                     onChange={(val) => update('language', val)}
                                     options={langOptions}
-                                    renderOption={(option) => (
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-lg leading-none">
-                                                {option.flag}
-                                            </span>
-                                            <span>{option.label}</span>
-                                        </div>
-                                    )}
+                                    renderOption={(option) => {
+                                        const Icon = langIcons[option.value];
+                                        return (
+                                            <div className="flex items-center gap-2">
+                                                {Icon ? (
+                                                    <Icon className="h-5 w-5" />
+                                                ) : (
+                                                    <span className="text-lg leading-none">
+                                                        {option.flag}
+                                                    </span>
+                                                )}
+                                                <span>{option.label}</span>
+                                            </div>
+                                        );
+                                    }}
                                 />
                             </div>
                         </div>

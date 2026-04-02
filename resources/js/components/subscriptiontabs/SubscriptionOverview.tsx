@@ -411,7 +411,7 @@ const SubscriptionOverview = () => {
             </div>
 
             {/* --- TABLE SECTION --- */}
-            <div className="mt-8 pt-8">
+            <div className="mt-8 pt-2">
                 <div>
                     <div className="w-[300px]">
                         <Input

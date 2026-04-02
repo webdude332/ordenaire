@@ -75,7 +75,7 @@ export default function EditBetaAssignmentModal({
                             </div>
                         </div>
                         <div className="relative z-10">
-                            <h3 className="text-md font-medium text-gray-900">
+                            <h3 className="text-base font-semibold text-gray-900">
                                 Edit beta assignment
                             </h3>
                         </div>

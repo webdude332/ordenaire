@@ -593,7 +593,7 @@ export default function AddDocumentModal({
                                 <Label className="mb-2 text-sm font-medium">
                                     Expiry Date
                                 </Label>
-                                <SingleDatePicker />
+                                <SingleDatePicker allowFuture openUpward />
                             </div>
                         </div>
                     </div>

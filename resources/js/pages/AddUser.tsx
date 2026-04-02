@@ -487,7 +487,7 @@ const AddUser = () => {
             {successToast && (
                 <SuccessToast
                     title="User added successfully"
-                    message="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    message=""
                     onClose={() => setSuccessToast(false)}
                     onAction={() => setSuccessToast(false)}
                     actionText="View Changes"

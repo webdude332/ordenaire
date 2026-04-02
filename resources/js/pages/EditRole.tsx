@@ -4,22 +4,18 @@ interface ToastConfig {
     actionText: string;
 }
 import SidePannel from '@/components/SidePannel';
-import TopBar from '@/components/TopBar';
-import { Input, Label } from '@/components/ui/FormElements';
-import { Link } from '@inertiajs/react';
-import Info from '../images/icons/gray-info.svg?react';
-
-// Icons
-import Button from '@/components/ui/Button';
-import IconButton from '@/components/ui/IconButton';
-import BackArrow from '../images/icons/backArrow.svg?react';
-import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
-
-// NEW: Import validation system
 import SuccessToast from '@/components/toasts/SuccessToast';
+import TopBar from '@/components/TopBar';
+import Button from '@/components/ui/Button';
+import { Input, Label } from '@/components/ui/FormElements';
+import IconButton from '@/components/ui/IconButton';
 import { useFormValidation } from '@/utils/useFormValidation';
 import { validationRules } from '@/utils/validationRules';
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
+import BackArrow from '../images/icons/backArrow.svg?react';
+import DashBoardIcon from '../images/icons/dashBaordSvg.svg?react';
+import Info from '../images/icons/gray-info.svg?react';
 
 // --- Types ---
 interface PermissionRowProps {
@@ -28,8 +24,6 @@ interface PermissionRowProps {
 }
 
 const EditRole = () => {
-    // const [showSuccessToast, setShowSuccessToast] = useState(false);
-
     const [toastConfig, setToastConfig] = useState<ToastConfig | null>(null);
     const handleSaveClick = () => {
         setToastConfig({
@@ -272,7 +266,7 @@ const EditRole = () => {
                                 Delete role
                             </IconButton>
 
-                            <Link href="/usermanagement">
+                            <Link href="/usermanagement?tab=roles">
                                 <IconButton type="button">Cancel</IconButton>
                             </Link>
                             <Button type="submit" onClick={handleSaveClick}>

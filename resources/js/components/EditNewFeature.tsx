@@ -101,7 +101,7 @@ export default function EditNewFeatureModal({
                             </div>
 
                             <div className="relative z-10 pt-4">
-                                <h3 className="text-md font-medium text-gray-900">
+                                <h3 className="text-base font-semibold text-gray-900">
                                     Edit feature
                                 </h3>
                             </div>

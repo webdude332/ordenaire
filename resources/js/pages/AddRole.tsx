@@ -245,7 +245,7 @@ const AddRole = () => {
 
                         {/* 3. FOOTER BUTTONS */}
                         <div className="flex justify-end gap-3 border-t border-gray-200 pt-4">
-                            <Link href="/usermanagement">
+                            <Link href="/usermanagement?tab=roles">
                                 <IconButton type="button">Cancel</IconButton>
                             </Link>
                             <Button
@@ -260,13 +260,13 @@ const AddRole = () => {
             </main>
             {showSuccessToast && (
                 <SuccessToast
-                    title="Role edited successfully"
-                    message="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    title="Role added successfully"
+                    message="User has been successfully created and is now ready use."
                     onClose={() => setShowSuccessToast(false)}
                     onAction={() => setShowSuccessToast(false)}
                     actionText="View Changes"
                     autoCloseDuration={2000}
-                    redirectTo="/usermanagement"
+                    redirectTo="/usermanagement?tab=roles"
                 />
             )}
         </div>

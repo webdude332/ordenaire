@@ -5,7 +5,6 @@ import Delivery from '@/images/icons/delivery.svg?react';
 import DineIn from '@/images/icons/dineIn.svg?react';
 import OnlineOrder from '@/images/icons/onlineOrder.svg?react';
 import TakeAway from '@/images/icons/takeAway.svg?react';
-
 // NEW: Import validation system
 import { useFormValidation } from '@/utils/useFormValidation';
 import { validationRules } from '@/utils/validationRules';
@@ -115,7 +114,9 @@ const OperationalConfigStep = ({
         <div>
             <div className="space-y-6 pt-6">
                 {/* 1. Service Models */}
-                <div className="grid grid-cols-12 gap-10 border-t border-b border-[#E8E6EA] pt-8 pb-10">
+                <div
+                    className={`grid grid-cols-12 gap-10 border-t border-b border-[#E8E6EA] pt-8 ${isEditMode ? 'pb-0' : 'pb-10'}`}
+                >
                     <div className="col-span-3">
                         <h3 className="text-md font-semibold text-gray-700">
                             Service Models
@@ -375,7 +376,7 @@ const OperationalConfigStep = ({
 
             {/* Footer Buttons - HIDDEN IN EDIT MODE */}
             {!isEditMode && (
-                <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white px-8 py-4">
+                <div className="flex items-center justify-end gap-3 border-t border-gray-200 bg-white py-4">
                     <IconButton onClick={onBack}>Back</IconButton>
                     <Button onClick={handleNext} disabled={!canNext}>
                         Next: Subscription <ColorRight />

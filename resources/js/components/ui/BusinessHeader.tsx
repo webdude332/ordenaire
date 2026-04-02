@@ -2,6 +2,8 @@ import Edit from '@/images/icons/editIcon.svg?react';
 import Eye from '@/images/icons/eyeIcon.svg?react';
 import Profile from '@/images/icons/teaProfile.svg?react';
 import { Link } from '@inertiajs/react';
+import Aus from '@/images/icons/aus.svg?react'
+import Us from '@/images/icons/us.svg?react'
 
 const BusinessHeader = () => {
     return (
@@ -96,7 +98,10 @@ const BusinessHeader = () => {
                             Prefered Language
                         </div>
                         <div className="text-sm font-medium text-gray-900">
-                            English
+                            <div className='flex items-center gap-1'>
+                                <Us className='w-5 h-5'/>
+                                <h1>English</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +112,10 @@ const BusinessHeader = () => {
                             Country
                         </div>
                         <div className="text-sm font-medium text-gray-900">
-                            Australia
+                                                        <div className='flex items-center gap-1'>
+                                <Aus className='w-5 h-5'/>
+                                <h1>Australia</h1>
+                            </div>
                         </div>
                     </div>
 
