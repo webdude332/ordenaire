@@ -547,12 +547,21 @@ const Invoices = () => {
                     businessName={contactModalInvoice.billedTo.name}
                     location={contactModalInvoice.billedTo.location}
                     alertLabel={contactModalInvoice.status.subText}
+                    // alertVariant={
+                    //     contactModalInvoice.status.label === 'Overdue'
+                    //         ? 'warning'
+                    //         : contactModalInvoice.status.label === 'Pending'
+                    //           ? 'blue'
+                    //           : 'error'
+                    // }
                     alertVariant={
-                        contactModalInvoice.status.label === 'Overdue'
-                            ? 'warning'
-                            : contactModalInvoice.status.label === 'Pending'
-                              ? 'blue'
-                              : 'error'
+                        contactModalInvoice.status.label === 'Active'
+                            ? 'success'
+                            : contactModalInvoice.status.label === 'Overdue'
+                              ? 'warning'
+                              : contactModalInvoice.status.label === 'Pending'
+                                ? 'blue'
+                                : 'error'
                     }
                     invoiceRef={contactModalInvoice.invoiceNumber}
                     onClose={() => setContactModalInvoice(null)}
