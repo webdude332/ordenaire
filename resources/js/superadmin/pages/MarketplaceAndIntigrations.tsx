@@ -7,7 +7,7 @@ import ApiMgmt from '@/superadmin/components/integrationtabs/ApiMgmt';
 import Installations from '@/superadmin/components/integrationtabs/Installations';
 import Monitizations from '@/superadmin/components/integrationtabs/Monitizations';
 import Overview from '@/superadmin/components/integrationtabs/Overview'; // Assuming you will create this based on the tabs UI
-import Settings from '@/superadmin/components/integrationtabs/superadmin/settings';
+import Settings from '@/superadmin/components/integrationtabs/Settings';
 import UsageLogs from '@/superadmin/components/integrationtabs/UsageLogs';
 
 import { useEffect, useState } from 'react';
