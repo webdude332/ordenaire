@@ -39,7 +39,6 @@ export default function ViewRefundModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-5">
                         <div className="relative mb-6 flex items-start gap-4">
@@ -70,7 +69,6 @@ export default function ViewRefundModal({
                     </p>
                 </div>
 
-                {/* ── Body ────────────────────────────────────────────── */}
                 <div className="grid grid-cols-5 gap-4">
                     {/* Left col (3/5) */}
                     <div className="col-span-3 rounded-xl border border-gray-200 bg-gray-50 p-5">
@@ -89,7 +87,7 @@ export default function ViewRefundModal({
                                 {request.businessName} • {request.bizId}
                             </p>
                             <a
-                                href="/business/businessoverview"
+                                href="/superadmin/business/businessoverview"
                                 className="mb-3 block pl-8 text-xs text-gray-500 underline"
                             >
                                 View Business Profile
@@ -191,7 +189,6 @@ export default function ViewRefundModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <button
                     onClick={onReject}

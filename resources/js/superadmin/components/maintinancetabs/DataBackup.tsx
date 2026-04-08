@@ -19,8 +19,6 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface BackupItem {
     id: number;
     backupType: string;
@@ -29,8 +27,6 @@ interface BackupItem {
     size: string;
     status: 'Success' | 'In Progress' | 'Failed';
 }
-
-// ─── Static data ─────────────────────────────────────────────────────────────
 
 const backupData: BackupItem[] = [
     {
@@ -59,8 +55,6 @@ const backupData: BackupItem[] = [
     },
 ];
 
-// ─── Filter options ───────────────────────────────────────────────────────────
-
 const STATUS_OPTIONS = [
     { label: <span className="font-medium">Status: All</span>, value: 'all' },
     { label: '🟢 Success', value: 'success' },
@@ -76,8 +70,6 @@ const TYPE_OPTIONS = [
     { label: 'Manual Trigger', value: 'manual_trigger' },
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const getStatusVariant = (status: BackupItem['status']) => {
     switch (status) {
         case 'Success':
@@ -88,8 +80,6 @@ const getStatusVariant = (status: BackupItem['status']) => {
             return 'error';
     }
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 const DataBackup = () => {
     const [isBackupModalOpen, setIsBackupModalOpen] = useState(false);
@@ -111,7 +101,6 @@ const DataBackup = () => {
 
     return (
         <div className="space-y-6">
-            {/* ── Summary Cards ────────────────────────────────────────── */}
             <div className="grid grid-cols-2 gap-4">
                 {/* Last Successful Backup */}
                 {/* <div className="rounded-xl border border-borderColor p-6">
@@ -159,7 +148,6 @@ const DataBackup = () => {
                 </div>
             </div>
 
-            {/* ── System Backups Table ─────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
                     <h2 className="text-lg font-semibold text-gray-900">
@@ -275,7 +263,6 @@ const DataBackup = () => {
                     </Table>
                 </TableContainerOne>
 
-                {/* ── Pagination ───────────────────────────────────────── */}
                 <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4">
                     <ActionButton
                         onClick={() =>
@@ -316,7 +303,6 @@ const DataBackup = () => {
                 </div>
             </div>
 
-            {/* ── Modal ─────────────────────────────────────────────────── */}
             <ManualBackupModal
                 isOpen={isBackupModalOpen}
                 onClose={() => setIsBackupModalOpen(false)}

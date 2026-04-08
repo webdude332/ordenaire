@@ -77,7 +77,6 @@ export default function TicketsStatus({
                     </h2>
                 </div>
 
-                {/* ── Card ────────────────────────────────────────────── */}
                 <div className="rounded-xl border border-gray-200 p-8">
                     <div className="mb-6 text-center">
                         <h3 className="mb-2 text-2xl font-bold text-gray-900">
@@ -136,7 +135,6 @@ export default function TicketsStatus({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

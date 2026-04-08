@@ -145,7 +145,7 @@
 //                                     <Eye className="h-4 w-4 text-iconColor" />
 //                                     Subscription Overview
 //                                 </button>
-//                                 <Link href="/business/editbusiness">
+//                                 <Link href="/superadmin/business/editbusiness">
 //                                     <button
 //                                         onClick={onEditBusiness}
 //                                         className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
@@ -451,7 +451,7 @@ const BusinessProfileHeader = ({
                                     <Eye className="h-4 w-4 text-iconColor" />
                                     Subscription Overview
                                 </button>
-                                <Link href="/business/editbusiness">
+                                <Link href="/superadmin/business/editbusiness">
                                     <button
                                         onClick={onEditBusiness}
                                         className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-[#CFCBD2] px-4 py-2.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"

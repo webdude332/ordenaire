@@ -62,13 +62,6 @@ const SubscriptionOverview = () => {
         actionText: '',
         onAction: () => {},
     });
-    // const [modalState, setModalState] = useState<{
-    //     show: boolean;
-    //     businessName: string;
-    // }>({
-    //     show: false,
-    //     businessName: '',
-    // });
 
     const [modalState, setModalState] = useState<{
         show: boolean;
@@ -167,16 +160,7 @@ const SubscriptionOverview = () => {
         setToast((prev) => ({ ...prev, show: false }));
     };
 
-    // const openContactModal = (businessName: string) => {
-    //     setModalState({ show: true, businessName });
-    //     setOpenMenuId(null);
-    // };
-
-    // const closeContactModal = () => {
-    //     setModalState({ show: false, businessName: '' });
-    // };
     const openContactModal = (item: AlertItem) => {
-        // Decide which modal to open based on the alert
         const type =
             item.originalAlertLabel === 'Expiring Soon'
                 ? 'expiring'
@@ -204,7 +188,6 @@ const SubscriptionOverview = () => {
         );
     };
 
-    // Handle main action button clicks
     const handleActionButton = (item: AlertItem) => {
         switch (item.originalAlertLabel) {
             case 'Payment Failed':
@@ -215,7 +198,6 @@ const SubscriptionOverview = () => {
                     'View Status',
                     () => console.log('View payment status'),
                 );
-                // Update the badge and subtext
                 setTimeout(() => {
                     updateTableItem(item.id, {
                         label: 'Processing',
@@ -226,13 +208,11 @@ const SubscriptionOverview = () => {
                 break;
 
             case 'Expiring Soon':
-                // Extend +7 days
                 showToast(
                     'Grace Period Extended',
                     `${item.businessName}'s subscription extended by 7 days`,
                     'View Details',
                 );
-                // Update badge and subtext
                 setTimeout(() => {
                     updateTableItem(item.id, {
                         label: 'Extended',
@@ -287,7 +267,6 @@ const SubscriptionOverview = () => {
                     },
                     {
                         label: 'Contact',
-                        // onClick: () => openContactModal(item.businessName),
                         onClick: () => openContactModal(item),
                     },
                     {
@@ -316,7 +295,6 @@ const SubscriptionOverview = () => {
                     },
                     {
                         label: 'Contact',
-                        // onClick: () => openContactModal(item.businessName),
                         onClick: () => openContactModal(item),
                     },
                 ];
@@ -335,7 +313,6 @@ const SubscriptionOverview = () => {
                     },
                     {
                         label: 'Contact',
-                        // onClick: () => openContactModal(item.businessName),
                         onClick: () => openContactModal(item),
                     },
                     {
@@ -346,7 +323,6 @@ const SubscriptionOverview = () => {
                                 `${item.businessName} has been moved to archive`,
                                 'Undo',
                                 () => {
-                                    // Undo archive action
                                     console.log('Undo archive');
                                 },
                             );

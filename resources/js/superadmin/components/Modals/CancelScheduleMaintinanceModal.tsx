@@ -4,15 +4,11 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface CancelScheduleMaintenanceModalProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function CancelScheduleMaintenanceModal({
     isOpen,
@@ -28,14 +24,12 @@ export default function CancelScheduleMaintenanceModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header Icon ────────────────────────────────────── */}
                 <div className="mb-6">
                     <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <DelIcon className="h-5 w-5 text-gray-700" />
                     </div>
                 </div>
 
-                {/* ── Main Card ───────────────────────────────────────── */}
                 <div className="rounded-xl border border-gray-200 p-8">
                     <div className="mb-10 text-center">
                         <h3 className="mb-3 text-4xl font-bold text-gray-900">
@@ -78,7 +72,6 @@ export default function CancelScheduleMaintenanceModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Keep Schedule

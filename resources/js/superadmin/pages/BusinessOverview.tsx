@@ -272,7 +272,7 @@ const BusinessOverviewPage = () => {
                             <h3 className="text-xl font-semibold text-gray-900">
                                 Multi-Tenancy & Franchise
                             </h3>
-                            <Link href="/business/registerwizard">
+                            <Link href="/superadmin/business/registerwizard">
                                 <IconButton>
                                     <PlusIcon className="h-4 w-4 text-iconColor" />{' '}
                                     Add New Outlet
@@ -341,7 +341,7 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <Link href="/business/businessoverviewchildparent">
+                                        <Link href="/superadmin/business/businessoverviewchildparent">
                                             <button className="cursor-pointer rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
                                                 <Eye className="h-4 w-4 text-iconColor" />
                                             </button>
@@ -379,7 +379,7 @@ const BusinessOverviewPage = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <Link href="/business/businessoverviewchild">
+                                        <Link href="/superadmin/business/businessoverviewchild">
                                             <button className="cursor-pointer rounded-lg border border-[#CFCBD2] p-2 hover:bg-gray-50">
                                                 <Eye className="h-4 w-4 text-iconColor" />
                                             </button>

@@ -10,8 +10,6 @@ import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 import DeleteRecord from './DeleteRecord';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface EditRegionalPricingModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -49,8 +47,6 @@ const BASE_PLAN_OPTIONS = [
     { label: 'Standard Plan', value: 'standard' },
     { label: 'Enterprise Plan', value: 'enterprise' },
 ];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function EditRegionalPricingModal({
     isOpen,
@@ -98,7 +94,6 @@ export default function EditRegionalPricingModal({
         <>
             <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
                 <div className="p-6 sm:p-8">
-                    {/* ── Header ─────────────────────────────────────────── */}
                     <div className="mb-5">
                         <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                             <PencilIcon className="h-5 w-5 text-gray-700" />
@@ -108,7 +103,6 @@ export default function EditRegionalPricingModal({
                         </h2>
                     </div>
 
-                    {/* ── Main Card ───────────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         {/* Select Region & Plan */}
                         <div className="mb-6">
@@ -206,7 +200,6 @@ export default function EditRegionalPricingModal({
                     </div>
                 </div>
 
-                {/* ── Footer ─────────────────────────────────────────────── */}
                 <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                     <div className="flex flex-1 gap-3">
                         <IconButton
@@ -226,7 +219,6 @@ export default function EditRegionalPricingModal({
                 </div>
             </Modal>
 
-            {/* ── Delete Record Modal ─────────────────────────────────── */}
             <DeleteRecord
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}

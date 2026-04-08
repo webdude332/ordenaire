@@ -1,7 +1,3 @@
-// export default function Resolved() {
-//     return <div>Resolved</div>;
-// }
-
 import Badge from '@/superadmin/components/Badge';
 import TicketsDetailReadOnlyModal from '@/superadmin/components/Modals/TicketsDetailReadOnlyModal';
 import Eye from '@shared/images/icons/eyeIcon.svg?react';
@@ -21,8 +17,6 @@ import Pagination from '../Pagination';
 import ActionButton from '../ui/ActionButton';
 import { Input } from '../ui/FormElements';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type Priority = 'low' | 'medium' | 'high';
 
 interface ResolvedTicketItem {
@@ -33,8 +27,6 @@ interface ResolvedTicketItem {
     priority: Priority;
     resolvedLabel: string; // e.g. "Resolved 1d ago" | "Resolved Jan 14"
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const TICKETS: ResolvedTicketItem[] = [
     {
@@ -63,20 +55,15 @@ const TICKETS: ResolvedTicketItem[] = [
     },
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const priorityVariant = (p: Priority) =>
     p === 'low' ? 'blue' : p === 'medium' ? 'warning' : 'error';
 
 const priorityLabel = (p: Priority) =>
     p === 'low' ? 'low' : p === 'medium' ? 'Medium' : 'High';
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function Resolved() {
     const [search, setSearch] = useState('');
 
-    // ── Modal state ───────────────────────────────────────────────────────────
     const [selectedTicket, setSelectedTicket] =
         useState<ResolvedTicketItem | null>(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
@@ -89,7 +76,6 @@ export default function Resolved() {
 
     return (
         <div>
-            {/* ── Filters row ──────────────────────────────────────────── */}
             <div className="mb-5">
                 <Input
                     placeholder="Search Ticket ID..."
@@ -100,7 +86,6 @@ export default function Resolved() {
                 />
             </div>
 
-            {/* ── Table ────────────────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor">
                 <TableContainerOne className="rounded-t-xl">
                     <Table>
@@ -177,7 +162,6 @@ export default function Resolved() {
                 <Pagination />
             </div>
 
-            {/* ── Read-only Modal ─────────────────────────────────────── */}
             <TicketsDetailReadOnlyModal
                 isOpen={isDetailOpen}
                 onClose={() => {

@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type HttpMethod = 'POST' | 'GET' | 'PUT' | 'DELETE';
 type LogStatus = '201 Created' | '401 Unauth' | '500 Error';
 
@@ -27,8 +25,6 @@ interface LogDetailModalProps {
     onClose: () => void;
     log: LogItem | null;
 }
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const methodStyle = (m: HttpMethod) => {
     if (m === 'POST')
@@ -52,8 +48,6 @@ const statusDot = (s: LogStatus) => {
     if (s === '401 Unauth') return 'bg-orange-400';
     return 'bg-red-500';
 };
-
-// ─── Static JSON payloads ─────────────────────────────────────────────────────
 
 const REQUEST_JSON = `{
   "order_id": "ORD-2025-8821",
@@ -79,8 +73,6 @@ const RESPONSE_JSON = `{
   }
 }`;
 
-// ─── Code Block ───────────────────────────────────────────────────────────────
-
 const CodeBlock = ({ code }: { code: string }) => (
     <div className="rounded-xl bg-[#1e3240] px-6 py-5">
         <pre className="overflow-x-auto font-mono text-sm leading-relaxed whitespace-pre text-[#c8dce8]">
@@ -88,8 +80,6 @@ const CodeBlock = ({ code }: { code: string }) => (
         </pre>
     </div>
 );
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function LogDetailModal({
     isOpen,
@@ -116,7 +106,6 @@ export default function LogDetailModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     {/* <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
@@ -186,7 +175,6 @@ export default function LogDetailModal({
                     </div>
                 </div>
 
-                {/* ── Tabs ────────────────────────────────────────────── */}
                 <div className="rounded rounded-xl border border-borderColor p-6">
                     <div className="mb-5 flex items-center gap-6 border-b border-gray-200">
                         {(['request', 'response'] as const).map((tab) => (
@@ -205,7 +193,6 @@ export default function LogDetailModal({
                     </div>
 
                     <div className="space-y-4">
-                        {/* ── Metadata Card ───────────────────────────────── */}
                         <div className="rounded-xl bg-gray-50 p-5">
                             <div className="mb-4 flex items-center gap-2">
                                 {/* cpu/circuit icon */}
@@ -304,7 +291,6 @@ export default function LogDetailModal({
                             )}
                         </div>
 
-                        {/* ── JSON Code Block ──────────────────────────────── */}
                         <CodeBlock
                             code={
                                 activeTab === 'request'
@@ -316,7 +302,6 @@ export default function LogDetailModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Close

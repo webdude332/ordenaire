@@ -10,8 +10,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ReportIncidentModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -26,8 +24,6 @@ interface IncidentFormData {
     incidentTime: string;
     displayOnLoginScreen: boolean;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS = [
     { label: 'Merchant Portal (Web)', value: 'merchant_portal' },
@@ -50,8 +46,6 @@ const STATUS_OPTIONS = [
     { label: '🔵 Monitoring', value: 'monitoring' },
     { label: '🟢 Resolved', value: 'resolved' },
 ];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ReportIncidentModal({
     isOpen,
@@ -80,7 +74,6 @@ export default function ReportIncidentModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Plus className="h-5 w-5 text-gray-700" />
@@ -91,7 +84,6 @@ export default function ReportIncidentModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Incident Details ─────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Incident Details
@@ -138,7 +130,6 @@ export default function ReportIncidentModal({
                         </div>
                     </div>
 
-                    {/* ── Status & Time ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Status & Time
@@ -178,7 +169,6 @@ export default function ReportIncidentModal({
                         </div>
                     </div>
 
-                    {/* ── Display on Login Screen ──────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-4">
                         <Checkbox
                             label="Display this alert on the Merchant Login Screen?"
@@ -191,7 +181,6 @@ export default function ReportIncidentModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

@@ -53,14 +53,14 @@ export default function Badge({
         inactive: 'bg-white border-[#CFCBD2] text-gray-500', // Fixed typo "borde"
         archived: 'bg-white border-[#CFCBD2] text-gray-500',
         failed: 'bg-white border-[#CFCBD2] text-gray-500',
-        
+
         // --- NEW STYLES FOR YOUR IMAGE ---
-        
+
         // Priorities (Colored background, colored text, colored border)
-        low: 'bg-[#F0F9FF] border-[#B9E6FE] text-[#026AA2]',     // Light blue
+        low: 'bg-[#F0F9FF] border-[#B9E6FE] text-[#026AA2]', // Light blue
         medium: 'bg-[#FFFAEB] border-[#FEDF89] text-[#B54708]', // Light orange
-        high: 'bg-[#FEF3F2] border-[#FECDCA] text-[#B42318]',    // Light red
-        
+        high: 'bg-[#FEF3F2] border-[#FECDCA] text-[#B42318]', // Light red
+
         // Statuses (White background, gray text, gray border)
         'status-open': 'bg-white border-[#D0D5DD] text-[#344054]',
         'status-progress': 'bg-white border-[#D0D5DD] text-[#344054]',
@@ -79,12 +79,10 @@ export default function Badge({
         inactive: 'bg-red-800',
         archived: 'bg-[#F04438]',
         failed: 'bg-[#F04438]',
-        
-        // --- NEW DOT STYLES FOR YOUR IMAGE ---
-        low: 'bg-[#0BA5EC]',          // Blue dot
-        medium: 'bg-[#F79009]',       // Orange dot
-        high: 'bg-[#F04438]',         // Red dot
-        'status-open': 'bg-[#F79009]',     // Orange dot
+        low: 'bg-[#0BA5EC]', // Blue dot
+        medium: 'bg-[#F79009]', // Orange dot
+        high: 'bg-[#F04438]', // Red dot
+        'status-open': 'bg-[#F79009]', // Orange dot
         'status-progress': 'bg-[#2E90FA]', // Blue dot
         'status-resolved': 'bg-[#12B76A]', // Green dot
     };

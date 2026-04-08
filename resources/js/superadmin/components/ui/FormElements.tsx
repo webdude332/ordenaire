@@ -2,9 +2,7 @@ import checkIcon from '@shared/images/icons/checkIcon.svg';
 import DownArrow from '@shared/images/icons/chevron-down.svg?react';
 import ErrorIcon from '@shared/images/icons/errorIcon.svg?react';
 import React from 'react';
-// import RenderIcon from './RenderIcon';
 
-// --- 1. RenderIcon Helper ---
 export const RenderIcon = ({
     icon,
     className = '',
@@ -57,19 +55,16 @@ export const Input = ({
     rows?: number;
     error?: string;
     onChange?: (e: React.ChangeEvent<any>) => void;
-    onBlur?: (e: React.FocusEvent<any>) => void; // NEW: Added onBlur prop type
+    onBlur?: (e: React.FocusEvent<any>) => void;
 }) => {
-    // Red border when error exists, standard green/gray otherwise
     const stateStyles = error
         ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
         : 'border-gray-300 focus:border-[#84cc16] focus:ring-[#84cc16]';
 
-    // Handle background color and cursor for disabled state
     const backgroundStyles = disabled
         ? 'bg-[#F9F7FA] cursor-not-allowed text-gray-500'
         : 'bg-white text-gray-900';
 
-    // Pr-10 ensures text doesn't overlap the right-side error icon
     const sharedClassName = `w-full rounded-lg border py-2.5 pr-10 text-sm placeholder-gray-400 shadow-xs focus:ring-1 focus:outline-none transition-colors ${
         icon ? 'pl-10' : 'pl-3'
     } ${stateStyles} ${backgroundStyles} ${className}`;
@@ -93,7 +88,7 @@ export const Input = ({
                         value={value}
                         disabled={disabled}
                         onChange={onChange}
-                        onBlur={onBlur} // NEW: Added onBlur
+                        onBlur={onBlur}
                         rows={rows}
                         className={sharedClassName}
                     />
@@ -104,12 +99,11 @@ export const Input = ({
                         value={value}
                         disabled={disabled}
                         onChange={onChange}
-                        onBlur={onBlur} // NEW: Added onBlur
+                        onBlur={onBlur}
                         className={sharedClassName}
                     />
                 )}
 
-                {/* Right Error Icon - Only shows if error exists */}
                 {error && (
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                         <RenderIcon
@@ -120,7 +114,6 @@ export const Input = ({
                 )}
             </div>
 
-            {/* Error Message Text */}
             {error && (
                 <p className="mt-1.5 text-xs font-medium text-red-600">
                     {error}
@@ -152,18 +145,6 @@ export const Select = ({
     </div>
 );
 
-// --- 5. Checkbox Component ---
-// export const Checkbox = ({ label, defaultChecked, checked, onChange, icon = checkIcon }: { label: string; defaultChecked?: boolean; icon?: any; checked?: boolean; onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
-//     return (
-//         <label className="group flex cursor-pointer items-center gap-2 text-sm text-gray-700">
-//             <input type="checkbox" defaultChecked={defaultChecked} className="peer sr-only" />
-//             <div className="flex h-5 w-5 items-center justify-center rounded border border-gray-300 bg-white transition-all peer-checked:border-[#79B800] peer-checked:bg-[#79B800] [&_img]:hidden peer-checked:[&_img]:block [&_svg]:hidden peer-checked:[&_svg]:block">
-//                 <RenderIcon icon={icon} className="h-3 w-3 text-white" />
-//             </div>
-//             {label}
-//         </label>
-//     );
-// };
 export const Checkbox = ({
     label,
     defaultChecked,

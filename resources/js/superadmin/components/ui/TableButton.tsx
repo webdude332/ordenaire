@@ -1,5 +1,5 @@
-import React, { ButtonHTMLAttributes } from 'react';
 import { Link } from '@inertiajs/react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
@@ -7,9 +7,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     href?: string;
 }
 
-export default function TableButton({ className = '', children, href, disabled = false, ...props }: ButtonProps) {
-    
-    // The shared styles for both Link and Button
+export default function TableButton({
+    className = '',
+    children,
+    href,
+    disabled = false,
+    ...props
+}: ButtonProps) {
     const complexStyles = {
         boxShadow: `
             inset 0 0 0 2px rgba(255, 255, 255, 0.12),
@@ -17,7 +21,8 @@ export default function TableButton({ className = '', children, href, disabled =
             inset 0px -2px 0px rgba(10, 13, 18, 0.05),
             0px 1px 2px rgba(10, 13, 18, 0.05)
         `,
-        backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0))',
+        backgroundImage:
+            'linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0))',
         backgroundClip: 'padding-box',
     };
 
@@ -27,32 +32,27 @@ export default function TableButton({ className = '', children, href, disabled =
         text-sm font-medium
         transition-colors
         border-none
-        ${disabled 
-            ? 'bg-[#E0E0E0] text-gray-400 cursor-not-allowed' 
-            : 'bg-[#79B800] text-white hover:bg-[#65a30d] cursor-pointer'
+        ${
+            disabled
+                ? 'bg-[#E0E0E0] text-gray-400 cursor-not-allowed'
+                : 'bg-[#79B800] text-white hover:bg-[#65a30d] cursor-pointer'
         }
         ${className}
     `;
 
-    // 1. If an href is provided, render a Link
     if (href) {
         return (
-            <Link 
-                href={href} 
-                className={baseClasses} 
-                style={complexStyles}
-            >
+            <Link href={href} className={baseClasses} style={complexStyles}>
                 {children}
             </Link>
         );
     }
 
-    // 2. Otherwise, render a standard Button
     return (
-        <button 
+        <button
             {...props}
             disabled={disabled}
-            className={baseClasses} 
+            className={baseClasses}
             style={disabled ? undefined : complexStyles}
         >
             {children}

@@ -182,7 +182,7 @@ const BusinessOverviewChild = () => {
                             businessEmail="hello@coffeecorner.com"
                             parentBusinessName={
                                 <a
-                                    href="/business/businessoverview"
+                                    href="/superadmin/business/businessoverview"
                                     className="text-primary underline"
                                 >
                                     Tea Time HQ (BIZ-2050)

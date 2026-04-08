@@ -5,16 +5,12 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface DeleteRecordModalProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
-    subtitle?: string; // e.g. "Reverts this region to the Kuwait pricing."
+    subtitle?: string;
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function DeleteRecordModal({
     isOpen,
@@ -32,7 +28,6 @@ export default function DeleteRecordModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-6">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <DelIcon className="h-5 w-5 text-gray-700" />
@@ -42,7 +37,6 @@ export default function DeleteRecordModal({
                     </h2>
                 </div>
 
-                {/* ── Main Card ───────────────────────────────────────── */}
                 <div className="rounded-xl border border-gray-200 p-8">
                     {/* Are you sure text */}
                     <div className="mb-10 text-center">
@@ -59,7 +53,6 @@ export default function DeleteRecordModal({
                         )}
                     </div>
 
-                    {/* Confirm checkbox */}
                     <div className="rounded-xl border border-gray-200 py-4 pl-6">
                         <DelCheckbox
                             label="I confirm to proceed"
@@ -70,7 +63,6 @@ export default function DeleteRecordModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     No, Cancel!

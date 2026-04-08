@@ -45,12 +45,10 @@ export default function ForceUninstallModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header Icon ─────────────────────────────────────── */}
                 <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white">
                     <Trash className="h-5 w-5 text-gray-700" />
                 </div>
 
-                {/* ── Title & Subtitle ────────────────────────────────── */}
                 <div className="mb-5">
                     <h2 className="text-base font-semibold text-gray-900">
                         Force Uninstall App
@@ -60,7 +58,6 @@ export default function ForceUninstallModal({
                     </p>
                 </div>
 
-                {/* ── Main Card ───────────────────────────────────────── */}
                 <div className="rounded-xl border border-borderColor p-5">
                     {/* App Info Row */}
                     <div className="mb-5 flex items-center justify-between">
@@ -159,7 +156,6 @@ export default function ForceUninstallModal({
                 </div>
             </div>
 
-            {/* ── Footer Buttons ─────────────────────────────────────── */}
             <div className="grid grid-cols-2 gap-3 border-t border-borderColor px-6 py-5">
                 <IconButton onClick={onClose}>Cancel</IconButton>
                 <Button

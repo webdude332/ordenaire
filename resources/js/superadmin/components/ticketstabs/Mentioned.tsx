@@ -1,7 +1,3 @@
-// export default function Mentioned() {
-//     return <div>Mentioned</div>;
-// }
-
 import Badge from '@/superadmin/components/Badge';
 import TicketsDetailModal from '@/superadmin/components/Modals/TicketsDetailModal';
 import Eye from '@shared/images/icons/eyeIcon.svg?react';
@@ -22,8 +18,6 @@ import ActionButton from '../ui/ActionButton';
 import CustomDropdown from '../ui/CustomDropdown';
 import { Input } from '../ui/FormElements';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type Priority = 'low' | 'medium' | 'high';
 type TicketStatus = 'Open' | 'In Progress' | 'Pending' | 'Resolved' | 'Closed';
 
@@ -37,8 +31,6 @@ interface MentionedTicketItem {
     status: TicketStatus;
     timeAgo: string;
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const TICKETS: MentionedTicketItem[] = [
     {
@@ -72,8 +64,6 @@ const TICKETS: MentionedTicketItem[] = [
         timeAgo: '5d ago',
     },
 ];
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const priorityVariant = (p: Priority) =>
     p === 'low' ? 'blue' : p === 'medium' ? 'warning' : 'error';
@@ -125,14 +115,11 @@ const STATUS_OPTIONS = [
     { label: 'Pending', value: 'pending' },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function Mentioned() {
     const [search, setSearch] = useState('');
     const [priorityFilter, setPriorityFilter] = useState('all');
     const [statusFilter, setStatusFilter] = useState('all');
 
-    // ── Modal state ───────────────────────────────────────────────────────────
     const [selectedTicket, setSelectedTicket] =
         useState<MentionedTicketItem | null>(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
@@ -151,7 +138,6 @@ export default function Mentioned() {
 
     return (
         <div>
-            {/* ── Filters row ──────────────────────────────────────────── */}
             <div className="mb-5 flex items-center justify-between">
                 <div className="w-1/3">
                     <Input
@@ -184,7 +170,6 @@ export default function Mentioned() {
                 </div>
             </div>
 
-            {/* ── Table ────────────────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor">
                 <TableContainerOne className="rounded-t-xl">
                     <Table>
@@ -283,7 +268,6 @@ export default function Mentioned() {
                 <Pagination />
             </div>
 
-            {/* ── Modal ──────────────────────────────────────────────── */}
             <TicketsDetailModal
                 isOpen={isDetailOpen}
                 onClose={() => {

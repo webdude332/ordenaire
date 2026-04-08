@@ -2,8 +2,6 @@ import Badge from '@/superadmin/components/Badge';
 import Modal from '@/superadmin/components/Modal';
 import { Clipboard, Link2 } from 'lucide-react';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface DeliveryLogItem {
     id: number;
     campaignTitle: string;
@@ -23,15 +21,11 @@ interface DeliveryReportModalProps {
     log: DeliveryLogItem | null;
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const getSuccessRateVariant = (rate: number) => {
     if (rate >= 90) return 'success';
     if (rate >= 75) return 'warning';
     return 'error';
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function DeliveryReportModal({
     isOpen,
@@ -47,7 +41,6 @@ export default function DeliveryReportModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
@@ -70,14 +63,12 @@ export default function DeliveryReportModal({
                             />
                         </svg>
                     </div>
-                    {/* Dynamic title */}
                     <h2 className="text-base font-semibold text-gray-900">
                         Report: {log.campaignTitle}
                     </h2>
                 </div>
 
                 <div className="rounded-xl border border-borderColor p-4">
-                    {/* ── Stats Cards ─────────────────────────────────────── */}
                     <div className="mb-4 grid grid-cols-3 gap-4">
                         <div className="rounded-xl border border-gray-200 p-4">
                             <p className="mb-1 text-sm text-gray-500">
@@ -118,7 +109,6 @@ export default function DeliveryReportModal({
                         </div>
                     </div>
 
-                    {/* ── Channel Breakdown + Message Preview ─────────────── */}
                     <div className="rounded-xl border border-borderColor bg-gray-100 p-5">
                         {/* Channel Breakdown */}
                         <div className="mb-5">

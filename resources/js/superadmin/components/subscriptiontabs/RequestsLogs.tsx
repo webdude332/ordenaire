@@ -1,10 +1,7 @@
 import { useState } from 'react';
 
-// --- ICONS ---
 import Search from '@shared/images/icons/inputSearch.svg?react';
-// Assuming arrow left/right icons for pagination
 
-// --- UI COMPONENTS ---
 import Badge from '../Badge'; // Using your perfected Badge component
 import GeneralContactModal from '../Modals/GeneralContactModal';
 import Pagination from '../Pagination';
@@ -24,10 +21,8 @@ import {
 
 import UninstallModal from '../Modals/UninstallModal';
 
-// --- TYPES ---
 type TabType = 'cancellations' | 'refunds' | 'discounts';
 
-// --- HELPER: Status Badge Color Logic ---
 const getStatusVariant = (status: string): any => {
     switch (status) {
         case 'Approved':
@@ -42,7 +37,6 @@ const getStatusVariant = (status: string): any => {
 };
 
 const RequestsLogs = () => {
-    // --- STATE ---
     const [activeTab, setActiveTab] = useState<TabType>('cancellations');
     const [status, setStatus] = useState<string>('');
     const [isUninstallModalOpen, setIsUninstallModalOpen] = useState(false);
@@ -51,7 +45,6 @@ const RequestsLogs = () => {
         (typeof cancellationsData)[0] | null
     >(null);
 
-    // --- DATA: CANCELLATIONS ---
     const cancellationsData = [
         {
             reqId: 'REQ-20105',
@@ -589,8 +582,6 @@ const RequestsLogs = () => {
             {isContactModalOpen && selectedCancellationItem && (
                 <GeneralContactModal
                     businessName={selectedCancellationItem.businessName}
-                    // Optional: You can pass dynamic data if your selectedCancellationItem has it,
-                    // or just hardcode these based on the context of this specific modal trigger.
                     location={selectedCancellationItem.location || 'UAE'}
                     alertLabel="Cancellation Request" // Customizing the badge text for this context
                     alertVariant="error" // Changing the badge color to red for cancellation

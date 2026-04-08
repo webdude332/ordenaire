@@ -1,9 +1,7 @@
 import Modal from '@/superadmin/components/Modal';
-// import ReportOk from '../../shared/images/icons/reportOk.svg?react';
-import ReportOk from '@shared/images/icons/reportOk.svg?react';
-// import successIcon from '../../shared/images/icons/successIcon.png'
 import IconButton from '@/superadmin/components/ui/IconButton';
 import patternBg from '@shared/images/icons/patternBg.svg';
+import ReportOk from '@shared/images/icons/reportOk.svg?react';
 import SuccessIcon from '@shared/images/icons/successIcon.svg?react';
 
 interface SuccessModalProps {

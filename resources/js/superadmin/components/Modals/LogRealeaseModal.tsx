@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface LogReleaseModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -22,8 +20,6 @@ interface ReleaseFormData {
     storeLink: string;
     changelog: string;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS = [
     { label: 'Merchant Portal (Web)', value: 'merchant_portal' },
@@ -40,8 +36,6 @@ const STATUS_OPTIONS = [
     { label: '⚪ Scheduled', value: 'scheduled' },
     { label: '🔴 Rolled Back', value: 'rolled_back' },
 ];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function LogReleaseModal({
     isOpen,
@@ -70,7 +64,6 @@ export default function LogReleaseModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Plus className="h-5 w-5 text-gray-700" />
@@ -81,7 +74,6 @@ export default function LogReleaseModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Release Details ──────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Release Details
@@ -150,7 +142,6 @@ export default function LogReleaseModal({
                         </div>
                     </div>
 
-                    {/* ── Distribution ─────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Distribution
@@ -171,7 +162,6 @@ export default function LogReleaseModal({
                         </div>
                     </div>
 
-                    {/* ── Changelog ────────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Changelog
@@ -192,7 +182,6 @@ export default function LogReleaseModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

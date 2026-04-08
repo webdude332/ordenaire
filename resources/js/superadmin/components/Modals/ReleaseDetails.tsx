@@ -5,8 +5,6 @@ import Globe from '@shared/images/icons/globe.svg?react';
 import patternBg from '@shared/images/icons/patternBg.svg';
 import { Eye } from 'lucide-react';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ReleaseItem {
     id: number;
     platform: string;
@@ -25,8 +23,6 @@ interface ReleaseDetailsModalProps {
     release: ReleaseItem | null;
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const getStatusVariant = (status: ReleaseItem['status']) => {
     switch (status) {
         case 'Live':
@@ -42,8 +38,6 @@ const getStatusVariant = (status: ReleaseItem['status']) => {
     }
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function ReleaseDetailsModal({
     isOpen,
     onClose,
@@ -54,7 +48,6 @@ export default function ReleaseDetailsModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <svg
@@ -105,7 +98,6 @@ export default function ReleaseDetailsModal({
                     </h2>
                 </div>
                 <div className="rounded-xl border border-borderColor p-4">
-                    {/* ── Info Cards ──────────────────────────────────────── */}
                     <div className="mb-4 grid grid-cols-3 gap-4">
                         <div className="rounded-xl border border-gray-200 p-4">
                             <p className="mb-1 text-sm text-gray-500">
@@ -137,7 +129,6 @@ export default function ReleaseDetailsModal({
                         </div>
                     </div>
 
-                    {/* ── Release Notes ───────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 bg-gray-100 p-5">
                         {/* Changelog */}
                         <div className="mb-5">

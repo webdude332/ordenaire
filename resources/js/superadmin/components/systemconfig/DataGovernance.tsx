@@ -6,14 +6,10 @@ import WarningToast from '../toasts/WarningToast';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface SectionProps {
     title: string;
     children: React.ReactNode;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const financialRetentionOptions = [
     { label: '1 Year', value: '1y' },
@@ -31,8 +27,6 @@ const securityLogsOptions = [
     { label: '24 Months', value: '24m' },
 ];
 
-// ─── Section Wrapper ──────────────────────────────────────────────────────────
-
 const Section = ({ title, children }: SectionProps) => (
     <div className="flex gap-8 border-b border-borderColor py-8 last:border-none">
         <div className="w-56 shrink-0">
@@ -43,8 +37,6 @@ const Section = ({ title, children }: SectionProps) => (
         </div>
     </div>
 );
-
-// ─── Slider with tooltip ──────────────────────────────────────────────────────
 
 const DaysSlider = ({
     value,
@@ -93,7 +85,6 @@ const DaysSlider = ({
                 }
             `}</style>
 
-            {/* Slider track + floating tooltip */}
             <div className="relative mb-6">
                 {/* Tooltip above thumb */}
                 <div
@@ -133,8 +124,6 @@ const DaysSlider = ({
         </div>
     );
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function DataGovernance() {
     const [financialRetention, setFinancialRetention] = useState('7y');

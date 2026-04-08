@@ -18,8 +18,6 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface PlatformCard {
     name: string;
     status: 'Operational' | 'Down' | 'Degraded';
@@ -42,8 +40,6 @@ interface IncidentItem {
     duration: string;
     affectedPlatform: string;
 }
-
-// ─── Static data ─────────────────────────────────────────────────────────────
 
 const platformCards: PlatformCard[] = [
     { name: 'Merchant Portal', status: 'Operational' },
@@ -124,8 +120,6 @@ const incidentHistory: IncidentItem[] = [
     },
 ];
 
-// ─── Filter options ───────────────────────────────────────────────────────────
-
 const STATUS_FILTER_OPTIONS = [
     { label: <span className="font-medium">Status: All</span>, value: 'all' },
     { label: '🟠 Investigating', value: 'investigating' },
@@ -143,8 +137,6 @@ const SEVERITY_FILTER_OPTIONS = [
     { label: 'Major', value: 'major' },
     { label: 'Minor', value: 'minor' },
 ];
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const getPlatformVariant = (status: PlatformCard['status']) => {
     switch (status) {
@@ -192,8 +184,6 @@ const getIncidentStatusVariant = (status: IncidentItem['status']) => {
     }
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 const PlatformStatus = () => {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -217,7 +207,6 @@ const PlatformStatus = () => {
 
     return (
         <div className="space-y-6">
-            {/* ── Platform Status Cards ────────────────────────────────── */}
             <div className="">
                 <div className="grid grid-cols-3 gap-4">
                     {platformCards.map((card) => (
@@ -240,7 +229,6 @@ const PlatformStatus = () => {
                 </div>
             </div>
 
-            {/* ── 3rd Party Integrations ───────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
                     <h2 className="text-lg font-semibold text-gray-900">
@@ -296,7 +284,6 @@ const PlatformStatus = () => {
                 </TableContainerOne>
             </div>
 
-            {/* ── Incident History ─────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="flex items-center justify-between px-6 pb-4">
                     <h2 className="text-lg font-semibold text-gray-900">
@@ -421,7 +408,6 @@ const PlatformStatus = () => {
                     </Table>
                 </TableContainerOne>
 
-                {/* ── Pagination ───────────────────────────────────────── */}
                 <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4">
                     <ActionButton
                         onClick={() =>
@@ -462,7 +448,6 @@ const PlatformStatus = () => {
                 </div>
             </div>
 
-            {/* ── Modals ────────────────────────────────────────────────── */}
             <ReportIncidentModal
                 isOpen={isReportModalOpen}
                 onClose={() => setIsReportModalOpen(false)}

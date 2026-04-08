@@ -23,7 +23,6 @@ import ActionButton from '../ui/ActionButton';
 import CustomDropdown from '../ui/CustomDropdown';
 import { Input } from '../ui/FormElements';
 import SubMenu from '../ui/SubMenu';
-// --- Types & Interfaces ---
 interface Invoice {
     id: string;
     invoiceNumber: string;
@@ -44,7 +43,6 @@ interface Invoice {
     actionLabel: string;
 }
 
-// --- Helper to map Status Label to Badge Variant (COLORS) ---
 const getStatusBadgeVariant = (status: string): BadgeVariant => {
     switch (status) {
         case 'Active':
@@ -60,7 +58,6 @@ const getStatusBadgeVariant = (status: string): BadgeVariant => {
     }
 };
 
-// --- Helper to derive action label from status ---
 const getActionLabel = (status: string): string => {
     switch (status) {
         case 'Active':
@@ -77,14 +74,12 @@ const getActionLabel = (status: string): string => {
 };
 
 const Invoices = () => {
-    // --- Filter State ---
     const [dateRange, setDateRange] = useState('last30');
     const [type, setType] = useState('wallet');
     const [status, setStatus] = useState('all');
     const [refundModalSubscriber, setRefundModalSubscriber] =
         useState<Invoice | null>(null);
 
-    // --- Table Data (in state so Retry can mutate status) ---
     const [tableData, setTableData] = useState<Invoice[]>([
         {
             id: '1',
@@ -192,7 +187,6 @@ const Invoices = () => {
         },
     ]);
 
-    // --- Modal / Toast State ---
     const [downloadModalInvoice, setDownloadModalInvoice] =
         useState<Invoice | null>(null);
     const [contactModalInvoice, setContactModalInvoice] =
@@ -207,7 +201,6 @@ const Invoices = () => {
         message: string;
     }>({ show: false, title: '', message: '' });
 
-    // --- Helpers ---
     const showToast = (title: string, message: string) => {
         setToast({ show: true, title, message });
     };
@@ -216,7 +209,6 @@ const Invoices = () => {
         setToast((prev) => ({ ...prev, show: false }));
     };
 
-    // Retry: change Overdue → Pending + show toast
     const handleRetry = (invoice: Invoice) => {
         setTableData((prev) =>
             prev.map((item) =>
@@ -256,17 +248,11 @@ const Invoices = () => {
         }
     };
 
-    // --- SubMenu items based on status ---
     const getSubMenuItems = (invoice: Invoice) => {
         const common = [
             {
                 label: 'View Subscription Details',
                 onClick: () => {
-                    // Wire to subscription details navigation
-                    // console.log(
-                    //     'View subscription details for',
-                    //     invoice.invoiceNumber,
-                    // );
                     router.visit(
                         '/superadmin/subscription-and-billing/subscriptiondetail',
                     );
@@ -286,12 +272,7 @@ const Invoices = () => {
                     return [
                         {
                             label: 'Issue Refund',
-                            // onClick: () => {
-                            //     console.log(
-                            //         'Issue refund for',
-                            //         invoice.invoiceNumber,
-                            //     );
-                            // },
+
                             onClick: () => {
                                 setRefundModalSubscriber(invoice);
                             },
@@ -348,7 +329,6 @@ const Invoices = () => {
         { label: 'Last 7 Days', value: 'last7' },
         { label: 'Last Year', value: 'lastyear' },
     ];
-    // const typeOptions = [{ label: 'Wallet/Card', value: 'wallet' }];
     const statusOptions = [
         { label: 'All', value: 'all' },
         { label: 'Active', value: 'active' },
@@ -593,9 +573,9 @@ const Invoices = () => {
                     isOpen={true}
                     onClose={() => setRefundModalSubscriber(null)}
                     subscriber={{
-                        name: refundModalSubscriber.billedTo.name, // <-- Changed from business.name
-                        busId: refundModalSubscriber.billedTo.busId, // <-- Changed from business.id
-                        location: refundModalSubscriber.billedTo.location, // <-- Changed from business.location
+                        name: refundModalSubscriber.billedTo.name,
+                        busId: refundModalSubscriber.billedTo.busId,
+                        location: refundModalSubscriber.billedTo.location,
                     }}
                     invoice={{
                         id: 'INV-025-002',
@@ -608,7 +588,7 @@ const Invoices = () => {
                     onConfirm={() => {
                         showToast(
                             'Refund Submitted',
-                            `Refund for ${refundModalSubscriber.billedTo.name} submitted for approval.`, // <-- Changed from business.name
+                            `Refund for ${refundModalSubscriber.billedTo.name} submitted for approval.`,
                         );
                         setRefundModalSubscriber(null);
                     }}

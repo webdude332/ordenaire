@@ -21,15 +21,11 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface EditScheduleMaintenanceModalProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS = [
     { label: 'POS App (iPad)', value: 'pos_ipad' },
@@ -59,8 +55,6 @@ const CHANNEL_LIST = [
     { key: 'whatsapp', label: 'WhatsApp' },
     { key: 'pos', label: 'POS' },
 ] as const;
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function EditScheduleMaintenanceModal({
     isOpen,
@@ -94,7 +88,6 @@ export default function EditScheduleMaintenanceModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <PencilIcon className="h-5 w-5 text-gray-700" />
@@ -105,7 +98,6 @@ export default function EditScheduleMaintenanceModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Schedule Details ─────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <div className="mb-4 grid grid-cols-3 gap-4">
                             <div>
@@ -200,7 +192,6 @@ export default function EditScheduleMaintenanceModal({
                         </div>
                     </div>
 
-                    {/* ── User Notification Editor ─────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <div className="mb-3 flex items-start justify-between">
                             <div>
@@ -275,8 +266,6 @@ export default function EditScheduleMaintenanceModal({
                         </div>
                     </div>
 
-                    {/* ── Channel ──────────────────────────────────────── */}
-
                     {/* 1. Channel Section */}
                     <div className="rounded-xl border border-gray-200 px-5 py-4">
                         <h3 className="mb-4 text-base font-semibold text-slate-800">
@@ -294,7 +283,6 @@ export default function EditScheduleMaintenanceModal({
                         </div>
                     </div>
 
-                    {/* ── Notification Timing ──────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <RadioGroup
                             name="edit_notification_timing"
@@ -320,8 +308,6 @@ export default function EditScheduleMaintenanceModal({
                         />
                     </div>
 
-                    {/* ── Resend notification ───────────────────────────── */}
-
                     <div className="rounded-xl border border-gray-200 px-5 py-4">
                         <Checkbox
                             label="Resend notification to users with updated details"
@@ -332,7 +318,6 @@ export default function EditScheduleMaintenanceModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

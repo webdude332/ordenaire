@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Event subscription groups ────────────────────────────────────────────────
-
 const EVENT_GROUPS = [
     {
         group: 'Orders & Sales',

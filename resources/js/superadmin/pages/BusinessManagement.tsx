@@ -9,14 +9,11 @@ import Dashboard from '../../shared/images/icons/dashBaordSvg.svg';
 type TabType = 'profiles' | 'tenancy' | 'feature';
 
 const BusinessManagement = () => {
-    // --- PERSISTENCE LOGIC ---
-    // Initialize state from localStorage or default to 'profiles'
     const [activeTab, setActiveTab] = useState<TabType>(() => {
         const savedTab = localStorage.getItem('business_management_active_tab');
         return (savedTab as TabType) || 'profiles';
     });
 
-    // Update localStorage whenever the activeTab changes
     useEffect(() => {
         localStorage.setItem('business_management_active_tab', activeTab);
     }, [activeTab]);

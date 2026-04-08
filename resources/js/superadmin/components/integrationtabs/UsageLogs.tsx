@@ -16,8 +16,6 @@ import {
 } from '../OuterTable';
 import ActionButton from '../ui/ActionButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type HttpMethod = 'POST' | 'GET' | 'PUT' | 'DELETE';
 type LogStatus = '201 Created' | '401 Unauth' | '500 Error';
 
@@ -31,8 +29,6 @@ interface LogItem {
     status: LogStatus;
     latency: string;
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const LOGS: LogItem[] = [
     {
@@ -67,8 +63,6 @@ const LOGS: LogItem[] = [
     },
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const methodStyle = (m: HttpMethod) => {
     if (m === 'POST')
         return 'bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF] rounded-md';
@@ -92,8 +86,6 @@ const statusDot = (s: LogStatus) => {
     if (s === '401 Unauth') return 'bg-orange-500';
     return 'bg-red-500';
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function UsageLogs() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -137,7 +129,6 @@ export default function UsageLogs() {
                 </div>
             </div>
 
-            {/* ── Filters ───────────────────────────────────────────── */}
             <div className="flex items-center justify-between">
                 <div className="relative">
                     <Search className="pointer-events-none absolute inset-y-0 left-3 my-auto h-4 w-4 text-gray-400" />
@@ -161,7 +152,6 @@ export default function UsageLogs() {
                 </div>
             </div>
 
-            {/* ── Activity Logs Table ───────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
                     <h2 className="text-base font-semibold text-gray-900">
@@ -254,8 +244,6 @@ export default function UsageLogs() {
                     </Table>
                 </TableContainerOne>
             </div>
-
-            {/* ── Modal ─────────────────────────────────────────────── */}
             <LogDetailModal
                 isOpen={isModalOpen}
                 onClose={() => {

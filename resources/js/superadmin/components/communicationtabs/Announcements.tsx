@@ -3,11 +3,7 @@ import DeliveryTab from '@/superadmin/components/communicationtabs/DeliveryTab';
 import ScheduleTab from '@/superadmin/components/communicationtabs/ScheduleTab';
 import { useState } from 'react';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type SubTabType = 'compose' | 'schedule' | 'delivery';
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Announcements() {
     const [activeSubTab, setActiveSubTab] = useState<SubTabType>('compose');
@@ -20,7 +16,7 @@ export default function Announcements() {
 
     return (
         <div>
-            {/* ── Sub-tab bar ──────────────────────────────────────────── */}
+            {/* Sub-tab bar */}
             <div className="mb-6 flex items-center gap-1 rounded-xl border border-borderColor bg-[#F9F7FA] p-1">
                 {subTabs.map((tab) => (
                     <button
@@ -37,7 +33,7 @@ export default function Announcements() {
                 ))}
             </div>
 
-            {/* ── Tab content ──────────────────────────────────────────── */}
+            {/*Tab content*/}
             {activeSubTab === 'compose' && <ComposeTab />}
             {activeSubTab === 'schedule' && <ScheduleTab />}
             {activeSubTab === 'delivery' && <DeliveryTab />}

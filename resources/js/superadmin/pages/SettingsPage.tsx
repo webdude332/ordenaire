@@ -2,7 +2,6 @@ import SidePannel from '@/superadmin/components/SidePannel';
 import TopBar from '@/superadmin/components/TopBar';
 import { useEffect, useState } from 'react';
 
-// Using the Dashboard SVG as a placeholder icon
 import Dashboard from '../../shared/images/icons/dashBaordSvg.svg';
 
 // Settings Tab Components

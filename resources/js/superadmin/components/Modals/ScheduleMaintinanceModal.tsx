@@ -21,15 +21,11 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ScheduleMaintenanceModalProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const PLATFORM_OPTIONS = [
     { label: 'POS App (iPad)', value: 'pos_ipad' },
@@ -93,7 +89,6 @@ export default function ScheduleMaintenanceModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Plus className="h-5 w-5 text-gray-700" />
@@ -104,7 +99,6 @@ export default function ScheduleMaintenanceModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Schedule Details ─────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <div className="mb-4 grid grid-cols-3 gap-4">
                             <div>
@@ -199,7 +193,6 @@ export default function ScheduleMaintenanceModal({
                         </div>
                     </div>
 
-                    {/* ── User Notification Editor ─────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <div className="mb-3 flex items-start justify-between">
                             <div>
@@ -276,7 +269,6 @@ export default function ScheduleMaintenanceModal({
                         </div>
                     </div>
 
-                    {/* ── Channel ──────────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Channel
@@ -293,7 +285,6 @@ export default function ScheduleMaintenanceModal({
                         </div>
                     </div>
 
-                    {/* ── Notification Timing ──────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <RadioGroup
                             name="notification_timing"
@@ -321,7 +312,6 @@ export default function ScheduleMaintenanceModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

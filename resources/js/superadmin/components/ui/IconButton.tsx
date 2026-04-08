@@ -1,8 +1,5 @@
-
-
-
-import React, { ButtonHTMLAttributes } from 'react';
 import { Link } from '@inertiajs/react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
@@ -10,9 +7,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     href?: string;
 }
 
-export default function IconButton({ className = '', children, href, disabled = false, ...props }: ButtonProps) {
-    
-    // The shared styles for both Link and Button
+export default function IconButton({
+    className = '',
+    children,
+    href,
+    disabled = false,
+    ...props
+}: ButtonProps) {
     const complexStyles = {
         boxShadow: `
             inset 0 0 0 2px rgba(255, 255, 255, 0.12),
@@ -27,32 +28,27 @@ export default function IconButton({ className = '', children, href, disabled = 
         rounded-lg px-4 py-2 
         text-sm font-medium
         transition-colors
-        ${disabled
-            ? 'bg-gray-50 text-gray-400 border border-gray-200 cursor-not-allowed'
-            : 'bg-[transparent] text-[#4F4955] hover:bg-gray-50 border border-[#CFCBD2] cursor-pointer'
+        ${
+            disabled
+                ? 'bg-gray-50 text-gray-400 border border-gray-200 cursor-not-allowed'
+                : 'bg-[transparent] text-[#4F4955] hover:bg-gray-50 border border-[#CFCBD2] cursor-pointer'
         }
         ${className}
     `;
 
-    // 1. If an href is provided, render a Link
     if (href) {
         return (
-            <Link 
-                href={href} 
-                className={baseClasses} 
-                style={complexStyles}
-            >
+            <Link href={href} className={baseClasses} style={complexStyles}>
                 {children}
             </Link>
         );
     }
 
-    // 2. Otherwise, render a standard Button
     return (
-        <button 
+        <button
             {...props}
             disabled={disabled}
-            className={baseClasses} 
+            className={baseClasses}
             style={disabled ? undefined : complexStyles}
         >
             {children}

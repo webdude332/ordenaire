@@ -96,7 +96,6 @@ export default function EditPlanModal({
                     </div>
                 </div>
 
-                {/* Title + Current Plan Badge */}
                 <div className="mb-6">
                     <h3 className="text-xl font-bold text-gray-900">
                         Change Subscription Plan

@@ -18,8 +18,6 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ReleaseItem {
     id: number;
     platform: string;
@@ -31,8 +29,6 @@ interface ReleaseItem {
     changelog: string;
     loggedBy: string;
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 const ReleaseMgmt = () => {
     const [isLogModalOpen, setIsLogModalOpen] = useState(false);
@@ -253,7 +249,6 @@ const ReleaseMgmt = () => {
                 </TableContainerOne>
             </div>
 
-            {/* ── Modals ────────────────────────────────────────────────── */}
             <LogReleaseModal
                 isOpen={isLogModalOpen}
                 onClose={() => setIsLogModalOpen(false)}

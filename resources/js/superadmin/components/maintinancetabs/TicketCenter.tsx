@@ -21,8 +21,6 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface TicketItem {
     id: number;
     ticketId: string;
@@ -37,8 +35,6 @@ interface TicketItem {
     attachments?: string[];
     mentions?: string[];
 }
-
-// ─── Static data ─────────────────────────────────────────────────────────────
 
 const ticketsData: TicketItem[] = [
     {
@@ -83,8 +79,6 @@ const ticketsData: TicketItem[] = [
     },
 ];
 
-// ─── Filter options ───────────────────────────────────────────────────────────
-
 const PRIORITY_OPTIONS = [
     {
         label: <span className="font-medium">Prirority: All</span>,
@@ -106,8 +100,6 @@ const STATUS_OPTIONS = [
     { label: 'Resolved', value: 'resolved' },
     { label: 'Closed', value: 'closed' },
 ];
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const getPriorityVariant = (priority: TicketItem['priority']) => {
     switch (priority?.toLocaleLowerCase()) {
@@ -136,8 +128,6 @@ const getStatusVariant = (status: TicketItem['status']) => {
             return 'gray'; // Fallback
     }
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 const TicketCenter = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -178,7 +168,6 @@ const TicketCenter = () => {
 
     return (
         <div>
-            {/* ── Filters Bar ──────────────────────────────────────────── */}
             <div className="mb-4 flex items-center justify-between gap-3">
                 {/* Search */}
                 <div className="relative w-80">
@@ -218,7 +207,6 @@ const TicketCenter = () => {
                 </div>
             </div>
 
-            {/* ── Tickets Table ─────────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
                     <h2 className="text-lg font-semibold text-gray-900">
@@ -353,7 +341,6 @@ const TicketCenter = () => {
                     </Table>
                 </TableContainerOne>
 
-                {/* ── Pagination ───────────────────────────────────────── */}
                 <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4">
                     <ActionButton
                         onClick={() =>
@@ -394,7 +381,6 @@ const TicketCenter = () => {
                 </div>
             </div>
 
-            {/* ── Modal ─────────────────────────────────────────────────── */}
             <TicketsModal
                 isOpen={isModalOpen}
                 onClose={() => {

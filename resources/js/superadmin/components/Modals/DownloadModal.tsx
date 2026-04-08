@@ -54,8 +54,6 @@ interface DownloadInvoiceModalProps {
     };
 }
 
-// ─── Mock details (replace with API call) ────────────────────────────────────
-
 const getMockInvoiceDetails = (
     invoice: DownloadInvoiceModalProps['invoice'],
 ) => ({
@@ -77,7 +75,6 @@ const getMockInvoiceDetails = (
         {
             time: 'Oct 12, 02:30 PM',
             label: 'Payment Success',
-            // subLines: ['(Stripe ID: ch_12)', '(Wallet Deduction: WAL-999)'],
         },
     ] as TimelineEvent[],
     lineItems: [
@@ -105,8 +102,6 @@ const getMockInvoiceDetails = (
     creditsUsed: '-25.000',
     totalPaid: '4,700.000 AED',
 });
-
-// ─── Status helpers ───────────────────────────────────────────────────────────
 
 const getStatusBadgeVariant = (status: string): BadgeVariant => {
     switch (status) {
@@ -158,8 +153,6 @@ const getBanner = (status: string) => {
     }
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function DownloadInvoiceModal({
     isOpen,
     onClose,
@@ -183,7 +176,6 @@ export default function DownloadInvoiceModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <SaveCheck className="h-5 w-5" />
@@ -194,7 +186,6 @@ export default function DownloadInvoiceModal({
                 </div>
                 {/**main container */}
                 <div className="rounded-xl border border-borderColor p-4">
-                    {/* ── Status Banner ───────────────────────────────────── */}
                     <div
                         className={`mb-5 rounded-xl border border-borderColor bg-[#F8FFEB] px-5 py-4`}
                     >
@@ -259,7 +250,6 @@ export default function DownloadInvoiceModal({
                         </div>
                     </div>
 
-                    {/* ── Bill To + Timeline ──────────────────────────────── */}
                     <div className="grid grid-cols-[3fr_2fr] gap-4">
                         <div>
                             <div className="rounded-xl border border-gray-200 bg-[#F9FAFB] p-5">
@@ -287,7 +277,6 @@ export default function DownloadInvoiceModal({
                                     </div>
                                 </div>
 
-                                {/* Divider */}
                                 <div className="mb-5 h-px bg-gray-900" />
 
                                 {/* Details */}

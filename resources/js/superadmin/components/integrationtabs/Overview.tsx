@@ -25,8 +25,6 @@ import Pagination from '../Pagination';
 import { Input } from '../ui/FormElements';
 import { IconCard } from '../ui/IconCard';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type AppStatus = 'Active' | 'Maintenance' | 'Inactive';
 
 interface AppItem {
@@ -38,8 +36,6 @@ interface AppItem {
     installCount: number;
     lastUpdated: string;
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const TOP_APPS = [
     { name: 'Talabat', installs: '12,450' },
@@ -108,8 +104,6 @@ const CATALOGUE: AppItem[] = [
 const statusVariant = (s: AppStatus) =>
     s === 'Active' ? 'success' : s === 'Maintenance' ? 'warning' : 'gray';
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function Overview() {
     const [search, setSearch] = useState('');
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -122,7 +116,6 @@ export default function Overview() {
 
     return (
         <div className="space-y-6">
-            {/* ── Stat Cards ───────────────────────────────────────── */}
             <div className="grid grid-cols-3 gap-4">
                 <IconCard
                     icon={Publish}
@@ -148,7 +141,6 @@ export default function Overview() {
                 />
             </div>
 
-            {/* ── Top Performing Apps ───────────────────────────────── */}
             <div>
                 <h2 className="mb-3 text-lg font-semibold text-gray-900">
                     Top Performing Apps
@@ -268,7 +260,6 @@ export default function Overview() {
                 <Pagination />
             </div>
 
-            {/* ── Modals ─────────────────────────────────────────────── */}
             <AddAppModal
                 isOpen={isAddModalOpen}
                 onClose={() => setIsAddModalOpen(false)}

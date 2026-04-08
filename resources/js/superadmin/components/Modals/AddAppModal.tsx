@@ -7,8 +7,6 @@ import { useRef, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Options ──────────────────────────────────────────────────────────────────
-
 const CATEGORY_OPTIONS = [
     { label: 'Delivery', value: 'delivery' },
     { label: 'Finance', value: 'finance' },
@@ -76,8 +74,6 @@ const OVERRIDE_RATES: Record<
     },
 };
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface AddAppModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -103,8 +99,6 @@ interface AppFormData {
     webhookUrl: string;
     scopes: string[];
 }
-
-// ─── Tag Input ────────────────────────────────────────────────────────────────
 
 const TagInput = ({
     tags,
@@ -173,8 +167,6 @@ const TagInput = ({
     );
 };
 
-// ─── Region Multi-select ──────────────────────────────────────────────────────
-
 const RegionMultiSelect = ({
     selected,
     onAdd,
@@ -240,8 +232,6 @@ const RegionMultiSelect = ({
     );
 };
 
-// ─── Scope Multi-select ───────────────────────────────────────────────────────
-
 const ScopeSelect = ({
     selected,
     onAdd,
@@ -306,8 +296,6 @@ const ScopeSelect = ({
         </div>
     );
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function AddAppModal({
     isOpen,
@@ -386,7 +374,6 @@ export default function AddAppModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="relative mb-6 flex items-start gap-4">
                         <div className="pointer-events-none absolute inset-0 top-22 left-[-20px] flex items-center">
@@ -412,7 +399,6 @@ export default function AddAppModal({
                 </div>
 
                 <div className="space-y-5">
-                    {/* ── App Details ─────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             App Details
@@ -499,7 +485,6 @@ export default function AddAppModal({
                         </div>
                     </div>
 
-                    {/* ── Provider Information ─────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Provider Information
@@ -544,7 +529,6 @@ export default function AddAppModal({
                         </div>
                     </div>
 
-                    {/* ── Key Features ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Key Features
@@ -564,7 +548,6 @@ export default function AddAppModal({
                         />
                     </div>
 
-                    {/* ── Pricing & Region ────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Pricing & Region
@@ -737,7 +720,6 @@ export default function AddAppModal({
                         )}
                     </div>
 
-                    {/* ── Technical Configuration ──────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Technical Configuration
@@ -827,7 +809,6 @@ export default function AddAppModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

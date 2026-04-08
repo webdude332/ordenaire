@@ -107,7 +107,6 @@ export default function RefundModal({
                     </div>
                 </div>
 
-                {/* ── Apply Refund Card ───────────────────────────────── */}
                 <div className="mb-4 rounded-xl border border-gray-200 p-5">
                     <p className="text-md mb-4 font-medium text-gray-900">
                         Apply Refund
@@ -171,7 +170,7 @@ export default function RefundModal({
                             Refund Method
                         </label>
                         <CustomDropdown
-                            label="" // Passed as empty string because your component has the label rendering commented out
+                            label=""
                             options={REFUND_METHODS.map((m) => ({
                                 label: m,
                                 value: m,
@@ -234,15 +233,12 @@ export default function RefundModal({
                     </div>
                 </div>
 
-                {/* ── Approval Notice ─────────────────────────────────── */}
                 <div className="flex items-center gap-3 rounded-xl border border-gray-200 px-5 py-2">
                     <Info className="h-8 w-8" />
                     <span className="text-sm font-medium text-gray-700">
                         Needs approval from Super Admin
                     </span>
                 </div>
-
-                {/* ── Footer Buttons ─────────────────────────────────── */}
             </div>
             <div className="flex gap-3 border-t border-borderColor px-6 py-6">
                 <IconButton className="w-full" onClick={onClose}>

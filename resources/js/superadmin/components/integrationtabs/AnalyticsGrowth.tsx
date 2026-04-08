@@ -91,7 +91,7 @@ export default function AnalyticsGrowth() {
 
     return (
         <div className="space-y-6">
-            {/* ── Analytics Panel ───────────────────────────────────── */}
+            {/*Analytics Panel*/}
             <div>
                 <h2 className="mb-3 text-base font-semibold text-gray-900">
                     Analytics Panel
@@ -124,7 +124,7 @@ export default function AnalyticsGrowth() {
                 </div>
             </div>
 
-            {/* ── Filters ───────────────────────────────────────────── */}
+            {/* Filters */}
             <div className="flex items-center justify-between">
                 <div className="relative">
                     <Input
@@ -141,7 +141,7 @@ export default function AnalyticsGrowth() {
                 </button>
             </div>
 
-            {/* ── App Performance Report ────────────────────────────── */}
+            {/* App Performance Report */}
             <div className="rounded-xl border border-borderColor pt-6">
                 <div className="px-6 pb-4">
                     <h2 className="text-lg font-semibold text-gray-900">

@@ -4,11 +4,7 @@ import Announcements from '@/superadmin/components/communicationtabs/Announcemen
 import { useEffect, useState } from 'react';
 import Dashboard from '../../shared/images/icons/dashBaordSvg.svg';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type TabType = 'announcements';
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function CommunicationManagement() {
     const [activeTab, setActiveTab] = useState<TabType>(() => {

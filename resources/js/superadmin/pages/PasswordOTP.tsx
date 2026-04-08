@@ -1,7 +1,3 @@
-// export default function PasswordOTP() {
-//     return <div>PasswordOTP</div>;
-// }
-
 export default function CheckEmail() {
     return (
         <div className="relative flex min-h-screen flex-col items-center overflow-hidden bg-white pt-24 font-sans">

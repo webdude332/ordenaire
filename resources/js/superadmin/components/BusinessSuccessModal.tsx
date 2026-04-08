@@ -76,7 +76,7 @@ export default function BusinessRegistrationSuccessModal({
                             Close
                         </IconButton>
                     </Link>
-                    <Link href="/business/businessoverview">
+                    <Link href="/superadmin/business/businessoverview">
                         <Button className="w-full" onClick={onViewProfile}>
                             View Business Profile
                         </Button>

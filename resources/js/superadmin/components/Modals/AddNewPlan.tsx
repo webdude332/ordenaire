@@ -10,8 +10,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface AddNewPlanModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -29,8 +27,6 @@ interface PlanFormData {
     staffSeats: string;
     status: 'active' | 'archived';
 }
-
-// ─── Feature Groups ───────────────────────────────────────────────────────────
 
 const featureGroups = [
     {
@@ -94,8 +90,6 @@ featureGroups.forEach((group) =>
     group.features.forEach((f) => (initialFeatures[f.key] = false)),
 );
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function AddNewPlanModal({
     isOpen,
     onClose,
@@ -131,14 +125,12 @@ export default function AddNewPlanModal({
         onClose();
     };
 
-    // Split feature groups into left (index 0, 2, 4) and right (index 1, 3)
     const leftGroups = [featureGroups[0], featureGroups[2], featureGroups[4]];
     const rightGroups = [featureGroups[1], featureGroups[3]];
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Plus className="h-5 w-5 text-gray-700" />
@@ -149,7 +141,6 @@ export default function AddNewPlanModal({
                 </div>
 
                 <div className="space-y-5">
-                    {/* ── Plan Details ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Plan Details
@@ -199,7 +190,6 @@ export default function AddNewPlanModal({
                         </div>
                     </div>
 
-                    {/* ── Features & Modules ──────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Features & Modules
@@ -268,7 +258,6 @@ export default function AddNewPlanModal({
                         </div>
                     </div>
 
-                    {/* ── Usage Limits ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Usage Limits
@@ -332,7 +321,6 @@ export default function AddNewPlanModal({
                         </div>
                     </div>
 
-                    {/* ── Status and Availability ─────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Status and Availability
@@ -357,7 +345,6 @@ export default function AddNewPlanModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

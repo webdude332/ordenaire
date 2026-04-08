@@ -10,8 +10,6 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface IncidentItem {
     id: number;
     dateTime: string;
@@ -38,8 +36,6 @@ interface IncidentFormData {
     displayOnLoginScreen: boolean;
 }
 
-// ─── Options ──────────────────────────────────────────────────────────────────
-
 const PLATFORM_OPTIONS = [
     { label: 'Merchant Portal (Web)', value: 'merchant_portal' },
     { label: 'WhatsApp Marketing', value: 'whatsapp_marketing' },
@@ -64,8 +60,6 @@ const STATUS_OPTIONS = [
 
 const severityToValue = (s: IncidentItem['severity']) => s.toLowerCase();
 const statusToValue = (s: IncidentItem['status']) => s.toLowerCase();
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function EditIncidentModal({
     isOpen,
@@ -105,7 +99,6 @@ export default function EditIncidentModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Pencil className="h-4 w-4 text-gray-700" />
@@ -116,13 +109,11 @@ export default function EditIncidentModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Incident Details ─────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Incident Details
                         </h3>
 
-                        {/* Title + Severity */}
                         <div className="mb-4 grid grid-cols-2 gap-4">
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
@@ -148,7 +139,6 @@ export default function EditIncidentModal({
                             </div>
                         </div>
 
-                        {/* Affected Platform */}
                         <div className="w-1/2 pr-2">
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                 Affected Platform
@@ -163,7 +153,6 @@ export default function EditIncidentModal({
                         </div>
                     </div>
 
-                    {/* ── Status & Time ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Status & Time
@@ -203,7 +192,6 @@ export default function EditIncidentModal({
                         </div>
                     </div>
 
-                    {/* ── Display on Login Screen ──────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-4">
                         <Checkbox
                             label="Display this alert on the Merchant Login Screen?"
@@ -216,7 +204,6 @@ export default function EditIncidentModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

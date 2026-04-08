@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ReleaseItem {
     id: number;
     platform: string;
@@ -36,8 +34,6 @@ interface ReleaseFormData {
     changelog: string;
 }
 
-// ─── Options ──────────────────────────────────────────────────────────────────
-
 const STATUS_OPTIONS = [
     { label: '🟢 Live / Completed', value: 'live' },
     { label: '🟠 In Review (App Store)', value: 'in_review' },
@@ -59,8 +55,6 @@ const statusToValue = (status: ReleaseItem['status']) => {
             return 'live';
     }
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function EditReleaseModal({
     isOpen,
@@ -101,7 +95,6 @@ export default function EditReleaseModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Pencil className="h-4 w-4 text-gray-700" />
@@ -112,7 +105,6 @@ export default function EditReleaseModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Release Details ──────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Release Details
@@ -146,7 +138,6 @@ export default function EditReleaseModal({
                             </div>
                         </div>
 
-                        {/* Release Date + Status */}
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
@@ -181,7 +172,6 @@ export default function EditReleaseModal({
                         </div>
                     </div>
 
-                    {/* ── Distribution ─────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Distribution
@@ -202,7 +192,6 @@ export default function EditReleaseModal({
                         </div>
                     </div>
 
-                    {/* ── Changelog ────────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Changelog
@@ -223,7 +212,6 @@ export default function EditReleaseModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

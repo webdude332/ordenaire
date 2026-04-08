@@ -1,5 +1,5 @@
 import ArrowDown from '@shared/images/icons/chevron-down.svg?react';
-import SearchIcon from '@shared/images/icons/searchIcon.svg?react'; // Ensure you have a search icon
+import SearchIcon from '@shared/images/icons/searchIcon.svg?react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 interface Option {

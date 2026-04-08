@@ -11,8 +11,6 @@ import {
 } from '@/superadmin/components/ui/Table'; // adjust path as needed
 import { useMemo, useState } from 'react';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface LogEntry {
     id: number;
     date: string;
@@ -24,8 +22,6 @@ interface LogEntry {
     ipAddress: string;
     type: string;
 }
-
-// ─── Mock Data ────────────────────────────────────────────────────────────────
 
 const LOG_DATA: LogEntry[] = [
     {
@@ -102,8 +98,6 @@ const eventTypeOptions = [
     { label: 'Login', value: 'login' },
     { label: 'Session', value: 'session' },
 ];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function SecurityLogs() {
     const [search, setSearch] = useState('');

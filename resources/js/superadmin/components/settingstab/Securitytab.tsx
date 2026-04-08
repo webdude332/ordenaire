@@ -17,8 +17,6 @@ import {
 } from '../OuterTable';
 import SuccessToast from '../toasts/SuccessToast';
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
 const TIMEZONE_OPTIONS = [
     { label: '(GMT+04:00) Dubai, Abu Dhabi', value: 'gmt+4' },
     { label: '(GMT+03:00) Riyadh', value: 'gmt+3' },
@@ -57,8 +55,6 @@ const SESSIONS: Session[] = [
     },
 ];
 
-// ─── Row layout ───────────────────────────────────────────────────────────────
-
 function SectionRow({
     title,
     children,
@@ -76,8 +72,6 @@ function SectionRow({
     );
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function SecurityTab() {
     const [phone, setPhone] = useState('+971 50 123 4567');
     const [timezone, setTimezone] = useState('gmt+4');
@@ -88,7 +82,6 @@ export default function SecurityTab() {
 
     return (
         <div className="space-y-8">
-            {/* ── Regional & Contact Info ───────────────────────────── */}
             <SectionRow title="Regional & Contact Info">
                 <div className="rounded-xl border border-gray-200 p-5">
                     <div className="grid grid-cols-2 gap-4">
@@ -119,7 +112,6 @@ export default function SecurityTab() {
                 </div>
             </SectionRow>
 
-            {/* ── Two-factor Authentication ─────────────────────────── */}
             <SectionRow title="Two-factor Authentication (2FA)">
                 <div className="space-y-4 rounded-xl border border-gray-200 p-5">
                     <div>
@@ -150,7 +142,6 @@ export default function SecurityTab() {
                 </div>
             </SectionRow>
 
-            {/* ── Alert Preferences ────────────────────────────────── */}
             <SectionRow title="Alert Preferences">
                 <div className="space-y-4 rounded-xl border border-gray-200 px-5 py-4">
                     <div className="flex items-center gap-3">
@@ -174,7 +165,6 @@ export default function SecurityTab() {
                 </div>
             </SectionRow>
 
-            {/* ── Active Sessions / Devices ─────────────────────────── */}
             <div className="flex gap-10">
                 <div className="w-56 flex-shrink-0 pt-1">
                     <h2 className="text-sm font-semibold text-gray-900">
@@ -253,7 +243,6 @@ export default function SecurityTab() {
                 </div>
             </div>
 
-            {/* ── Footer ────────────────────────────────────────────── */}
             <div className="flex justify-end gap-3 border-t border-gray-200 pt-6">
                 <IconButton>Cancel</IconButton>
                 <Button onClick={() => setShowToast(true)}>Save Changes</Button>

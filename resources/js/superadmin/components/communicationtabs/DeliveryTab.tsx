@@ -16,7 +16,7 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// Type
 
 interface DeliveryLogItem {
     id: number;
@@ -31,7 +31,7 @@ interface DeliveryLogItem {
     messagePreview?: string;
 }
 
-// ─── Static data ─────────────────────────────────────────────────────────────
+// Static data
 
 const deliveryLogs: DeliveryLogItem[] = [
     {
@@ -74,7 +74,7 @@ const deliveryLogs: DeliveryLogItem[] = [
     },
 ];
 
-// ─── Filter options ───────────────────────────────────────────────────────────
+//Filter options
 
 const STATUS_OPTIONS = [
     { label: <span className="font-medium">Status: All</span>, value: 'all' },
@@ -96,8 +96,6 @@ const DATE_OPTIONS = [
     { label: 'Last 90 Days', value: 'last_90' },
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 const getStatusVariant = (status: DeliveryLogItem['status']) => {
     switch (status) {
         case 'Delivered':
@@ -109,7 +107,7 @@ const getStatusVariant = (status: DeliveryLogItem['status']) => {
     }
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// Component
 
 export default function DeliveryTab() {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);

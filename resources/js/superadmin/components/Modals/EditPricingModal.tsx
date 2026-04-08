@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Options ──────────────────────────────────────────────────────────────────
-
 const PRICING_MODEL_OPTIONS = [
     { label: 'Free', value: 'free' },
     { label: 'One-Time License', value: 'one_time' },
@@ -59,8 +57,6 @@ const OVERRIDE_RATES: Record<
     },
 };
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface AppPricingItem {
     id: number;
     name: string;
@@ -83,8 +79,6 @@ interface PricingFormData {
     customOverridePricing: boolean;
     overridePrices: Record<string, string>;
 }
-
-// ─── Region Multi-select ──────────────────────────────────────────────────────
 
 const RegionMultiSelect = ({
     selected,
@@ -152,8 +146,6 @@ const RegionMultiSelect = ({
     );
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function EditPricingModal({
     isOpen,
     onClose,
@@ -188,7 +180,6 @@ export default function EditPricingModal({
         }
     }, [app]);
 
-    // When model switches to free, clear base price
     useEffect(() => {
         if (isFree) setBasePrice('0.000');
     }, [isFree]);
@@ -232,7 +223,6 @@ export default function EditPricingModal({
                     </h2>
                 </div>
 
-                {/* ── Pricing & Region ────────────────────────────────── */}
                 <div className="rounded-xl border border-gray-200 p-5">
                     <h3 className="mb-4 text-sm font-semibold text-gray-900">
                         Pricing & Region
@@ -270,7 +260,6 @@ export default function EditPricingModal({
                         </div>
                     </div>
 
-                    {/* Row 2: Supported Regions + Free Trial */}
                     <div className="mb-4 grid grid-cols-2 gap-4">
                         <div>
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
@@ -420,7 +409,6 @@ export default function EditPricingModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

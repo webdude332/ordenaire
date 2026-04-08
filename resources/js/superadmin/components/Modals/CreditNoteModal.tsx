@@ -6,8 +6,6 @@ import Eye from '@shared/images/icons/eyeIcon.svg?react';
 import MessageSquare from '@shared/images/icons/messageSquareIcon.svg?react';
 import LayoutGrid from '@shared/images/icons/shopone.svg?react';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface CreditNoteModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -28,8 +26,6 @@ interface CreditNoteModalProps {
         };
     };
 }
-
-// ─── Mock data (replace with API call) ────────────────────────────────────────
 
 const getMockCreditNoteDetails = (
     invoice: CreditNoteModalProps['invoice'],
@@ -52,8 +48,6 @@ const getMockCreditNoteDetails = (
     approvalDateTime: '10:30 AM, 25 Feb 2026',
 });
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function CreditNoteModal({
     isOpen,
     onClose,
@@ -64,7 +58,6 @@ export default function CreditNoteModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Eye
@@ -77,10 +70,8 @@ export default function CreditNoteModal({
                     </h2>
                 </div>
 
-                {/* ── Main container ─────────────────────────────────── */}
                 <div className="rounded-xl border border-borderColor p-4">
                     <div className="grid grid-cols-[3fr_2fr] gap-4">
-                        {/* ── Left column ──────────────────────────────── */}
                         <div className="space-y-6 rounded-xl border border-gray-200 bg-[#F9FAFB] p-5">
                             {/* Business Details */}
                             <div>
@@ -111,7 +102,6 @@ export default function CreditNoteModal({
                                 </div>
                             </div>
 
-                            {/* Reason for Request */}
                             <div>
                                 <div className="mb-3 flex items-center gap-2">
                                     <ClipboardList
@@ -159,7 +149,7 @@ export default function CreditNoteModal({
                             </div>
                         </div>
 
-                        {/* ── Right column ─────────────────────────────── */}
+                        {/*Right column */}
                         <div className="flex flex-col gap-4">
                             {/* Top card: Target Item, Original Amount, Approval Status */}
                             <div className="space-y-6 rounded-xl border border-gray-200 bg-gray-50 p-6">
@@ -193,7 +183,6 @@ export default function CreditNoteModal({
                                 </div>
                             </div>
 
-                            {/* Bottom card: Refund Type, Refund Amount, Net Revenue */}
                             <div className="space-y-6 rounded-xl border border-gray-200 bg-gray-50 p-6">
                                 <div>
                                     <p className="mb-1 text-xs font-semibold tracking-wide text-gray-500">

@@ -14,7 +14,7 @@ import {
     TableRow,
 } from '../OuterTable';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// Types
 
 interface ScheduledItem {
     id: number;
@@ -29,7 +29,7 @@ interface ScheduledItem {
     body?: string;
 }
 
-// ─── Static data ─────────────────────────────────────────────────────────────
+// Static data
 
 const scheduledData: ScheduledItem[] = [
     {
@@ -70,7 +70,7 @@ const scheduledData: ScheduledItem[] = [
     },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// Component
 
 export default function ScheduleTab() {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);

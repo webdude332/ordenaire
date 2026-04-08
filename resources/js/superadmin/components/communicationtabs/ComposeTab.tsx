@@ -16,7 +16,7 @@ import {
 import { useState } from 'react';
 import RadioGroup from '../ui/RadioGroup';
 
-// ─── Options ──────────────────────────────────────────────────────────────────
+//Options
 
 const REGION_OPTIONS = [
     { label: 'All Regions', value: 'all_regions' },
@@ -49,7 +49,7 @@ const LANGUAGE_OPTIONS = [
 
 const CHANNELS = ['Email', 'Dashboard Notification', 'WhatsApp', 'POS'];
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// Component
 
 export default function ComposeTab() {
     const [title, setTitle] = useState('');
@@ -78,7 +78,7 @@ export default function ComposeTab() {
 
     return (
         <div className="space-y-5">
-            {/* ── Message Title & Body ─────────────────────────────────── */}
+            {/* Message Title & Body*/}
             <div className="rounded-xl border border-borderColor p-6">
                 <h3 className="mb-4 text-sm font-semibold text-gray-900">
                     Message Title & Body
@@ -133,7 +133,7 @@ export default function ComposeTab() {
                 />
             </div>
 
-            {/* ── Channel ──────────────────────────────────────────────── */}
+            {/* Channel */}
             <div className="rounded-xl border border-borderColor p-6">
                 <h3 className="mb-4 text-sm font-semibold text-gray-900">
                     Channel
@@ -170,7 +170,7 @@ export default function ComposeTab() {
                 </div>
             </div>
 
-            {/* ── Audience Targeting ───────────────────────────────────── */}
+            {/* Audience Targeting*/}
             <div className="rounded-xl border border-borderColor p-6">
                 <h3 className="mb-4 text-sm font-semibold text-gray-900">
                     Audience Targeting
@@ -227,7 +227,7 @@ export default function ComposeTab() {
                 </div>
             </div>
 
-            {/* ── Delivery Timing ──────────────────────────────────────── */}
+            {/*Delivery Timing */}
             <div className="rounded-xl border border-borderColor p-6">
                 <div className="flex gap-4">
                     <div className="flex w-1/2 flex-col items-start gap-8">
@@ -281,7 +281,7 @@ export default function ComposeTab() {
                 </div>
             </div>
 
-            {/* ── Footer buttons ───────────────────────────────────────── */}
+            {/* Footer buttons*/}
             <div className="flex justify-end gap-3 pb-2">
                 <IconButton onClick={() => {}}>Cancel</IconButton>
                 <Button onClick={handleSend}>{submitLabel}</Button>

@@ -1,23 +1,19 @@
-import CustomDropdown from '@/superadmin/components/ui/CustomDropdown'; // adjust path
+import CustomDropdown from '@/superadmin/components/ui/CustomDropdown';
 import {
     Checkbox,
     Input,
     Label,
-} from '@/superadmin/components/ui/FormElements'; // adjust path
+} from '@/superadmin/components/ui/FormElements';
 import { useState } from 'react';
 import SuccessToast from '../toasts/SuccessToast';
 import WarningToast from '../toasts/WarningToast';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface SectionProps {
     title: string;
     children: React.ReactNode;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const timezoneOptions = [
     { label: '(GMT+03:00) Riyadh', value: 'Asia/Riyadh' },
@@ -48,8 +44,6 @@ const languageOptions = [
     { label: 'Arabic', value: 'ar' },
 ];
 
-// ─── Section Wrapper ──────────────────────────────────────────────────────────
-
 const Section = ({ title, children }: SectionProps) => (
     <div className="flex gap-8 border-b border-borderColor py-8 last:border-none">
         <div className="w-56 shrink-0">
@@ -60,8 +54,6 @@ const Section = ({ title, children }: SectionProps) => (
         </div>
     </div>
 );
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 const GeneralSettings = () => {
     // Regional

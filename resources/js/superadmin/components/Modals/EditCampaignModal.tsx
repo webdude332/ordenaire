@@ -19,8 +19,6 @@ import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 import RadioGroup from '../ui/RadioGroup';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ScheduledItem {
     id: number;
     campaignTitle: string;
@@ -53,8 +51,6 @@ interface CampaignFormData {
     scheduledDateTime: string;
 }
 
-// ─── Options ──────────────────────────────────────────────────────────────────
-
 const REGION_OPTIONS = [
     { label: 'All Regions', value: 'all_regions' },
     { label: 'UAE', value: 'uae' },
@@ -85,8 +81,6 @@ const LANGUAGE_OPTIONS = [
 ];
 
 const CHANNELS = ['Email', 'Dashboard Notification', 'WhatsApp', 'POS'];
-
-// ─── Checkbox component inline ────────────────────────────────────────────────
 
 const CheckItem = ({
     label,
@@ -134,8 +128,6 @@ const CheckItem = ({
         {label}
     </label>
 );
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function EditCampaignModal({
     isOpen,
@@ -207,7 +199,6 @@ export default function EditCampaignModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Pencil className="h-4 w-4 text-gray-700" />
@@ -241,7 +232,6 @@ export default function EditCampaignModal({
                 </div>
 
                 <div className="space-y-5">
-                    {/* ── Message Title & Body ─────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Message Title & Body
@@ -294,7 +284,6 @@ export default function EditCampaignModal({
                         />
                     </div>
 
-                    {/* ── Channel ──────────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Channel
@@ -331,7 +320,6 @@ export default function EditCampaignModal({
                         </div>
                     </div>
 
-                    {/* ── Audience Targeting ───────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Audience Targeting
@@ -388,7 +376,6 @@ export default function EditCampaignModal({
                         </div>
                     </div>
 
-                    {/* ── Delivery Timing ──────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Delivery Timing
@@ -440,7 +427,6 @@ export default function EditCampaignModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

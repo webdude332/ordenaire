@@ -10,14 +10,10 @@ import WarningToast from '../toasts/WarningToast';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface SectionProps {
     title: string;
     children: React.ReactNode;
 }
-
-// ─── Options ──────────────────────────────────────────────────────────────────
 
 const passwordExpiryOptions = [
     { label: 'Never Expires', value: 'never' },
@@ -35,8 +31,6 @@ const passwordReuseOptions = [
     { label: 'Block Last 5 Passwords', value: '5' },
 ];
 
-// ─── Section Wrapper ──────────────────────────────────────────────────────────
-
 const Section = ({ title, children }: SectionProps) => (
     <div className="flex gap-8 pt-8 last:border-none">
         <div className="w-56 shrink-0">
@@ -47,8 +41,6 @@ const Section = ({ title, children }: SectionProps) => (
         </div>
     </div>
 );
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function AuthenticationPolicies() {
     // Password rules
@@ -91,7 +83,6 @@ export default function AuthenticationPolicies() {
 
     return (
         <div>
-            {/* ── Password Rules ── */}
             <Section title="Password Rules">
                 {/* Minimum Length Slider */}
                 <div className="mb-6">

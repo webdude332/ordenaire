@@ -7,8 +7,6 @@ import { useMemo, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface BillingActionsModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -31,8 +29,6 @@ interface BillingActionData {
     finalAmount: number;
     note: string;
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function BillingActionsModal({
     isOpen,
@@ -87,7 +83,6 @@ export default function BillingActionsModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <BookmarkIcon className="h-5 w-5 text-gray-700" />
@@ -98,7 +93,6 @@ export default function BillingActionsModal({
                 </div>
 
                 <div className="space-y-5">
-                    {/* ── Item Details ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Item Details
@@ -132,7 +126,6 @@ export default function BillingActionsModal({
                                         </div>
                                     </div>
 
-                                    {/* Row 2: Charge Rule + Description + Date */}
                                     <div className="grid grid-cols-3">
                                         <div>
                                             <p className="text-xs text-gray-500">
@@ -164,7 +157,6 @@ export default function BillingActionsModal({
                         </div>
                     </div>
 
-                    {/* ── Payment Summary ──────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Payment Summary
@@ -180,7 +172,6 @@ export default function BillingActionsModal({
                             </span>
                         </div>
 
-                        {/* Discount type radios */}
                         <div className="mb-3">
                             <RadioGroup
                                 name="discount_type"
@@ -201,7 +192,6 @@ export default function BillingActionsModal({
                             />
                         </div>
 
-                        {/* Discount input + Apply + live value */}
                         <div className="mb-1 flex items-center gap-3">
                             <div className="flex overflow-hidden rounded-lg border border-gray-300">
                                 <span className="border-r border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-500">
@@ -214,7 +204,7 @@ export default function BillingActionsModal({
                                     value={discountValue}
                                     onChange={(e) => {
                                         setDiscountValue(e.target.value);
-                                        setIsApplied(false); // Reset when user types
+                                        setIsApplied(false);
                                     }}
                                     className="w-32 px-3 py-2.5 text-sm text-gray-900 focus:outline-none"
                                 />
@@ -223,14 +213,13 @@ export default function BillingActionsModal({
                             {/* Updated Apply Button */}
                             <button
                                 onClick={() => {
-                                    // Your apply calculation logic goes here
                                     setIsApplied(true);
                                 }}
                                 disabled={isApplied}
                                 className={`flex items-center gap-1 text-sm font-semibold ${
                                     isApplied
-                                        ? 'cursor-default text-[#7AB621]' // No underline, default cursor, keeps the green color for success
-                                        : 'cursor-pointer text-[#7AB621] hover:underline' // Original state
+                                        ? 'cursor-default text-[#7AB621]'
+                                        : 'cursor-pointer text-[#7AB621] hover:underline'
                                 }`}
                             >
                                 {isApplied && (
@@ -268,7 +257,6 @@ export default function BillingActionsModal({
                         </div>
                     </div>
 
-                    {/* ── Internal Note ────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Internal Note (For Approver)
@@ -312,7 +300,6 @@ export default function BillingActionsModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

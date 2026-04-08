@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Event subscription groups ────────────────────────────────────────────────
-
 const EVENT_GROUPS = [
     {
         group: 'Orders & Sales',
@@ -268,7 +266,6 @@ export default function EditWebhook({
                 </div>
             </div>
 
-            {/* Footer — 3 buttons: Cancel left, Delete + Save right */}
             <div className="flex items-center justify-between border-t border-gray-200 px-6 py-5">
                 <button
                     onClick={onClose}

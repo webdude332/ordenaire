@@ -4,11 +4,7 @@ import ApprovalQueue from '@/superadmin/components/approvalstabs/ApprovalQueue';
 import { useEffect, useState } from 'react';
 import Dashboard from '../../shared/images/icons/dashBaordSvg.svg';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type TabType = 'approvalQueue';
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ManageApprovals() {
     const [activeTab, setActiveTab] = useState<TabType>(() => {

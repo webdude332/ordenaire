@@ -99,7 +99,6 @@ export default function ViewSubscription({
                     </p>
                 </div>
 
-                {/* ── Body ────────────────────────────────────────────── */}
                 <div className="grid grid-cols-2 gap-4">
                     {/* Left col */}
                     <div className="space-y-4">
@@ -230,7 +229,6 @@ export default function ViewSubscription({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <button
                     onClick={onReject}

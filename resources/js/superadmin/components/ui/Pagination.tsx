@@ -1,6 +1,5 @@
-import RightArrow from '../../../shared/images/icons/arrowRight.svg?react'; // Adjust path if needed
-import BackArrow from '../../../shared/images/icons/backArrow.svg?react'; // Adjust path if needed
-
+import RightArrow from '../../../shared/images/icons/arrowRight.svg?react';
+import BackArrow from '../../../shared/images/icons/backArrow.svg?react';
 const Pagination = () => {
     return (
         <div className="flex items-center justify-between border-t border-gray-200 bg-white px-6 py-4">

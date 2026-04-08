@@ -20,8 +20,6 @@ import Pagination from '../Pagination';
 import CustomDropdown from '../ui/CustomDropdown';
 import { Input } from '../ui/FormElements';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type Priority = 'low' | 'medium' | 'high';
 type TicketStatus = 'Open' | 'In Progress' | 'Pending' | 'Resolved' | 'Closed';
 
@@ -34,8 +32,6 @@ interface TicketItem {
     status: TicketStatus;
     timeAgo: string;
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const TICKETS: TicketItem[] = [
     {
@@ -66,8 +62,6 @@ const TICKETS: TicketItem[] = [
         timeAgo: '5d ago',
     },
 ];
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 // const priorityVariant = (p: Priority) =>
 //     p === 'low' ? 'active' : p === 'medium' ? 'warning' : 'error';
@@ -137,8 +131,6 @@ const STATUS_OPTIONS = [
     { label: 'Resolved', value: 'resolved' },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function Assigned() {
     const [search, setSearch] = useState('');
     const [priorityFilter, setPriorityFilter] = useState('all');
@@ -146,7 +138,6 @@ export default function Assigned() {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 6;
 
-    // ── Modal states ──────────────────────────────────────────────────────────
     const [selectedTicket, setSelectedTicket] = useState<TicketItem | null>(
         null,
     );
@@ -167,7 +158,6 @@ export default function Assigned() {
 
     return (
         <div>
-            {/* ── Filters row ──────────────────────────────────────────── */}
             <div className="mb-5 flex items-center justify-between">
                 <div className="w-1/3">
                     <Input
@@ -200,7 +190,6 @@ export default function Assigned() {
                 </div>
             </div>
 
-            {/* ── Table ────────────────────────────────────────────────── */}
             <div className="rounded-xl border border-borderColor">
                 <TableContainerOne className="rounded-t-xl">
                     <Table>
@@ -313,7 +302,6 @@ export default function Assigned() {
                 <Pagination />
             </div>
 
-            {/* ── Modals ─────────────────────────────────────────────── */}
             <TicketsDetailModal
                 isOpen={isDetailOpen}
                 onClose={() => {

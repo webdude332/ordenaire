@@ -39,7 +39,6 @@ export default function SuccessKeyGeneration({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* Header */}
                 {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Key className="h-4 w-4 text-gray-700" />

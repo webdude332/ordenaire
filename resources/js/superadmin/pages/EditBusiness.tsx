@@ -89,7 +89,7 @@ const EditBusiness = () => {
         {
             label: 'Business Overview',
             isActive: false,
-            href: '/business/businessoverview',
+            href: '/superadmin/business/businessoverview',
         },
         { label: 'Edit', isActive: true },
     ];

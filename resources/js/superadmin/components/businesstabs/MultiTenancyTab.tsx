@@ -242,12 +242,12 @@ const MultiTenancyTab = () => {
                                         </TableCell>
                                         <TableCell className="py-4 pr-6 text-right">
                                             <div className="flex items-center justify-end gap-2">
-                                                <Link href="/business/businessoverview">
+                                                <Link href="/superadmin/business/businessoverview">
                                                     <ActionButton>
                                                         <EyeIcon className="h-4 w-4 text-gray-400" />
                                                     </ActionButton>
                                                 </Link>
-                                                <Link href="/business/editbusiness">
+                                                <Link href="/superadmin/business/editbusiness">
                                                     <ActionButton>
                                                         <PencilIcon className="h-4 w-4 text-gray-400" />
                                                     </ActionButton>
@@ -359,12 +359,12 @@ const MultiTenancyTab = () => {
 
                                                                     {/* Actions */}
                                                                     <div className="col-span-1 flex items-center justify-end gap-2">
-                                                                        <Link href="/business/businessoverviewchild">
+                                                                        <Link href="/superadmin/business/businessoverviewchild">
                                                                             <ActionButton>
                                                                                 <EyeIcon className="h-4 w-4 text-gray-400" />
                                                                             </ActionButton>
                                                                         </Link>
-                                                                        <Link href="/business/editbusiness">
+                                                                        <Link href="/superadmin/business/editbusiness">
                                                                             <ActionButton>
                                                                                 <PencilIcon className="h-4 w-4 text-gray-400" />
                                                                             </ActionButton>
@@ -377,7 +377,7 @@ const MultiTenancyTab = () => {
 
                                                     {/* Footer Action */}
                                                     <div className="border-t border-[#E0F2C3] bg-[#F8FFEB] px-6 py-4">
-                                                        <Link href="/business/registerwizard">
+                                                        <Link href="/superadmin/business/registerwizard">
                                                             <Button>
                                                                 <PlusIcon className="h-4 w-4" />
                                                                 Add new outlet

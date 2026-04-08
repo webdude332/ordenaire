@@ -15,13 +15,10 @@ export default function SimpleErrorModal({
 }: SimpleErrorModalProps) {
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
-            {/* Added relative overflow-hidden */}
             <div className="relative overflow-hidden p-6 sm:p-8">
                 {/* Icon Wrapper */}
                 <div className="relative mb-6">
-                    {/* Icon Container: Made relative */}
                     <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white sm:mx-0">
-                        {/* --- PATTERN BACKGROUND --- */}
                         <div className="pointer-events-none absolute flex items-center justify-center">
                             <img
                                 src={patternBg}
@@ -34,7 +31,6 @@ export default function SimpleErrorModal({
                     </div>
                 </div>
 
-                {/* Content (Z-10) */}
                 <div className="relative z-10">
                     <div className="mb-8 text-center">
                         <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-500 shadow-lg">

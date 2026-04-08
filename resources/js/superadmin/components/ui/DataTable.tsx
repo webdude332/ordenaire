@@ -162,8 +162,6 @@ export const MultiTenancyTable = ({
     );
 };
 
-// ===== Billing History Table Component =====
-
 interface BillingRecord {
     invoiceId: string;
     date: string;
@@ -308,8 +306,6 @@ export const BillingHistoryTable = ({
     );
 };
 
-// ===== Documents Table Component =====
-
 interface DocumentInfo {
     documentName: string;
     fileStatus: 'Uploaded' | 'Not Uploaded';
@@ -335,8 +331,6 @@ export const DocumentsTable = ({
 }: DocumentsTableProps) => {
     const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    // const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-    // 1. Add this new state
     const [uploadModalTitle, setUploadModalTitle] = useState('Add Document');
     const handleAddDocument = (data: any) => {
         setIsUploadModalOpen(true);
@@ -427,7 +421,6 @@ export const DocumentsTable = ({
                                     ) : (
                                         <ActionButton
                                             onClick={() => {
-                                                // 2. Set the title to include the row's document name
                                                 setUploadModalTitle(
                                                     `Upload ${doc.documentName}`,
                                                 );
@@ -472,8 +465,6 @@ export const DocumentsTable = ({
         </div>
     );
 };
-
-// ===== Add-ons Table Component (Updated from your code) =====
 
 interface AddonInfo {
     name: string;

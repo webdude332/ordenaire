@@ -1,7 +1,3 @@
-// export default function SendNewPassword() {
-//     return <div>SendNewPassword</div>;
-// }
-
 export default function SetNewPassword() {
     return (
         <div className="relative flex min-h-screen flex-col items-center overflow-hidden bg-white pt-24 font-sans">

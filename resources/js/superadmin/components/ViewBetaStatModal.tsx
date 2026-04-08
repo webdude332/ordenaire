@@ -11,8 +11,6 @@ import {
     TableHeader,
     TableRow,
 } from './ui/Table';
-
-// Placeholder Eye Icon
 const EyeIconPlaceholder = ({ className }: { className?: string }) => (
     <Eye className="h-7 w-7" />
 );

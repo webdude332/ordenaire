@@ -64,14 +64,12 @@ export default function ContactModal({
     return (
         <Modal isOpen={true} onClose={onClose} maxWidth="xl">
             <div className="relative overflow-hidden p-6 sm:p-8">
-                {/* Header Icon with pattern bg */}
                 <div className="relative mb-6 flex items-start gap-4">
                     <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center">
                         <PhoneBold className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3" />
                     </div>
                 </div>
 
-                {/* Main Card */}
                 <div className="relative z-10 rounded-xl border border-gray-200 bg-white shadow-xs">
                     {/* Title Area */}
                     <div className="flex flex-col items-center gap-3 px-6 py-6">

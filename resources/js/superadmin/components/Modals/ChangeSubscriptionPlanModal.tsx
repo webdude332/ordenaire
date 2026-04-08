@@ -25,9 +25,6 @@ export default function ChangeSubscriptionPlanModal({
     );
     const [discountValue, setDiscountValue] = useState('50');
 
-    // --- Components ---
-
-    // SVG Icon for the Header (Stacked Layers)
     const StackIcon = () => (
         <svg
             width="24"
@@ -111,7 +108,6 @@ export default function ChangeSubscriptionPlanModal({
                     </svg>
                 </button>
 
-                {/* --- Content Wrapper --- */}
                 <div className="p-8 pb-2">
                     {/* Header */}
                     <div className="mb-8 flex items-start gap-4">
@@ -334,7 +330,6 @@ export default function ChangeSubscriptionPlanModal({
                     </div>
                 </div>
 
-                {/* --- Footer --- */}
                 <div className="mt-2 flex gap-4 border-t border-gray-100 bg-white px-8 py-5">
                     <div className="flex-1">
                         <IconButton

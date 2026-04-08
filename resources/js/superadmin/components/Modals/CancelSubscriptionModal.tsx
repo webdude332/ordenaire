@@ -12,7 +12,7 @@ interface CancelSubscriptionModalProps {
     subscriber: {
         name: string;
         location: string;
-        accessUntil: string; // e.g. "12 Oct 2026"
+        accessUntil: string;
     };
     onConfirm: () => void;
 }
@@ -47,7 +47,6 @@ export default function CancelSubscriptionModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Ban
@@ -61,7 +60,6 @@ export default function CancelSubscriptionModal({
                     </h2>
                 </div>
 
-                {/* ── Main Card ──────────────────────────────────────── */}
                 <div className="mb-4 rounded-xl border border-gray-200 p-6">
                     {/* Warning text */}
                     <p className="mb-1 text-base font-semibold text-gray-900">
@@ -131,7 +129,6 @@ export default function CancelSubscriptionModal({
                     </div>
                 </div>
             </div>
-            {/* ── Footer Buttons ─────────────────────────────────── */}
             <div className="flex gap-3 border-t border-borderColor px-6 py-6">
                 <div className="w-1/2">
                     <IconButton className="w-full" onClick={onClose}>

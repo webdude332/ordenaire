@@ -114,10 +114,8 @@ const UsageCredits = () => {
     };
 
     const handleConfirmCancel = () => {
-        // 1. Add your API logic here to actually cancel the charge
         console.log('Cancelling charge for:', itemToCancel?.businessName);
 
-        // 2. Close the toast and clear the state
         setIsWarningToastOpen(false);
         setItemToCancel(null);
     };

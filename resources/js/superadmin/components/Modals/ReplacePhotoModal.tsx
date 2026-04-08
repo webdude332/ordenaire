@@ -6,16 +6,12 @@ import { useRef, useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ReplacePhotoModalProps {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: (file: File | null) => void;
     currentPhoto?: string;
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ReplacePhotoModal({
     isOpen,
@@ -42,7 +38,6 @@ export default function ReplacePhotoModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 {/* <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <PencilIcon className="h-5 w-5 text-gray-700" />
@@ -75,7 +70,6 @@ export default function ReplacePhotoModal({
                     </h2>
                 </div>
 
-                {/* ── Photo Card ─────────────────────────────────────── */}
                 <div className="rounded-xl border border-gray-200 p-5">
                     <h3 className="mb-1 text-sm font-semibold text-gray-900">
                         Your photo
@@ -115,7 +109,6 @@ export default function ReplacePhotoModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

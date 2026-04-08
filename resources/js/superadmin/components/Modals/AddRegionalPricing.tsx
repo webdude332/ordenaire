@@ -7,8 +7,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface AddRegionalPricingModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -37,8 +35,6 @@ const BASE_PLAN_OPTIONS = [
     { label: 'Enterprise Plan', value: 'enterprise' },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function AddRegionalPricingModal({
     isOpen,
     onClose,
@@ -64,7 +60,6 @@ export default function AddRegionalPricingModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Plus className="h-5 w-5 text-gray-700" />
@@ -74,7 +69,6 @@ export default function AddRegionalPricingModal({
                     </h2>
                 </div>
 
-                {/* ── Main Card ───────────────────────────────────────── */}
                 <div className="rounded-xl border border-gray-200 p-5">
                     {/* Select Region & Plan */}
                     <div className="mb-6">
@@ -109,7 +103,6 @@ export default function AddRegionalPricingModal({
                         </div>
                     </div>
 
-                    {/* Set Local Price */}
                     <div className="mb-6">
                         <h3 className="mb-4 text-base font-semibold text-gray-900">
                             Set Local Price
@@ -167,7 +160,6 @@ export default function AddRegionalPricingModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Cancel

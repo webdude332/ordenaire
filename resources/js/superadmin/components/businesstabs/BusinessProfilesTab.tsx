@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { useEffect, useState } from 'react'; // Added useEffect
+import { useEffect, useState } from 'react';
 import BusinessStatusBadge from '../ui/BusinessStatusBadge';
 import Button from '../ui/Button';
 
@@ -197,7 +197,7 @@ const BusinessProfilesTab = () => {
                         <div className="w-px bg-gray-300" />
                     </div>
                 </div>
-                <Link href="/business/registerwizard">
+                <Link href="/superadmin/business/registerwizard">
                     <Button className="cursor-pointer py-2.5">
                         <PlusIcon className="h-5 w-5 text-[#C4FF52]" /> Register
                         New Businesses
@@ -278,12 +278,12 @@ const BusinessProfilesTab = () => {
                                 )}
                             </div>
                             <div className="flex items-center justify-end gap-3 border-t border-gray-100 px-6 py-3">
-                                <Link href="/business/businessoverview">
+                                <Link href="superadmin/business/businessoverview">
                                     <button className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900">
                                         View
                                     </button>
                                 </Link>
-                                <Link href="/business/editbusiness">
+                                <Link href="//superadmin/business/editbusiness">
                                     <button className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900">
                                         Edit
                                     </button>
@@ -375,7 +375,7 @@ const BusinessProfilesTab = () => {
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center justify-end gap-2">
-                                            <Link href="/business/businessoverview">
+                                            <Link href="/superadmin/business/businessoverview">
                                                 {/* <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                                                     <EyeIcon className="h-4 w-4 text-[#B5B0BA]" />
                                                 </button> */}
@@ -383,7 +383,7 @@ const BusinessProfilesTab = () => {
                                                     <EyeIcon className="h-4 w-4 text-[#B5B0BA]" />
                                                 </ActionButton>
                                             </Link>
-                                            <Link href="/business/editbusiness">
+                                            <Link href="/superadmin/business/editbusiness">
                                                 {/* <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                                                     <PencilIcon className="h-4 w-4 text-[#B5B0BA]" />
                                                 </button> */}

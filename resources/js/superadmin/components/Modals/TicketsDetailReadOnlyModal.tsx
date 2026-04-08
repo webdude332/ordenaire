@@ -3,8 +3,7 @@ import patternBg from '@shared/images/icons/patternBg.svg';
 import { Clipboard, Eye, Paperclip, User } from 'lucide-react';
 import IconButton from '../ui/IconButton';
 
-// ─── Static mock data for the read-only panel ────────────────────────────────
-// In a real app these would come from the ticket detail API response.
+//  Static mock data for the read-only panel
 
 const MOCK_MENTIONS = [
     { value: 'ahamed', label: 'Ahamed' },
@@ -30,8 +29,6 @@ const ACTIVITY = [
     },
 ];
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ResolvedTicketItem {
     id: number;
     ticketId: string;
@@ -47,8 +44,6 @@ interface TicketsDetailReadOnlyModalProps {
     ticket: ResolvedTicketItem | null;
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function TicketsDetailReadOnlyModal({
     isOpen,
     onClose,
@@ -59,7 +54,6 @@ export default function TicketsDetailReadOnlyModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ──────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-5">
                         <div className="relative mb-6 flex items-start gap-4">
@@ -87,7 +81,6 @@ export default function TicketsDetailReadOnlyModal({
                     </p>
                 </div>
 
-                {/* ── Top section: Description + Ticket Details ────────── */}
                 <div className="mb-4 grid grid-cols-5 gap-4">
                     {/* Description (3/5) */}
                     <div className="col-span-3 rounded-xl border border-gray-200 bg-gray-100 p-5">
@@ -252,7 +245,6 @@ export default function TicketsDetailReadOnlyModal({
                 </div>
             </div>
 
-            {/* ── Footer ──────────────────────────────────────────────── */}
             <div className="border-t border-gray-200 px-6 py-5">
                 <IconButton className="w-full" onClick={onClose}>
                     Close

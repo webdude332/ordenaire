@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface AddManualChargeModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -46,8 +44,6 @@ const BUSINESS_OPTIONS = [
     { label: 'SushiWorld • BIZ-2052', value: 'sushiworld' },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function AddManualChargeModal({
     isOpen,
     onClose,
@@ -79,7 +75,6 @@ export default function AddManualChargeModal({
     return (
         <Modal isOpen={isOpen} onClose={onClose} maxWidth="xl">
             <div className="p-6 sm:p-8">
-                {/* ── Header ─────────────────────────────────────────── */}
                 <div className="mb-5">
                     <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white">
                         <Plus className="h-5 w-5 text-gray-700" />
@@ -90,7 +85,6 @@ export default function AddManualChargeModal({
                 </div>
 
                 <div className="space-y-4">
-                    {/* ── Charge Details ───────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Charge Details
@@ -140,7 +134,6 @@ export default function AddManualChargeModal({
                             />
                         </div>
 
-                        {/* Row 2: Start Date + Charge Frequency */}
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
@@ -178,7 +171,6 @@ export default function AddManualChargeModal({
                         </div>
                     </div>
 
-                    {/* ── Pricing ──────────────────────────────────────── */}
                     <div className="rounded-xl border border-gray-200 p-5">
                         <h3 className="mb-4 text-sm font-semibold text-gray-900">
                             Pricing
@@ -224,7 +216,6 @@ export default function AddManualChargeModal({
                 </div>
             </div>
 
-            {/* ── Footer ─────────────────────────────────────────────── */}
             <div className="flex gap-3 border-t border-gray-200 px-6 py-5">
                 {/* Cancel */}
                 <IconButton className="w-full" onClick={onClose}>
