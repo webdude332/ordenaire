@@ -35,6 +35,41 @@
 
 //new for the super admin structure,
 
+// import '../css/app.css';
+
+// import { createInertiaApp } from '@inertiajs/react';
+// import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+// import { StrictMode } from 'react';
+// import { createRoot } from 'react-dom/client';
+// import { initializeTheme } from './shared/hooks/use-appearance';
+
+// const appName = import.meta.env.VITE_APP_NAME || 'Ordenaire';
+
+// createInertiaApp({
+//     title: (title) => (title ? `${title}` : appName),
+//     resolve: (name) =>
+//         resolvePageComponent(`./superadmin/pages/${name}.tsx`, {
+//             ...import.meta.glob('./superadmin/pages/**/*.tsx'),
+//             ...import.meta.glob('./admin/pages/**/*.tsx'),
+//         }),
+
+//     setup({ el, App, props }) {
+//         const root = createRoot(el);
+//         root.render(
+//             <StrictMode>
+//                 <App {...props} />
+//             </StrictMode>,
+//         );
+//     },
+//     progress: {
+//         color: '#4B5563',
+//     },
+// });
+
+// initializeTheme();
+
+// admin
+
 import '../css/app.css';
 
 import { createInertiaApp } from '@inertiajs/react';
@@ -47,11 +82,23 @@ const appName = import.meta.env.VITE_APP_NAME || 'Ordenaire';
 
 createInertiaApp({
     title: (title) => (title ? `${title}` : appName),
-    resolve: (name) =>
-        resolvePageComponent(`./superadmin/pages/${name}.tsx`, {
-            ...import.meta.glob('./superadmin/pages/**/*.tsx'),
-            ...import.meta.glob('./admin/pages/**/*.tsx'),
-        }),
+    resolve: (name) => {
+        const superadminPages = import.meta.glob('./superadmin/pages/**/*.tsx');
+        const adminPages = import.meta.glob('./admin/pages/**/*.tsx');
+
+        if (name.startsWith('Admin/')) {
+            const page = name.replace('Admin/', '');
+            return resolvePageComponent(
+                `./admin/pages/${page}.tsx`,
+                adminPages,
+            );
+        }
+
+        return resolvePageComponent(
+            `./superadmin/pages/${name}.tsx`,
+            superadminPages,
+        );
+    },
     setup({ el, App, props }) {
         const root = createRoot(el);
         root.render(

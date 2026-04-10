@@ -163,4 +163,61 @@ Route::prefix('superadmin')->name('superadmin.')->group(function () {
 
 });
 
+// ─── Admin Routes ───────────────────────────────────
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('dashboard', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->name('dashboard');
+
+    Route::get('menu', function () {
+        return Inertia::render('Admin/Menu');
+    })->name('menu');
+
+    Route::get('orders', function () {
+        return Inertia::render('Admin/Orders');
+    })->name('orders');
+
+    Route::get('inventory', function () {
+        return Inertia::render('Admin/Inventory');
+    })->name('inventory');
+
+    Route::get('online-store', function () {
+        return Inertia::render('Admin/OnlineSotre');
+    })->name('online.store');
+
+    Route::get('promotions', function () {
+        return Inertia::render('Admin/Promotions');
+    })->name('promotions');
+
+    Route::get('engage-by-ordenaire', function () {
+        return Inertia::render('Admin/EngageByOrdenaire');
+    })->name('engage');
+
+    Route::get('customers', function () {
+        return Inertia::render('Admin/Customers');
+    })->name('customers');
+
+    Route::get('screens-and-devices', function () {
+        return Inertia::render('Admin/ScreensAndDevices');
+    })->name('screens.and.devices');
+
+    Route::get('accounts', function () {
+        return Inertia::render('Admin/Accounts');
+    })->name('accounts');
+
+    Route::get('internal-users', function () {
+        return Inertia::render('Admin/InternalUsers');
+    })->name('internal.users');
+
+    Route::get('reports', function () {
+        return Inertia::render('Admin/Reports');
+    })->name('reports');
+
+    Route::get('marketplace', function () {
+        return Inertia::render('Admin/MarketPlace');
+    })->name('marketplace');
+
+});
+
 require __DIR__.'/settings.php';
