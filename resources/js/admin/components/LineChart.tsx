@@ -70,7 +70,7 @@ export default function RevenueChart() {
     }, []);
 
     return (
-        <div className="flex h-full w-full flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-xs">
+        <div className="flex h-full w-full flex-col bg-white p-6 shadow-xs">
             <style>{`
         .revenue-chart .recharts-surface {
           cursor: url("${HandCursorUrl}") 8 0, pointer !important;

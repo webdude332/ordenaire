@@ -1,343 +1,40 @@
-// import { Head } from '@inertiajs/react';
-// import chartIcon from '@shared/images/icons/dashBaordSvg.svg';
-// import { useState } from 'react';
-// import AdminStatCard from '../components/AdminStatCard';
-// import LineChart from '../components/LineChart';
-// import NotificationPanel from '../components/NotificationPanel';
-// import SidePannel from '../components/SidePannel';
-// import TopBar from '../components/TopBar';
-// import TopSellingItems from '../components/TopSellingItems';
-// import WorkforceStatus from '../components/WorkforceStatus';
-
-// export default function Dashboard() {
-//     const [notifOpen, setNotifOpen] = useState(false);
-//     const notifCount = 5;
-
-//     return (
-//         <div className="flex h-screen overflow-hidden font-sans">
-//             <Head title="Admin Dashboard" />
-
-//             {/* ── SIDEBAR ── */}
-//             <SidePannel />
-
-//             {/* ── MAIN AREA ── */}
-//             <div className="no-scrollbar relative flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
-//                 {/* ── TOP BAR ── */}
-//                 <TopBar
-//                     title="Good Afternoon! John Doe"
-//                     icon={chartIcon}
-//                     breadcrumbs={[{ label: 'Dashboard', isActive: true }]}
-//                 >
-//                     {/* Branch selector */}
-//                     <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-//                         <svg
-//                             className="h-4 w-4 text-gray-400"
-//                             fill="none"
-//                             viewBox="0 0 24 24"
-//                             stroke="currentColor"
-//                         >
-//                             <path
-//                                 strokeLinecap="round"
-//                                 strokeLinejoin="round"
-//                                 strokeWidth={2}
-//                                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-//                             />
-//                         </svg>
-//                         Mirpur-1(Main)
-//                         <svg
-//                             className="h-3.5 w-3.5 text-gray-400"
-//                             fill="none"
-//                             viewBox="0 0 24 24"
-//                             stroke="currentColor"
-//                         >
-//                             <path
-//                                 strokeLinecap="round"
-//                                 strokeLinejoin="round"
-//                                 strokeWidth={2}
-//                                 d="M19 9l-7 7-7-7"
-//                             />
-//                         </svg>
-//                     </button>
-
-//                     {/* Language */}
-//                     <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-//                         <span>🌐</span>
-//                         English
-//                         <svg
-//                             className="h-3.5 w-3.5 text-gray-400"
-//                             fill="none"
-//                             viewBox="0 0 24 24"
-//                             stroke="currentColor"
-//                         >
-//                             <path
-//                                 strokeLinecap="round"
-//                                 strokeLinejoin="round"
-//                                 strokeWidth={2}
-//                                 d="M19 9l-7 7-7-7"
-//                             />
-//                         </svg>
-//                     </button>
-
-//                     {/* Open POS */}
-//                     <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-//                         <svg
-//                             className="h-4 w-4 text-gray-500"
-//                             fill="none"
-//                             viewBox="0 0 24 24"
-//                             stroke="currentColor"
-//                         >
-//                             <path
-//                                 strokeLinecap="round"
-//                                 strokeLinejoin="round"
-//                                 strokeWidth={2}
-//                                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-//                             />
-//                         </svg>
-//                         Open POS
-//                     </button>
-
-//                     {/* Bell */}
-//                     <button
-//                         onClick={() => setNotifOpen(true)}
-//                         className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white transition-colors hover:bg-gray-50"
-//                     >
-//                         <svg
-//                             className="h-4 w-4 text-gray-600"
-//                             fill="none"
-//                             viewBox="0 0 24 24"
-//                             stroke="currentColor"
-//                         >
-//                             <path
-//                                 strokeLinecap="round"
-//                                 strokeLinejoin="round"
-//                                 strokeWidth={2}
-//                                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-//                             />
-//                         </svg>
-//                         {notifCount > 0 && (
-//                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
-//                                 {notifCount}
-//                             </span>
-//                         )}
-//                     </button>
-//                 </TopBar>
-
-//                 {/* ── PAGE CONTENT ── */}
-//                 <main className="flex-1 space-y-6 p-8 pb-20">
-//                     {/* ── OVERVIEW STAT CARDS ── */}
-//                     <div>
-//                         <p className="mb-3 text-xs font-semibold tracking-wide text-gray-400 uppercase">
-//                             Overview
-//                         </p>
-//                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-//                             <AdminStatCard
-//                                 title="Total Sales"
-//                                 value="KWD 230.870"
-//                                 iconBg="#FEF9C3"
-//                                 iconBorderColor="#FDE68A"
-//                                 icon={
-//                                     <svg
-//                                         className="h-5 w-5 text-yellow-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-//                                         />
-//                                     </svg>
-//                                 }
-//                             />
-//                             <AdminStatCard
-//                                 title="Total Order"
-//                                 value="17"
-//                                 iconBg="#F5F3FF"
-//                                 iconBorderColor="#DDD6FE"
-//                                 icon={
-//                                     <svg
-//                                         className="h-5 w-5 text-purple-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-//                                         />
-//                                     </svg>
-//                                 }
-//                             />
-//                             <AdminStatCard
-//                                 title="Average Order Value"
-//                                 value="KWD 32.900"
-//                                 iconBg="#EFF6FF"
-//                                 iconBorderColor="#BFDBFE"
-//                                 icon={
-//                                     <svg
-//                                         className="h-5 w-5 text-blue-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-//                                         />
-//                                     </svg>
-//                                 }
-//                             />
-//                             <AdminStatCard
-//                                 title="Low Stock Items"
-//                                 value={
-//                                     <span className="text-red-600">
-//                                         3 Items Critical
-//                                     </span>
-//                                 }
-//                                 iconBg="#FEF2F2"
-//                                 iconBorderColor="#FECACA"
-//                                 icon={
-//                                     <svg
-//                                         className="h-5 w-5 text-red-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-//                                         />
-//                                     </svg>
-//                                 }
-//                             />
-//                         </div>
-//                     </div>
-
-//                     {/* ── LIVE OPERATIONS ── */}
-//                     <div>
-//                         <p className="mb-3 text-xs font-semibold tracking-wide text-gray-400 uppercase">
-//                             Live Operations
-//                         </p>
-//                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-//                             <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-//                                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
-//                                     <svg
-//                                         className="h-6 w-6 text-red-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-//                                         />
-//                                     </svg>
-//                                 </div>
-//                                 <div>
-//                                     <p className="text-sm text-gray-500">
-//                                         Pending
-//                                     </p>
-//                                     <p className="text-3xl font-bold text-gray-900">
-//                                         17
-//                                     </p>
-//                                 </div>
-//                             </div>
-//                             <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-//                                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-100">
-//                                     <svg
-//                                         className="h-6 w-6 text-amber-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
-//                                         />
-//                                     </svg>
-//                                 </div>
-//                                 <div>
-//                                     <p className="text-sm text-gray-500">
-//                                         Cooking/Preparing
-//                                     </p>
-//                                     <p className="text-3xl font-bold text-gray-900">
-//                                         0
-//                                     </p>
-//                                 </div>
-//                             </div>
-//                             <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-//                                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
-//                                     <svg
-//                                         className="h-6 w-6 text-green-500"
-//                                         fill="none"
-//                                         viewBox="0 0 24 24"
-//                                         stroke="currentColor"
-//                                     >
-//                                         <path
-//                                             strokeLinecap="round"
-//                                             strokeLinejoin="round"
-//                                             strokeWidth={2}
-//                                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-//                                         />
-//                                     </svg>
-//                                 </div>
-//                                 <div>
-//                                     <p className="text-sm text-gray-500">
-//                                         Order Prepared
-//                                     </p>
-//                                     <p className="text-3xl font-bold text-gray-900">
-//                                         3
-//                                     </p>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-
-//                     {/* ── LINE CHART ── */}
-//                     <div className="h-[420px]">
-//                         <LineChart />
-//                     </div>
-
-//                     {/* ── BOTTOM ROW ── */}
-//                     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-//                         <WorkforceStatus />
-//                         <TopSellingItems />
-//                     </div>
-//                 </main>
-//             </div>
-
-//             {/* ── NOTIFICATION PANEL ── */}
-//             <NotificationPanel
-//                 open={notifOpen}
-//                 onClose={() => setNotifOpen(false)}
-//             />
-//         </div>
-//     );
-// }
-
+import AdBell from '@/shared/images/icons/adBell.svg?react';
+import AdCircle from '@/shared/images/icons/adCircleCheck.svg?react';
+import AdCube from '@/shared/images/icons/adCube.svg?react';
+import AdCube1 from '@/shared/images/icons/adCube1.svg?react';
+import AdDb from '@/shared/images/icons/adDb.svg?react';
+import adDelivery from '@/shared/images/icons/adDelivery.svg';
+import dish from '@/shared/images/icons/adDish.svg';
+import AdDollar from '@/shared/images/icons/adDolloar.svg?react';
+import adFinance from '@/shared/images/icons/adFinance.svg';
+import adKitchen from '@/shared/images/icons/adKitchen.svg';
+import AdMarket from '@/shared/images/icons/adMarket.svg?react';
+import adMgmt from '@/shared/images/icons/adMgmt.svg';
+import adNewUsers from '@/shared/images/icons/adNewUsers.svg';
+import AdNote from '@/shared/images/icons/adNote.svg?react';
+import AdPos from '@/shared/images/icons/adPos.svg?react';
+import AdTimer from '@/shared/images/icons/adTimer.svg?react';
+import VerticalMenu from '@/shared/images/icons/menuVertical.svg?react';
+import TrendGreen from '@/shared/images/icons/trendGreen.svg?react';
+import TrendRed from '@/shared/images/icons/trendRed.svg?react';
+import En from '@/shared/images/icons/us.svg?react';
 import { Head } from '@inertiajs/react';
 import chartIcon from '@shared/images/icons/dashBaordSvg.svg';
 import { useState } from 'react';
+import ActionButton from '../components/ActionButton';
 import AdminStatCard from '../components/AdminStatCard';
 import LineChart from '../components/LineChart';
 import NotificationPanel from '../components/NotificationPanel';
 import OrderSummaryBar from '../components/OrderSummaryBar';
 import SidePannel from '../components/SidePannel';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+} from '../components/Table';
 import TopBar from '../components/TopBar';
-import TopSellingItems from '../components/TopSellingItems';
-import WorkforceStatus from '../components/WorkforceStatus';
 
 export default function Dashboard() {
     const [notifOpen, setNotifOpen] = useState(false);
@@ -347,6 +44,60 @@ export default function Dashboard() {
     const [activeFilter, setActiveFilter] = useState('7 days');
 
     const notifCount = 5;
+    const workforceData = [
+        {
+            team: 'Front of House',
+            count: 4,
+            status: 'Present',
+            emoji: adNewUsers,
+        },
+        { team: 'Kitchen Team', count: 8, status: 'Present', emoji: adKitchen },
+        { team: 'Management', count: 2, status: 'Online', emoji: adMgmt },
+        { team: 'Finance', count: 0, status: 'Online', emoji: adFinance },
+        {
+            team: 'Delivery Fleet',
+            count: 14,
+            status: 'Online',
+            emoji: adDelivery,
+        },
+    ];
+    const topSellingData = [
+        {
+            name: 'Grilled Lemon Herb Chicken',
+            category: 'Main course',
+            orders: '72 orders',
+            price: 'KWD 3.000',
+            emoji: dish, // Your single placeholder icon
+        },
+        {
+            name: 'Creamy Avocado Toast',
+            category: 'Breakfast',
+            orders: '42 orders',
+            price: 'KWD 3.200',
+            emoji: dish,
+        },
+        {
+            name: 'Wild Mushroom Risotto',
+            category: 'Vegetarian',
+            orders: '15 orders',
+            price: 'KWD 3.200',
+            emoji: dish,
+        },
+        {
+            name: 'Zesty Shrimp Tacos',
+            category: 'Seafood',
+            orders: '12 orders',
+            price: 'KWD 2.000',
+            emoji: dish,
+        },
+        {
+            name: 'Chocolate Lava Cake',
+            category: 'Dessert',
+            orders: '10 orders',
+            price: 'KWD 2.200',
+            emoji: dish,
+        },
+    ];
 
     return (
         <div className="flex h-screen overflow-hidden font-sans">
@@ -361,23 +112,17 @@ export default function Dashboard() {
                 <TopBar
                     title="Good Afternoon! John Doe"
                     icon={chartIcon}
-                    breadcrumbs={[{ label: 'Dashboard', isActive: true }]}
+                    breadcrumbs={[
+                        {
+                            label: 'Dashboard',
+                            isActive: true,
+                            href: '/admin/dashboard',
+                        },
+                    ]}
                 >
                     {/* Branch selector */}
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                        <svg
-                            className="h-4 w-4 text-gray-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            />
-                        </svg>
+                    <button className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+                        <AdMarket className="h-4 w-4" />
                         Mirpur-1(Main)
                         <svg
                             className="h-3.5 w-3.5 text-gray-400"
@@ -395,8 +140,10 @@ export default function Dashboard() {
                     </button>
 
                     {/* Language */}
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                        <span>🌐</span>
+                    <button className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+                        <span>
+                            <En className="h-4 w-4" />
+                        </span>
                         English
                         <svg
                             className="h-3.5 w-3.5 text-gray-400"
@@ -414,47 +161,20 @@ export default function Dashboard() {
                     </button>
 
                     {/* Open POS */}
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                        <svg
-                            className="h-4 w-4 text-gray-500"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                            />
-                        </svg>
+                    <ActionButton>
+                        <AdPos className="h-5 w-5" />
                         Open POS
-                    </button>
+                    </ActionButton>
 
                     {/* Bell */}
-                    <button
-                        onClick={() => setNotifOpen(true)}
-                        className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white transition-colors hover:bg-gray-50"
-                    >
-                        <svg
-                            className="h-4 w-4 text-gray-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                            />
-                        </svg>
-                        {notifCount > 0 && (
+                    <ActionButton onClick={() => setNotifOpen(true)}>
+                        <AdBell className="h-5 w-5" />
+                        {/* {notifCount > 0 && (
                             <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
                                 {notifCount}
                             </span>
-                        )}
-                    </button>
+                        )} */}
+                    </ActionButton>
                 </TopBar>
 
                 {/* ── PAGE CONTENT ── */}
@@ -468,90 +188,26 @@ export default function Dashboard() {
                             <AdminStatCard
                                 title="Total Sales"
                                 value="KWD 230.870"
-                                iconBg="#FEF9C3"
-                                iconBorderColor="#FDE68A"
-                                icon={
-                                    <svg
-                                        className="h-5 w-5 text-yellow-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                        />
-                                    </svg>
-                                }
+                                ringColor="#EAB308"
+                                icon={<AdDollar className="h-6 w-6" />}
                             />
                             <AdminStatCard
                                 title="Total Order"
                                 value="17"
-                                iconBg="#F5F3FF"
-                                iconBorderColor="#DDD6FE"
-                                icon={
-                                    <svg
-                                        className="h-5 w-5 text-purple-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                                        />
-                                    </svg>
-                                }
+                                ringColor="#D444F1"
+                                icon={<AdCube className="h-6 w-6" />}
                             />
                             <AdminStatCard
                                 title="Average Order Value"
                                 value="KWD 32.900"
-                                iconBg="#EFF6FF"
-                                iconBorderColor="#BFDBFE"
-                                icon={
-                                    <svg
-                                        className="h-5 w-5 text-blue-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                        />
-                                    </svg>
-                                }
+                                ringColor="#00C0E8"
+                                icon={<AdDb className="h-6 w-6" />}
                             />
                             <AdminStatCard
                                 title="Low Stock Items"
-                                value={
-                                    <span className="text-red-600">
-                                        3 Items Critical
-                                    </span>
-                                }
-                                iconBg="#FEF2F2"
-                                iconBorderColor="#FECACA"
-                                icon={
-                                    <svg
-                                        className="h-5 w-5 text-red-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                                        />
-                                    </svg>
-                                }
+                                value="3 Items Critical"
+                                ringColor="#FF0019"
+                                icon={<AdNote className="h-6 w-6" />}
                             />
                         </div>
                     </div>
@@ -562,21 +218,9 @@ export default function Dashboard() {
                             Live Operations
                         </p>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
-                                    <svg
-                                        className="h-6 w-6 text-red-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                        />
-                                    </svg>
+                            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-7 shadow-xs">
+                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#FDA29B]">
+                                    <AdCube1 className="h-6 w-6" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500">
@@ -587,21 +231,9 @@ export default function Dashboard() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-100">
-                                    <svg
-                                        className="h-6 w-6 text-amber-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
-                                        />
-                                    </svg>
+                            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-7 shadow-xs">
+                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#FEC84B]">
+                                    <AdTimer className="h-6 w-6" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500">
@@ -612,21 +244,9 @@ export default function Dashboard() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
-                                    <svg
-                                        className="h-6 w-6 text-green-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                        />
-                                    </svg>
+                            <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-7 shadow-xs">
+                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#A6EF67]">
+                                    <AdCircle className="h-6 w-6" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500">
@@ -643,37 +263,40 @@ export default function Dashboard() {
                     {/* ── CHARTS WITH TABS ── */}
                     <div className="flex flex-col gap-3">
                         {/* Tabs Row */}
-                        <div className="flex items-center gap-2">
-                            <button
-                                onClick={() => setActiveTab('Sales')}
-                                className={`rounded-lg px-4 py-1.5 text-sm font-medium transition-all ${
-                                    activeTab === 'Sales'
-                                        ? 'border border-gray-200 bg-white text-gray-900 shadow-sm'
-                                        : 'border border-transparent text-gray-500 hover:text-gray-900'
-                                }`}
-                            >
-                                Sales
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('Order Summary')}
-                                className={`rounded-lg px-4 py-1.5 text-sm font-medium transition-all ${
-                                    activeTab === 'Order Summary'
-                                        ? 'border border-gray-200 bg-white text-gray-900 shadow-sm'
-                                        : 'border border-transparent text-gray-500 hover:text-gray-900'
-                                }`}
-                            >
-                                Order Summary
-                            </button>
-                        </div>
 
-                        {/* Graph Card */}
-                        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-xs">
-                            <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                        <div className="rounded-xl border border-gray-200 bg-white shadow-xs">
+                            <div className="flex items-center px-8 pt-6">
+                                <div className="flex w-[250px] items-center gap-2 rounded-lg bg-gray-100 px-1.5 py-1">
+                                    <button
+                                        onClick={() => setActiveTab('Sales')}
+                                        className={`cursor-pointer rounded-lg px-4 py-1.5 text-sm font-medium transition-all ${
+                                            activeTab === 'Sales'
+                                                ? 'border border-gray-200 bg-white text-gray-900 shadow-sm'
+                                                : 'border border-transparent text-gray-500 hover:text-gray-900'
+                                        }`}
+                                    >
+                                        Sales
+                                    </button>
+                                    <button
+                                        onClick={() =>
+                                            setActiveTab('Order Summary')
+                                        }
+                                        className={`cursor-pointer rounded-lg px-4 py-1.5 text-sm font-medium transition-all ${
+                                            activeTab === 'Order Summary'
+                                                ? 'border border-gray-200 bg-white text-gray-900 shadow-sm'
+                                                : 'border border-transparent text-gray-500 hover:text-gray-900'
+                                        }`}
+                                    >
+                                        Order Summary
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="mt-6 mb-6 flex flex-col gap-4 rounded-t-xl border-t border-borderColor pt-6 lg:flex-row lg:items-start lg:justify-between">
                                 {/* Conditional Left Top Stats (Only for Sales) */}
                                 {activeTab === 'Sales' ? (
-                                    <div className="flex flex-wrap gap-4">
+                                    <div className="flex flex-wrap gap-4 px-8">
                                         {/* Total Sales */}
-                                        <div className="min-w-[160px] rounded-xl border border-gray-200 p-4">
+                                        <div className="min-w-[200px] rounded-xl border border-gray-200 p-4">
                                             <p className="mb-1 text-sm font-medium text-gray-500">
                                                 Total sales
                                             </p>
@@ -681,24 +304,12 @@ export default function Dashboard() {
                                                 48,000 KWD
                                             </p>
                                             <p className="flex items-center text-xs font-medium text-green-500">
-                                                <svg
-                                                    className="mr-1 h-3.5 w-3.5"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M7 17L17 7M17 17V7H7"
-                                                    />
-                                                </svg>
+                                                <TrendGreen />
                                                 12.5% vs last week
                                             </p>
                                         </div>
                                         {/* Avg Sales Per Day */}
-                                        <div className="min-w-[160px] rounded-xl border border-[#79B800] p-4">
+                                        <div className="min-w-[200px] rounded-xl border border-[#79B800] p-4">
                                             <p className="mb-1 text-sm font-medium text-gray-500">
                                                 Avg. sales per day
                                             </p>
@@ -706,19 +317,7 @@ export default function Dashboard() {
                                                 32.900 KWD
                                             </p>
                                             <p className="flex items-center text-xs font-medium text-red-500">
-                                                <svg
-                                                    className="mr-1 h-3.5 w-3.5"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={3}
-                                                        d="M7 7L17 17M17 7v10H7"
-                                                    />
-                                                </svg>
+                                                <TrendRed />
                                                 12.5% vs last week
                                             </p>
                                         </div>
@@ -728,7 +327,7 @@ export default function Dashboard() {
                                 )}
 
                                 {/* Date Filters (Present on both tabs) */}
-                                <div className="flex shrink-0 items-center gap-2 overflow-x-auto pb-2 lg:pb-0">
+                                <div className="flex shrink-0 items-center gap-2 overflow-x-auto px-8 pb-2 lg:pb-0">
                                     <div className="flex shrink-0 items-center rounded-lg border border-gray-200 bg-white p-1">
                                         {[
                                             '12 months',
@@ -771,7 +370,7 @@ export default function Dashboard() {
                             </div>
 
                             {/* Chart Display Area */}
-                            <div className="h-[320px] w-full">
+                            <div className="h-[420px] w-full">
                                 {activeTab === 'Sales' ? (
                                     <LineChart />
                                 ) : (
@@ -782,9 +381,121 @@ export default function Dashboard() {
                     </div>
 
                     {/* ── BOTTOM ROW ── */}
-                    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                        <WorkforceStatus />
-                        <TopSellingItems />
+                    <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                        {/* <WorkforceStatus /> */}
+                        <TableContainer>
+                            {/* Card Header (Kept outside the actual table tag) */}
+                            <div className="flex justify-between border-b border-borderColor px-6 py-5">
+                                <h2 className="text-lg font-semibold text-gray-900">
+                                    Live Workforce Status
+                                </h2>
+                                <VerticalMenu />
+                            </div>
+
+                            {/* The Table Content */}
+                            <Table>
+                                <TableBody>
+                                    {workforceData.map((item, i) => (
+                                        <TableRow
+                                            key={i}
+                                            className="hover:bg-transparent"
+                                        >
+                                            {/* Left Cell: Icon and Team Name */}
+                                            <TableCell className="py-4">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100">
+                                                        {typeof item.emoji ===
+                                                        'string' ? (
+                                                            <img
+                                                                src={item.emoji}
+                                                                alt={item.team}
+                                                                className="h-5 w-5 object-contain opacity-80"
+                                                            />
+                                                        ) : (
+                                                            <span>
+                                                                {item.emoji}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <span className="text-sm font-medium text-gray-900">
+                                                        {item.team}
+                                                    </span>
+                                                </div>
+                                            </TableCell>
+
+                                            {/* Right Cell: Count and Status */}
+                                            <TableCell className="py-4">
+                                                <span className="text-sm text-gray-500">
+                                                    {item.count} {item.status}
+                                                </span>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        {/* <TopSellingItems /> */}
+                        <TableContainer>
+                            {/* Card Header */}
+                            <div className="flex justify-between border-b border-borderColor px-6 py-5">
+                                <h2 className="text-lg font-semibold text-gray-900">
+                                    Top Selling Items
+                                </h2>
+                                <VerticalMenu />
+                            </div>
+
+                            {/* Table Content */}
+                            <Table>
+                                <TableBody>
+                                    {topSellingData.map((item, i) => (
+                                        <TableRow
+                                            key={i}
+                                            className="hover:bg-transparent"
+                                        >
+                                            {/* Left Cell: Icon + Name & Category */}
+                                            <TableCell className="py-4">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-gray-100">
+                                                        {typeof item.emoji ===
+                                                        'string' ? (
+                                                            <img
+                                                                src={item.emoji}
+                                                                alt={item.name}
+                                                                className="h-5 w-5 object-contain opacity-80"
+                                                            />
+                                                        ) : (
+                                                            <span>
+                                                                {item.emoji}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <div className="flex flex-col gap-0.5">
+                                                        <span className="text-sm font-medium text-gray-900">
+                                                            {item.name}
+                                                        </span>
+                                                        <span className="text-sm text-gray-400">
+                                                            {item.category}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </TableCell>
+
+                                            {/* Right Cell: Orders & Price */}
+                                            <TableCell className="py-4 text-right">
+                                                <div className="flex flex-col items-end gap-0.5">
+                                                    <span className="text-sm font-semibold text-gray-900">
+                                                        {item.orders}
+                                                    </span>
+                                                    <span className="text-sm text-gray-400">
+                                                        {item.price}
+                                                    </span>
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                     </div>
                 </main>
             </div>
