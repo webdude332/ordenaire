@@ -1,4 +1,3 @@
-import AdBell from '@/shared/images/icons/adBell.svg?react';
 import AdCircle from '@/shared/images/icons/adCircleCheck.svg?react';
 import AdCube from '@/shared/images/icons/adCube.svg?react';
 import AdCube1 from '@/shared/images/icons/adCube1.svg?react';
@@ -8,20 +7,16 @@ import dish from '@/shared/images/icons/adDish.svg';
 import AdDollar from '@/shared/images/icons/adDolloar.svg?react';
 import adFinance from '@/shared/images/icons/adFinance.svg';
 import adKitchen from '@/shared/images/icons/adKitchen.svg';
-import AdMarket from '@/shared/images/icons/adMarket.svg?react';
 import adMgmt from '@/shared/images/icons/adMgmt.svg';
 import adNewUsers from '@/shared/images/icons/adNewUsers.svg';
 import AdNote from '@/shared/images/icons/adNote.svg?react';
-import AdPos from '@/shared/images/icons/adPos.svg?react';
 import AdTimer from '@/shared/images/icons/adTimer.svg?react';
 import VerticalMenu from '@/shared/images/icons/menuVertical.svg?react';
 import TrendGreen from '@/shared/images/icons/trendGreen.svg?react';
 import TrendRed from '@/shared/images/icons/trendRed.svg?react';
-import En from '@/shared/images/icons/us.svg?react';
 import { Head } from '@inertiajs/react';
 import chartIcon from '@shared/images/icons/dashBaordSvg.svg';
 import { useState } from 'react';
-import ActionButton from '../components/ActionButton';
 import AdminStatCard from '../components/AdminStatCard';
 import LineChart from '../components/LineChart';
 import NotificationPanel from '../components/NotificationPanel';
@@ -107,7 +102,7 @@ export default function Dashboard() {
             <SidePannel />
 
             {/* ── MAIN AREA ── */}
-            <div className="no-scrollbar relative flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto bg-[#FAFAFA]">
+            <div className="no-scrollbar relative flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
                 {/* ── TOP BAR ── */}
                 <TopBar
                     title="Good Afternoon! John Doe"
@@ -119,69 +114,13 @@ export default function Dashboard() {
                             href: '/admin/dashboard',
                         },
                     ]}
-                >
-                    {/* Branch selector */}
-                    <button className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                        <AdMarket className="h-4 w-4" />
-                        Mirpur-1(Main)
-                        <svg
-                            className="h-3.5 w-3.5 text-gray-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                            />
-                        </svg>
-                    </button>
-
-                    {/* Language */}
-                    <button className="flex items-center gap-2 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-                        <span>
-                            <En className="h-4 w-4" />
-                        </span>
-                        English
-                        <svg
-                            className="h-3.5 w-3.5 text-gray-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                            />
-                        </svg>
-                    </button>
-
-                    {/* Open POS */}
-                    <ActionButton>
-                        <AdPos className="h-5 w-5" />
-                        Open POS
-                    </ActionButton>
-
-                    {/* Bell */}
-                    <ActionButton onClick={() => setNotifOpen(true)}>
-                        <AdBell className="h-5 w-5" />
-                        {/* {notifCount > 0 && (
-                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
-                                {notifCount}
-                            </span>
-                        )} */}
-                    </ActionButton>
-                </TopBar>
+                ></TopBar>
 
                 {/* ── PAGE CONTENT ── */}
                 <main className="flex-1 space-y-6 p-8 pb-20">
                     {/* ── OVERVIEW STAT CARDS ── */}
                     <div>
-                        <p className="mb-3 text-xs font-semibold tracking-wide text-gray-400 uppercase">
+                        <p className="mb-3 text-lg font-semibold tracking-wide text-gray-900">
                             Overview
                         </p>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -214,7 +153,7 @@ export default function Dashboard() {
 
                     {/* ── LIVE OPERATIONS ── */}
                     <div>
-                        <p className="mb-3 text-xs font-semibold tracking-wide text-gray-400 uppercase">
+                        <p className="mb-3 text-lg font-semibold text-gray-900">
                             Live Operations
                         </p>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -266,7 +205,7 @@ export default function Dashboard() {
 
                         <div className="rounded-xl border border-gray-200 bg-white shadow-xs">
                             <div className="flex items-center px-8 pt-6">
-                                <div className="flex w-[250px] items-center gap-2 rounded-lg bg-gray-100 px-1.5 py-1">
+                                <div className="flex items-center gap-2 rounded-lg border border-borderColor bg-gray-50 px-1.5 py-1">
                                     <button
                                         onClick={() => setActiveTab('Sales')}
                                         className={`cursor-pointer rounded-lg px-4 py-1.5 text-sm font-medium transition-all ${
