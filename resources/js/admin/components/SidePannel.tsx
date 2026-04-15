@@ -13,7 +13,7 @@ import adPromotion from '@/shared/images/icons/adPromotion.svg';
 import adReports from '@/shared/images/icons/adReports.svg';
 import adScreen from '@/shared/images/icons/adScreen.svg';
 import adUsers from '@/shared/images/icons/adUsers.svg';
-import adWhatsapp from '@/shared/images/icons/adWhatsapp.svg';
+import adWhatsapp from '@/shared/images/icons/adWhatsappp.svg';
 import AdMenuClose from '../../shared/images/icons/adMenuClose.svg?react';
 import BlackLogo from '../../shared/images/icons/applogo.svg?react';
 import chartIcon from '../../shared/images/icons/dashBaordSvg.svg';

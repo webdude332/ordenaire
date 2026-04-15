@@ -283,7 +283,7 @@ const BusinessProfilesTab = () => {
                                         View
                                     </button>
                                 </Link>
-                                <Link href="//superadmin/business/editbusiness">
+                                <Link href="/superadmin/business/editbusiness">
                                     <button className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900">
                                         Edit
                                     </button>

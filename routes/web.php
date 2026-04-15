@@ -218,6 +218,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return Inertia::render('Admin/MarketPlace');
     })->name('marketplace');
 
+
+     Route::get('menu/additems', function () {
+        return Inertia::render('Admin/AddItems');
+    })->name('menu.additems');
+
 });
 
 require __DIR__.'/settings.php';
