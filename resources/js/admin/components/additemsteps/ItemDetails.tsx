@@ -1,7 +1,3 @@
-// export default function ItemDetails() {
-//     return <div>ItemDetails</div>;
-// }
-
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import {
@@ -21,15 +17,7 @@ interface StepProps {
     canNext?: boolean;
 }
 
-const DIETARY_LABELS = [
-    'Spicy',
-    'Vegan',
-    'Vegetarian',
-    'Gluten-Free',
-    'Contains Nuts',
-    'Contains Dairy',
-    'Contains Seafood',
-];
+const DIETARY_LABELS = ['Spicy', 'Vegan', 'Gluten-Free', 'Contains Nuts'];
 
 const ItemDetails = ({
     data,
@@ -266,19 +254,21 @@ const ItemDetails = ({
 
                     {/* Dietary Labels */}
                     <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
+                        <Label className="text-sm font-semibold text-gray-700">
                             Dietary Labels & Allergens
                         </Label>
                         <div className="flex flex-wrap gap-3">
                             {DIETARY_LABELS.map((label) => (
-                                <Checkbox
+                                <div
                                     key={label}
-                                    label={label}
-                                    // Check if this specific label exists in our state array
-                                    checked={selectedLabels.includes(label)}
-                                    // Trigger our toggle function when clicked
-                                    onChange={() => handleToggle(label)}
-                                />
+                                    className="flex items-center rounded-md border border-[#CFCBD2] bg-white px-2 py-1"
+                                >
+                                    <Checkbox
+                                        label={label}
+                                        checked={selectedLabels.includes(label)}
+                                        onChange={() => handleToggle(label)}
+                                    />
+                                </div>
                             ))}
                         </div>
                     </div>

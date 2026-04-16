@@ -1,7 +1,4 @@
-// export default function RecipeStock() {
-//     return <div>RecipeStock</div>;
-// }
-
+import InfoIcon from '@/shared/images/icons/infoRing.svg?react';
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import { Label } from '@/shared/sharedcomponents/ui/FormElements';
@@ -68,8 +65,10 @@ const RecipeStock = ({
 
                     {/* Info when OFF */}
                     {!data.trackStock && (
-                        <div className="flex items-center gap-3 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
-                            <span className="text-gray-400">ⓘ</span>
+                        <div className="flex items-center gap-3 rounded-xl border border-borderColor bg-white px-4 py-3">
+                            <span className="">
+                                <InfoIcon className="h-8 w-8" />
+                            </span>
                             <p className="text-sm text-gray-600">
                                 This item is not tracked in stock. (Unlimited
                                 Quantity).
@@ -137,7 +136,7 @@ const RecipeStock = ({
                                 onChange={(val) => update('manualTax', val)}
                                 placeholder="Manual Assignment"
                             />
-                            <p className="mt-1.5 text-xs text-gray-400">
+                            <p className="mt-1.5 text-sm text-gray-400">
                                 Global taxes (like VAT) are applied
                                 automatically at checkout and won't show here.
                             </p>

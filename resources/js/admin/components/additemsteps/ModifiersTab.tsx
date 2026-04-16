@@ -415,9 +415,19 @@
 // export default ModifiersTab;
 
 //hardcoded data
-import TrashIcon from '@/shared/images/icons/delBold.svg?react';
+import TrashIcon from '@/shared/images/icons/delIcon.svg?react';
 import PencilIcon from '@/shared/images/icons/pencilIcon.svg?react';
 import PlusIcon from '@/shared/images/icons/plus.svg?react';
+import ActionButton from '@/shared/sharedcomponents/ui/ActionButton';
+import IconButton from '@/shared/sharedcomponents/ui/IconButton';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/superadmin/components/OuterTable';
 
 interface ModifiersTabProps {
     data: any;
@@ -554,13 +564,10 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     </p>
                 </div>
                 {groups.length < 3 && (
-                    <button
-                        onClick={addGroup}
-                        className="flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                    >
+                    <IconButton onClick={addGroup}>
                         <PlusIcon className="h-4 w-4" />
                         Create New Group
-                    </button>
+                    </IconButton>
                 )}
             </div>
 
@@ -594,74 +601,86 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                             </p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50">
-                                <PencilIcon className="h-4 w-4 text-gray-400" />
-                            </button>
-                            <button
-                                onClick={() => deleteGroup(group.id)}
-                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50"
-                            >
-                                <TrashIcon className="h-4 w-4 text-gray-400" />
-                            </button>
+                            <ActionButton>
+                                <PencilIcon className="h-4 w-4 text-iconColor" />
+                            </ActionButton>
+                            <ActionButton onClick={() => deleteGroup(group.id)}>
+                                <TrashIcon className="h-4 w-4 text-iconColor" />
+                            </ActionButton>
                         </div>
                     </div>
 
-                    {/* Options Table Header */}
-                    <div className="grid grid-cols-12 gap-4 border-t border-gray-100 bg-gray-50 px-6 py-2 text-xs font-semibold text-gray-500">
-                        <div className="col-span-5">Option Name</div>
-                        <div className="col-span-3">Additional Price</div>
-                        <div className="col-span-3">Est. Cost</div>
-                        <div className="col-span-1 text-right">Actions</div>
-                    </div>
+                    {/* Table Area for Options */}
+                    <div className="overflow-hidden border-t border-gray-200">
+                        <Table>
+                            <TableHeader>
+                                <TableHead className="w-5/12">
+                                    Option Name
+                                </TableHead>
+                                <TableHead className="w-3/12">
+                                    Additional Price
+                                </TableHead>
+                                <TableHead className="w-3/12">
+                                    Est. Cost
+                                </TableHead>
+                                <TableHead className="w-1/12 text-right">
+                                    Actions
+                                </TableHead>
+                            </TableHeader>
 
-                    {/* Options Rows */}
-                    {group.options.map((opt) => (
-                        <div
-                            key={opt.id}
-                            className="grid grid-cols-12 items-center gap-4 border-t border-gray-100 px-6 py-3"
-                        >
-                            <div className="col-span-5">
-                                <p className="text-sm text-gray-900">
-                                    {opt.name}
-                                </p>
-                            </div>
-                            <div className="col-span-3">
-                                <p className="text-sm text-gray-900">
-                                    {opt.additionalPrice}
-                                </p>
-                                <p className="text-xs text-gray-400">KWD</p>
-                            </div>
-                            <div className="col-span-3">
-                                <p className="text-sm text-gray-900">
-                                    {opt.estCost}
-                                </p>
-                                <p className="text-xs text-gray-400">KWD</p>
-                            </div>
-                            <div className="col-span-1 flex items-center justify-end gap-1">
-                                <button className="flex h-7 w-7 items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50">
-                                    <PencilIcon className="h-3.5 w-3.5 text-gray-400" />
-                                </button>
-                                <button
-                                    onClick={() =>
-                                        deleteOption(group.id, opt.id)
-                                    }
-                                    className="flex h-7 w-7 items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50"
-                                >
-                                    <TrashIcon className="h-3.5 w-3.5 text-gray-400" />
-                                </button>
-                            </div>
+                            <TableBody>
+                                {group.options.map((opt) => (
+                                    <TableRow key={opt.id}>
+                                        <TableCell>
+                                            <p className="font-medium text-gray-900">
+                                                {opt.name}
+                                            </p>
+                                        </TableCell>
+                                        <TableCell>
+                                            <p className="font-medium text-gray-900">
+                                                {opt.additionalPrice}
+                                            </p>
+                                            <p className="text-xs text-gray-400">
+                                                KWD
+                                            </p>
+                                        </TableCell>
+                                        <TableCell>
+                                            <p className="font-medium text-gray-900">
+                                                {opt.estCost}
+                                            </p>
+                                            <p className="text-xs text-gray-400">
+                                                KWD
+                                            </p>
+                                        </TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center justify-end gap-2">
+                                                <ActionButton>
+                                                    <PencilIcon className="h-4 w-4 text-iconColor" />
+                                                </ActionButton>
+                                                <ActionButton
+                                                    onClick={() =>
+                                                        deleteOption(
+                                                            group.id,
+                                                            opt.id,
+                                                        )
+                                                    }
+                                                >
+                                                    <TrashIcon className="h-4 w-4 text-iconColor" />
+                                                </ActionButton>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+
+                        {/* Add Option Button */}
+                        <div className="border-t border-gray-200 px-6 py-4">
+                            <IconButton onClick={() => addOption(group.id)}>
+                                <PlusIcon className="h-4 w-4" />
+                                Add Option
+                            </IconButton>
                         </div>
-                    ))}
-
-                    {/* Add Option */}
-                    <div className="border-t border-gray-100 px-6 py-3">
-                        <button
-                            onClick={() => addOption(group.id)}
-                            className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900"
-                        >
-                            <PlusIcon className="h-4 w-4" />
-                            Add Option
-                        </button>
                     </div>
                 </div>
             ))}

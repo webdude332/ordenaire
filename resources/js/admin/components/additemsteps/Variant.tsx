@@ -1,7 +1,3 @@
-// export default function Variant() {
-//     return <div>Variant</div>;
-// }
-
 import Button from '@/shared/sharedcomponents/ui/Button';
 import IconButton from '@/shared/sharedcomponents/ui/IconButton';
 import { useState } from 'react';
