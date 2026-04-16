@@ -1,7 +1,7 @@
 // components/OrderSummaryBar.tsx
 export default function OrderSummaryBar() {
     return (
-        <div className="flex h-full flex-col justify-center px-4">
+        <div className="flex flex-col px-4 py-4">
             {/* Horizontal Stacked Bar */}
             <div className="mb-10 flex h-14 w-full overflow-hidden rounded-md">
                 <div

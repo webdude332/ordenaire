@@ -309,7 +309,9 @@ export default function Dashboard() {
                             </div>
 
                             {/* Chart Display Area */}
-                            <div className="h-[420px] w-full">
+                            <div
+                                className={`w-full ${activeTab === 'Sales' ? 'h-[420px]' : 'h-auto'}`}
+                            >
                                 {activeTab === 'Sales' ? (
                                     <LineChart />
                                 ) : (
@@ -320,7 +322,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* ── BOTTOM ROW ── */}
-                    <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                         {/* <WorkforceStatus /> */}
                         <TableContainer>
                             {/* Card Header (Kept outside the actual table tag) */}
