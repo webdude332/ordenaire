@@ -229,10 +229,298 @@
 
 // export default VariationTab;
 
+// import TrashIcon from '@/shared/images/icons/delIcon.svg?react';
+// import PencilIcon from '@/shared/images/icons/pencilIcon.svg?react';
+// import PlusIcon from '@/shared/images/icons/plus.svg?react';
+// import Button from '@/shared/sharedcomponents/ui/Button';
+// import IconButton from '@/shared/sharedcomponents/ui/IconButton';
+// import {
+//     Table,
+//     TableBody,
+//     TableCell,
+//     TableHead,
+//     TableHeader,
+//     TableRow,
+// } from '@/superadmin/components/OuterTable';
+// import { useState } from 'react';
+// import AddVariant from '../modals/AddVariant';
+// import EditVariant from '../modals/EditVariant';
+
+// interface VariationTabProps {
+//     data: any;
+//     update: (field: string, value: any) => void;
+// }
+
+// interface Variant {
+//     id: string;
+//     name: string;
+//     sellingPrice: string;
+//     estimatedCost: string;
+//     locked?: boolean;
+// }
+
+// const VariationTab = ({ data, update }: VariationTabProps) => {
+//     const variants: Variant[] = data.variants || [
+//         {
+//             id: '1',
+//             name: 'Standard',
+//             sellingPrice: '3.000',
+//             estimatedCost: '2.000',
+//             locked: true,
+//         },
+//     ];
+
+//     const [editingId, setEditingId] = useState<string | null>(null);
+//     const [editValues, setEditValues] = useState({
+//         name: '',
+//         sellingPrice: '',
+//         estimatedCost: '',
+//     });
+
+//     const addVariant = () => {
+//         if (variants.length >= 3) return;
+//         const newVariant: Variant = {
+//             id: Date.now().toString(),
+//             name: '',
+//             sellingPrice: '0.000',
+//             estimatedCost: '0.000',
+//         };
+//         update('variants', [...variants, newVariant]);
+//         setEditingId(newVariant.id);
+//         setEditValues({
+//             name: '',
+//             sellingPrice: '0.000',
+//             estimatedCost: '0.000',
+//         });
+//     };
+
+//     const deleteVariant = (id: string) => {
+//         update(
+//             'variants',
+//             variants.filter((v) => v.id !== id),
+//         );
+//     };
+
+//     const startEdit = (v: Variant) => {
+//         setEditingId(v.id);
+//         setEditValues({
+//             name: v.name,
+//             sellingPrice: v.sellingPrice,
+//             estimatedCost: v.estimatedCost,
+//         });
+//     };
+
+//     const saveEdit = (id: string) => {
+//         update(
+//             'variants',
+//             variants.map((v) => (v.id === id ? { ...v, ...editValues } : v)),
+//         );
+//         setEditingId(null);
+//     };
+//     const [isVariantOpen, setIsVariantOpen] = useState(false);
+//     const [isEditVariantOpen, setIsEditVariantOpen] = useState(false);
+//     return (
+//         <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+//             <div className="p-6">
+//                 <h2 className="text-xl font-bold text-gray-900">
+//                     Item Variants
+//                 </h2>
+//                 <p className="mt-1 text-sm text-gray-500">
+//                     Define specific versions of this item (e.g., Regular vs.
+//                     Large, or Spicy vs. Mild). You can add up to 3 Variants.
+//                 </p>
+//             </div>
+
+//             {/* Table Area */}
+//             <div className="overflow-hidden border-t border-gray-200">
+//                 <Table>
+//                     <TableHeader>
+//                         <TableHead className="w-4/12">Variant Name</TableHead>
+//                         <TableHead className="w-3/12">Selling Price</TableHead>
+//                         <TableHead className="w-3/12">Estimated Cost</TableHead>
+//                         <TableHead className="w-2/12 text-right">
+//                             Actions
+//                         </TableHead>
+//                     </TableHeader>
+
+//                     <TableBody>
+//                         {variants.map((variant) => (
+//                             <TableRow key={variant.id}>
+//                                 {editingId === variant.id && !variant.locked ? (
+//                                     <>
+//                                         <TableCell>
+//                                             <input
+//                                                 autoFocus
+//                                                 value={editValues.name}
+//                                                 onChange={(e) =>
+//                                                     setEditValues((p) => ({
+//                                                         ...p,
+//                                                         name: e.target.value,
+//                                                     }))
+//                                                 }
+//                                                 placeholder="Variant name"
+//                                                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+//                                             />
+//                                         </TableCell>
+//                                         <TableCell>
+//                                             <div className="relative">
+//                                                 <input
+//                                                     value={
+//                                                         editValues.sellingPrice
+//                                                     }
+//                                                     onChange={(e) =>
+//                                                         setEditValues((p) => ({
+//                                                             ...p,
+//                                                             sellingPrice:
+//                                                                 e.target.value,
+//                                                         }))
+//                                                     }
+//                                                     className="w-full rounded-lg border border-gray-300 py-2 pr-14 pl-3 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+//                                                 />
+//                                                 <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-gray-400">
+//                                                     KWD
+//                                                 </span>
+//                                             </div>
+//                                         </TableCell>
+//                                         <TableCell>
+//                                             <div className="relative">
+//                                                 <input
+//                                                     value={
+//                                                         editValues.estimatedCost
+//                                                     }
+//                                                     onChange={(e) =>
+//                                                         setEditValues((p) => ({
+//                                                             ...p,
+//                                                             estimatedCost:
+//                                                                 e.target.value,
+//                                                         }))
+//                                                     }
+//                                                     className="w-full rounded-lg border border-gray-300 py-2 pr-14 pl-3 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+//                                                 />
+//                                                 <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-gray-400">
+//                                                     KWD
+//                                                 </span>
+//                                             </div>
+//                                         </TableCell>
+//                                         <TableCell className="text-right">
+//                                             <div className="flex items-center justify-end">
+//                                                 {/* <button
+//                                                     onClick={() =>
+//                                                         saveEdit(variant.id)
+//                                                     }
+//                                                     className="rounded-lg bg-[#7AB621] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#6aa31d]"
+//                                                 >
+//                                                     Save
+//                                                 </button> */}
+//                                                 <Button
+//                                                     onClick={() =>
+//                                                         saveEdit(variant.id)
+//                                                     }
+//                                                 >
+//                                                     Save
+//                                                 </Button>
+//                                             </div>
+//                                         </TableCell>
+//                                     </>
+//                                 ) : (
+//                                     <>
+//                                         <TableCell>
+//                                             <p className="font-medium text-gray-900">
+//                                                 {variant.name}
+//                                             </p>
+//                                         </TableCell>
+//                                         <TableCell>
+//                                             <p className="font-medium text-gray-900">
+//                                                 {variant.sellingPrice}
+//                                             </p>
+//                                             <p className="text-xs text-gray-400">
+//                                                 KWD
+//                                             </p>
+//                                         </TableCell>
+//                                         <TableCell>
+//                                             <p className="font-medium text-gray-900">
+//                                                 {variant.estimatedCost}
+//                                             </p>
+//                                             <p className="text-xs text-gray-400">
+//                                                 KWD
+//                                             </p>
+//                                         </TableCell>
+//                                         <TableCell>
+//                                             <div className="flex items-center justify-end gap-2">
+//                                                 {variant.locked ? (
+//                                                     <span className="text-sm font-medium text-gray-600">
+//                                                         Locked
+//                                                     </span>
+//                                                 ) : (
+//                                                     <>
+//                                                         <IconButton
+//                                                             className="min-h-[45px] min-w-[22px] shrink-0"
+//                                                             onClick={() =>
+//                                                                 startEdit(
+//                                                                     variant,
+//                                                                 )
+//                                                             }
+//                                                         >
+//                                                             <PencilIcon className="h-4 w-4 text-iconColor" />
+//                                                         </IconButton>
+//                                                         <IconButton
+//                                                             className="min-h-[45px] min-w-[22px]"
+//                                                             onClick={() =>
+//                                                                 deleteVariant(
+//                                                                     variant.id,
+//                                                                 )
+//                                                             }
+//                                                         >
+//                                                             <TrashIcon className="h-4 w-4 text-iconColor" />
+//                                                         </IconButton>
+//                                                     </>
+//                                                 )}
+//                                             </div>
+//                                         </TableCell>
+//                                     </>
+//                                 )}
+//                             </TableRow>
+//                         ))}
+//                     </TableBody>
+//                 </Table>
+
+//                 {/* Add Variant Button - Rendered outside the actual <table> to keep HTML valid, but inside the container */}
+//                 {variants.length < 3 && (
+//                     <div className="border-t border-gray-200 bg-gray-100 px-6 py-4">
+//                         <IconButton onClick={addVariant}>
+//                             <PlusIcon className="h-4 w-4" />
+//                             Add Variant
+//                         </IconButton>
+//                     </div>
+//                 )}
+//                 <IconButton onClick={() => setIsVariantOpen(true)}>
+//                     Test Button
+//                 </IconButton>
+//                 <IconButton onClick={() => setIsEditVariantOpen(true)}>
+//                     Test Button Edit
+//                 </IconButton>
+//             </div>
+//             <AddVariant
+//                 isOpen={isVariantOpen}
+//                 onClose={() => setIsVariantOpen(false)}
+//                 onConfirm={() => setIsVariantOpen(false)}
+//             />
+//             <EditVariant
+//                 isOpen={isEditVariantOpen}
+//                 onClose={() => setIsEditVariantOpen(false)}
+//                 onConfirm={() => setIsEditVariantOpen(false)}
+//             />
+//         </div>
+//     );
+// };
+
+// export default VariationTab;
+
+//static with modals.
+
 import TrashIcon from '@/shared/images/icons/delIcon.svg?react';
 import PencilIcon from '@/shared/images/icons/pencilIcon.svg?react';
 import PlusIcon from '@/shared/images/icons/plus.svg?react';
-import Button from '@/shared/sharedcomponents/ui/Button';
 import IconButton from '@/shared/sharedcomponents/ui/IconButton';
 import {
     Table,
@@ -242,7 +530,11 @@ import {
     TableHeader,
     TableRow,
 } from '@/superadmin/components/OuterTable';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ActionButton from '../ActionButton';
+import AddVariant from '../modals/AddVariant';
+import DeleteModal from '../modals/DeleteModal';
+import EditVariant from '../modals/EditVariant';
 
 interface VariationTabProps {
     data: any;
@@ -257,41 +549,50 @@ interface Variant {
     locked?: boolean;
 }
 
+// 1. Defined the 3 default items outside the component
+const defaultVariants: Variant[] = [
+    {
+        id: '1',
+        name: 'Standard',
+        sellingPrice: '3.000',
+        estimatedCost: '2.000',
+        locked: true,
+    },
+    {
+        id: '2',
+        name: 'VIP Entry',
+        sellingPrice: '15.000',
+        estimatedCost: '3.500',
+    },
+    {
+        id: '3',
+        name: 'Kids Entry',
+        sellingPrice: '5.000',
+        estimatedCost: '1.000',
+    },
+];
+
 const VariationTab = ({ data, update }: VariationTabProps) => {
-    const variants: Variant[] = data.variants || [
-        {
-            id: '1',
-            name: 'Standard',
-            sellingPrice: '3.000',
-            estimatedCost: '2.000',
-            locked: true,
-        },
-    ];
+    // 2. Automatically push the 3 items to the parent state when the component loads
+    useEffect(() => {
+        if (
+            !data.variants ||
+            (data.variants.length === 1 && data.variants[0].name === 'Standard')
+        ) {
+            update('variants', defaultVariants);
+        }
+    }, []);
 
-    const [editingId, setEditingId] = useState<string | null>(null);
-    const [editValues, setEditValues] = useState({
-        name: '',
-        sellingPrice: '',
-        estimatedCost: '',
-    });
+    // 3. Read from the parent data
+    const variants: Variant[] = data.variants || defaultVariants;
 
-    const addVariant = () => {
-        if (variants.length >= 3) return;
-        const newVariant: Variant = {
-            id: Date.now().toString(),
-            name: '',
-            sellingPrice: '0.000',
-            estimatedCost: '0.000',
-        };
-        update('variants', [...variants, newVariant]);
-        setEditingId(newVariant.id);
-        setEditValues({
-            name: '',
-            sellingPrice: '0.000',
-            estimatedCost: '0.000',
-        });
-    };
+    // --- Modal States ---
+    const [isVariantOpen, setIsVariantOpen] = useState(false);
+    const [isEditVariantOpen, setIsEditVariantOpen] = useState(false);
+    const [currentVariant, setCurrentVariant] = useState<Variant | null>(null);
+    const [deleteModalOpen, setDeleteModal] = useState(false);
 
+    // --- Handlers ---
     const deleteVariant = (id: string) => {
         update(
             'variants',
@@ -299,21 +600,35 @@ const VariationTab = ({ data, update }: VariationTabProps) => {
         );
     };
 
-    const startEdit = (v: Variant) => {
-        setEditingId(v.id);
-        setEditValues({
-            name: v.name,
-            sellingPrice: v.sellingPrice,
-            estimatedCost: v.estimatedCost,
-        });
+    const openEditModal = (variant: Variant) => {
+        setCurrentVariant(variant);
+        setIsEditVariantOpen(true);
     };
 
-    const saveEdit = (id: string) => {
+    const handleAdd = (newVariantData: any) => {
+        const newVariant: Variant = {
+            id: Date.now().toString(),
+            name: newVariantData.name || '',
+            sellingPrice: newVariantData.sellingPrice || '0.000',
+            estimatedCost: newVariantData.estimatedCost || '0.000',
+        };
+        update('variants', [...variants, newVariant]);
+        setIsVariantOpen(false);
+    };
+
+    const handleEdit = (updatedVariantData: any) => {
+        if (!currentVariant) return;
+
         update(
             'variants',
-            variants.map((v) => (v.id === id ? { ...v, ...editValues } : v)),
+            variants.map((v) =>
+                v.id === currentVariant.id
+                    ? { ...v, ...updatedVariantData }
+                    : v,
+            ),
         );
-        setEditingId(null);
+        setIsEditVariantOpen(false);
+        setCurrentVariant(null);
     };
 
     return (
@@ -343,154 +658,84 @@ const VariationTab = ({ data, update }: VariationTabProps) => {
                     <TableBody>
                         {variants.map((variant) => (
                             <TableRow key={variant.id}>
-                                {editingId === variant.id && !variant.locked ? (
-                                    <>
-                                        <TableCell>
-                                            <input
-                                                autoFocus
-                                                value={editValues.name}
-                                                onChange={(e) =>
-                                                    setEditValues((p) => ({
-                                                        ...p,
-                                                        name: e.target.value,
-                                                    }))
-                                                }
-                                                placeholder="Variant name"
-                                                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
-                                            />
-                                        </TableCell>
-                                        <TableCell>
-                                            <div className="relative">
-                                                <input
-                                                    value={
-                                                        editValues.sellingPrice
-                                                    }
-                                                    onChange={(e) =>
-                                                        setEditValues((p) => ({
-                                                            ...p,
-                                                            sellingPrice:
-                                                                e.target.value,
-                                                        }))
-                                                    }
-                                                    className="w-full rounded-lg border border-gray-300 py-2 pr-14 pl-3 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
-                                                />
-                                                <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-gray-400">
-                                                    KWD
-                                                </span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell>
-                                            <div className="relative">
-                                                <input
-                                                    value={
-                                                        editValues.estimatedCost
-                                                    }
-                                                    onChange={(e) =>
-                                                        setEditValues((p) => ({
-                                                            ...p,
-                                                            estimatedCost:
-                                                                e.target.value,
-                                                        }))
-                                                    }
-                                                    className="w-full rounded-lg border border-gray-300 py-2 pr-14 pl-3 text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
-                                                />
-                                                <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-gray-400">
-                                                    KWD
-                                                </span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="text-right">
-                                            <div className="flex items-center justify-end">
-                                                {/* <button
+                                <TableCell>
+                                    <p className="font-medium text-gray-900">
+                                        {variant.name}
+                                    </p>
+                                </TableCell>
+                                <TableCell>
+                                    <p className="font-medium text-gray-900">
+                                        {variant.sellingPrice}
+                                    </p>
+                                    <p className="text-xs text-gray-400">KWD</p>
+                                </TableCell>
+                                <TableCell>
+                                    <p className="font-medium text-gray-900">
+                                        {variant.estimatedCost}
+                                    </p>
+                                    <p className="text-xs text-gray-400">KWD</p>
+                                </TableCell>
+                                <TableCell>
+                                    <div className="flex items-center justify-end gap-2">
+                                        {variant.locked ? (
+                                            <span className="text-sm font-medium text-gray-600">
+                                                Locked
+                                            </span>
+                                        ) : (
+                                            <>
+                                                <ActionButton
                                                     onClick={() =>
-                                                        saveEdit(variant.id)
-                                                    }
-                                                    className="rounded-lg bg-[#7AB621] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#6aa31d]"
-                                                >
-                                                    Save
-                                                </button> */}
-                                                <Button
-                                                    onClick={() =>
-                                                        saveEdit(variant.id)
+                                                        openEditModal(variant)
                                                     }
                                                 >
-                                                    Save
-                                                </Button>
-                                            </div>
-                                        </TableCell>
-                                    </>
-                                ) : (
-                                    <>
-                                        <TableCell>
-                                            <p className="font-medium text-gray-900">
-                                                {variant.name}
-                                            </p>
-                                        </TableCell>
-                                        <TableCell>
-                                            <p className="font-medium text-gray-900">
-                                                {variant.sellingPrice}
-                                            </p>
-                                            <p className="text-xs text-gray-400">
-                                                KWD
-                                            </p>
-                                        </TableCell>
-                                        <TableCell>
-                                            <p className="font-medium text-gray-900">
-                                                {variant.estimatedCost}
-                                            </p>
-                                            <p className="text-xs text-gray-400">
-                                                KWD
-                                            </p>
-                                        </TableCell>
-                                        <TableCell>
-                                            <div className="flex items-center justify-end gap-2">
-                                                {variant.locked ? (
-                                                    <span className="text-sm font-medium text-gray-600">
-                                                        Locked
-                                                    </span>
-                                                ) : (
-                                                    <>
-                                                        <IconButton
-                                                            className="min-h-[45px] min-w-[22px] shrink-0"
-                                                            onClick={() =>
-                                                                startEdit(
-                                                                    variant,
-                                                                )
-                                                            }
-                                                        >
-                                                            <PencilIcon className="h-4 w-4 text-iconColor" />
-                                                        </IconButton>
-                                                        <IconButton
-                                                            className="min-h-[45px] min-w-[22px]"
-                                                            onClick={() =>
-                                                                deleteVariant(
-                                                                    variant.id,
-                                                                )
-                                                            }
-                                                        >
-                                                            <TrashIcon className="h-4 w-4 text-iconColor" />
-                                                        </IconButton>
-                                                    </>
-                                                )}
-                                            </div>
-                                        </TableCell>
-                                    </>
-                                )}
+                                                    <PencilIcon className="h-4 w-4 text-iconColor" />
+                                                </ActionButton>
+                                                <ActionButton
+                                                    onClick={() =>
+                                                        setDeleteModal(true)
+                                                    }
+                                                >
+                                                    <TrashIcon className="h-4 w-4 text-iconColor" />
+                                                </ActionButton>
+                                            </>
+                                        )}
+                                    </div>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
 
-                {/* Add Variant Button - Rendered outside the actual <table> to keep HTML valid, but inside the container */}
-                {variants.length < 3 && (
-                    <div className="border-t border-gray-200 bg-gray-100 px-6 py-4">
-                        <IconButton onClick={addVariant}>
-                            <PlusIcon className="h-4 w-4" />
-                            Add Variant
-                        </IconButton>
-                    </div>
-                )}
+                {/* Add Variant Button */}
+
+                <div className="border-t border-gray-200 bg-gray-100 px-6 py-4">
+                    <IconButton onClick={() => setIsVariantOpen(true)}>
+                        <PlusIcon className="h-4 w-4" />
+                        Add Variant
+                    </IconButton>
+                </div>
             </div>
+
+            <AddVariant
+                isOpen={isVariantOpen}
+                onClose={() => setIsVariantOpen(false)}
+                onConfirm={handleAdd}
+            />
+
+            <EditVariant
+                isOpen={isEditVariantOpen}
+                onClose={() => {
+                    setIsEditVariantOpen(false);
+                    setCurrentVariant(null);
+                }}
+                onConfirm={handleEdit}
+            />
+            <DeleteModal
+                title="Delete 'Large Size'? "
+                isOpen={deleteModalOpen}
+                onClose={() => setDeleteModal(false)}
+                onRetry={() => setDeleteModal(false)}
+            />
         </div>
     );
 };

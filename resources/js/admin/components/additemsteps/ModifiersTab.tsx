@@ -428,6 +428,8 @@ import {
     TableHeader,
     TableRow,
 } from '@/superadmin/components/OuterTable';
+import { useState } from 'react';
+import DeleteModal from '../modals/DeleteModal';
 
 interface ModifiersTabProps {
     data: any;
@@ -450,6 +452,7 @@ interface ModifierGroup {
 }
 
 const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     // Completely hardcoded data to match the design
     const groups: ModifierGroup[] = [
         {
@@ -604,7 +607,9 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                             <ActionButton>
                                 <PencilIcon className="h-4 w-4 text-iconColor" />
                             </ActionButton>
-                            <ActionButton onClick={() => deleteGroup(group.id)}>
+                            <ActionButton
+                                onClick={() => setIsDeleteModalOpen(true)}
+                            >
                                 <TrashIcon className="h-4 w-4 text-iconColor" />
                             </ActionButton>
                         </div>
@@ -659,9 +664,8 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                                                 </ActionButton>
                                                 <ActionButton
                                                     onClick={() =>
-                                                        deleteOption(
-                                                            group.id,
-                                                            opt.id,
+                                                        setIsDeleteModalOpen(
+                                                            true,
                                                         )
                                                     }
                                                 >
@@ -684,6 +688,12 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     </div>
                 </div>
             ))}
+            <DeleteModal
+                title="Delete Group?"
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={() => setIsDeleteModalOpen(false)}
+            />
         </div>
     );
 };
