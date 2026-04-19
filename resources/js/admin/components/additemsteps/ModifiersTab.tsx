@@ -429,7 +429,11 @@ import {
     TableRow,
 } from '@/superadmin/components/OuterTable';
 import { useState } from 'react';
+import AddOption from '../modals/AddOptions';
+import CreateNewGroup from '../modals/CreateNewGroup';
 import DeleteModal from '../modals/DeleteModal';
+import EditGroup from '../modals/EditGroup';
+import EditOption from '../modals/EditOptions';
 
 interface ModifiersTabProps {
     data: any;
@@ -453,6 +457,16 @@ interface ModifierGroup {
 
 const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isCreateGroupOpen, setIsCreateGroupOpen] = useState(false);
+    const [isEditGroupOpen, setIsEditGroupOpen] = useState(false);
+    const [currentGroup, setCurrentGroup] = useState<any>(null);
+
+    // --- NEW STATE FOR OPTION MODALS ---
+    const [isAddOptionOpen, setIsAddOptionOpen] = useState(false);
+    const [isEditOptionOpen, setIsEditOptionOpen] = useState(false);
+    const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
+    const [currentOption, setCurrentOption] = useState<any>(null);
+
     // Completely hardcoded data to match the design
     const groups: ModifierGroup[] = [
         {
@@ -522,23 +536,51 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
         );
     };
 
-    const addOption = (groupId: string) => {
+    // --- UPDATED LOGIC TO HANDLE MODAL SAVES ---
+    const handleAddOptionConfirm = (optionData: any) => {
+        if (!activeGroupId) return;
         const updated = groups.map((g) => {
-            if (g.id !== groupId) return g;
+            if (g.id !== activeGroupId) return g;
             return {
                 ...g,
                 options: [
                     ...g.options,
                     {
                         id: Date.now().toString(),
-                        name: 'New Option',
-                        additionalPrice: '0.000',
-                        estCost: '0.000',
+                        name: optionData.name || 'New Option',
+                        additionalPrice: optionData.additionalPrice || '0.000',
+                        estCost: optionData.estimatedCost || '0.000', // Maps estimatedCost from modal to estCost in state
                     },
                 ],
             };
         });
         update('modifierGroups', updated);
+        setIsAddOptionOpen(false);
+        setActiveGroupId(null);
+    };
+
+    const handleEditOptionConfirm = (optionData: any) => {
+        if (!activeGroupId || !currentOption) return;
+        const updated = groups.map((g) => {
+            if (g.id !== activeGroupId) return g;
+            return {
+                ...g,
+                options: g.options.map((o) =>
+                    o.id === currentOption.id
+                        ? {
+                              ...o,
+                              name: optionData.name,
+                              additionalPrice: optionData.additionalPrice,
+                              estCost: optionData.estimatedCost, // Maps estimatedCost from modal to estCost in state
+                          }
+                        : o,
+                ),
+            };
+        });
+        update('modifierGroups', updated);
+        setIsEditOptionOpen(false);
+        setCurrentOption(null);
+        setActiveGroupId(null);
     };
 
     const deleteOption = (groupId: string, optionId: string) => {
@@ -551,6 +593,10 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
         });
         update('modifierGroups', updated);
     };
+
+    // Helper to get the name of the group we are currently modifying
+    const activeGroupName =
+        groups.find((g) => g.id === activeGroupId)?.name || '';
 
     return (
         <div className="space-y-6">
@@ -567,7 +613,7 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     </p>
                 </div>
                 {groups.length < 3 && (
-                    <IconButton onClick={addGroup}>
+                    <IconButton onClick={() => setIsCreateGroupOpen(true)}>
                         <PlusIcon className="h-4 w-4" />
                         Create New Group
                     </IconButton>
@@ -604,7 +650,12 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                             </p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <ActionButton>
+                            <ActionButton
+                                onClick={() => {
+                                    setCurrentGroup(group);
+                                    setIsEditGroupOpen(true);
+                                }}
+                            >
                                 <PencilIcon className="h-4 w-4 text-iconColor" />
                             </ActionButton>
                             <ActionButton
@@ -659,7 +710,18 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex items-center justify-end gap-2">
-                                                <ActionButton>
+                                                {/* --- CHANGED TO OPEN OPTION EDIT MODAL --- */}
+                                                <ActionButton
+                                                    onClick={() => {
+                                                        setActiveGroupId(
+                                                            group.id,
+                                                        );
+                                                        setCurrentOption(opt);
+                                                        setIsEditOptionOpen(
+                                                            true,
+                                                        );
+                                                    }}
+                                                >
                                                     <PencilIcon className="h-4 w-4 text-iconColor" />
                                                 </ActionButton>
                                                 <ActionButton
@@ -678,9 +740,14 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                             </TableBody>
                         </Table>
 
-                        {/* Add Option Button */}
+                        {/* --- CHANGED TO OPEN ADD OPTION MODAL --- */}
                         <div className="border-t border-gray-200 px-6 py-4">
-                            <IconButton onClick={() => addOption(group.id)}>
+                            <IconButton
+                                onClick={() => {
+                                    setActiveGroupId(group.id);
+                                    setIsAddOptionOpen(true);
+                                }}
+                            >
                                 <PlusIcon className="h-4 w-4" />
                                 Add Option
                             </IconButton>
@@ -688,11 +755,61 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     </div>
                 </div>
             ))}
+
+            {/* Existing Modals */}
             <DeleteModal
                 title="Delete Group?"
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}
                 onRetry={() => setIsDeleteModalOpen(false)}
+            />
+            <CreateNewGroup
+                isOpen={isCreateGroupOpen}
+                onClose={() => setIsCreateGroupOpen(false)}
+            />
+            <EditGroup
+                isOpen={isEditGroupOpen}
+                onClose={() => {
+                    setIsEditGroupOpen(false);
+                    setCurrentGroup(null);
+                }}
+                initialData={currentGroup}
+                onConfirm={(updatedData) => {
+                    console.log('Updating group: ', updatedData);
+                    setIsEditGroupOpen(false);
+                    setCurrentGroup(null);
+                }}
+            />
+
+            {/* --- NEW OPTION MODALS MOUNTED HERE --- */}
+            <AddOption
+                isOpen={isAddOptionOpen}
+                onClose={() => {
+                    setIsAddOptionOpen(false);
+                    setActiveGroupId(null);
+                }}
+                parentGroupName={activeGroupName}
+                onConfirm={handleAddOptionConfirm}
+            />
+
+            <EditOption
+                isOpen={isEditOptionOpen}
+                onClose={() => {
+                    setIsEditOptionOpen(false);
+                    setCurrentOption(null);
+                    setActiveGroupId(null);
+                }}
+                parentGroupName={activeGroupName}
+                // Mapping state estCost to modal estimatedCost
+                initialData={
+                    currentOption
+                        ? {
+                              ...currentOption,
+                              estimatedCost: currentOption.estCost,
+                          }
+                        : null
+                }
+                onConfirm={handleEditOptionConfirm}
             />
         </div>
     );

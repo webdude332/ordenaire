@@ -1,3 +1,5 @@
+// is edit mode
+
 import InfoIcon from '@/shared/images/icons/infoRing.svg?react';
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
@@ -5,12 +7,15 @@ import { Label } from '@/shared/sharedcomponents/ui/FormElements';
 import IconButton from '@/shared/sharedcomponents/ui/IconButton';
 import RadioGroup from '@/shared/sharedcomponents/ui/RadioGroup';
 
+// UPDATED: Added isEditMode and onSave, made onNext optional
 interface StepProps {
     data: any;
     update: (field: string, value: any) => void;
-    onNext: () => void;
+    onNext?: () => void;
     onBack: () => void;
     canNext?: boolean;
+    isEditMode?: boolean;
+    onSave?: () => void;
 }
 
 const RecipeStock = ({
@@ -19,6 +24,8 @@ const RecipeStock = ({
     onNext,
     onBack,
     canNext = true,
+    isEditMode = false,
+    onSave,
 }: StepProps) => {
     const basePrice = parseFloat(data.basePrice) || 0;
     const estimatedCost = parseFloat(data.estimatedCost) || 0;
@@ -199,16 +206,25 @@ const RecipeStock = ({
                 </div>
             </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
-                <IconButton onClick={onBack}>Go Back</IconButton>
-                <IconButton onClick={() => console.log('Save as Draft')}>
-                    Save as Draft
-                </IconButton>
-                <Button onClick={onNext} disabled={!canNext}>
-                    Continue to Variants & Add-ons
-                </Button>
-            </div>
+            {/* UPDATED DYNAMIC FOOTER */}
+            {isEditMode ? (
+                <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
+                    <IconButton onClick={onBack}>Cancel</IconButton>
+                    <Button onClick={onSave} disabled={!canNext}>
+                        Save Changes
+                    </Button>
+                </div>
+            ) : (
+                <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
+                    <IconButton onClick={onBack}>Go Back</IconButton>
+                    <IconButton onClick={() => console.log('Save as Draft')}>
+                        Save as Draft
+                    </IconButton>
+                    <Button onClick={onNext} disabled={!canNext}>
+                        Continue to Variants & Add-ons
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };

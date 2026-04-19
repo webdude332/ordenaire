@@ -223,6 +223,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return Inertia::render('Admin/AddItems');
     })->name('menu.additems');
 
+
+    Route::get('menu/edititem', function () {
+    return Inertia::render('Admin/EditItem');
+})->name('menu.edititem');
+
 });
 
 require __DIR__.'/settings.php';

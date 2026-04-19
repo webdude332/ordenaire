@@ -320,6 +320,7 @@ import {
 } from '@/superadmin/components/OuterTable';
 import { useState } from 'react';
 import ActionButton from '../ActionButton';
+import DeleteModal from '../modals/DeleteModal';
 
 interface AddOnsTabProps {
     data: any;
@@ -337,6 +338,8 @@ interface AddOn {
 }
 
 const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
     // Completely hardcoded data to match the design
     const addOns: AddOn[] = [
         {
@@ -498,17 +501,9 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
                                     {/* Actions */}
                                     <TableCell>
                                         <div className="flex justify-end">
-                                            {/* <button
-                                                onClick={() =>
-                                                    removeAddOn(addon.id)
-                                                }
-                                                className="flex h-8 w-8 min-w-[32px] shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50"
-                                            >
-                                                <TrashIcon className="h-4 w-4 shrink-0 text-gray-400" />
-                                            </button> */}
                                             <ActionButton
                                                 onClick={() =>
-                                                    removeAddOn(addon.id)
+                                                    setIsDeleteModalOpen(true)
                                                 }
                                             >
                                                 <TrashIcon className="h-4 w-4 text-iconColor" />
@@ -521,6 +516,12 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
                     </Table>
                 </div>
             )}
+            <DeleteModal
+                title="Delete Group?"
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={() => setIsDeleteModalOpen(false)}
+            />
         </div>
     );
 };

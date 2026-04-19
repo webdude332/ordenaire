@@ -7,12 +7,15 @@ import VariationTab from './VariationTab';
 
 type SubTab = 'variation' | 'modifiers' | 'addons';
 
+// UPDATED: Added isEditMode and onSave, made onNext optional
 interface StepProps {
     data: any;
     update: (field: string, value: any) => void;
-    onNext: () => void;
+    onNext?: () => void;
     onBack: () => void;
     canNext?: boolean;
+    isEditMode?: boolean;
+    onSave?: () => void;
 }
 
 const Variant = ({
@@ -21,6 +24,8 @@ const Variant = ({
     onNext,
     onBack,
     canNext = true,
+    isEditMode = false,
+    onSave,
 }: StepProps) => {
     const [activeSubTab, setActiveSubTab] = useState<SubTab>('variation');
 
@@ -62,16 +67,25 @@ const Variant = ({
                 )}
             </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
-                <IconButton onClick={onBack}>Go Back</IconButton>
-                <IconButton onClick={() => console.log('Save as Draft')}>
-                    Save as Draft
-                </IconButton>
-                <Button onClick={onNext} disabled={!canNext}>
-                    Continue to Review
-                </Button>
-            </div>
+            {/* UPDATED DYNAMIC FOOTER */}
+            {isEditMode ? (
+                <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
+                    <IconButton onClick={onBack}>Cancel</IconButton>
+                    <Button onClick={onSave} disabled={!canNext}>
+                        Save Changes
+                    </Button>
+                </div>
+            ) : (
+                <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
+                    <IconButton onClick={onBack}>Go Back</IconButton>
+                    <IconButton onClick={() => console.log('Save as Draft')}>
+                        Save as Draft
+                    </IconButton>
+                    <Button onClick={onNext} disabled={!canNext}>
+                        Continue to Review
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
