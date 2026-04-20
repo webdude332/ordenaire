@@ -520,9 +520,11 @@ const Items = () => {
                                 {/* Actions */}
                                 <TableCell className="py-4 pr-6 text-right">
                                     <div className="flex items-center justify-end gap-2">
-                                        <ActionButton>
-                                            <PencilIcon className="h-5 w-5 text-iconColor" />
-                                        </ActionButton>
+                                        <Link href="/admin/menu/edititem">
+                                            <ActionButton>
+                                                <PencilIcon className="h-5 w-5 text-iconColor" />
+                                            </ActionButton>
+                                        </Link>
                                         <ActionButton>
                                             <TrashIcon className="h-5 w-5 text-iconColor" />
                                         </ActionButton>
