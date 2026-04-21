@@ -788,6 +788,15 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     setCurrentGroup(null);
                 }}
             />
+            {/* <AddOption
+                isOpen={isAddOptionOpen}
+                onClose={() => {
+                    setIsAddOptionOpen(false);
+                    setActiveGroupId(null);
+                }}
+                parentGroupName={activeGroupName}
+                onConfirm={handleAddOptionConfirm}
+            /> */}
             <AddOption
                 isOpen={isAddOptionOpen}
                 onClose={() => {
@@ -796,7 +805,26 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                 }}
                 parentGroupName={activeGroupName}
                 onConfirm={handleAddOptionConfirm}
+                trackStock={data.trackStock} // ← ADD THIS
             />
+            {/* <EditOption
+                isOpen={isEditOptionOpen}
+                onClose={() => {
+                    setIsEditOptionOpen(false);
+                    setCurrentOption(null);
+                    setActiveGroupId(null);
+                }}
+                parentGroupName={activeGroupName}
+                initialData={
+                    currentOption
+                        ? {
+                              ...currentOption,
+                              estimatedCost: currentOption.estCost,
+                          }
+                        : null
+                }
+                onConfirm={handleEditOptionConfirm}
+            /> */}
             <EditOption
                 isOpen={isEditOptionOpen}
                 onClose={() => {
@@ -814,6 +842,7 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                         : null
                 }
                 onConfirm={handleEditOptionConfirm}
+                trackStock={data.trackStock} // ← ADD THIS
             />
         </div>
     );

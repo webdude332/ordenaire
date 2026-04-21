@@ -758,13 +758,29 @@ const RecipeStock = ({
         }
     };
 
+    // const handleSelectItem = (item: (typeof INVENTORY_ITEMS)[0]) => {
+    //     setMatchedItem(item);
+    //     setSearchQuery(item.name);
+    //     update('inventorySearch', item.name);
+    //     update('linkedCost', item.cost.toString());
+    //     setShowDropdown(false);
+    // };
     const handleSelectItem = (item: (typeof INVENTORY_ITEMS)[0]) => {
         setMatchedItem(item);
         setSearchQuery(item.name);
         update('inventorySearch', item.name);
         update('linkedCost', item.cost.toString());
+        update('matchedItem', item); // ← ADD THIS
         setShowDropdown(false);
     };
+
+    // const handleClearSearch = () => {
+    //     setSearchQuery('');
+    //     setMatchedItem(null);
+    //     setShowDropdown(false);
+    //     update('inventorySearch', '');
+    //     update('linkedCost', '');
+    // };
 
     const handleClearSearch = () => {
         setSearchQuery('');
@@ -772,15 +788,25 @@ const RecipeStock = ({
         setShowDropdown(false);
         update('inventorySearch', '');
         update('linkedCost', '');
+        update('matchedItem', null); // ← ADD THIS
     };
-
     // When toggle is turned OFF, also reset search state
+    // const handleTrackStockChange = (val: string) => {
+    //     update('trackStock', val === 'on');
+    //     if (val === 'off') {
+    //         setSearchQuery('');
+    //         setMatchedItem(null);
+    //         setShowDropdown(false);
+    //     }
+    // };
+
     const handleTrackStockChange = (val: string) => {
         update('trackStock', val === 'on');
         if (val === 'off') {
             setSearchQuery('');
             setMatchedItem(null);
             setShowDropdown(false);
+            update('matchedItem', null); // ← ADD THIS
         }
     };
 

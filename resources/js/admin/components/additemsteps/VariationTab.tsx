@@ -239,8 +239,10 @@ import {
 import { useEffect, useState } from 'react';
 import ActionButton from '../ActionButton';
 import AddVariant from '../modals/AddVariant';
+import AddVariantStock from '../modals/AddVariantStock';
 import DeleteModal from '../modals/DeleteModal';
 import EditVariant from '../modals/EditVariant';
+import EditVariantStock from '../modals/EditVariantStock';
 
 interface VariationTabProps {
     data: any;
@@ -491,18 +493,50 @@ const VariationTab = ({ data, update }: VariationTabProps) => {
             </div>
 
             <AddVariant
-                isOpen={isVariantOpen}
+                // isOpen={isVariantOpen}
+                isOpen={isVariantOpen && !data.trackStock}
                 onClose={() => setIsVariantOpen(false)}
                 onConfirm={handleAdd}
             />
 
+            {/* <AddVariantStock
+                isOpen={isVariantOpen && data.trackStock}
+                onClose={() => setIsVariantOpen(false)}
+                onConfirm={handleAdd}
+                matchedItem={data.matchedItem ?? null}
+                onUnlink={() => {
+                    update('matchedItem', null);
+                    setIsVariantOpen(false);
+                }}
+            />
+            
+            */}
+
+            <AddVariantStock
+                isOpen={isVariantOpen && data.trackStock}
+                onClose={() => setIsVariantOpen(false)}
+                onConfirm={handleAdd}
+                matchedItem={data.matchedItem ?? null}
+            />
+
             <EditVariant
-                isOpen={isEditVariantOpen}
+                // isOpen={isEditVariantOpen}
+                isOpen={isEditVariantOpen && !data.trackStock}
                 onClose={() => {
                     setIsEditVariantOpen(false);
                     setCurrentVariant(null);
                 }}
                 onConfirm={handleEdit}
+            />
+            <EditVariantStock
+                isOpen={isEditVariantOpen && data.trackStock}
+                onClose={() => {
+                    setIsEditVariantOpen(false);
+                    setCurrentVariant(null);
+                }}
+                onConfirm={handleEdit}
+                matchedItem={data.matchedItem ?? null}
+                variant={currentVariant}
             />
 
             <DeleteModal
