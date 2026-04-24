@@ -6,10 +6,12 @@ import Badge, { BadgeVariant } from '@/shared/sharedcomponents/ui/Badge';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import { Input } from '@/shared/sharedcomponents/ui/FormElements';
 import IconButton from '@/shared/sharedcomponents/ui/IconButton';
+import Pagination from '@/shared/sharedcomponents/ui/Pagination';
 import CustomDateRangePicker from '@/superadmin/components/CustomDateRangePicker';
 import DateRangeButton from '@/superadmin/components/DateRangeButton';
 import { useState } from 'react';
 import ActionButton from '../ActionButton';
+import ViewOrder, { ViewOrderData } from '../modals/ViewOrder';
 import {
     Table,
     TableBody,
@@ -22,6 +24,11 @@ import {
 
 export default function OrderHistory() {
     const [selectedStatus, setSelectedStatus] = useState('all');
+    const [selectedSource, setSelectedSource] = useState('all');
+    const [isViewOpen, setIsViewOpen] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState<ViewOrderData | null>(
+        null,
+    );
     const tableData = [
         {
             id: 1,
@@ -122,9 +129,9 @@ export default function OrderHistory() {
                                 ),
                                 value: 'all',
                             },
-                            { label: 'Active', value: 'active' },
-                            { label: 'Inactive', value: 'inactive' },
-                            { label: 'Draft', value: 'draft' },
+                            { label: 'Completed', value: 'completed' },
+                            { label: 'Cancelled', value: 'cancelled' },
+                            { label: 'Refunded', value: 'refunded' },
                         ]}
                         value={selectedStatus}
                         onChange={setSelectedStatus}
@@ -136,17 +143,18 @@ export default function OrderHistory() {
                             {
                                 label: (
                                     <span className="font-medium text-gray-700">
-                                        Status: All
+                                        Source: All
                                     </span>
                                 ),
                                 value: 'all',
                             },
-                            { label: 'Active', value: 'active' },
-                            { label: 'Inactive', value: 'inactive' },
-                            { label: 'Draft', value: 'draft' },
+                            { label: 'Dine-in', value: 'dine-in' },
+                            { label: 'Take-Away', value: 'take-away' },
+                            { label: 'Delivery', value: 'delivery' },
+                            { label: 'Quick Order', value: 'quick order' },
                         ]}
-                        value={selectedStatus}
-                        onChange={setSelectedStatus}
+                        value={selectedSource}
+                        onChange={setSelectedSource}
                         placeholder=""
                     />
                     <IconButton>
@@ -223,7 +231,17 @@ export default function OrderHistory() {
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="flex justify-end">
-                                        <ActionButton>
+                                        <ActionButton
+                                            onClick={() => {
+                                                setSelectedOrder({
+                                                    orderId: item.orderId, // or item.id — whatever your field is
+                                                    orderType: item.orderFrom, // map to your actual field name
+                                                    status: item.status,
+                                                    // leave out anything you don't have — all fields are optional
+                                                });
+                                                setIsViewOpen(true);
+                                            }}
+                                        >
                                             <Eye className="h-4 w-4 text-iconColor" />
                                         </ActionButton>
                                     </TableCell>
@@ -231,8 +249,19 @@ export default function OrderHistory() {
                             ))}
                         </TableBody>
                     </Table>
+                    <Pagination />
                 </TableContainer>
             </div>
+            {selectedOrder && (
+                <ViewOrder
+                    isOpen={isViewOpen}
+                    onClose={() => setIsViewOpen(false)}
+                    data={selectedOrder}
+                    onResendToKitchen={() => console.log('Resend')}
+                    onIssueRefund={() => console.log('Refund')}
+                    onPrintReceipt={() => console.log('Print')}
+                />
+            )}
         </div>
     );
 }
