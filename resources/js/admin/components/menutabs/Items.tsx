@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // Shared UI Components
-import ActionButton from '@/shared/sharedcomponents/ui/ActionButton';
+import ActionButtonOne from '@/shared/sharedcomponents/ui/ActionButtonOne';
 import Badge, { BadgeVariant } from '@/shared/sharedcomponents/ui/Badge';
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
@@ -10,11 +10,12 @@ import {
     Table,
     TableBody,
     TableCell,
-    TableContainer,
+    TableContainerOne,
     TableHead,
     TableHeader,
     TableRow,
 } from '@/shared/sharedcomponents/ui/Table';
+import DeleteModal from '../modals/DeleteModal';
 
 import adDish from '@/shared/images/icons/adDish.svg';
 import ChevronDown from '@/shared/images/icons/chevron-down.svg?react';
@@ -29,6 +30,22 @@ import { Link } from '@inertiajs/react';
 const Items = () => {
     const [selectedStatus, setSelectedStatus] = useState('all');
     const [selectedCategory, setSelectedCategory] = useState('all');
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedItemName, setSelectedItemName] = useState<string>('');
+    const handleDeleteClick = (itemName: string) => {
+        setSelectedItemName(itemName);
+        setIsDeleteModalOpen(true);
+    };
+
+    // 4. Handler for when the user clicks "Yes, Delete it!" inside the modal
+    const handleConfirmDelete = () => {
+        console.log(`Deleting: ${selectedItemName}`);
+        // Add your actual deletion logic (API call, state update) here
+
+        // Close modal after deleting
+        setIsDeleteModalOpen(false);
+        setSelectedItemName('');
+    };
 
     const itemsData = [
         {
@@ -146,9 +163,9 @@ const Items = () => {
             </div>
 
             {/* Table */}
-            <TableContainer className="overflow-hidden rounded-xl bg-white shadow-sm">
+            <TableContainerOne className="overflow-hidden rounded-xl bg-white shadow-sm">
                 {/* Table Title + Add Button */}
-                <div className="flex items-center justify-between px-6 py-4">
+                <div className="flex items-center justify-between border-b border-borderColor px-6 py-4">
                     <h2 className="text-lg font-semibold text-gray-900">
                         Main Items Table
                     </h2>
@@ -252,13 +269,17 @@ const Items = () => {
                                 <TableCell className="py-4 pr-6 text-right">
                                     <div className="flex items-center justify-end gap-2">
                                         <Link href="/admin/menu/edititem">
-                                            <ActionButton>
+                                            <ActionButtonOne className="">
                                                 <PencilIcon className="h-5 w-5 text-iconColor" />
-                                            </ActionButton>
+                                            </ActionButtonOne>
                                         </Link>
-                                        <ActionButton>
+                                        <ActionButtonOne
+                                            onClick={() =>
+                                                handleDeleteClick(item.name)
+                                            }
+                                        >
                                             <TrashIcon className="h-5 w-5 text-iconColor" />
-                                        </ActionButton>
+                                        </ActionButtonOne>
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -269,7 +290,17 @@ const Items = () => {
                 <div>
                     <Pagination />
                 </div>
-            </TableContainer>
+            </TableContainerOne>
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={handleConfirmDelete}
+                title={
+                    selectedItemName
+                        ? `Delete ${selectedItemName}?`
+                        : 'Delete Item'
+                }
+            />
         </div>
     );
 };

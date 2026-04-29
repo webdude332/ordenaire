@@ -5,7 +5,6 @@ import ActionButton from '@/shared/sharedcomponents/ui/ActionButton';
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import Pagination from '@/shared/sharedcomponents/ui/Pagination';
-import StatusBadge from '@/shared/sharedcomponents/ui/StatusBadge';
 import {
     Table,
     TableBody,
@@ -17,16 +16,40 @@ import {
 } from '@/shared/sharedcomponents/ui/Table';
 
 // TODO: Replace these with your actual icon imports
-import TrashIcon from '@/shared/images/icons/delBold.svg?react';
+import TrashIcon from '@/shared/images/icons/delIcon.svg?react';
+import Badge, { BadgeVariant } from '@/shared/sharedcomponents/ui/Badge';
+import { Input } from '@/shared/sharedcomponents/ui/FormElements';
+import IconButton from '@/shared/sharedcomponents/ui/IconButton';
 import ChevronDown from '@shared/images/icons/chevron-down.svg?react';
 import ExportIcon from '@shared/images/icons/exportIcon.svg?react';
 import SearchIcon from '@shared/images/icons/inputSearch.svg?react';
 import PencilIcon from '@shared/images/icons/pencilIcon.svg?react';
 import PlusIcon from '@shared/images/icons/plus.svg?react';
+import DeleteModal from '../modals/DeleteModal';
 
 const KitchenStations = () => {
     const [selectedStatus, setSelectedStatus] = useState('');
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedItemName, setSelectedItemName] = useState<string>('');
+    const handleDeleteClick = (itemName: string) => {
+        setSelectedItemName(itemName);
+        setIsDeleteModalOpen(true);
+    };
 
+    // 4. Handler for when the user clicks "Yes, Delete it!" inside the modal
+    const handleConfirmDelete = () => {
+        console.log(`Deleting: ${selectedItemName}`);
+        // Add your actual deletion logic (API call, state update) here
+
+        // Close modal after deleting
+        setIsDeleteModalOpen(false);
+        setSelectedItemName('');
+    };
+    const statusVariantMap: Record<string, BadgeVariant> = {
+        Active: 'success',
+        Draft: 'purple',
+        Inactive: 'gray',
+    };
     const stationsData = [
         {
             id: '1',
@@ -60,23 +83,29 @@ const KitchenStations = () => {
             <div className="mb-6 flex items-center justify-between">
                 {/* Search */}
                 <div className="relative">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                    {/* <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                         <SearchIcon className="h-4 w-4" />
                     </div>
                     <input
                         type="text"
                         placeholder="Search stations..."
                         className="w-80 rounded-lg border border-gray-300 py-2.5 pr-4 pl-10 text-sm text-gray-700 shadow-sm placeholder:text-gray-400 focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
-                    />
+                    /> */}
+                    <Input icon={SearchIcon} placeholder="Search stations..." />
                 </div>
 
                 {/* Right Controls */}
                 <div className="flex items-center gap-3">
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
+                    {/* <button className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
                         <ExportIcon className="h-4 w-4" />
                         Export
                         <ChevronDown className="h-4 w-4" />
-                    </button>
+                    </button> */}
+                    <IconButton className="py-2.5 text-gray-400">
+                        <ExportIcon className="h-4 w-4 text-iconColor" />
+                        Export
+                        <ChevronDown className="h-4 w-4 text-iconColor" />
+                    </IconButton>
                     <CustomDropdown
                         label=""
                         options={[
@@ -88,7 +117,7 @@ const KitchenStations = () => {
                         onChange={setSelectedStatus}
                         placeholder="Status: All"
                     />
-                    <Button>
+                    <Button className="py-2.5">
                         <PlusIcon className="h-4 w-4" />
                         Add Station
                     </Button>
@@ -97,7 +126,7 @@ const KitchenStations = () => {
 
             {/* Table */}
             <TableContainer className="overflow-hidden rounded-xl bg-white shadow-sm">
-                <div className="px-6 py-4">
+                <div className="border-b border-borderColor px-6 py-4">
                     <h2 className="text-lg font-semibold text-gray-900">
                         Kitchen Stations List
                     </h2>
@@ -154,7 +183,16 @@ const KitchenStations = () => {
 
                                 {/* Status */}
                                 <TableCell className="py-4">
-                                    <StatusBadge status={station.status} />
+                                    <Badge
+                                        variant={
+                                            statusVariantMap[station.status] ||
+                                            'gray'
+                                        }
+                                        withDot={true}
+                                        rounded="md"
+                                    >
+                                        {station.status}
+                                    </Badge>
                                 </TableCell>
 
                                 {/* Actions */}
@@ -163,8 +201,12 @@ const KitchenStations = () => {
                                         <ActionButton>
                                             <PencilIcon className="h-4 w-4 text-gray-400" />
                                         </ActionButton>
-                                        <ActionButton>
-                                            <TrashIcon className="h-4 w-4 text-gray-400" />
+                                        <ActionButton
+                                            onClick={() =>
+                                                handleDeleteClick(station.name)
+                                            }
+                                        >
+                                            <TrashIcon className="h-4 w-4 text-iconColor" />
                                         </ActionButton>
                                     </div>
                                 </TableCell>
@@ -177,6 +219,16 @@ const KitchenStations = () => {
                     <Pagination />
                 </div>
             </TableContainer>
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onRetry={handleConfirmDelete}
+                title={
+                    selectedItemName
+                        ? `Delete ${selectedItemName}?`
+                        : 'Delete Item'
+                }
+            />
         </div>
     );
 };

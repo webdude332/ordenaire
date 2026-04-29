@@ -14,6 +14,7 @@ import AdTimer from '@/shared/images/icons/adTimer.svg?react';
 import VerticalMenu from '@/shared/images/icons/menuVertical.svg?react';
 import TrendGreen from '@/shared/images/icons/trendGreen.svg?react';
 import TrendRed from '@/shared/images/icons/trendRed.svg?react';
+import SubMenu from '@/shared/sharedcomponents/ui/SubMenu';
 import { Head } from '@inertiajs/react';
 import chartIcon from '@shared/images/icons/dashBaordSvg.svg';
 import { useState } from 'react';
@@ -33,6 +34,27 @@ import TopBar from '../components/TopBar';
 
 export default function Dashboard() {
     const [notifOpen, setNotifOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // 2. Define the items you want to show in the submenu
+    const myMenuItems = [
+        {
+            label: 'Profile Settings',
+            onClick: () => console.log('Navigating to profile...'),
+        },
+        {
+            label: 'Billing',
+            onClick: () => console.log('Navigating to billing...'),
+        },
+        {
+            label: 'Logout',
+            onClick: () => {
+                console.log('Logging out...');
+                // Add your actual logout logic here
+            },
+        },
+    ];
+    const [isTopSellingMenuOpen, setIsTopSellingMenuOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<'Sales' | 'Order Summary'>(
         'Sales',
     );
@@ -114,6 +136,7 @@ export default function Dashboard() {
                             href: '/admin/dashboard',
                         },
                     ]}
+                    onNotificationClick={() => setNotifOpen(true)}
                 ></TopBar>
 
                 {/* ── PAGE CONTENT ── */}
@@ -172,7 +195,7 @@ export default function Dashboard() {
                             </div>
                             <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-7 shadow-xs">
                                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#FEC84B]">
-                                    <AdTimer className="h-6 w-6" />
+                                    <AdTimer className="h-6 w-6 pl-1" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500">
@@ -204,7 +227,7 @@ export default function Dashboard() {
                         {/* Tabs Row */}
 
                         <div className="rounded-xl border border-gray-200 bg-white shadow-xs">
-                            <div className="flex items-center px-8 pt-6">
+                            <div className="flex items-center px-8 pt-2">
                                 <div className="flex items-center gap-2 rounded-lg border border-borderColor bg-gray-50 px-1.5 py-1">
                                     <button
                                         onClick={() => setActiveTab('Sales')}
@@ -230,12 +253,12 @@ export default function Dashboard() {
                                     </button>
                                 </div>
                             </div>
-                            <div className="mt-6 mb-6 flex flex-col gap-4 rounded-t-xl border-t border-borderColor pt-6 lg:flex-row lg:items-start lg:justify-between">
+                            <div className="mt-2 flex flex-col gap-4 rounded-t-xl border-t border-borderColor pt-6 lg:flex-row lg:items-start lg:justify-between">
                                 {/* Conditional Left Top Stats (Only for Sales) */}
                                 {activeTab === 'Sales' ? (
                                     <div className="flex flex-wrap gap-4 px-8">
                                         {/* Total Sales */}
-                                        <div className="min-w-[200px] rounded-xl border border-gray-200 p-4">
+                                        <div className="min-w-[200px] rounded-xl border border-primary p-4">
                                             <p className="mb-1 text-sm font-medium text-gray-500">
                                                 Total sales
                                             </p>
@@ -248,7 +271,7 @@ export default function Dashboard() {
                                             </p>
                                         </div>
                                         {/* Avg Sales Per Day */}
-                                        <div className="min-w-[200px] rounded-xl border border-[#79B800] p-4">
+                                        <div className="min-w-[200px] rounded-xl border border-primary p-4">
                                             <p className="mb-1 text-sm font-medium text-gray-500">
                                                 Avg. sales per day
                                             </p>
@@ -289,7 +312,7 @@ export default function Dashboard() {
                                             </button>
                                         ))}
                                     </div>
-                                    <button className="flex shrink-0 items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50">
+                                    <button className="flex shrink-0 items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50">
                                         <svg
                                             className="h-4 w-4 text-gray-400"
                                             fill="none"
@@ -330,7 +353,38 @@ export default function Dashboard() {
                                 <h2 className="text-lg font-semibold text-gray-900">
                                     Live Workforce Status
                                 </h2>
-                                <VerticalMenu />
+                                {/* <VerticalMenu
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                /> */}
+                                <div className="relative flex items-center">
+                                    {/* The Trigger */}
+                                    <button
+                                        onClick={() =>
+                                            setIsMenuOpen(!isMenuOpen)
+                                        }
+                                    >
+                                        <VerticalMenu />
+                                    </button>
+
+                                    {/* 👇 THE ACTUAL SUBMENU COMPONENT 👇 */}
+                                    {isMenuOpen && (
+                                        <SubMenu
+                                            items={[
+                                                {
+                                                    label: 'View Details',
+                                                    onClick: () =>
+                                                        console.log('Details'),
+                                                },
+                                                {
+                                                    label: 'Export Report',
+                                                    onClick: () =>
+                                                        console.log('Export'),
+                                                },
+                                            ]}
+                                            onClose={() => setIsMenuOpen(false)}
+                                        />
+                                    )}
+                                </div>
                             </div>
 
                             {/* The Table Content */}
@@ -376,13 +430,57 @@ export default function Dashboard() {
                             </Table>
                         </TableContainer>
                         {/* <TopSellingItems /> */}
-                        <TableContainer>
+                        <TableContainer className="w-full">
                             {/* Card Header */}
-                            <div className="flex justify-between border-b border-borderColor px-6 py-5">
+                            <div className="flex items-center justify-between border-b border-borderColor px-6 py-5">
                                 <h2 className="text-lg font-semibold text-gray-900">
                                     Top Selling Items
                                 </h2>
-                                <VerticalMenu />
+
+                                {/* Wrapper with 'relative' and 'items-center' */}
+                                <div className="relative flex items-center">
+                                    <button
+                                        onClick={() =>
+                                            setIsTopSellingMenuOpen(
+                                                !isTopSellingMenuOpen,
+                                            )
+                                        }
+                                    >
+                                        <VerticalMenu />
+                                    </button>
+
+                                    {/* SubMenu tied to Top Selling state */}
+                                    {isTopSellingMenuOpen && (
+                                        <SubMenu
+                                            items={[
+                                                {
+                                                    label: 'Sort By Volume',
+                                                    onClick: () =>
+                                                        console.log(
+                                                            'Sorting by volume...',
+                                                        ),
+                                                },
+                                                {
+                                                    label: 'Sort By Revenue',
+                                                    onClick: () =>
+                                                        console.log(
+                                                            'Sorting by revenue...',
+                                                        ),
+                                                },
+                                                {
+                                                    label: 'Export Data',
+                                                    onClick: () =>
+                                                        console.log(
+                                                            'Exporting data...',
+                                                        ),
+                                                },
+                                            ]}
+                                            onClose={() =>
+                                                setIsTopSellingMenuOpen(false)
+                                            }
+                                        />
+                                    )}
+                                </div>
                             </div>
 
                             {/* Table Content */}
@@ -393,7 +491,6 @@ export default function Dashboard() {
                                             key={i}
                                             className="hover:bg-transparent"
                                         >
-                                            {/* Left Cell: Icon + Name & Category */}
                                             <TableCell className="py-4">
                                                 <div className="flex items-center gap-4">
                                                     <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-gray-100">
@@ -402,7 +499,7 @@ export default function Dashboard() {
                                                             <img
                                                                 src={item.emoji}
                                                                 alt={item.name}
-                                                                className="h-5 w-5 object-contain opacity-80"
+                                                                className="h-full w-full object-contain opacity-80"
                                                             />
                                                         ) : (
                                                             <span>
@@ -420,8 +517,6 @@ export default function Dashboard() {
                                                     </div>
                                                 </div>
                                             </TableCell>
-
-                                            {/* Right Cell: Orders & Price */}
                                             <TableCell className="py-4 text-right">
                                                 <div className="flex flex-col items-end gap-0.5">
                                                     <span className="text-sm font-semibold text-gray-900">
