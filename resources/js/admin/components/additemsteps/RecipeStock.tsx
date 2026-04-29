@@ -647,6 +647,7 @@
 //with search
 
 import InfoIcon from '@/shared/images/icons/infoRing.svg?react';
+import SearchIcon from '@/shared/images/icons/inputSearch.svg?react';
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import { Input, Label } from '@/shared/sharedcomponents/ui/FormElements';
@@ -655,21 +656,21 @@ import RadioGroup from '@/shared/sharedcomponents/ui/RadioGroup';
 import { useState } from 'react';
 
 // --- Inline SVGs ---
-const SearchIcon = () => (
-    <svg
-        className="h-5 w-5 text-gray-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-    >
-        <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-    </svg>
-);
+// const SearchIcon = () => (
+//     <svg
+//         className="h-5 w-5 text-gray-400"
+//         fill="none"
+//         viewBox="0 0 24 24"
+//         stroke="currentColor"
+//     >
+//         <path
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             strokeWidth={2}
+//             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+//         />
+//     </svg>
+// );
 const CloseIcon = () => (
     <svg
         className="h-4 w-4 text-gray-400 hover:text-gray-600"
@@ -875,7 +876,7 @@ const RecipeStock = ({
                                 <Label className="text-sm font-medium text-gray-700">
                                     Estimated Cost Price
                                 </Label>
-                                <div className="relative w-64">
+                                <div className="relative w-[440px]">
                                     <input
                                         type="number"
                                         step="0.001"
@@ -902,7 +903,7 @@ const RecipeStock = ({
 
                     {/* ── ON STATE: Search bar ────────────────────────────────────────── */}
                     {data.trackStock && (
-                        <div className="space-y-6 border-t border-gray-100 pt-6">
+                        <div className="space-y-6 pt-2">
                             <div className="space-y-2">
                                 <Label className="text-sm font-medium text-gray-700">
                                     Link to Inventory Source
@@ -917,6 +918,7 @@ const RecipeStock = ({
                                         placeholder="Search existing inventory..."
                                         value={searchQuery}
                                         onChange={handleSearchChange}
+                                        icon={SearchIcon}
                                         onFocus={() => {
                                             if (searchQuery.trim())
                                                 setShowDropdown(true);
@@ -975,10 +977,10 @@ const RecipeStock = ({
                                     (e.g., 'Coke Can') or a pre-made recipe
                                     (e.g., 'Burger Recipe').
                                 </p>
-                                <button className="mt-2 text-sm font-medium text-gray-500 hover:text-gray-700">
-                                    + Can't find it?{' '}
+                                <button className="mt-2 cursor-pointer text-sm font-medium text-gray-500 hover:text-gray-700">
                                     <span className="underline">
-                                        Create New Recipe via Inventory
+                                        + Can't find it? Create New Recipe via
+                                        Inventory
                                     </span>
                                 </button>
                             </div>
@@ -1033,13 +1035,13 @@ const RecipeStock = ({
             {data.trackStock && matchedItem && (
                 <>
                     <div className="h-px w-full bg-gray-200" />
-                    <div className="col-span-3">
+                    <div className="col-span-3 -mt-4">
                         <h3 className="text-sm font-semibold text-gray-900">
                             Stock Configuration
                         </h3>
                     </div>
                     <div>
-                        <div className="col-span-9">
+                        <div className="col-span-9 -mt-4">
                             <div className="relative rounded-xl border border-gray-200 bg-gray-100 p-6 shadow-sm">
                                 <button
                                     className="absolute top-4 right-4"
@@ -1080,7 +1082,7 @@ const RecipeStock = ({
                                             </span>
                                             <input
                                                 type="text"
-                                                className="w-20 rounded-md border border-gray-300 px-3 py-1.5 text-center text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
+                                                className="w-20 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-center text-sm focus:border-[#7AB621] focus:ring-1 focus:ring-[#7AB621] focus:outline-none"
                                                 value={
                                                     data.consumptionQty ||
                                                     '1.000'
@@ -1096,7 +1098,7 @@ const RecipeStock = ({
                                                 x Servings per order
                                             </span>
                                         </div>
-                                        <p className="mt-1.5 text-xs text-gray-400">
+                                        <p className="mt-1.5 text-xs text-gray-600">
                                             Enter 0.5 for half-portion, 2.0 for
                                             double, etc.
                                         </p>
@@ -1120,12 +1122,12 @@ const RecipeStock = ({
                 <>
                     <div className="h-px w-full bg-gray-200" />
 
-                    <div className="col-span-3">
+                    <div className="col-span-3 -mt-4">
                         <h3 className="text-sm font-semibold text-gray-900">
                             Cost & Margin (per serve)
                         </h3>
                     </div>
-                    <div className="grid grid-cols-12 gap-8">
+                    <div className="-mt-4 grid grid-cols-12 gap-8">
                         <div className="col-span-20">
                             <div className="grid grid-cols-[1fr_2fr_1fr] gap-4">
                                 <div className="rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm">

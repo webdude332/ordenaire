@@ -619,7 +619,7 @@ export default function AddVariantStock({
                                 <Label className="mb-1.5 text-sm font-medium text-gray-700">
                                     Consumption Rule
                                 </Label>
-                                <div className="flex items-center gap-2">
+                                <div className="flex w-1/2 items-center gap-2">
                                     <Input
                                         className="w-28 text-center"
                                         value={consumptionQty}
@@ -629,7 +629,7 @@ export default function AddVariantStock({
                                         placeholder="1.000"
                                     />
                                     <span className="text-sm text-gray-500">
-                                        x Serving
+                                        xServing
                                     </span>
                                 </div>
                                 <p className="mt-1 text-xs text-gray-400">

@@ -41,21 +41,21 @@ export default function EditVariant({
                         </div>
                     </div>
                     <h2 className="text-base font-semibold text-gray-900">
-                        Add Item Variant
+                        Edit Item Variant
                     </h2>
                 </div>
                 <div className="rounded-xl border border-borderColor px-4 py-6 shadow-sm">
                     <div className="mb-4 grid grid-cols-2 gap-4">
                         <div>
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
-                                Variant Label
+                                Variant Name
                                 <span className="text-primary">*</span>
                             </Label>
                             <Input placeholder='e.g "Large Size"' />
                         </div>
                         <div>
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
-                                Variant Label
+                                Display Sequence (Optional)
                                 <span className="text-primary">*</span>
                             </Label>
                             <Input placeholder='e.g "Large Size"' />
@@ -64,14 +64,14 @@ export default function EditVariant({
                     <div className="mb-4 grid grid-cols-2 gap-4">
                         <div>
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
-                                Variant Label
+                                Selling Price
                                 <span className="text-primary">*</span>
                             </Label>
                             <Input placeholder='e.g "Large Size"' />
                         </div>
                         <div>
                             <Label className="mb-1.5 text-sm font-medium text-gray-700">
-                                Variant Label
+                                Estimated Cost (Optional)
                                 <span className="text-primary">*</span>
                             </Label>
                             <Input placeholder='e.g "Large Size"' />
@@ -84,7 +84,7 @@ export default function EditVariant({
                     <IconButton className="w-full">Cancel</IconButton>
                 </div>
                 <div className="w-1/2">
-                    <Button className="w-full">Add Variant</Button>
+                    <Button className="w-full">Save Changes</Button>
                 </div>
             </div>
         </Modal>

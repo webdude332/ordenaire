@@ -28,6 +28,8 @@
 //     name: string;
 //     additionalPrice: string;
 //     estCost: string;
+//     inventoryRule?: string; // Added for Track Stock ON
+//     unitCost?: string; // Added for Track Stock ON
 // }
 
 // interface ModifierGroup {
@@ -44,13 +46,12 @@
 //     const [isEditGroupOpen, setIsEditGroupOpen] = useState(false);
 //     const [currentGroup, setCurrentGroup] = useState<any>(null);
 
-//     // --- NEW STATE FOR OPTION MODALS ---
 //     const [isAddOptionOpen, setIsAddOptionOpen] = useState(false);
 //     const [isEditOptionOpen, setIsEditOptionOpen] = useState(false);
 //     const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
 //     const [currentOption, setCurrentOption] = useState<any>(null);
 
-//     // Completely hardcoded data to match the design
+//     // Hardcoded data updated to match the "editmodifier.jpg" design
 //     const groups: ModifierGroup[] = [
 //         {
 //             id: 'g1',
@@ -63,18 +64,24 @@
 //                     name: 'Rare',
 //                     additionalPrice: '0.000',
 //                     estCost: '0.000',
+//                     inventoryRule: 'N/A',
+//                     unitCost: '0.000',
 //                 },
 //                 {
 //                     id: 'o2',
 //                     name: 'Medium',
 //                     additionalPrice: '0.000',
 //                     estCost: '0.000',
+//                     inventoryRule: 'N/A',
+//                     unitCost: '0.000',
 //                 },
 //                 {
 //                     id: 'o3',
 //                     name: 'Well Done',
 //                     additionalPrice: '0.000',
 //                     estCost: '0.000',
+//                     inventoryRule: 'N/A',
+//                     unitCost: '0.000',
 //                 },
 //             ],
 //         },
@@ -89,37 +96,21 @@
 //                     name: 'Extra Cheese',
 //                     additionalPrice: '0.100',
 //                     estCost: '0.020',
+//                     inventoryRule: '1.0 x Cheese Slice',
+//                     unitCost: '0.020',
 //                 },
 //                 {
 //                     id: 'o5',
 //                     name: 'Bacon Strip',
 //                     additionalPrice: '0.250',
 //                     estCost: '0.050',
+//                     inventoryRule: '1.0 x Bacon',
+//                     unitCost: '0.050',
 //                 },
 //             ],
 //         },
 //     ];
 
-//     const addGroup = () => {
-//         if (groups.length >= 3) return;
-//         const newGroup: ModifierGroup = {
-//             id: Date.now().toString(),
-//             name: 'New Group',
-//             required: false,
-//             maxSelect: 1,
-//             options: [],
-//         };
-//         update('modifierGroups', [...groups, newGroup]);
-//     };
-
-//     const deleteGroup = (groupId: string) => {
-//         update(
-//             'modifierGroups',
-//             groups.filter((g) => g.id !== groupId),
-//         );
-//     };
-
-//     // --- UPDATED LOGIC TO HANDLE MODAL SAVES ---
 //     const handleAddOptionConfirm = (optionData: any) => {
 //         if (!activeGroupId) return;
 //         const updated = groups.map((g) => {
@@ -132,7 +123,9 @@
 //                         id: Date.now().toString(),
 //                         name: optionData.name || 'New Option',
 //                         additionalPrice: optionData.additionalPrice || '0.000',
-//                         estCost: optionData.estimatedCost || '0.000', // Maps estimatedCost from modal to estCost in state
+//                         estCost: optionData.estimatedCost || '0.000',
+//                         inventoryRule: 'N/A',
+//                         unitCost: optionData.estimatedCost || '0.000',
 //                     },
 //                 ],
 //             };
@@ -154,7 +147,8 @@
 //                               ...o,
 //                               name: optionData.name,
 //                               additionalPrice: optionData.additionalPrice,
-//                               estCost: optionData.estimatedCost, // Maps estimatedCost from modal to estCost in state
+//                               estCost: optionData.estimatedCost,
+//                               unitCost: optionData.estimatedCost,
 //                           }
 //                         : o,
 //                 ),
@@ -166,18 +160,6 @@
 //         setActiveGroupId(null);
 //     };
 
-//     const deleteOption = (groupId: string, optionId: string) => {
-//         const updated = groups.map((g) => {
-//             if (g.id !== groupId) return g;
-//             return {
-//                 ...g,
-//                 options: g.options.filter((o) => o.id !== optionId),
-//             };
-//         });
-//         update('modifierGroups', updated);
-//     };
-
-//     // Helper to get the name of the group we are currently modifying
 //     const activeGroupName =
 //         groups.find((g) => g.id === activeGroupId)?.name || '';
 
@@ -202,16 +184,6 @@
 //                     </IconButton>
 //                 )}
 //             </div>
-
-//             {/* Empty State */}
-//             {groups.length === 0 && (
-//                 <div className="rounded-xl border border-dashed border-gray-200 py-12 text-center">
-//                     <p className="text-sm text-gray-400">
-//                         No modifier groups yet. Click "Create New Group" to add
-//                         one.
-//                     </p>
-//                 </div>
-//             )}
 
 //             {/* Groups */}
 //             {groups.map((group) => (
@@ -249,20 +221,51 @@
 //                         </div>
 //                     </div>
 
-//                     {/* Table Area for Options */}
+//                     {/* Table Area */}
 //                     <div className="overflow-hidden border-t border-gray-200">
 //                         <Table>
 //                             <TableHeader>
-//                                 <TableHead className="w-5/12">
+//                                 {/* DYNAMIC COLUMNS BASED ON TRACK STOCK */}
+//                                 <TableHead
+//                                     className={
+//                                         data.trackStock ? 'w-3/12' : 'w-5/12'
+//                                     }
+//                                 >
 //                                     Option Name
 //                                 </TableHead>
-//                                 <TableHead className="w-3/12">
+//                                 <TableHead
+//                                     className={
+//                                         data.trackStock ? 'w-2/12' : 'w-3/12'
+//                                     }
+//                                 >
 //                                     Additional Price
 //                                 </TableHead>
-//                                 <TableHead className="w-3/12">
-//                                     Est. Cost
-//                                 </TableHead>
-//                                 <TableHead className="w-1/12 text-right">
+
+//                                 {data.trackStock ? (
+//                                     <>
+//                                         <TableHead className="w-3/12">
+//                                             Inventory Rule{' '}
+//                                             <span className="ml-1 inline-block text-gray-400">
+//                                                 ?
+//                                             </span>
+//                                         </TableHead>
+//                                         <TableHead className="w-2/12">
+//                                             Unit Cost
+//                                         </TableHead>
+//                                     </>
+//                                 ) : (
+//                                     <TableHead className="w-3/12">
+//                                         Est. Cost
+//                                     </TableHead>
+//                                 )}
+
+//                                 <TableHead
+//                                     className={
+//                                         data.trackStock
+//                                             ? 'w-2/12 text-right'
+//                                             : 'w-1/12 text-right'
+//                                     }
+//                                 >
 //                                     Actions
 //                                 </TableHead>
 //                             </TableHeader>
@@ -283,17 +286,37 @@
 //                                                 KWD
 //                                             </p>
 //                                         </TableCell>
-//                                         <TableCell>
-//                                             <p className="font-medium text-gray-900">
-//                                                 {opt.estCost}
-//                                             </p>
-//                                             <p className="text-xs text-gray-400">
-//                                                 KWD
-//                                             </p>
-//                                         </TableCell>
+
+//                                         {/* DYNAMIC CELLS BASED ON TRACK STOCK */}
+//                                         {data.trackStock ? (
+//                                             <>
+//                                                 <TableCell>
+//                                                     <p className="font-medium text-gray-900">
+//                                                         {opt.inventoryRule}
+//                                                     </p>
+//                                                 </TableCell>
+//                                                 <TableCell>
+//                                                     <p className="font-medium text-gray-900">
+//                                                         {opt.unitCost}
+//                                                     </p>
+//                                                     <p className="text-xs text-gray-400">
+//                                                         KWD
+//                                                     </p>
+//                                                 </TableCell>
+//                                             </>
+//                                         ) : (
+//                                             <TableCell>
+//                                                 <p className="font-medium text-gray-900">
+//                                                     {opt.estCost}
+//                                                 </p>
+//                                                 <p className="text-xs text-gray-400">
+//                                                     KWD
+//                                                 </p>
+//                                             </TableCell>
+//                                         )}
+
 //                                         <TableCell>
 //                                             <div className="flex items-center justify-end gap-2">
-//                                                 {/* --- CHANGED TO OPEN OPTION EDIT MODAL --- */}
 //                                                 <ActionButton
 //                                                     onClick={() => {
 //                                                         setActiveGroupId(
@@ -323,7 +346,6 @@
 //                             </TableBody>
 //                         </Table>
 
-//                         {/* --- CHANGED TO OPEN ADD OPTION MODAL --- */}
 //                         <div className="border-t border-gray-200 px-6 py-4">
 //                             <IconButton
 //                                 onClick={() => {
@@ -339,7 +361,7 @@
 //                 </div>
 //             ))}
 
-//             {/* Existing Modals */}
+//             {/* Modals */}
 //             <DeleteModal
 //                 title="Delete Group?"
 //                 isOpen={isDeleteModalOpen}
@@ -358,13 +380,10 @@
 //                 }}
 //                 initialData={currentGroup}
 //                 onConfirm={(updatedData) => {
-//                     console.log('Updating group: ', updatedData);
 //                     setIsEditGroupOpen(false);
 //                     setCurrentGroup(null);
 //                 }}
 //             />
-
-//             {/* --- NEW OPTION MODALS MOUNTED HERE --- */}
 //             <AddOption
 //                 isOpen={isAddOptionOpen}
 //                 onClose={() => {
@@ -373,8 +392,8 @@
 //                 }}
 //                 parentGroupName={activeGroupName}
 //                 onConfirm={handleAddOptionConfirm}
+//                 trackStock={data.trackStock} // ← ADD THIS
 //             />
-
 //             <EditOption
 //                 isOpen={isEditOptionOpen}
 //                 onClose={() => {
@@ -383,7 +402,6 @@
 //                     setActiveGroupId(null);
 //                 }}
 //                 parentGroupName={activeGroupName}
-//                 // Mapping state estCost to modal estimatedCost
 //                 initialData={
 //                     currentOption
 //                         ? {
@@ -393,14 +411,13 @@
 //                         : null
 //                 }
 //                 onConfirm={handleEditOptionConfirm}
+//                 trackStock={data.trackStock} // ← ADD THIS
 //             />
 //         </div>
 //     );
 // };
 
 // export default ModifiersTab;
-
-// on off
 
 import TrashIcon from '@/shared/images/icons/delIcon.svg?react';
 import PencilIcon from '@/shared/images/icons/pencilIcon.svg?react';
@@ -432,8 +449,8 @@ interface ModifierOption {
     name: string;
     additionalPrice: string;
     estCost: string;
-    inventoryRule?: string; // Added for Track Stock ON
-    unitCost?: string; // Added for Track Stock ON
+    inventoryRule?: string;
+    unitCost?: string;
 }
 
 interface ModifierGroup {
@@ -455,7 +472,15 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
     const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
     const [currentOption, setCurrentOption] = useState<any>(null);
 
-    // Hardcoded data updated to match the "editmodifier.jpg" design
+    // --- Delete States ---
+    const [groupToDelete, setGroupToDelete] = useState<ModifierGroup | null>(
+        null,
+    );
+    const [optionToDelete, setOptionToDelete] = useState<{
+        groupId: string;
+        option: ModifierOption;
+    } | null>(null);
+
     const groups: ModifierGroup[] = [
         {
             id: 'g1',
@@ -514,6 +539,42 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
             ],
         },
     ];
+
+    // --- Delete Handlers ---
+    const openDeleteGroupModal = (group: ModifierGroup) => {
+        setGroupToDelete(group);
+        setOptionToDelete(null);
+        setIsDeleteModalOpen(true);
+    };
+
+    const openDeleteOptionModal = (groupId: string, option: ModifierOption) => {
+        setOptionToDelete({ groupId, option });
+        setGroupToDelete(null);
+        setIsDeleteModalOpen(true);
+    };
+
+    const confirmDelete = () => {
+        if (groupToDelete) {
+            update(
+                'modifierGroups',
+                groups.filter((g) => g.id !== groupToDelete.id),
+            );
+        } else if (optionToDelete) {
+            const updated = groups.map((g) => {
+                if (g.id !== optionToDelete.groupId) return g;
+                return {
+                    ...g,
+                    options: g.options.filter(
+                        (o) => o.id !== optionToDelete.option.id,
+                    ),
+                };
+            });
+            update('modifierGroups', updated);
+        }
+        setIsDeleteModalOpen(false);
+        setGroupToDelete(null);
+        setOptionToDelete(null);
+    };
 
     const handleAddOptionConfirm = (optionData: any) => {
         if (!activeGroupId) return;
@@ -618,7 +679,7 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                                 <PencilIcon className="h-4 w-4 text-iconColor" />
                             </ActionButton>
                             <ActionButton
-                                onClick={() => setIsDeleteModalOpen(true)}
+                                onClick={() => openDeleteGroupModal(group)}
                             >
                                 <TrashIcon className="h-4 w-4 text-iconColor" />
                             </ActionButton>
@@ -629,47 +690,30 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     <div className="overflow-hidden border-t border-gray-200">
                         <Table>
                             <TableHeader>
-                                {/* DYNAMIC COLUMNS BASED ON TRACK STOCK */}
-                                <TableHead
-                                    className={
-                                        data.trackStock ? 'w-3/12' : 'w-5/12'
-                                    }
-                                >
+                                <TableHead className="w-6/12">
                                     Option Name
                                 </TableHead>
-                                <TableHead
-                                    className={
-                                        data.trackStock ? 'w-2/12' : 'w-3/12'
-                                    }
-                                >
+                                <TableHead className="w-2/12 text-right">
                                     Additional Price
                                 </TableHead>
-
                                 {data.trackStock ? (
                                     <>
-                                        <TableHead className="w-3/12">
+                                        <TableHead className="w-2/12 text-right">
                                             Inventory Rule{' '}
                                             <span className="ml-1 inline-block text-gray-400">
                                                 ?
                                             </span>
                                         </TableHead>
-                                        <TableHead className="w-2/12">
+                                        <TableHead className="w-1/12 text-right">
                                             Unit Cost
                                         </TableHead>
                                     </>
                                 ) : (
-                                    <TableHead className="w-3/12">
+                                    <TableHead className="w-2/12 text-right">
                                         Est. Cost
                                     </TableHead>
                                 )}
-
-                                <TableHead
-                                    className={
-                                        data.trackStock
-                                            ? 'w-2/12 text-right'
-                                            : 'w-1/12 text-right'
-                                    }
-                                >
+                                <TableHead className="w-2/12 text-right">
                                     Actions
                                 </TableHead>
                             </TableHeader>
@@ -683,42 +727,39 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                                             </p>
                                         </TableCell>
                                         <TableCell>
-                                            <p className="font-medium text-gray-900">
+                                            <p className="text-right font-medium text-gray-900">
                                                 {opt.additionalPrice}
                                             </p>
-                                            <p className="text-xs text-gray-400">
+                                            <p className="text-right text-xs text-gray-400">
                                                 KWD
                                             </p>
                                         </TableCell>
-
-                                        {/* DYNAMIC CELLS BASED ON TRACK STOCK */}
                                         {data.trackStock ? (
                                             <>
                                                 <TableCell>
-                                                    <p className="font-medium text-gray-900">
+                                                    <p className="text-right font-medium text-gray-900">
                                                         {opt.inventoryRule}
                                                     </p>
                                                 </TableCell>
                                                 <TableCell>
-                                                    <p className="font-medium text-gray-900">
+                                                    <p className="text-right font-medium text-gray-900">
                                                         {opt.unitCost}
                                                     </p>
-                                                    <p className="text-xs text-gray-400">
+                                                    <p className="text-right text-xs text-gray-400">
                                                         KWD
                                                     </p>
                                                 </TableCell>
                                             </>
                                         ) : (
                                             <TableCell>
-                                                <p className="font-medium text-gray-900">
+                                                <p className="text-right font-medium text-gray-900">
                                                     {opt.estCost}
                                                 </p>
-                                                <p className="text-xs text-gray-400">
+                                                <p className="text-right text-xs text-gray-400">
                                                     KWD
                                                 </p>
                                             </TableCell>
                                         )}
-
                                         <TableCell>
                                             <div className="flex items-center justify-end gap-2">
                                                 <ActionButton
@@ -736,8 +777,9 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                                                 </ActionButton>
                                                 <ActionButton
                                                     onClick={() =>
-                                                        setIsDeleteModalOpen(
-                                                            true,
+                                                        openDeleteOptionModal(
+                                                            group.id,
+                                                            opt,
                                                         )
                                                     }
                                                 >
@@ -767,10 +809,20 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
 
             {/* Modals */}
             <DeleteModal
-                title="Delete Group?"
+                title={
+                    groupToDelete
+                        ? `Delete ${groupToDelete.name}?`
+                        : optionToDelete
+                          ? `Delete ${optionToDelete.option.name}?`
+                          : 'Delete?'
+                }
                 isOpen={isDeleteModalOpen}
-                onClose={() => setIsDeleteModalOpen(false)}
-                onRetry={() => setIsDeleteModalOpen(false)}
+                onClose={() => {
+                    setIsDeleteModalOpen(false);
+                    setGroupToDelete(null);
+                    setOptionToDelete(null);
+                }}
+                onRetry={confirmDelete}
             />
             <CreateNewGroup
                 isOpen={isCreateGroupOpen}
@@ -783,20 +835,11 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                     setCurrentGroup(null);
                 }}
                 initialData={currentGroup}
-                onConfirm={(updatedData) => {
+                onConfirm={() => {
                     setIsEditGroupOpen(false);
                     setCurrentGroup(null);
                 }}
             />
-            {/* <AddOption
-                isOpen={isAddOptionOpen}
-                onClose={() => {
-                    setIsAddOptionOpen(false);
-                    setActiveGroupId(null);
-                }}
-                parentGroupName={activeGroupName}
-                onConfirm={handleAddOptionConfirm}
-            /> */}
             <AddOption
                 isOpen={isAddOptionOpen}
                 onClose={() => {
@@ -805,26 +848,8 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                 }}
                 parentGroupName={activeGroupName}
                 onConfirm={handleAddOptionConfirm}
-                trackStock={data.trackStock} // ← ADD THIS
+                trackStock={data.trackStock}
             />
-            {/* <EditOption
-                isOpen={isEditOptionOpen}
-                onClose={() => {
-                    setIsEditOptionOpen(false);
-                    setCurrentOption(null);
-                    setActiveGroupId(null);
-                }}
-                parentGroupName={activeGroupName}
-                initialData={
-                    currentOption
-                        ? {
-                              ...currentOption,
-                              estimatedCost: currentOption.estCost,
-                          }
-                        : null
-                }
-                onConfirm={handleEditOptionConfirm}
-            /> */}
             <EditOption
                 isOpen={isEditOptionOpen}
                 onClose={() => {
@@ -842,7 +867,7 @@ const ModifiersTab = ({ data, update }: ModifiersTabProps) => {
                         : null
                 }
                 onConfirm={handleEditOptionConfirm}
-                trackStock={data.trackStock} // ← ADD THIS
+                trackStock={data.trackStock}
             />
         </div>
     );

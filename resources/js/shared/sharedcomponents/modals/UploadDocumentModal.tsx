@@ -184,9 +184,9 @@ import { UploadDropzone } from '@/shared/sharedcomponents/upload/UploadDropzone'
 import { UploadError } from '@/shared/sharedcomponents/upload/UploadError';
 import { UploadSuccess } from '@/shared/sharedcomponents/upload/UploadSuccess';
 import Button from '@/superadmin/components/ui/Button';
+import ProfileIcon from '@shared/images/icons/adFood.svg?react';
 import GalleryIcon from '@shared/images/icons/galleryIcon.svg?react';
 import patternBg from '@shared/images/icons/patternBg.svg';
-import ProfileIcon from '@shared/images/icons/profielicon.svg?react';
 import { useState } from 'react';
 import Modal from './Modal';
 
@@ -293,8 +293,10 @@ export default function UploadDocumentModal({
 
                 <div className="relative z-10 mb-4 rounded-lg border border-gray-200 bg-white p-4">
                     <div className="relative z-10 mb-6">
-                        <div className="flex items-center justify-center">
-                            <ProfileIcon className="mb-4 h-28 w-28" />
+                        <div className="mb-2 flex items-center justify-center">
+                            <div className="flex h-28 w-28 items-center justify-center rounded-full bg-gray-100 p-8">
+                                <ProfileIcon className="mb-4 h-20 w-20" />
+                            </div>
                         </div>
 
                         {uploadStatus === 'initial' && (

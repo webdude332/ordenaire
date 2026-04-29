@@ -207,7 +207,7 @@
 //                 </div>
 //             )}
 //             <DeleteModal
-//                 title="Delete Group?"
+//                 title="Delete Add-on?"
 //                 isOpen={isDeleteModalOpen}
 //                 onClose={() => setIsDeleteModalOpen(false)}
 //                 onRetry={() => setIsDeleteModalOpen(false)}
@@ -218,10 +218,9 @@
 
 // export default AddOnsTab;
 
-//on off
-
 import TrashIcon from '@/shared/images/icons/delIcon.svg?react';
 import SearchIcon from '@/shared/images/icons/inputSearch.svg?react';
+import { Input } from '@/shared/sharedcomponents/ui/FormElements';
 import {
     Table,
     TableBody,
@@ -251,8 +250,8 @@ interface AddOn {
 
 const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [addOnToDelete, setAddOnToDelete] = useState<AddOn | null>(null);
 
-    // Completely hardcoded data to match the design
     const addOns: AddOn[] = [
         {
             id: '1',
@@ -285,11 +284,20 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
 
     const [search, setSearch] = useState('');
 
-    const removeAddOn = (id: string) => {
-        update(
-            'addOns',
-            addOns.filter((a) => a.id !== id),
-        );
+    const openDeleteModal = (addon: AddOn) => {
+        setAddOnToDelete(addon);
+        setIsDeleteModalOpen(true);
+    };
+
+    const confirmDelete = () => {
+        if (addOnToDelete) {
+            update(
+                'addOns',
+                addOns.filter((a) => a.id !== addOnToDelete.id),
+            );
+        }
+        setIsDeleteModalOpen(false);
+        setAddOnToDelete(null);
     };
 
     const updateUpsellPrice = (id: string, val: string) => {
@@ -306,10 +314,16 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
                 <h2 className="text-xl font-semibold text-gray-900">
                     Suggested Add-ons / Upsells
                 </h2>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 mb-4 text-sm text-gray-500">
                     Recommended items to cross-sell with this order (e.g., "Add
                     Fries"). You can add up to 3 items.
                 </p>
+                <div className="w-1/2">
+                    <Input
+                        icon={SearchIcon}
+                        placeholder="Search for active menu items (e.g. Fries, Coke...)"
+                    />
+                </div>
             </div>
 
             {/* Search */}
@@ -346,10 +360,12 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
                             <TableHead className="w-4/12">
                                 Linked Item
                             </TableHead>
-                            <TableHead className="w-2/12">
+                            <TableHead className="w-2/12 text-right">
                                 Standard Price
                             </TableHead>
-                            <TableHead className="w-2/12">Unit Cost</TableHead>
+                            <TableHead className="w-2/12 text-right">
+                                Unit Cost
+                            </TableHead>
                             <TableHead className="w-3/12">
                                 Upsell Price
                             </TableHead>
@@ -373,20 +389,20 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
 
                                     {/* Standard Price */}
                                     <TableCell>
-                                        <p className="text-sm text-gray-900">
+                                        <p className="text-right text-sm text-gray-900">
                                             {addon.standardPrice}
                                         </p>
-                                        <p className="text-xs text-gray-400">
+                                        <p className="text-right text-xs text-gray-400">
                                             KWD
                                         </p>
                                     </TableCell>
 
                                     {/* Unit Cost */}
                                     <TableCell>
-                                        <p className="text-sm text-gray-900">
+                                        <p className="text-right text-sm text-gray-900">
                                             {addon.unitCost}
                                         </p>
-                                        <p className="text-xs text-gray-400">
+                                        <p className="text-right text-xs text-gray-400">
                                             {addon.costType}
                                         </p>
                                     </TableCell>
@@ -415,7 +431,7 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
                                         <div className="flex justify-end">
                                             <ActionButton
                                                 onClick={() =>
-                                                    setIsDeleteModalOpen(true)
+                                                    openDeleteModal(addon)
                                                 }
                                             >
                                                 <TrashIcon className="h-4 w-4 text-iconColor" />
@@ -428,11 +444,19 @@ const AddOnsTab = ({ data, update }: AddOnsTabProps) => {
                     </Table>
                 </div>
             )}
+
             <DeleteModal
-                title="Delete Add-on?"
+                title={
+                    addOnToDelete
+                        ? `Delete ${addOnToDelete.name}?`
+                        : 'Delete Add-on?'
+                }
                 isOpen={isDeleteModalOpen}
-                onClose={() => setIsDeleteModalOpen(false)}
-                onRetry={() => setIsDeleteModalOpen(false)}
+                onClose={() => {
+                    setIsDeleteModalOpen(false);
+                    setAddOnToDelete(null);
+                }}
+                onRetry={confirmDelete}
             />
         </div>
     );
