@@ -49,7 +49,7 @@ export default function DeleteModal({
                                 <DelIcon className="h-12 w-12 rounded-lg border-2 border-gray-200 bg-white p-3 text-iconColor" />
                             </div>
                         </div>
-                        <div className="text-md relative z-10 font-medium">
+                        <div className="text-md relative z-10 font-semibold">
                             <h3>{title}</h3>
                         </div>
                     </div>

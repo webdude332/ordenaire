@@ -228,6 +228,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     return Inertia::render('Admin/EditItem');
 })->name('menu.edititem');
 
+    Route::get('customersview', function () {
+    return Inertia::render('CutomersView');
+})->name('customersview');
+
 });
 
 require __DIR__.'/settings.php';
