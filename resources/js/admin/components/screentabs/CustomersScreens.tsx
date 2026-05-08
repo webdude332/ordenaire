@@ -4,8 +4,24 @@ import PlusIcon from '@/shared/images/icons/plus.svg?react';
 import ReloadIcon from '@/shared/images/icons/reloadIcon.svg?react';
 import Badge, { BadgeVariant } from '@/shared/sharedcomponents/ui/Badge';
 import Button from '@/shared/sharedcomponents/ui/Button';
+import { useState } from 'react';
+import AddNewOss from '../modals/AddNewOss';
+import EditOss from '../modals/EditOss';
 
-// Inline SVG for the Megaphone Icon
+interface OssRecord {
+    id: number;
+    title: string;
+    status: string;
+    displayMode: string;
+    adIntegration: string;
+    hardware: string;
+    software: string;
+    deviceName: string;
+    initialDisplayMode: string;
+    initialSoundAlerts: string;
+    pairingCode: string;
+}
+
 const MegaphoneIcon = ({ className }: { className?: string }) => (
     <svg
         className={className}
@@ -28,7 +44,7 @@ export default function CustomersScreens() {
         Offline: 'error',
     };
 
-    const ossData = [
+    const ossData: OssRecord[] = [
         {
             id: 1,
             title: 'The Main TV',
@@ -37,6 +53,10 @@ export default function CustomersScreens() {
             adIntegration: 'Ads Active',
             hardware: 'Samsung Smart TV 55"',
             software: 'Tizen Browser • v2.4.0',
+            deviceName: 'The Main TV',
+            initialDisplayMode: 'ready_preparing',
+            initialSoundAlerts: 'ping_ready',
+            pairingCode: '492 - 118',
         },
         {
             id: 2,
@@ -46,8 +66,21 @@ export default function CustomersScreens() {
             adIntegration: 'Ads Disabled',
             hardware: 'iPad Air (Gen 4)',
             software: 'Safari • v2.4.0',
+            deviceName: 'The Quick Pickup',
+            initialDisplayMode: 'ready_only',
+            initialSoundAlerts: 'disabled',
+            pairingCode: '123 - 456',
         },
     ];
+
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedOss, setSelectedOss] = useState<OssRecord | null>(null);
+
+    const handleEditClick = (record: OssRecord) => {
+        setSelectedOss(record);
+        setIsEditModalOpen(true);
+    };
 
     return (
         <div className="w-full">
@@ -57,7 +90,7 @@ export default function CustomersScreens() {
                     <MegaphoneIcon className="h-4 w-4 text-gray-500" />
                     Manage TV Ads
                 </button>
-                <Button>
+                <Button onClick={() => setIsAddModalOpen(true)}>
                     <PlusIcon className="mr-2 h-4 w-4" />
                     Add New OSS Screen
                 </Button>
@@ -70,14 +103,11 @@ export default function CustomersScreens() {
                         key={item.id}
                         className="flex flex-col overflow-hidden rounded-xl border border-borderColor bg-white shadow-sm"
                     >
-                        {/* Card Content */}
                         <div className="flex-1 p-6">
                             <h2 className="mb-5 text-lg font-semibold text-gray-900">
                                 {item.title}
                             </h2>
-
                             <div className="flex flex-col space-y-3">
-                                {/* Status Row */}
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm text-gray-500">
                                         Status
@@ -93,8 +123,6 @@ export default function CustomersScreens() {
                                         {item.status}
                                     </Badge>
                                 </div>
-
-                                {/* Display Mode Row */}
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm text-gray-500">
                                         Display Mode
@@ -103,24 +131,16 @@ export default function CustomersScreens() {
                                         {item.displayMode}
                                     </span>
                                 </div>
-
-                                {/* Ad Integration Row */}
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm text-gray-500">
                                         Ad Integration
                                     </span>
                                     <span
-                                        className={`rounded px-2 py-0.5 text-xs font-medium ${
-                                            item.adIntegration === 'Ads Active'
-                                                ? 'bg-green-50 text-green-700'
-                                                : 'bg-gray-100 text-gray-600'
-                                        }`}
+                                        className={`rounded px-2 py-0.5 text-xs font-medium ${item.adIntegration === 'Ads Active' ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-600'}`}
                                     >
                                         {item.adIntegration}
                                     </span>
                                 </div>
-
-                                {/* Hardware Row */}
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm text-gray-500">
                                         Hardware
@@ -129,8 +149,6 @@ export default function CustomersScreens() {
                                         {item.hardware}
                                     </span>
                                 </div>
-
-                                {/* Software Row */}
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm text-gray-500">
                                         Software
@@ -142,7 +160,6 @@ export default function CustomersScreens() {
                             </div>
                         </div>
 
-                        {/* Card Footer Actions */}
                         <div className="flex items-center justify-between border-t border-gray-100 px-6 py-4">
                             <button className="flex items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900">
                                 <LaunchIcon className="h-4 w-4" />
@@ -152,7 +169,10 @@ export default function CustomersScreens() {
                                 <ReloadIcon className="h-4 w-4" />
                                 Reload
                             </button>
-                            <button className="flex items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900">
+                            <button
+                                onClick={() => handleEditClick(item)}
+                                className="flex items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+                            >
                                 <EditIcon className="h-4 w-4 text-iconColor" />
                                 Edit
                             </button>
@@ -160,6 +180,23 @@ export default function CustomersScreens() {
                     </div>
                 ))}
             </div>
+
+            <AddNewOss
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
+                onSave={() => setIsAddModalOpen(false)}
+            />
+
+            <EditOss
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                onSave={() => setIsEditModalOpen(false)}
+                onUnpair={() => setIsEditModalOpen(false)}
+                initialDeviceName={selectedOss?.deviceName}
+                initialDisplayMode={selectedOss?.initialDisplayMode}
+                initialSoundAlerts={selectedOss?.initialSoundAlerts}
+                pairingCode={selectedOss?.pairingCode}
+            />
         </div>
     );
 }
