@@ -214,9 +214,53 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return Inertia::render('Admin/Reports');
     })->name('reports');
 
+    // Route::get('marketplace', function () {
+    //     return Inertia::render('Admin/MarketPlace');
+    // })->name('marketplace');
+
     Route::get('marketplace', function () {
-        return Inertia::render('Admin/MarketPlace');
-    })->name('marketplace');
+    return Inertia::render('Admin/MarketPlace');
+})->name('marketplace');
+
+// ─── Marketplace sub-pages ───────────────────────────
+// Route::get('marketplace/explore/{id}', function ($id) {
+//     return Inertia::render('Admin/marketplace/AppOverview', ['appId' => $id]);
+// })->name('marketplace.app.overview');
+
+// Route::get('marketplace/explore/{id}/install', function ($id) {
+//     return Inertia::render('Admin/marketplace/InstallApp', ['appId' => $id]);
+// })->name('marketplace.app.install');
+
+// Route::get('marketplace/my-apps/{id}/manage', function ($id) {
+//     return Inertia::render('Admin/marketplace/SubscriptionDetails', ['appId' => $id, 'mode' => 'active']);
+// })->name('marketplace.app.manage');
+
+// Route::get('marketplace/my-apps/{id}/renew', function ($id) {
+//     return Inertia::render('Admin/marketplace/SubscriptionDetails', ['appId' => $id, 'mode' => 'renew']);
+// })->name('marketplace.app.renew');
+
+// Route::get('marketplace/my-apps/{id}/reactivate', function ($id) {
+//     return Inertia::render('Admin/marketplace/SubscriptionDetails', ['appId' => $id, 'mode' => 'reactivate']);
+// })->name('marketplace.app.reactivate');
+Route::get('marketplace/explore/{id}', function ($id) {
+    return Inertia::render('Admin/AppOverview', ['appId' => $id]);
+})->name('marketplace.app.overview');
+
+Route::get('marketplace/explore/{id}/install', function ($id) {
+    return Inertia::render('Admin/InstallApp', ['appId' => $id]);
+})->name('marketplace.app.install');
+
+Route::get('marketplace/my-apps/{id}/manage', function ($id) {
+    return Inertia::render('Admin/SubscriptionDetails', ['appId' => $id, 'mode' => 'active']);
+})->name('marketplace.app.manage');
+
+Route::get('marketplace/my-apps/{id}/renew', function ($id) {
+    return Inertia::render('Admin/SubscriptionDetails', ['appId' => $id, 'mode' => 'renew']);
+})->name('marketplace.app.renew');
+
+Route::get('marketplace/my-apps/{id}/reactivate', function ($id) {
+    return Inertia::render('Admin/SubscriptionDetails', ['appId' => $id, 'mode' => 'reactivate']);
+})->name('marketplace.app.reactivate');
 
 
      Route::get('menu/additems', function () {
