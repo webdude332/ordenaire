@@ -84,7 +84,7 @@ const MENU_ITEMS = [
         icon: adUsers,
         badge: 10,
         hasSubmenu: true,
-        route: '/admin/internalusers',
+        route: '/admin/internal-users',
     },
     {
         label: 'Reports',

@@ -64,11 +64,6 @@ const CustomDropdown = ({
 
     return (
         <div className={`relative space-y-2 ${containerClassName}`}>
-            {/* <label className={`block  ${labelClassName}`}>
-                {label}
-                {required && <span className="text-[#8CDD05]">*</span>}
-            </label> */}
-
             <button
                 ref={buttonRef}
                 type="button"

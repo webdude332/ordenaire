@@ -2,9 +2,7 @@ import NotificationPanel from '@/admin/components/NotificationPanel';
 import SidePannel from '@/admin/components/SidePannel';
 import TopBar from '@/admin/components/TopBar';
 import { useEffect, useState } from 'react';
-import Dashboard from '../../shared/images/icons/dashBaordSvg.svg'; // You can swap this with a marketplace-specific icon
-
-// Importing components from the marketplacetabs directory
+import Dashboard from '../../shared/images/icons/dashBaordSvg.svg';
 import Explore from '../components/marketplacetabs/Explore';
 import MyApps from '../components/marketplacetabs/MyApps';
 
@@ -26,7 +24,7 @@ const MarketPlace = () => {
         {
             label: 'Marketplace',
             isActive: false,
-            href: '/admin/marketplace', // Adjust this route if your marketplace URL is different
+            href: '/admin/marketplace',
         },
         {
             label: activeTab === 'explore' ? 'Explore' : 'My Apps',
@@ -41,8 +39,6 @@ const MarketPlace = () => {
             onClick: () => setActiveTab('explore'),
         },
         {
-            // Note: If your TopBar supports badges (like the "3" in your screenshot),
-            // you might need to pass an extra property here depending on your TopBar component's props.
             label: 'My Apps',
             isActive: activeTab === 'my-apps',
             onClick: () => setActiveTab('my-apps'),
