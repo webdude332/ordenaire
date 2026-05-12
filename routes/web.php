@@ -276,6 +276,16 @@ Route::get('marketplace/my-apps/{id}/reactivate', function ($id) {
     return Inertia::render('CutomersView');
 })->name('customersview');
 
+//__emplyees___
+    Route::get('addemployee', function () {
+    return Inertia::render('Admin/AddEmployee');
+})->name('addemployee');
+
+    Route::get('editemployee', function () {
+    return Inertia::render('Admin/EditEmployee');
+})->name('editemployee');
+
+
 });
 
 require __DIR__.'/settings.php';

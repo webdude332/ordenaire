@@ -6,6 +6,7 @@ import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import { Input } from '@/shared/sharedcomponents/ui/FormElements';
 import Pagination from '@/superadmin/components/Pagination';
+import { Link } from '@inertiajs/react';
 import { Pencil, User } from 'lucide-react'; // Added User icon here
 import { useState } from 'react';
 import ActionButton from '../ActionButton';
@@ -18,12 +19,6 @@ import {
     TableHeader,
     TableRow,
 } from '../Table';
-
-// Add these imports once you create your Employee Modals
-// import AddNewEmployee, { type EmployeeFormData } from '../modals/AddNewEmployee';
-// import EditEmployee from '../modals/EditEmployee';
-
-// Temporary mock type for editing (Update with your actual type)
 type EmployeeFormData = any;
 const SAMPLE_EMPLOYEE: EmployeeFormData = {
     name: 'John Doe',
@@ -38,10 +33,6 @@ export default function Employees() {
     const [selectedRole, setSelectedRole] = useState('all');
     const [selectedStatus, setSelectedStatus] = useState('all');
     const [selectedAccess, setSelectedAccess] = useState('all');
-
-    // Modal States
-    const [isAddOpen, setIsAddOpen] = useState(false);
-    const [editData, setEditData] = useState<EmployeeFormData | null>(null);
 
     // Mock Data (Added mock avatar URLs for a couple of users)
     const employeesData = [
@@ -161,10 +152,12 @@ export default function Employees() {
                         placeholder=""
                     />
 
-                    <Button onClick={() => setIsAddOpen(true)}>
-                        <Plus />
-                        Add Employee
-                    </Button>
+                    <Link href="/admin/addemployee">
+                        <Button className="py-2.5">
+                            <Plus />
+                            Add Employee
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
@@ -228,13 +221,11 @@ export default function Employees() {
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="flex justify-end gap-2">
-                                        <ActionButton
-                                            onClick={() =>
-                                                setEditData(SAMPLE_EMPLOYEE)
-                                            }
-                                        >
-                                            <Pencil className="h-4 w-4 text-iconColor" />
-                                        </ActionButton>
+                                        <Link href="/admin/editemployee">
+                                            <ActionButton>
+                                                <Pencil className="h-4 w-4 text-iconColor" />
+                                            </ActionButton>
+                                        </Link>
                                         <ActionButton>
                                             <Trash className="h-4 w-4 text-iconColor" />
                                         </ActionButton>
@@ -246,27 +237,6 @@ export default function Employees() {
                     <Pagination />
                 </TableContainer>
             </div>
-
-            {/** Modals - Uncomment once created
-            <AddNewEmployee
-                isOpen={isAddOpen}
-                onClose={() => setIsAddOpen(false)}
-                onConfirm={(data) => {
-                    console.log('Created:', data);
-                    setIsAddOpen(false);
-                }}
-            />
-
-            <EditEmployee
-                isOpen={!!editData}
-                onClose={() => setEditData(null)}
-                onConfirm={(data) => {
-                    console.log('Saved:', data);
-                    setEditData(null);
-                }}
-                initialData={editData!}
-            />
-            */}
         </div>
     );
 }
