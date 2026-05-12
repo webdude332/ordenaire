@@ -3,6 +3,7 @@ import Plus from '@/shared/images/icons/plus.svg?react';
 import Button from '@/shared/sharedcomponents/ui/Button';
 import { Input } from '@/shared/sharedcomponents/ui/FormElements';
 import Pagination from '@/superadmin/components/Pagination';
+import { Link } from '@inertiajs/react';
 import { ArrowUpDown, Eye, Pencil } from 'lucide-react';
 import ActionButton from '../ActionButton';
 import {
@@ -51,10 +52,12 @@ export default function DeliveryPartners() {
                     <Input placeholder="Search Name, ID..." icon={search} />
                 </div>
                 <div>
-                    <Button className="border-none bg-[#6DC214] text-white hover:bg-[#5da611]">
-                        <Plus className="mr-2 h-4 w-4" />
-                        Add New Driver
-                    </Button>
+                    <Link href="/admin/adddriver">
+                        <Button className="border-none bg-[#6DC214] text-white hover:bg-[#5da611]">
+                            <Plus className="mr-2 h-4 w-4" />
+                            Add New Driver
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
@@ -125,9 +128,11 @@ export default function DeliveryPartners() {
                                         <ActionButton>
                                             <Eye className="h-4 w-4 text-gray-500" />
                                         </ActionButton>
-                                        <ActionButton>
-                                            <Pencil className="h-4 w-4 text-gray-500" />
-                                        </ActionButton>
+                                        <Link href="/admin/editdriver">
+                                            <ActionButton>
+                                                <Pencil className="h-4 w-4 text-gray-500" />
+                                            </ActionButton>
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}

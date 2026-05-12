@@ -1,5 +1,5 @@
-// export default function Compensation() {
-//     return <div>Compensation</div>;
+// export default function DriverCompensation() {
+//     return <div>DriverCompensation</div>;
 // }
 
 import Button from '@/shared/sharedcomponents/ui/Button';
@@ -17,7 +17,7 @@ interface StepProps {
     onSave?: () => void;
 }
 
-const Compensation = ({
+const DriverCompensation = ({
     data,
     update,
     onNext,
@@ -33,14 +33,11 @@ const Compensation = ({
     ];
 
     return (
-        <div className="space-y-8 border-t border-gray-200 pt-8">
-            {/* Compensation & Schedule */}
+        <div className="space-y-8 pt-4">
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-3">
                     <h3 className="text-sm font-semibold text-gray-900">
-                        {isEditMode
-                            ? 'Salary & Wages'
-                            : 'Compensation & Schedule'}
+                        Salary & Wages
                     </h3>
                 </div>
                 <div className="col-span-9 space-y-6 rounded-xl border border-gray-200 bg-white px-6 py-6 shadow-sm">
@@ -62,15 +59,15 @@ const Compensation = ({
                         </div>
                         <div className="space-y-2">
                             <Label className="text-sm font-medium text-gray-700">
-                                Basic Monthly Salary{' '}
+                                Base Salary{' '}
                                 <span className="text-[#7AB621]">*</span>
                             </Label>
                             <div className="relative">
                                 <Input
                                     placeholder="0.000"
-                                    value={data.salary || ''}
+                                    value={data.baseSalary || ''}
                                     onChange={(e) =>
-                                        update('salary', e.target.value)
+                                        update('baseSalary', e.target.value)
                                     }
                                     className="pr-24"
                                 />
@@ -124,7 +121,6 @@ const Compensation = ({
 
             <div className="h-px w-full bg-gray-200" />
 
-            {/* Bank Information */}
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-3">
                     <h3 className="text-sm font-semibold text-gray-900">
@@ -137,7 +133,7 @@ const Compensation = ({
                             Bank Name (Optional)
                         </Label>
                         <Input
-                            placeholder="e.g. National Bank of Kuwait (NBK)"
+                            placeholder="e.g. National Bank of Kuwait"
                             value={data.bankName || ''}
                             onChange={(e) => update('bankName', e.target.value)}
                         />
@@ -159,7 +155,7 @@ const Compensation = ({
                             IBAN / Account Number (Optional)
                         </Label>
                         <Input
-                            placeholder="e.g. KW99 NBKK ..."
+                            placeholder="e.g. KW99 NBKK..."
                             value={data.iban || ''}
                             onChange={(e) => update('iban', e.target.value)}
                         />
@@ -169,7 +165,6 @@ const Compensation = ({
 
             <div className="h-px w-full bg-gray-200" />
 
-            {/* Add Document */}
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-3">
                     <h3 className="text-sm font-semibold text-gray-900">
@@ -201,7 +196,6 @@ const Compensation = ({
                 </div>
             </div>
 
-            {/* Dynamic Footer */}
             <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
                 <IconButton onClick={onBack}>Cancel</IconButton>
                 {isEditMode ? (
@@ -210,7 +204,7 @@ const Compensation = ({
                     </Button>
                 ) : (
                     <Button onClick={onNext} disabled={!canNext}>
-                        Next: Access & Security
+                        Next: Review
                     </Button>
                 )}
             </div>
@@ -218,4 +212,4 @@ const Compensation = ({
     );
 };
 
-export default Compensation;
+export default DriverCompensation;

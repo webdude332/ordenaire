@@ -1,7 +1,3 @@
-// export default function Review() {
-//     return <div>Review</div>;
-// }
-
 import Button from '@/shared/sharedcomponents/ui/Button';
 import IconButton from '@/shared/sharedcomponents/ui/IconButton';
 
@@ -11,17 +7,17 @@ interface ReviewProps {
     onSubmit: () => void;
 }
 
-const Review = ({ data, onBack, onSubmit }: ReviewProps) => {
+const DriverReview = ({ data, onBack, onSubmit }: ReviewProps) => {
     return (
-        <div className="space-y-8 border-t border-gray-200 pt-8">
-            {/* Identity & Job Profile */}
+        <div className="space-y-8 pt-4">
+            {/* Driver Profile */}
             <div className="grid grid-cols-12 gap-8 border-b border-gray-100 pb-8">
                 <div className="col-span-3">
                     <h3 className="text-sm font-semibold text-gray-900">
-                        Identity & Job Profile
+                        Driver Profile
                     </h3>
                 </div>
-                <div className="col-span-9">
+                <div className="relative col-span-9 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                     <div className="mb-6 flex items-center gap-4">
                         <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gray-200">
                             {data.image ? (
@@ -47,19 +43,15 @@ const Review = ({ data, onBack, onSubmit }: ReviewProps) => {
                             )}
                         </div>
                         <h4 className="text-lg font-bold text-gray-900">
-                            {data.fullName || 'New Employee'}
+                            {data.fullName || 'New Driver'} (
+                            {data.staffId || 'STF-0001'})
                         </h4>
                     </div>
 
                     <div className="grid grid-cols-2 gap-y-4 text-sm">
-                        <div className="text-gray-500">Staff ID</div>
+                        <div className="text-gray-500">Branch</div>
                         <div className="font-medium text-gray-900">
-                            {data.staffId || 'STF-000X'}
-                        </div>
-
-                        <div className="text-gray-500">Role</div>
-                        <div className="font-medium text-gray-900 capitalize">
-                            {data.jobTitle?.replace('_', ' ') || 'Not set'}
+                            {data.branch || 'Mirpur-1 (Main)'}
                         </div>
 
                         <div className="text-gray-500">Email</div>
@@ -75,14 +67,14 @@ const Review = ({ data, onBack, onSubmit }: ReviewProps) => {
                 </div>
             </div>
 
-            {/* Compensation & Legal */}
-            <div className="grid grid-cols-12 gap-8 border-b border-gray-100 pb-8">
+            {/* Compensation & Documents */}
+            <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-3">
                     <h3 className="text-sm font-semibold text-gray-900">
-                        Compensation & Legal
+                        Compensation & Documents
                     </h3>
                 </div>
-                <div className="col-span-9">
+                <div className="col-span-9 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                     <div className="grid grid-cols-2 gap-y-4 text-sm">
                         <div className="text-gray-500">Employment</div>
                         <div className="font-medium text-gray-900 capitalize">
@@ -90,9 +82,14 @@ const Review = ({ data, onBack, onSubmit }: ReviewProps) => {
                                 'Full-Time'}
                         </div>
 
+                        <div className="text-gray-500">Pay Structure</div>
+                        <div className="font-medium text-gray-900">
+                            Fixed Salary
+                        </div>
+
                         <div className="text-gray-500">Rate</div>
                         <div className="font-medium text-gray-900">
-                            {data.salary || '0.000'} KWD / month
+                            {data.baseSalary || '0.000'} KWD / month
                         </div>
 
                         <div className="text-gray-500">Standard Schedule</div>
@@ -113,78 +110,23 @@ const Review = ({ data, onBack, onSubmit }: ReviewProps) => {
                         <div className="text-gray-500">Documents</div>
                         <div className="flex gap-2">
                             <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600">
-                                Employment Contract
+                                Passport
                             </span>
                             <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600">
-                                Passport Copy
+                                License
                             </span>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            {/* System Access & Security */}
-            <div className="grid grid-cols-12 gap-8">
-                <div className="col-span-3">
-                    <h3 className="text-sm font-semibold text-gray-900">
-                        System Access & Security
-                    </h3>
-                </div>
-                <div className="col-span-9">
-                    <div className="grid grid-cols-2 gap-y-4 text-sm">
-                        <div className="text-gray-500">POS Access</div>
-                        <div className="font-medium text-gray-900">
-                            {data.allowPosLogin ? 'Enabled' : 'Disabled'}
-                        </div>
-
-                        <div className="text-gray-500">Permission Level</div>
-                        <div className="font-medium text-gray-900 capitalize">
-                            {data.posPermission || 'None'}
-                        </div>
-
-                        <div className="text-gray-500">POS PIN</div>
-                        <div className="flex items-center gap-2 font-medium text-gray-900">
-                            <span className="rounded border border-gray-200 bg-gray-100 px-2 py-1">
-                                {data.posPin || '------'}
-                            </span>
-                        </div>
-
-                        <div className="col-span-2 my-2 border-t border-gray-50"></div>
-
-                        <div className="text-gray-500">Dashboard Admin</div>
-                        <div className="font-medium text-gray-900">
-                            {data.allowWebLogin ? 'Enabled' : 'Disabled'}
-                        </div>
-
-                        <div className="text-gray-500">Dashboard Role</div>
-                        <div className="font-medium text-gray-900 capitalize">
-                            {data.systemRole?.replace('_', ' ') || 'None'}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Note Box */}
-            <div className="grid grid-cols-12 gap-8 pt-4">
-                <div className="col-span-3">
-                    <h3 className="text-sm font-semibold text-gray-900">
-                        Note
-                    </h3>
-                </div>
-                <div className="col-span-9 rounded-xl border border-gray-200 bg-gray-50 px-6 py-4">
-                    <p className="text-sm font-medium text-gray-900">
-                        An email invitation will be sent to the Users Email.
-                    </p>
                 </div>
             </div>
 
             {/* Footer */}
             <div className="mt-8 flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
                 <IconButton onClick={onBack}>Back</IconButton>
-                <Button onClick={onSubmit}>Confirm & Add Employee</Button>
+                <Button onClick={onSubmit}>Submit & Invite Driver</Button>
             </div>
         </div>
     );
 };
 
-export default Review;
+export default DriverReview;

@@ -1,53 +1,39 @@
+// export default function EditDriver() {
+//     return <div>EditDriver</div>;
+// }
+
 import SidePannel from '@/admin/components/SidePannel';
 import TopBar from '@/admin/components/TopBar';
 import Dashboard from '@/shared/images/icons/dashBaordSvg.svg';
 import { router } from '@inertiajs/react';
 import { useState } from 'react';
 
-// Importing the employee steps
-import AccessSecurity from '@/admin/components/employeesteps/AccessSecurity';
-import BasicDetails from '@/admin/components/employeesteps/BasicDetails';
-import Compensation from '@/admin/components/employeesteps/Compensation';
+import DriverBasicDetails from '@/admin/components/driversteps/DriverBasicDetails';
+import DriverCompensation from '@/admin/components/driversteps/DriverCompensation';
+import { DriverFormData } from './AddDriver';
 
-// Reusing the interface from AddEmployee (ideally this should be imported from a shared types file)
-export interface EmployeeFormData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    dateOfBirth: string;
-    image: File | null;
-    role: string;
-    department: string;
-    status: string;
-    password: string;
-    employmentType: string;
-    salaryAmount: string;
-    currency: string;
-}
-
-const EditEmployee = () => {
-    // 1. Using tabs for Edit Mode (omitting 'Review' since edits are usually saved directly)
-    const [activeTab, setActiveTab] = useState<
-        'basic' | 'compensation' | 'access'
-    >('basic');
+const EditDriver = () => {
+    const [activeTab, setActiveTab] = useState<'basic' | 'compensation'>(
+        'basic',
+    );
     const [isDirty, setIsDirty] = useState(false);
 
-    // 2. Mock data simulating what would come from your DB
-    const [formData, setFormData] = useState<EmployeeFormData>({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        phone: '+1 234 567 8900',
-        dateOfBirth: '1990-01-01',
-        image: null,
-        role: 'Manager',
-        department: 'Kitchen',
+    // Mock data for edit view
+    const [formData, setFormData] = useState<DriverFormData>({
+        staffId: 'STF-0003',
+        fullName: 'Noah Pierre',
+        email: 'noah@ordenaire.com',
+        phone: '+965 66557788',
         status: 'active',
-        password: '', // Usually left blank on edit unless changing
-        employmentType: 'Full-time',
-        salaryAmount: '5000.00',
-        currency: 'USD',
+        image: null,
+        employmentType: 'full_time',
+        baseSalary: '250.000',
+        workHours: '9',
+        workDays: '6',
+        bankName: 'National Bank of Kuwait (NBK)',
+        accountHolder: 'Noah Pierre',
+        iban: 'KW99 NBKK 0000 1234 5678 99',
+        branch: 'Mirpur-1 (Main)',
     });
 
     const updateFormData = (field: string, value: any) => {
@@ -56,35 +42,38 @@ const EditEmployee = () => {
     };
 
     const handleSave = () => {
-        console.log('Saving edited employee...', formData);
-        alert('Employee Changes Saved Successfully!');
+        console.log('Saving edited driver...', formData);
+        alert('Driver Changes Saved Successfully!');
         setIsDirty(false);
     };
 
     const breadcrumbs = [
-        { label: 'Employees', isActive: false, href: '/admin/employees' },
+        {
+            label: 'Delivery Partners',
+            isActive: false,
+            href: '/admin/delivery-partners',
+        },
         { label: 'Edit', isActive: true },
     ];
 
     return (
-        <div className="flex min-h-screen bg-gray-50/30">
+        <div className="flex min-h-screen bg-white">
             <SidePannel />
             <main className="flex flex-1 flex-col">
                 <div className="sticky top-0 z-50">
                     <TopBar
-                        title={`Edit Employee: ${formData.firstName} ${formData.lastName}`}
+                        title="Edit Driver"
+                        subtitle={`${formData.fullName} (${formData.staffId})`}
                         icon={Dashboard}
                         breadcrumbs={breadcrumbs}
                     />
                 </div>
 
                 <div className="flex-1 px-12 py-6">
-                    {/* Navigation Row: Back Button & Tabs */}
-                    <div className="mb-8 flex items-center justify-between">
-                        {/* Back Button */}
+                    <div className="mb-8 flex items-center justify-between border-b border-gray-100 pb-4">
                         <button
                             onClick={() =>
-                                router.visit('/admin/internal-users')
+                                router.visit('/admin/delivery-partners')
                             }
                             className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
                         >
@@ -101,11 +90,10 @@ const EditEmployee = () => {
                                     d="M10 19l-7-7m0 0l7-7m-7 7h18"
                                 />
                             </svg>
-                            Back1
+                            Back
                         </button>
 
-                        {/* Centered Tabs */}
-                        <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-xl border border-gray-200 bg-gray-100 p-1 shadow-sm">
+                        <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 p-1 shadow-sm">
                             <button
                                 onClick={() => setActiveTab('basic')}
                                 className={`rounded-lg px-6 py-2 text-sm font-medium transition-all ${
@@ -124,51 +112,32 @@ const EditEmployee = () => {
                                         : 'text-gray-500 hover:text-gray-700'
                                 }`}
                             >
-                                Compensation
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('access')}
-                                className={`rounded-lg px-6 py-2 text-sm font-medium transition-all ${
-                                    activeTab === 'access'
-                                        ? 'bg-white text-gray-900 shadow-sm'
-                                        : 'text-gray-500 hover:text-gray-700'
-                                }`}
-                            >
-                                Access & Security
+                                Compensation & Documents
                             </button>
                         </div>
-
-                        {/* Invisible spacer to balance the flex-between layout */}
                         <div className="w-[88px]"></div>
                     </div>
 
-                    {/* Content Renderer */}
                     <div className="mt-6">
                         {activeTab === 'basic' && (
-                            <BasicDetails
+                            <DriverBasicDetails
                                 data={formData}
                                 update={updateFormData}
-                                onBack={() => router.visit('/admin/employees')}
+                                onBack={() =>
+                                    router.visit('/admin/delivery-partners')
+                                }
                                 isEditMode={true}
                                 onSave={handleSave}
                                 canNext={isDirty}
                             />
                         )}
                         {activeTab === 'compensation' && (
-                            <Compensation
+                            <DriverCompensation
                                 data={formData}
                                 update={updateFormData}
-                                onBack={() => router.visit('/admin/employees')}
-                                isEditMode={true}
-                                onSave={handleSave}
-                                canNext={isDirty}
-                            />
-                        )}
-                        {activeTab === 'access' && (
-                            <AccessSecurity
-                                data={formData}
-                                update={updateFormData}
-                                onBack={() => router.visit('/admin/employees')}
+                                onBack={() =>
+                                    router.visit('/admin/delivery-partners')
+                                }
                                 isEditMode={true}
                                 onSave={handleSave}
                                 canNext={isDirty}
@@ -181,4 +150,4 @@ const EditEmployee = () => {
     );
 };
 
-export default EditEmployee;
+export default EditDriver;

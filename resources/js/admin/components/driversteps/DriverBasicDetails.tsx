@@ -1,5 +1,5 @@
-// export default function BasicDetails() {
-//     return <div>BasicDetails</div>;
+// export default function DriverBasicDetails() {
+//     return <div>DriverBasicDetails</div>;
 // }
 
 import UploadDocumentModal from '@/shared/sharedcomponents/modals/UploadDocumentModal';
@@ -19,7 +19,7 @@ interface StepProps {
     onSave?: () => void;
 }
 
-const BasicDetails = ({
+const DriverBasicDetails = ({
     data,
     update,
     onNext,
@@ -35,16 +35,8 @@ const BasicDetails = ({
         { label: 'Inactive', value: 'inactive' },
     ];
 
-    const jobTitleOptions = [
-        { label: 'Select job title', value: '' },
-        { label: 'General Manager', value: 'general_manager' },
-        { label: 'Branch Manager', value: 'branch_manager' },
-        { label: 'Cashier', value: 'cashier' },
-        { label: 'Chef', value: 'chef' },
-    ];
-
     return (
-        <div className="space-y-8 border-t border-gray-200 pt-8">
+        <div className="space-y-8 pt-4">
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-3">
                     <h3 className="text-sm font-semibold text-gray-900">
@@ -144,7 +136,7 @@ const BasicDetails = ({
                                     </svg>
                                 </span>
                                 <Input
-                                    placeholder="e.g., noah@ordermark.com"
+                                    placeholder="e.g., noah@ordenaire.com"
                                     value={data.email || ''}
                                     onChange={(e) =>
                                         update('email', e.target.value)
@@ -168,7 +160,7 @@ const BasicDetails = ({
                         </div>
                     </div>
 
-                    {/* Status & Job Title */}
+                    {/* Status Only (No Job Title for Drivers) */}
                     <div className="grid grid-cols-2 gap-6">
                         <div>
                             <Label className="mb-2 text-sm font-medium text-gray-700">
@@ -183,24 +175,10 @@ const BasicDetails = ({
                                 placeholder="Select status"
                             />
                         </div>
-                        <div>
-                            <Label className="mb-2 text-sm font-medium text-gray-700">
-                                Job Title{' '}
-                                <span className="text-[#7AB621]">*</span>
-                            </Label>
-                            <CustomDropdown
-                                label=""
-                                options={jobTitleOptions}
-                                value={data.jobTitle || ''}
-                                onChange={(val) => update('jobTitle', val)}
-                                placeholder="Select job title"
-                            />
-                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Dynamic Footer */}
             <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
                 <IconButton onClick={onBack}>Cancel</IconButton>
                 {isEditMode ? (
@@ -209,7 +187,7 @@ const BasicDetails = ({
                     </Button>
                 ) : (
                     <Button onClick={onNext} disabled={!canNext}>
-                        Next: Compensation
+                        Next: Compensation & Documents
                     </Button>
                 )}
             </div>
@@ -227,4 +205,4 @@ const BasicDetails = ({
     );
 };
 
-export default BasicDetails;
+export default DriverBasicDetails;

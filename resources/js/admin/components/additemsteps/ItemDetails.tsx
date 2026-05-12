@@ -1,5 +1,3 @@
-//is edit mode
-
 import Button from '@/shared/sharedcomponents/ui/Button';
 import CustomDropdown from '@/shared/sharedcomponents/ui/CustomDropdown';
 import {

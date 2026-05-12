@@ -285,6 +285,14 @@ Route::get('marketplace/my-apps/{id}/reactivate', function ($id) {
     return Inertia::render('Admin/EditEmployee');
 })->name('editemployee');
 
+//__driver___
+    Route::get('adddriver', function () {
+    return Inertia::render('Admin/AddDriver');
+})->name('adddriver');
+
+    Route::get('editdriver', function () {
+    return Inertia::render('Admin/EditDriver');
+})->name('editdriver');
 
 });
 
