@@ -221,6 +221,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('marketplace', function () {
     return Inertia::render('Admin/MarketPlace');
 })->name('marketplace');
+    Route::get('help', function () {
+    return Inertia::render('Admin/Help');
+})->name('help');
 
 // ─── Marketplace sub-pages ───────────────────────────
 // Route::get('marketplace/explore/{id}', function ($id) {

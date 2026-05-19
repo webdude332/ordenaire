@@ -1,7 +1,3 @@
-// export default function Accounts() {
-//     return <div>Accounts</div>;
-// }
-
 import NotificationPanel from '@/admin/components/NotificationPanel';
 import SidePannel from '@/admin/components/SidePannel';
 import TopBar from '@/admin/components/TopBar';

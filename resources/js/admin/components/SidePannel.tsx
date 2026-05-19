@@ -100,6 +100,13 @@ const MENU_ITEMS = [
         hasSubmenu: true,
         route: '/admin/marketplace',
     },
+    {
+        label: 'Help',
+        icon: adMarket,
+        badge: 10,
+        hasSubmenu: true,
+        route: '/admin/help',
+    },
 ];
 
 const iconMaskStyle = (icon) => ({
